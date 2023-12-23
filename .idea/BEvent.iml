@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<module version="4">
-  <component name="Flask">
-    <option name="enabled" value="true" />
-  </component>
-  <component name="TemplatesService">
-    <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
-    <option name="TEMPLATE_FOLDERS">
-      <list>
-        <option value="$MODULE_DIR$/templates" />
-      </list>
-    </option>
-=======
 <module type="PYTHON_MODULE" version="4">
   <component name="Flask">
     <option name="enabled" value="true" />
@@ -23,6 +10,5 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
->>>>>>> origin/develop
   </component>
 </module>

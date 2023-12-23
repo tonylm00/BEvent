@@ -4,10 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="55543786-09e9-4af3-8441-6c1633dcd639" name="Changes" comment="Creazione della struttura del progetto e sistemati reindirizzamenti del login">
-      <change beforePath="$PROJECT_DIR$/BEvent_app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/__init__.py" afterDir="false" />
-=======
     <list default="true" id="7c3c2cc2-329a-417c-afea-18652476713b" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/AreaAdmin.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" afterDir="false" />
@@ -22,7 +18,6 @@
       <change beforePath="$PROJECT_DIR$/BEvent_app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/Login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Login.html" afterDir="false" />
->>>>>>> origin/develop
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,31 +27,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-<<<<<<< HEAD
-        <option value="HTML File" />
-        <option value="package.json" />
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
-    <envs>
-      <env key="FLASK_APP" value="app" />
-    </envs>
-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
-    <option name="myEnvs">
-      <map>
-        <entry key="FLASK_APP" value="app" />
-      </map>
-    </option>
-  </component>
-=======
         <option value="CSS File" />
         <option value="HTML File" />
       </list>
     </option>
   </component>
->>>>>>> origin/develop
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -65,29 +40,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "17Antony17"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="63c49a7b-3e04-4c57-833a-10c84c0a82dd" />
-        <option name="url" value="https://github.com/tonylm00/BEvent.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2ZtbLvO1Se0tQDDR0LjrYvfFSNT" />
-=======
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -101,43 +53,10 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
->>>>>>> origin/develop
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Flask server.BEvent.executor&quot;: &quot;Run&quot;,
-    &quot;Python.BEvent.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent" />
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app" />
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\static" />
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\templates\style" />
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\templates" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Flask server.BEvent">
-    <configuration name="BEvent" type="PythonConfigurationType" factoryName="Python">
-      <module name="BEvent" />
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
@@ -157,7 +76,6 @@
 }]]></component>
   <component name="RunManager">
     <configuration default="true" type="DjangoTestsConfigurationType">
->>>>>>> origin/develop
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -169,10 +87,6 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-<<<<<<< HEAD
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Anton\PycharmProjects\BEvent\app.py" />
-=======
       <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="TARGET" value="" />
@@ -211,7 +125,6 @@
       <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
->>>>>>> origin/develop
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -236,8 +149,6 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-<<<<<<< HEAD
-=======
     <configuration default="true" type="Python.FlaskServer">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -300,7 +211,6 @@
       <option name="docutils_open_in_browser" value="false" />
       <method v="2" />
     </configuration>
->>>>>>> origin/develop
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -312,45 +222,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
-      <changelist id="55543786-09e9-4af3-8441-6c1633dcd639" name="Changes" comment="" />
-      <created>1703244270155</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1703244270155</updated>
-      <workItem from="1703244272547" duration="245000" />
-      <workItem from="1703244530054" duration="508000" />
-      <workItem from="1703245110722" duration="379000" />
-      <workItem from="1703271165588" duration="2729000" />
-      <workItem from="1703280519313" duration="190000" />
-      <workItem from="1703332919533" duration="9579000" />
-    </task>
-    <task id="LOCAL-00001" summary="Hehe">
-      <option name="closed" value="true" />
-      <created>1703244855252</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1703244855252</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Primo approccio a python e prima connessione con mongodb tramite login">
-      <option name="closed" value="true" />
-      <created>1703273844717</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1703273844717</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Creazione della struttura del progetto e sistemati reindirizzamenti del login">
-      <option name="closed" value="true" />
-      <created>1703344981600</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1703344981600</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
-=======
       <changelist id="7c3c2cc2-329a-417c-afea-18652476713b" name="Changes" comment="" />
       <created>1703245457318</created>
       <option name="number" value="Default" />
@@ -359,26 +230,13 @@
       <workItem from="1703245458419" duration="1379000" />
       <workItem from="1703323286976" duration="4199000" />
     </task>
->>>>>>> origin/develop
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< HEAD
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Hehe" />
-    <MESSAGE value="Primo approccio a python e prima connessione con mongodb tramite login" />
-    <MESSAGE value="Creazione della struttura del progetto e sistemati reindirizzamenti del login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creazione della struttura del progetto e sistemati reindirizzamenti del login" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703244356010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1703344878310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-=======
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1703323387612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703245501162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
->>>>>>> origin/develop
   </component>
 </project>
