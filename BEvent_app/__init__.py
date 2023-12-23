@@ -8,7 +8,7 @@ users_collection = db['Utente']
 
 
 def create_app():
-    app = Flask(__name__, static_folder='static')
+    app = Flask(__name__, template_folder='templates')
 
     @app.route('/')
     def index():
@@ -23,6 +23,6 @@ def create_app():
         if user:
             return "Login riuscito!"
         else:
-            return "Credenziali non valide. Riprova."
+            return render_template('Login.html')
 
     return app
