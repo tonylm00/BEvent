@@ -1,0 +1,18 @@
+Index: app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, render_template, request, redirect, url_for\r\nfrom pymongo import MongoClient\r\nimport hashlib\r\n\r\napp = Flask(__name__, static_folder='style')\r\nclient = MongoClient('mongodb://localhost:27017/')\r\ndb = client['BEvent']\r\nusers_collection = db['Utente']\r\n\r\n\r\ndef hash_password(password):\r\n    return hashlib.sha256(password.encode()).hexdigest()\r\n\r\n@app.route('/')\r\ndef index():\r\n    return render_template('index.html')\r\n\r\n@app.route('/login', methods=['POST'])\r\ndef login():\r\n    email = request.form.get('email')\r\n    password = request.form.get('password')\r\n\r\n    #hashed_password = hash_password(password)  # Crittografia della password\r\n\r\n\r\n    #user = users_collection.find_one({'email': email, 'password': hashed_password})\r\n\r\n    user = users_collection.find_one({'email': email, 'password': password})\r\n    if user:\r\n        # Autenticazione riuscita\r\n        return \"Login riuscito!\"\r\n    else:\r\n\r\n        return \"Credenziali non valide. Riprova.\"\r\n\r\nif __name__ == '__main__':\r\n    app.run(debug=True)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app.py b/app.py
+--- a/app.py	
++++ b/app.py	
+@@ -22,7 +22,6 @@
+ 
+     #hashed_password = hash_password(password)  # Crittografia della password
+ 
+-
+     #user = users_collection.find_one({'email': email, 'password': hashed_password})
+ 
+     user = users_collection.find_one({'email': email, 'password': password})
