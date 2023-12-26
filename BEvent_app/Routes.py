@@ -7,7 +7,12 @@ views = Blueprint('views', __name__)
 
 
 @views.route('/')
-@views.route('/home')
+@views.route('/user_page')
+@views.route('/user_page')
+
+def user_page():
+    return render_template('AreaFornitore.html')
+
 def home():
     return render_template('Home.html')
 

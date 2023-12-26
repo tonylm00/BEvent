@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pagina Utente Fornitore</title>
+    <link rel="stylesheet"  type="text/css" href="../static/style/AreaFornitore.css">
 </head>
 <body>
+    <div class="header-right">
+        <!-- Prima Sezione: Dati personali -->
+        <h2>Dati Personali</h2>
+        <p>Nome: carlo </p>
+        <p>Cognome: </p>
+        <p>Data di Nascita: </p>
+        <p>Email: </p>
+        <p>Telefono: </p>
+        <p>Nome Utente: </p>
+        <p>Password: </p>
+        <p>Partita IVA: </p>
+    </div>
 
+    <div class="header-left">
+        <!-- Seconda Sezione: Foto -->
+        <div class="main-photo">
+            <!-- Foto principale del fornitore -->
+            <img id="main-photo" src="#" alt="Foto principale">
+        </div>
+        <div class="sub-photos">
+            <!-- Foto in miniatura (4 piccole) -->
+            {% for photo in photos %}
+                <img src="{{ photo }}" alt="Miniatura" onclick="changeMainPhoto('{{ photo }}')">
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="content-left">
+        <!-- Terza Sezione: Informazioni sul prodotto -->
+        <h2>Informazioni Prodotto</h2>
+        <p>Descrizione: </p>
+        <p>Tipo: </p>
+        <p>Prezzo: </p>
+        <p>Eventi Massimi Giornalieri: </p>
+        <p>Quantità: </p>
+        <p>Città: </p>
+        <p>Via: </p>
+    </div>
+
+    <div class="content-right">
+        <!-- Quarta Sezione: Tabella -->
+        <h2>Tabella</h2>
+        <table>
+            <tr>
+                <th>Titolo Colonna 1</th>
+                <th>Titolo Colonna 2</th>
+                <!-- Aggiungi altre colonne secondo necessità -->
+            </tr>
+            <!-- Aggiungi righe e dati alla tabella -->
+        </table>
+    </div>
+
+    <script>
+    function changeMainPhoto(photoUrl) {
+        var mainPhoto = document.getElementById('main-photo');
+        mainPhoto.src = photoUrl;
+    }
+</script>
 </body>
 </html>

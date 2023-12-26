@@ -1,0 +1,30 @@
+/* Stili per la pagina utente del fornitore */
+/* Puoi personalizzare ulteriormente gli stili a tuo piacimento */
+
+.header-right {
+    float: right;
+    /* Stili per la prima sezione (dati personali) */
+}
+
+.header-left {
+    float: left;
+    /* Stili per la seconda sezione (foto) */
+}
+
+.main-photo {
+    /* Stili per la foto principale */
+}
+
+.sub-photos {
+    /* Stili per le foto in miniatura */
+}
+
+.content-left {
+    clear: left;
+    /* Stili per la terza sezione (informazioni prodotto) */
+}
+
+.content-right {
+    float: right;
+    /* Stili per la quarta sezione (tabella) */
+}
