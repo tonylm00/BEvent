@@ -1,5 +1,7 @@
 from flask import request
 from BEvent_app.Autenticazione import AutenticazioneService
+from BEvent_app.Autenticazione.AutenticazioneService import ruolo
+
 
 def login():
     if request.method == 'POST':
@@ -10,8 +12,10 @@ def login():
 
         if user:
             # Autenticazione riuscita
-            return "Login riuscito!"
+            return ruolo(email)
         else:
             return "Credenziali non valide. Riprova."
     else:
-        return "Metodo non consentito per l'accesso."
+        return "Metodo non consentito per l'accesso"
+
+

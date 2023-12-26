@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La tua Pagina Evento</title>
+<link rel="stylesheet" href="Home.css">
 </head>
 <body>
-    <h1>Benvenuto nella tua area personale!</h1>
-    <p>Seleziona la tua area personale in base al tuo ruolo:</p>
-
-    {% if ruolo == '3' %}
-        <!-- Bottone/link per l'area Fornitore -->
-        <a href="AreaFornitore.css" class="button">Vai all'Area Fornitore</a>
-    {% elif ruolo == '2' %}
-        <!-- Bottone/link per l'area Organizzatore -->
-        <a href="AreaOrganizzatore.css" class="button">Vai all'Area Organizzatore</a>
-    {% elif ruolo == '1' %}
-        <!-- Bottone/link per l'area Admin -->
-        <a href="AreaAdmin.css" class="button">Vai all'Area Admin</a>
-    {% else %}
-        <p>Ruolo non riconosciuto.</p>
-    {% endif %}
+<header>
+    <nav>
+        <!-- Metti qui il tuo logo e i link di navigazione -->
+    </nav>
+</header>
+<main>
+    <section class="intro">
+        <h1>Crea il tuo evento</h1>
+        <h2>Trova l'evento per te</h2>
+    </section>
+    <section class="event-countdown">
+        <article>
+            <h3>Antonio & Daria</h3>
+            <p>21 settembre 2024</p>
+            <!-- Dettagli conto alla rovescia -->
+        </article>
+        <article>
+            <!-- Dettagli servizi -->
+        </article>
+    </section>
+    <section class="upcoming-events">
+        <!-- Griglia per eventi futuri -->
+    </section>
+</main>
+<footer>
+    <!-- Informazioni footer qui -->
+</footer>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from BEvent_app.Routes import home
+from BEvent_app.Routes import home, login_page
 import hashlib
 
 
