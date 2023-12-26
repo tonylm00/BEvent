@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="Home.css">
 </head>
 <body>
+<h1>Benvenuto sulla homepage</h1>
+    <button id="loginButton">Login</button>
+
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            // Quando il pulsante "Login" viene cliccato, esegui la funzione di reindirizzamento
+            window.location.href = 'login_page';
+        });
+    </script>
 <header>
     <nav>
         <!-- Metti qui il tuo logo e i link di navigazione -->

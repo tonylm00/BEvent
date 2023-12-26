@@ -1,5 +1,7 @@
 import hashlib
 from pymongo import MongoClient, collection
+from werkzeug.security import generate_password_hash
+
 from BEvent_app.Routes import ruolo_utente
 
 # import hashlib
@@ -24,3 +26,18 @@ def ruolo(email):
         ruolo = user.get('ruolo', None)
         return ruolo
     return None
+
+
+def registra_utente(nome,cognome,nome_utente,email,password,cpassword,telefono,indirizzo,tipo):
+    if controlla_campi(nome,cognome,indirizzo,telefono,email):
+        if not controlla_email_esistente(email):
+            flash("Email esistente", category="error")
+        elif contolla_password (password,cpassword):
+            if (tipo='Fornitore'):
+                user= Fornitore(nome=nome, cognome=cognome,nome_utente=nome_utente,email=email,telefono=telefono,indirizzo=indirizzo,password=generate_password_hash(password,method='sha256'))
+            else:
+                user= Organizzatore(#tutte le cose di organizzatore)
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
+    return False
