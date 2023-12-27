@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, session
-#from flask_login import login_required, current_user
+from flask_login import login_required, current_user
 
 
 views = Blueprint('views', __name__)
@@ -24,7 +24,7 @@ def ruolo_utente(ruolo_utente):
 
 @views.route('/login_page')
 def login_page():
-        return render_template('Login.html')
+    return render_template('Login.html')
 
 
 @views.route('/registrazione_page')

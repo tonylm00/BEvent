@@ -1,6 +1,9 @@
+from datetime import datetime
 import hashlib
+import re
+from flask import Flask, flash
 from pymongo import MongoClient, collection
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from BEvent_app.Routes import ruolo_utente
 
@@ -11,7 +14,7 @@ db = client['BEvent']
 users_collection = db['Utente']
 
 
-#def hash_password(password):
+# def hash_password(password):
 #    return hashlib.sha256(password.encode()).hexdigest()
 
 
@@ -19,13 +22,6 @@ def verify_user(email, password):
     user = users_collection.find_one({'email': email, 'password': password})
     return user
 
-
-def ruolo(email):
-    user = users_collection.find_one({'email': email})
-    if user:
-        ruolo = user.get('ruolo', None)
-        return ruolo
-    return None
 
 """ 
     CONTROLLO CARATTERI FORM REGISTRAZIONE
@@ -35,8 +31,9 @@ email_valida = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
         "+", "-", "^", "_", "-", "?", ",", ":", ";", ".", "§", "°", "[", "]"]
 
-def controlla_campi(nome, cognome, telefono, nome_utente,email, data_di_nascita):
-    if not isinstance(nome, str)or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
+
+def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
+    if not isinstance(nome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
         flash("Nome non valido", category="error")
     elif not isinstance(cognome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
         flash("Cognome non valido", category="error")
@@ -51,34 +48,70 @@ def controlla_campi(nome, cognome, telefono, nome_utente,email, data_di_nascita)
     else:
         return True
     return False
+
+
 def is_valid_email(email):
-    email_pattern=re.compile(r'''^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$''',re.VERBOSE)
-    return bool(re.mach(email_pattern,email))
+    email_pattern = re.compile(r'''^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$''', re.VERBOSE)
+    return bool(re.match(email_pattern, email))
+
+
 def is_valid_data_di_nascita(data_di_nascita):
     try:
-        datetime_object = datetime.strptime(data_di_nascita, '%Y-%m-%d')
+        datetime_object = datetime.strptime(data_di_nascita, '%d-%m-%Y')
         return True
     except ValueError:
         return False
 
 
+def controlla_password(password):
+    if not isinstance(password, str) or len(password) < 8:
+        flash("Lunghezza non valida", "error")
+    else:
+        # Utilizza l'espressione regolare per convalidare il formato della password
+        regex_pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
 
-"""def registra_utente(nome,cognome,data_di_nascita, email,telefono, nome_utente,password,cpassword,isAdmin,Ruolo):
-    if controlla_campi(nome,cognome,telefono,email,data_di_nascita, nome_utente):
-"""
-"""
-def registra_utente(nome,cognome,nome_utente,email,password,cpassword,telefono,indirizzo,tipo):
-    if controlla_campi(nome,cognome,indirizzo,telefono,email):
-        if not controlla_email_esistente(email):
-            flash("Email esistente", category="error")
-        elif contolla_password (password,cpassword):
-            if (tipo='Fornitore'):
-                user= Fornitore(nome=nome, cognome=cognome,nome_utente=nome_utente,email=email,telefono=telefono,indirizzo=indirizzo,password=generate_password_hash(password,method='sha256'))
-            else:
-                user= Organizzatore(#tutte le cose di organizzatore)
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
+        if not re.match(regex_pattern, password):
+            flash("Formato non valido", "error")
+        else:
+            # La password è valida
+            return True
     return False
 
-    return False"""
+
+def conferma_password(password, cpassword):
+    if password == cpassword:
+        return True
+    return False
+
+
+def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo):
+    if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
+        if not is_valid_email(email):
+            flash("Email esistente", "error")
+        elif not controlla_password(password):
+            flash("Password non valida", "error")
+        elif not conferma_password(password, cpassword):
+            flash("Le password non corrispondono", "error")
+        else:
+            hashed_password = generate_password_hash(password, method='sha256')
+            user_document = {
+                "nome": nome,
+                "cognome": cognome,
+                "data_di_nascita": data_di_nascita,
+                "email": email,
+                "telefono": telefono,
+                "nome_utente": nome_utente,
+                "password": hashed_password,
+                "Admin": {
+                    "isAdmin": False
+                },
+                "Ruolo": ruolo,
+                "Organizzatore": {
+                    "FotoOrganizzatore": "",
+                    "Citta": citta
+                }
+            }
+            users_collection.insert_one(user_document)
+            flash("Registrazione avvenuta con successo!", "success")
+            return True
+    return False
