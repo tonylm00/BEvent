@@ -23,14 +23,15 @@ def registrazione():
     if request.method == 'POST':
         nome = request.form.get('nome')
         cognome = request.form.get('cognome')
+        data_di_nascita = request.form.get('data_di_nascita')
         nome_utente = request.form.get('nome_utente')
         email = request.form.get('email')
         password = request.form.get('password')
         cpassword = request.form.get('cpassword')
         telefono = request.form.get('telefono')
-        indirizzo = request.form.get('indirizzo')
-        tipo = request.form.get('tipo')
-        if registra_utente(nome,cognome,nome_utente,email,password,cpassword,telefono,indirizzo,tipo):
+        isAdmin = request.form.get('isAdmin')
+        ruolo = request.form.get('ruolo')
+        if registra_utente(nome,cognome,data_di_nascita,nome_utente,email,password,cpassword,telefono,isAdmin,ruolo):
             return home()
     return registrazione_page()
 
