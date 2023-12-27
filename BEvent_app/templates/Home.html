@@ -4,42 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La tua Pagina Evento</title>
-<link rel="stylesheet" href="Home.css">
+<link rel="stylesheet" href="../static/style/Home.css">
 </head>
 <body>
 <h1>Benvenuto sulla homepage</h1>
 
-<header>
-    <nav>
-        <!-- Metti qui il tuo logo e i link di navigazione -->
-    </nav>
+<header class="header">
+
 </header>
-<main>
-    <section class="intro">
-        <h1>Crea il tuo evento</h1>
-        <h2>Trova l'evento per te</h2>
-    </section>
-    <section class="event-countdown">
-        <article>
-            <h3>Antonio & Daria</h3>
-            <p>21 settembre 2024</p>
-            <!-- Dettagli conto alla rovescia -->
-        </article>
-        <article>
-            <!-- Dettagli servizi -->
-        </article>
-    </section>
-    <section class="upcoming-events">
-        <!-- Griglia per eventi futuri -->
-    </section>
 
-    <form action="/login_page" method="get">
-        <button> Loginnnn</button>
+<div class="split left">
+  <div class="centered">
+    <h1>Crea il tuo evento</h1>
+    <p>Alcune informazioni sull'organizzazione di eventi personali.</p>
+      {% if session.logged_in %}
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <form action="/login_page">
+                <button type="submit">Login</button>
+            </form>
+        {% endif %}
+  </div>
+</div>
 
-    </form>
-</main>
-<footer>
-    <!-- Informazioni footer qui -->
-</footer>
+<div class="split right">
+  <div class="centered">
+    <h1>Trova l'evento per te</h1>
+    <p>Dettagli su come scoprire eventi pubblici che potrebbero interessarti.</p>
+  </div>
+</div>
 </body>
 </html>

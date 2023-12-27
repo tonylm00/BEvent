@@ -1,38 +1,47 @@
-body {
+  body, html {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
-}
+  }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem;
+  .split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  .left {
+    left: 0;
+    background-color: #ccc;
+    background-image: url('../images/Crea.jpg');
+    background-size: cover;
+  }
+
+  .right {
+    right: 0;
+    background-color: #ccc;
+    background-image: url('../images/Cerca.jpg');
+    background-size: cover;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-}
+  }
 
-main {
-    margin: 2rem;
-}
+  .centered img {
+    width: 150px;
+    border-radius: 50%;
+  }
 
-.intro h1, .intro h2 {
-    text-align: center;
-}
-
-.event-countdown {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-}
-
-.upcoming-events {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-footer {
-    background: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
+  h1 {
+    color: white;
+    font-size: 50px;
+  }

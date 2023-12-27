@@ -1,15 +1,26 @@
 from flask import render_template, Blueprint, session
-#from flask_login import login_required, current_user
+from flask_login import current_user
+
+# from flask_login import login_required, current_user
 
 
 views = Blueprint('views', __name__)
 
-def user_page():
+
+@views.route('/fornitore_page')
+def fornitore_page():
     return render_template('AreaFornitore.html')
 
-@views.route('/')
+
+@views.route('/admin_page')
+def admin_page():
+    return render_template('AreaAdmin.html')
+
+
+@views.route('/home')
 def home():
     return render_template('Home.html')
+
 
 @views.route('/ruolo')
 def ruolo_utente(ruolo_utente):
@@ -22,9 +33,10 @@ def ruolo_utente(ruolo_utente):
     else:
         return "Ruolo non riconosciuto."
 
+
 @views.route('/login_page')
 def login_page():
-        return render_template('Login.html')
+    return render_template('Login.html')
 
 
 @views.route('/registrazione_page')
@@ -33,3 +45,7 @@ def registrazione_page():
         return render_template('Registrazione.html')
     return home()
 
+
+@views.route('error_page')
+def error_page():
+    return render_template('ErrorPage.html')

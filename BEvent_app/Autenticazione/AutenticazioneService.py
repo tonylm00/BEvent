@@ -1,4 +1,6 @@
 import hashlib
+
+from flask import flash
 from pymongo import MongoClient, collection
 from werkzeug.security import generate_password_hash
 
@@ -19,13 +21,6 @@ def verify_user(email, password):
     user = users_collection.find_one({'email': email, 'password': password})
     return user
 
-
-def ruolo(email):
-    user = users_collection.find_one({'email': email})
-    if user:
-        ruolo = user.get('ruolo', None)
-        return ruolo
-    return None
 
 """ 
     CONTROLLO CARATTERI FORM REGISTRAZIONE

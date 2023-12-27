@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="unversioned files">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_23__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_23__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_52__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BEvent_app/static/images/Cerca.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BEvent_app/static/images/Crea.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BEvent_app/templates/ErrorPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BEvent_app/templates/Header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaOrganizzatore.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +85,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\static\images" />
       <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\templates" />
       <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\RicercaEvento" />
     </key>
@@ -87,6 +95,7 @@
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/app.py" />
       <option name="targetType" value="PATH" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -168,9 +177,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="Reindirizzamenti funzionanti" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1703696873794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703348206394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$provaDaria.coverage" NAME="provaDaria Coverage Results" MODIFIED="1703245177592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BEvent$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1703598902571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$provaDaria.coverage" NAME="provaDaria Coverage Results" MODIFIED="1703245177592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1703708425164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
