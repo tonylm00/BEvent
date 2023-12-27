@@ -2,6 +2,7 @@ from flask import render_template, Blueprint, session
 from flask_login import current_user
 
 # from flask_login import login_required, current_user
+from flask_login import login_required, current_user
 
 
 views = Blueprint('views', __name__)
@@ -45,7 +46,3 @@ def registrazione_page():
         return render_template('Registrazione.html')
     return home()
 
-
-@views.route('error_page')
-def error_page():
-    return render_template('ErrorPage.html')

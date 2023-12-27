@@ -1,6 +1,7 @@
 from flask import request, Flask, Blueprint, session, redirect, url_for
 from BEvent_app.Autenticazione import AutenticazioneService
 from BEvent_app.Routes import login_page, home, admin_page, error_page, fornitore_page
+from BEvent_app.Routes import login_page, home, registrazione_page
 
 aut = Blueprint('aut', __name__)
 
@@ -43,6 +44,8 @@ def logout():
 
 # @gu.route('/registrazione', methods=['GET','POST'])
 def registrazione():
+@aut.route('/registrazione_organizzatore', methods=['GET', 'POST'])
+def registrazione_organizzatore():
     if request.method == 'POST':
         nome = request.form.get('nome')
         cognome = request.form.get('cognome')
@@ -52,9 +55,12 @@ def registrazione():
         password = request.form.get('password')
         cpassword = request.form.get('cpassword')
         telefono = request.form.get('telefono')
-        isAdmin = request.form.get('isAdmin')
         ruolo = request.form.get('ruolo')
-        if registra_utente(nome, cognome, data_di_nascita, nome_utente, email, password, cpassword, telefono, isAdmin,
+        citta = request.form.get('citta')
+        if AutenticazioneService.registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta,
                            ruolo):
+            session["nome"] = nome_utente
+            session["ruolo"] = ruolo
+
             return home()
     return registrazione_page()
