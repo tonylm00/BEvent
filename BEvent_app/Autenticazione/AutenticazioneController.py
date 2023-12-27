@@ -6,6 +6,7 @@ from BEvent_app.Autenticazione.AutenticazioneService import ruolo
 app = Flask(__name__)
 aut = Blueprint('aut', __name__)
 
+
 def login():
     print("hellooooo")
     if request.method == 'POST':

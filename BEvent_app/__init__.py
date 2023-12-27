@@ -4,9 +4,6 @@ from .Routes import views
 from .Autenticazione.AutenticazioneController import aut
 
 
-
-
-
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(views, url_prefix='/')

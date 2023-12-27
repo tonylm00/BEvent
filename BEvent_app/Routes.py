@@ -2,11 +2,7 @@ from flask import render_template, Blueprint, session
 #from flask_login import login_required, current_user
 
 
-
 views = Blueprint('views', __name__)
-
-
-
 
 def user_page():
     return render_template('AreaFornitore.html')
