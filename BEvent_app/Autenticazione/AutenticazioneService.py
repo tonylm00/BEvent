@@ -27,7 +27,7 @@ def ruolo(email):
         return ruolo
     return None
 
-
+"""
 def registra_utente(nome,cognome,nome_utente,email,password,cpassword,telefono,indirizzo,tipo):
     if controlla_campi(nome,cognome,indirizzo,telefono,email):
         if not controlla_email_esistente(email):
@@ -41,3 +41,4 @@ def registra_utente(nome,cognome,nome_utente,email,password,cpassword,telefono,i
             db.session.commit()
             login_user(user)
     return False
+"""

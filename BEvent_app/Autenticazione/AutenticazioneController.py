@@ -1,9 +1,13 @@
-from flask import request
+from flask import request, Flask, Blueprint
 from BEvent_app.Autenticazione import AutenticazioneService
 from BEvent_app.Autenticazione.AutenticazioneService import ruolo
 
 
+app = Flask(__name__)
+aut = Blueprint('aut', __name__)
+
 def login():
+    print("hellooooo")
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
