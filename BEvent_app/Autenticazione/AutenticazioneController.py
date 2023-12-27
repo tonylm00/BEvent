@@ -1,14 +1,14 @@
 from flask import request, Flask, Blueprint
 from BEvent_app.Autenticazione import AutenticazioneService
 from BEvent_app.Autenticazione.AutenticazioneService import ruolo
+from BEvent_app.Routes import login_page, home
 
-
-app = Flask(__name__)
 aut = Blueprint('aut', __name__)
 
 
+@aut.route('/login', methods=['GET', 'POST'])
 def login():
-    print("hellooooo")
+
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -17,13 +17,14 @@ def login():
 
         if user:
             # Autenticazione riuscita
-            return ruolo(email)
+            return home()
         else:
-            return "Credenziali non valide. Riprova."
+            return login_page()
     else:
-        return "Metodo non consentito per l'accesso"
+        return login_page()
 
-#@gu.route('/registrazione', methods=['GET','POST'])
+
+# @gu.route('/registrazione', methods=['GET','POST'])
 def registrazione():
     if request.method == 'POST':
         nome = request.form.get('nome')
@@ -36,7 +37,7 @@ def registrazione():
         telefono = request.form.get('telefono')
         isAdmin = request.form.get('isAdmin')
         ruolo = request.form.get('ruolo')
-        if registra_utente(nome,cognome,data_di_nascita,nome_utente,email,password,cpassword,telefono,isAdmin,ruolo):
+        if registra_utente(nome, cognome, data_di_nascita, nome_utente, email, password, cpassword, telefono, isAdmin,
+                           ruolo):
             return home()
     return registrazione_page()
-
