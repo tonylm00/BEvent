@@ -6,7 +6,6 @@ from flask import Flask, flash
 from pymongo import MongoClient, collection
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from BEvent_app.Routes import ruolo_utente
 
 # import hashlib
 
