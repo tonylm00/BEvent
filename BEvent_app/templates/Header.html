@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+        <title></title>
+        <link rel="stylesheet" href="../static/style/Header.css">
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<header class="header">
+<div class="header__content">
+    <a class="header__logo" href="Home.html">
+      <img class="header__logo" src="../static/images/Logo.jpg" alt="Logo BEvent" width="1000" height="1000">
+    </a>
+<div class="brand-logo">
+    BEvent
+</div>
+    {% if session.get('nome') %}
+        {% if session.get('fornitore') %}
+            <li><a><form action="{{ url_for('views.fornitore_page') }}"><button class="button">{{ session['nome'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
+        {% else %}
+            <li><a><form action="{{ url_for('views.organizzatore_page') }}"><button class="button">{{ session['nome'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
+        {% endif %}
+    {% else %}
+        <li><a><button class="button" id="modal-button">Utente<span></span> <ion-icon name="finger-print-outline"></ion-icon></button></a></li>
+    {% endif %}
+</div>
+
+<div id="myModal" class="modal">
+	<div class="modal-content slideDown">
+
+
+		<h2 class="h2-Accedi">Accedi</h2>
+		<div>
+			<form action="/login" class="modal-form modal-left" method="post">
+
+				<div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input name="email" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" name="password" required>
+                        <label for="">Password</label>
+                    </div>
+
+				<br>
+			<button class="button btn-bot"> Accedi <span></span> <ion-icon name="finger-print-outline"></ion-icon>  </button>
+		   </form>
+		 </div>
+		   <h2 class="h2-Registrati">Registrati</h2>
+		   <div>
+
+		   <form action="UserRegister" class="modal-form modal-right" method="post">
+
+				<div class="inputbox">
+					<ion-icon name="person-circle-outline"></ion-icon>
+					<input name="nome"required>
+					<label for="">Nome*</label>
+				</div>
+
+				<div class="inputbox">
+					<ion-icon name="person-circle-outline"></ion-icon>
+					<input name="cognome" required>
+					<label for="">Cognmome*</label>
+				</div>
+
+				<div class="inputbox">
+					<ion-icon name="mail-outline"></ion-icon>
+					<input name="email" required>
+					<label for="">Email*</label>
+				</div>
+
+				<div class="inputbox">
+					<ion-icon name="lock-closed-outline"></ion-icon>
+					<input type="password" name="password" required>
+					<label for="">Password*</label>
+				</div>
+
+
+				<div class="inputbox">
+					<ion-icon name="phone-portrait-outline"></ion-icon>
+					<input name="cellulare" maxlenght="10">
+					<label for="">Cellulare</label>
+				</div>
+
+				<br>
+
+			<button class="button" > Registrati <span></span> <ion-icon name="finger-print-outline"></ion-icon>  </button>
+		</form>
+		</div>
+		  </div>
+		 </div>
+</header>
+
+<script src="../static/js/Header.js"></script>
+</html>

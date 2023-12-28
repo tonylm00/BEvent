@@ -17,15 +17,20 @@ def fornitore_page():
 def admin_page():
     return render_template('AreaAdmin.html')
 
+
+@views.route('/organizzatore_page')
+def organizzatore_page():
+    return render_template('AreaOrganizzatore.html')
+
+
 @views.route('/error_page')
 def error_page():
     return render_template('ErrorPage.html')
 
+
 @views.route('/home')
 def home():
     return render_template('Home.html')
-
-
 
 
 @views.route('/login_page')
