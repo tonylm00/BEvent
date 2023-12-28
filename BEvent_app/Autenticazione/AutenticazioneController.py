@@ -19,13 +19,12 @@ def login():
             session['ruolo'] = ruolo
             session['logged'] = True
             session['nome'] = nome
-            print('RUOLO:', ruolo)
-            if ruolo == 1:
+            if ruolo == "1":
                 return admin_page()
-            elif ruolo == 2:
+            elif ruolo == "2":
                 print("PROCVAAAAAAAA")
                 return home()
-            elif ruolo == 3:
+            elif ruolo == "3":
                 return fornitore_page()
             else:
                 return error_page()
@@ -42,8 +41,6 @@ def logout():
     return redirect('/')
 
 
-# @gu.route('/registrazione', methods=['GET','POST'])
-def registrazione():
 @aut.route('/registrazione_organizzatore', methods=['GET', 'POST'])
 def registrazione_organizzatore():
     if request.method == 'POST':
