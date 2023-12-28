@@ -26,16 +26,6 @@ def home():
     return render_template('Home.html')
 
 
-@views.route('/ruolo')
-def ruolo_utente(ruolo_utente):
-    if ruolo_utente == '3':
-        return render_template('AreaFornitore.html')
-    elif ruolo_utente == '2':
-        return render_template('AreaOrganizzatore.html')
-    elif ruolo_utente == '1':
-        return render_template('AreaAdmin.html')
-    else:
-        return "Ruolo non riconosciuto."
 
 
 @views.route('/login_page')
