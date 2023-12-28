@@ -45,19 +45,71 @@
         <p>Via: </p>
     </div>
 
-    <div class="content-right">
-        <!-- Quarta Sezione: Tabella -->
-        <h2>Tabella</h2>
-        <table>
-            <tr>
-                <th>Titolo Colonna 1</th>
-                <th>Titolo Colonna 2</th>
-                <!-- Aggiungi altre colonne secondo necessità -->
-            </tr>
-            <!-- Aggiungi righe e dati alla tabella -->
-        </table>
-    </div>
+   <table>
+    <thead>
+      <tr>
+        <th>Colonna 1</th>
+        <th>Colonna 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Righe della tabella -->
+      <tr>
+        <td>
+          <select name="col1_select1">
+            <option value="opzione1">Opzione 1</option>
+            <option value="opzione2">Opzione 2</option>
+            <option value="opzione3">Opzione 3</option>
+          </select>
+        </td>
+        <td>
+          <input type="text" name="col2_text1" placeholder="Inserisci testo">
+        </td>
+      </tr>
+      <!-- Ripeti per le righe successive -->
+      <tr>
+        <td>
+          <select name="col1_select2">
+            <option value="opzione1">Opzione 1</option>
+            <option value="opzione2">Opzione 2</option>
+            <option value="opzione3">Opzione 3</option>
+          </select>
+        </td>
+        <td>
+          <input type="text" name="col2_text2" placeholder="Inserisci testo">
+        </td>
+      </tr>
+      <!-- Ripeti per le righe successive fino a 7 -->
+    </tbody>
+  </table>
 
+    <div class="sezione-orari">
+    <table>
+        <tr>
+            <th>Giorno</th>
+            <th>Mattina</th>
+            <th>Mattina</th>
+            <th>Sera</th>
+            <th>Sera</th>
+        </tr>
+        <tr>
+            <td>Lunedì</td>
+            <td><input type="text" name="lunedi_mattina1">
+            <input type="text" name="lunedi_mattina2">
+            <input type="text" name="lunedi_sera1">
+            <input type="text" name="lunedi_sera2"></td>
+        </tr>
+        <!-- Ripeti il pattern per gli altri giorni della settimana -->
+        <tr>
+            <td>Martedì</td>
+            <td><input type="text" name="martedi_mattina1"></td>
+            <td><input type="text" name="martedi_mattina2"></td>
+            <td><input type="text" name="martedi_sera1"></td>
+            <td><input type="text" name="martedi_sera2"></td>
+        </tr>
+        <!-- ... -->
+    </table>
+</div>
     <script>
     function changeMainPhoto(photoUrl) {
         var mainPhoto = document.getElementById('main-photo');
