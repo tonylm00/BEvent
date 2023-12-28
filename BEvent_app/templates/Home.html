@@ -17,8 +17,8 @@
   <div class="centered">
     <h1>Crea il tuo evento</h1>
     <p>Alcune informazioni sull'organizzazione di eventi personali.</p>
-      {% if session.logged_in %}
-            <form action="/logout" method="post">
+      {% if session.logged %}
+            <form action="/logout">
                 <button type="submit">Logout</button>
             </form>
         {% else %}
