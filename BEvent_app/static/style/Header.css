@@ -1,0 +1,305 @@
+
+.brand-logo {
+  color: #FFA500;
+  font-size: 48px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+
+.icon {
+  color: #FFA500;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+
+.brand-logo::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #FFA500;
+  margin-top: 4px;
+}
+
+/* Reset */
+  body, html{color: #ffffff; font-family: 'Catamaran', sans-serif; font-size: 16px; box-sizing: border-box;margin: 0;padding: 0;}
+
+  /* reveal password bianco*/
+  ::-ms-reveal {
+    filter: invert(100%);
+	}
+  /* !Button 2 per i cataloghi*/
+  .button2 {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.button2:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+  /* ! Button System */
+  .button {
+  border: none;
+  display: block;
+  position: relative;
+  padding-left: 50px;
+  padding: 0.7em 2.4em;
+  font-size: 18px;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  color: #ffd700;
+  z-index: 1;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+
+
+  .button:hover {
+  color: black;
+}
+
+  .button:active span::before {
+  background: #ffd700;
+}
+  .header{
+    background-color: #ffffff;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 9999;
+    width: 100%;
+    height: 7%;
+
+  }
+  .header__content{max-width: 1500px;width: 100%;margin: 0 auto; display: flex;justify-content: space-between;}
+  .header__logo{padding-top: 2px;padding-left:0px; height: 70px; width: 210px;}
+  .header__icons{width: 50px;}
+
+
+
+  /*****/
+/*   MODAL   */
+/*****/
+
+.h2-Accedi{
+    position: relative;
+    top: 0;
+    left: 25%;
+    transform: translateX(-50%); /* Centra esattamente l'elemento */
+    margin-top: 25px;
+    margin-bottom: 5%;
+    color: #FFA500;
+    text-align: center;
+}
+.h2-Registrati{
+    position: relative;
+    top: 0;
+    left: 30%;
+    transform: translateX(-50%); /* Centra esattamente l'elemento */
+    margin-top: 25px;
+    margin-bottom: 5%;
+    color: #FFA500;
+    text-align: center;
+}
+
+/* The Modal (background) */
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+	transition: all 0.5s ease 0.06s;
+
+	color: #fff;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+	background-color: #1d1d1f;
+	margin: 15% auto;
+	padding: 1.2rem;
+	max-width: 900px;
+	visibility: hidden;
+	box-shadow: 2px 2px 10px 0px rgba(99, 106, 119, 0.6);
+	border-radius: 5px;
+}
+
+/*********/
+/*  modal form layout  ------------------- */
+/*********/
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0,0,0,0.9);
+  background-blend-mode: lighten;
+}
+
+.modal-header, .modal-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.modal-footer > input {
+  margin: 0.8rem 0;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-left, .modal-right {
+  flex: 1; /* Ensures both sides take up equal space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically in each column */
+}
+
+.modal-left {
+    position:relative;
+    padding-right: 20px;
+}
+
+.modal-right {
+    position:relative;
+    padding-left: 20px;
+}
+
+.slideDown {
+	animation-name: slideDown;
+	-webkit-animation-name: slideDown;
+	animation-duration: 0.6s;
+	-webkit-animation-duration: 0.6s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+@keyframes slideDown {
+	0% {
+		transform: translateY(-100%);
+	}
+	50%{
+		transform: translateY(4%);
+	}
+	65%{
+		transform: translateY(-2%);
+	}
+	80%{
+		transform: translateY(2%);
+	}
+	95%{
+		transform: translateY(-1%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+.btn-bot{
+	margin-bottom: 25px;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff8e7;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fada5e;
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label{
+top: -5px;
+}
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding:0 35px 0 5px;
+    color: #fff8e7;
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: #fada5e;
+    font-size: 1.2em;
+    top: 20px;
+}
+
+
+  /* MEDIA --------------------------------------- */
+
+  	@media (max-width: 1550px){
+  	.header__menu li a{color:#fff; opacity: 1;display: block;padding: 12px;font-size: 16px;}
+    }
+
+
+    @media (max-width: 1420px) {
+
+
+
+    .header__icons{display: flex;width: 80px;}
+
+	.modal-content {
+    flex-direction: column;
+	margin: 15% auto;
+	/* 15% from the top and centered */
+	padding: 1.2rem;
+	max-width: 50%;
+	/* Could be more or less, depending on screen size */
+	visibility: hidden;
+	box-shadow: 2px 2px 10px 0px rgba(99, 106, 119, 0.6);
+	border-radius: 5px;
+	}
+
+	.modal {
+	overflow: auto;
+	}
+
+
+
+  }
+
+  @media (max-width: 690px) {
+
+  	.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 210px;
+    border-bottom: 2px solid #fff8e7;
+	}
+  }
