@@ -37,6 +37,12 @@ def get_tutti_servizi():
     ) for servizio in servizi]
 
 
-def elimina_servizio(servizio_id):
+def elimina(servizio_id):
     db = get_db()
-    db.servizioOfferto.delete_one({"_id": ObjectId(servizio_id)})
+    try:
+        result = db.ServizioOfferto.delete_one({"_id": ObjectId(servizio_id)})
+        print("Risultato eliminazione:", result.raw_result)
+        return result.deleted_count
+    except Exception as e:
+        print("Errore durante l'eliminazione:", e)
+        return 0

@@ -7,7 +7,7 @@ from .InterfacciaPersistenza.Utente import Utente
 from .Routes import views
 from .db import get_db
 from .Autenticazione.AutenticazioneController import aut
-
+from .Fornitori.FornitoriController import Fornitori
 
 def create_app():
     app = Flask(__name__)
@@ -16,7 +16,7 @@ def create_app():
     app.config['SECRET_KEY'] = "BEVENT"
     datab = get_db()
     login_manager = LoginManager(app)
-
+    app.register_blueprint(Fornitori,url_prefix="/")
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(aut, url_prefix='/')
 
