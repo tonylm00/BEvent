@@ -46,3 +46,13 @@ def elimina(servizio_id):
     except Exception as e:
         print("Errore durante l'eliminazione:", e)
         return 0
+def modifica(nuovi_dati,servizio_id):
+    db= get_db()
+    result = db.ServizioOfferto.update_one(
+            {"_id": ObjectId(servizio_id)},
+            {"$set": nuovi_dati}
+        )
+    return result.modified_count
+def aggiungi(nuovi_dati):
+    db= get_db()
+    db.ServizioOfferto.insert_one(nuovi_dati)
