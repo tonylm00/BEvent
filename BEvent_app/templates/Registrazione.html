@@ -2,9 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registrazione Fornitore</title>
+    <link rel="stylesheet"  type="text/css" href="../static/style/RegistrazioneOrganizzatore.css">
 </head>
 <body>
+
+
+        <div class="container">
+          <div class="title">BEVENT</div>
+            <form action="/registrazione" method="post">
+                <div class="field-container">
+                  <input type="text" name="nome" placeholder="Nome*" required>
+                  <input type="text" name="cognome" placeholder="Cognome*" required>
+                </div>
+                <div class="field-container">
+                  <input type="date" name="data_nascita" placeholder="Data di nascita">
+                  <input type="text" name="username" placeholder="Nome Utente*" required>
+                </div>
+                <div class="field-container">
+                   <input type="text" name="telefono" placeholder="Telefono">
+                   <input type="text" name="citta" placeholder="Città">
+                </div>
+                <div class="field-container">
+                   <input type="email" name="email" placeholder="Email*" required>
+                   <input type="password" name="password" placeholder="Password*" required>
+                   <input type="password" name="confirm_password" placeholder="Conferma Password*" required>
+                </div>
+                <div class="field-container">
+                    <input type="text" name="nome" placeholder="Prezzo">
+                    <input type="text" name="cognome" placeholder="Eventi massimi in un giorno">
+                </div>
+                <div class="field-container">
+                    <input type="text" name="nome" placeholder="Orario">
+                    <input type="text" name="cognome" placeholder="Quantita">
+                </div>
+                <div class="field-container">
+                    <input type="text" name="nome" placeholder="Indirizzo">
+                    <input type="text" name="cognome" placeholder="Partita iva">
+                </div>
+                <div class="field-container">
+                    <input type="text" name="nome" placeholder="Tipo">
+                    <input type="text" name="cognome" placeholder="Descrizione">
+                </div>
+
+
+          <button type="submit" class="button">Registrati</button>
+            </form>
+
+
+          <div class="decorative-circle circle-large"></div>
+          <div class="decorative-circle circle-small"></div>
+        </div>
+
 
 </body>
 </html>
