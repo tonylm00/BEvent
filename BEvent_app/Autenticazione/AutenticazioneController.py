@@ -1,9 +1,8 @@
-from flask import request, Flask, Blueprint, session, redirect, url_for, flash
+from flask import request, Blueprint, session, redirect, flash
 from flask_login import login_user, logout_user
 from BEvent_app.Autenticazione import AutenticazioneService
-from BEvent_app.Routes import login_page, home, admin_page, error_page, fornitore_page
-from BEvent_app.Routes import login_page, home, registrazione_page
-from BEvent_app.InterfacciaPersistenza.Utente import Utente
+from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, error_page, fornitore_page
+
 
 aut = Blueprint('aut', __name__)
 
@@ -46,9 +45,10 @@ def logout():
     return redirect('/')
 
 
-@aut.route('/registrazione_organizzatore', methods=['GET', 'POST'])
+@aut.route('/registrazione', methods=['POST'])
 def registrazione_organizzatore():
     if request.method == 'POST':
+
         nome = request.form.get('nome')
         cognome = request.form.get('cognome')
         data_di_nascita = request.form.get('data_di_nascita')
@@ -58,7 +58,7 @@ def registrazione_organizzatore():
         cpassword = request.form.get('cpassword')
         telefono = request.form.get('telefono')
         ruolo = request.form.get('ruolo')
-
+        print(ruolo)
         registrazione = 0
 
         if ruolo == "1":
@@ -71,6 +71,7 @@ def registrazione_organizzatore():
             else:
                 flash("Admin non Registarto", "error")
         elif ruolo == "2":
+
             citta = request.form.get('citta')
             user = AutenticazioneService.registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono,
                                                       data_di_nascita, citta, ruolo)
