@@ -8,7 +8,6 @@ from BEvent_app.InterfacciaPersistenza.Utente import Utente
 aut = Blueprint('aut', __name__)
 
 
-
 @aut.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
