@@ -13,11 +13,11 @@
 <div class="brand-logo">
     BEvent
 </div>
-    {% if session.get('nome') %}
+    {% if session.get('nomeutente') %}
         {% if session.get('fornitore') %}
-            <li><a><form action="{{ url_for('views.fornitore_page') }}"><button class="button">{{ session['nome'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
+            <li><a><form action="{{ url_for('views.fornitore_page') }}"><button class="button">{{ session['nomeutente'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
         {% else %}
-            <li><a><form action="{{ url_for('views.organizzatore_page') }}"><button class="button">{{ session['nome'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
+            <li><a><form action="{{ url_for('views.organizzatore_page') }}"><button class="button">{{ session['nomeutente'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
         {% endif %}
     {% else %}
         <li><a><button class="button" id="modal-button">Utente<span></span> <ion-icon name="finger-print-outline"></ion-icon></button></a></li>
@@ -50,7 +50,7 @@
 		   <h2 class="h2-Registrati">Registrati</h2>
 		   <div>
 
-		   <form action="UserRegister" class="modal-form modal-right" method="post">
+		   <form action="/registrazione" class="modal-form modal-right" method="post">
 
 				<div class="inputbox">
 					<ion-icon name="person-circle-outline"></ion-icon>
@@ -79,13 +79,37 @@
 
 				<div class="inputbox">
 					<ion-icon name="phone-portrait-outline"></ion-icon>
-					<input name="cellulare" maxlenght="10">
+					<input name="telefono" maxlenght="10">
 					<label for="">Cellulare</label>
+				</div>
+
+				<div class="inputbox">
+					<ion-icon name="phone-portrait-outline"></ion-icon>
+					<input name="cpassword" required>
+					<label for="">Conferma Password</label>
+				</div>
+
+               <div class="inputbox">
+					<ion-icon name="phone-portrait-outline"></ion-icon>
+					<input name="data_di_nascita" required>
+					<label for="">Data di Nascita</label>
+				</div>
+
+               <div class="inputbox">
+					<ion-icon name="phone-portrait-outline"></ion-icon>
+					<input name="nome_utente" required>
+					<label for="">Nome Utente</label>
+				</div>
+
+               <div class="inputbox">
+					<ion-icon name="phone-portrait-outline"></ion-icon>
+					<input name="citta" required>
+					<label for="">Citta</label>
 				</div>
 
 				<br>
 
-			<button class="button" > Registrati <span></span> <ion-icon name="finger-print-outline"></ion-icon>  </button>
+			<button class="button"  name="ruolo" value="2"> Registrati <span></span> <ion-icon name="finger-print-outline"></ion-icon>  </button>
 		</form>
 		</div>
 		  </div>

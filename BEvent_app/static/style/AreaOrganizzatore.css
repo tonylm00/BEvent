@@ -1,0 +1,102 @@
+body {
+  font-family: Pacifico, Cursive;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    display: flex;
+    max-width: 1200px; /* o la larghezza che preferisci */
+  }
+  .left-column, .right-column {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .event {
+    margin-bottom: 20px;
+  }
+  .event img {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 10px; /* Curva leggermente gli angoli dell'immagine */
+  }
+  .event a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ff4500; /* Sostituisci con il colore desiderato */
+  }
+  .right-column {
+    border-left: 2px solid grey; /* Linea di divisione tra le colonne */
+    padding-left: 40px; /* Spazio dalla linea di divisione */
+  }
+  .right-column h2, .left-column h2 {
+    color: #ff4500; /* Sostituisci con il colore desiderato */
+    margin-bottom: 20px;
+  }
+  .right-column input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #ff4500; /* Sostituisci con il colore desiderato */
+  }
+  .right-column button {
+    background-color: #ff4500; /* Sostituisci con il colore desiderato */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .sidebar {
+    width: 250px; /* Larghezza della sidebar */
+    height: 100vh; /* Altezza della viewport */
+    overflow-y: auto; /* Mostra la barra di scorrimento se il contenuto supera l'altezza della viewport */
+    position: fixed; /* Fissa la sidebar a sinistra */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #eee; /* Colore di sfondo della sidebar */
+    padding: 20px; /* Padding interno della sidebar */
+  }
+  .content {
+    margin-left: 250px; /* Spazio per la sidebar */
+    padding: 20px; /* Padding intorno al contenuto */
+  }
+.containerEventi{
+  overflow: auto;
+  max-height: 500px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adatta questo in base alla larghezza desiderata delle tue immagini */
+  gap: 10px; /* Distanza tra le immagini */
+}
+
+.grid-item {
+  position: relative;
+  border-radius: 10px; /* Per angoli arrotondati */
+  overflow: hidden; /* Nasconde tutto ciò che esce dall'area dell'immagine */
+}
+
+.grid-item img {
+ max-width: 250px;
+  max-height: 250px; /* Assicurati che l'immagine si adatti alla griglia */
+  display: block; /* Rimuove eventuali margini extra */
+}
+
+.event-link {
+  position: absolute;
+  bottom: 10px; /* Distanza dal basso del `div` */
+  left: 10px; /* Distanza dalla sinistra del `div` */
+  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semitrasparente */
+  color: #fff; /* Colore del testo */
+  padding: 5px; /* Spaziatura intorno al testo */
+  text-decoration: none; /* Rimuove il sottolineato dal link */
+  border-radius: 5px; /* Angoli arrotondati per il link */
+}

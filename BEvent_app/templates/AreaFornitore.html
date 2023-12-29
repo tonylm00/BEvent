@@ -1,68 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Pagina Utente Fornitore</title>
-    <link rel="stylesheet"  type="text/css" href="../static/style/AreaFornitore.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Orario Lavorativo</title>
+    <link rel="stylesheet" type="text/css" href="../static/style/AreaFornitore.css">
 </head>
+
 <body>
-    <div class="header-right">
-        <!-- Prima Sezione: Dati personali -->
-        <h2>Dati Personali</h2>
-        <p>Nome: carlo </p>
-        <p>Cognome: </p>
-        <p>Data di Nascita: </p>
-        <p>Email: </p>
-        <p>Telefono: </p>
-        <p>Nome Utente: </p>
-        <p>Password: </p>
-        <p>Partita IVA: </p>
-    </div>
 
-    <div class="header-left">
-        <!-- Seconda Sezione: Foto -->
-        <div class="main-photo">
-            <!-- Foto principale del fornitore -->
-            <img id="main-photo" src="#" alt="Foto principale">
-        </div>
-        <div class="sub-photos">
-            <!-- Foto in miniatura (4 piccole) -->
-            {% for photo in photos %}
-                <img src="{{ photo }}" alt="Miniatura" onclick="changeMainPhoto('{{ photo }}')">
-            {% endfor %}
+<div class="container">
+
+    <!-- Sezione per le immagini -->
+    <div class="sezione-foto">
+        <div class="foto-box">Aggiungi foto</div>
+        <div class="foto-contenitore">
+            <div class="foto-box_2">Aggiungi foto</div>
+            <div class="foto-box_2">Aggiungi foto</div>
+            <div class="foto-box_2">Aggiungi foto</div>
         </div>
     </div>
 
-    <div class="content-left">
-        <!-- Terza Sezione: Informazioni sul prodotto -->
-        <h2>Informazioni Prodotto</h2>
-        <p>Descrizione: </p>
-        <p>Tipo: </p>
-        <p>Prezzo: </p>
-        <p>Eventi Massimi Giornalieri: </p>
-        <p>Quantità: </p>
-        <p>Città: </p>
-        <p>Via: </p>
+    <!-- Sezione per le informazioni personali -->
+    <div class="sezione-info">
+        <form id="moduloContatto">
+
+            <div class="griglia">
+
+                <div class="colonna">
+                    <div class="campo">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome">
+                    </div>
+                    <div class="campo">
+                        <label for="cognome">Cognome</label>
+                        <input type="text" id="cognome" name="cognome">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono">Telefono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                     <div class="campo">
+                        <label for="prezzo">Prezzo</label>
+                        <input type="text" id="prezzo" name="prezzo">
+                    </div>
+                    <div class="campo">
+                        <label for="partitaiva">Partita Iva</label>
+                        <input type="text" id="partitaiva" name="partitaiva">
+                    </div>
+                </div>
+
+
+                <div class="colonna">
+                    <div class="campo">
+                        <label for="dataNascita">Data di nascita</label>
+                        <input type="date" id="dataNascita" name="dataNascita">
+                    </div>
+                    <div class="campo">
+                        <label for="citta">Città</label>
+                        <input type="text" id="citta" name="citta">
+                    </div>
+                    <div class="campo">
+                        <label for="via">Via</label>
+                        <input type="text" id="via" name="via">
+                    </div>
+                    <div class="campo">
+                        <label for="tipo">Tipo</label>
+                        <input type="text" id="tipo" name="tipo">
+                    </div>
+                    <div class="campo">
+                        <label for="eventomassimogiornaliero">Eventi Massimo Giornaliero</label>
+                        <input type="text" id="eventomassimogiornaliero" name="eventomassimogiornaliero">
+                    </div>
+
+                </div>
+            </div>
+            <div class="campo grande">
+                <label for="descrizione">Descrizione</label>
+                <textarea id="descrizione" name="descrizione" maxlength="500"></textarea>
+            </div>
+            <div class="campo">
+                <input type="submit" value="Invia">
+            </div>
+        </form>
     </div>
 
-    <div class="content-right">
-        <!-- Quarta Sezione: Tabella -->
-        <h2>Tabella</h2>
-        <table>
+    <!-- Sezione per gli orari di lavoro -->
+    <div class="sezione-orari">
+        <table class="table-container">
             <tr>
-                <th>Titolo Colonna 1</th>
-                <th>Titolo Colonna 2</th>
-                <!-- Aggiungi altre colonne secondo necessità -->
+                <th class="header-cell"></th> <!-- cella vuota per allineare con i giorni della settimana -->
+                <th class="header-cell" colspan="2">mattina</th>
+                <th class="header-cell" colspan="2">sera</th>
             </tr>
-            <!-- Aggiungi righe e dati alla tabella -->
+            <tr>
+                <th class="day-cell">lun</th>
+                <td><input type="text" name="lun_mattina_inizio"></td>
+                <td><input type="text" name="lun_mattina_fine"></td>
+                <td><input type="text" name="lun_sera_inizio"></td>
+                <td><input type="text" name="lun_sera_fine"></td>
+            </tr>
+            <tr>
+                <th class="day-cell">mar</th>
+                <td><input type="text" name="mar_mattina_inizio"></td>
+                <td><input type="text" name="mar_mattina_fine"></td>
+                <td><input type="text" name="mar_sera_inizio"></td>
+                <td><input type="text" name="mar_sera_fine"></td>
+            </tr>
+            <tr>
+                <th class="day-cell">mer</th>
+                <td><input type="text" name="mer_mattina_inizio"></td>
+                <td><input type="text" name="mer_mattina_fine"></td>
+                <td><input type="text" name="mer_sera_inizio"></td>
+                <td><input type="text" name="mer_sera_fine"></td>
+            </tr>
+            <tr>
+                <th class="day-cell">gio</th>
+                <td><input type="text" name="gio_mattina_inizio"></td>
+                <td><input type="text" name="gio_mattina_fine"></td>
+                <td><input type="text" name="gio_sera_inizio"></td>
+                <td><input type="text" name="gio_sera_fine"></td>
+            </tr>
+            <tr>
+                <th class="day-cell">ven</th>
+                <td><input type="text" name="ven_mattina_inizio"></td>
+                <td><input type="text" name="ven_mattina_fine"></td>
+                <td><input type="text" name="ven_sera_inizio"></td>
+                <td><input type="text" name="ven_sera_fine"></td>
+            </tr>
+            <tr>
+                <th class="day-cell">sab</th>
+                <td><input type="text" name="sab_mattina_inizio"></td>
+                <td><input type="text" name="sab_mattina_fine"></td>
+                <td><input type="text" name="sab_sera_inizio"></td>
+                <td><input type="text" name="sab_sera_fine"></td>
+            </tr>
+            <tr>
+                <th class="day-cell">dom</th>
+                <td><input type="text" name="dom_mattina_inizio"></td>
+                <td><input type="text" name="dom_mattina_fine"></td>
+                <td><input type="text" name="dom_sera_inizio"></td>
+                <td><input type="text" name="dom_sera_fine"></td>
+            </tr>
         </table>
     </div>
 
-    <script>
-    function changeMainPhoto(photoUrl) {
-        var mainPhoto = document.getElementById('main-photo');
-        mainPhoto.src = photoUrl;
-    }
-</script>
+</div>
+<div class="sezione-tabella">
+    <table>
+        <thead>
+            <tr>
+                <th>Descrizione</th>
+                <th>Tipo</th>
+                <th>Prezzo</th>
+                <th>Data inizio</th>
+                <th>Data fine</th>
+                <th>Quantità</th>
+                <th>Foto</th>
+                <th>Fornitore</th>
+                <th>Modifica</th>
+                <th>Elimina</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for servizio in servizi %}
+            <tr>
+                <td><input type="text" name="descrizione" value=" {{ servizio.descrizione }}"></td>
+                <td><input type="text" name="tipo" value="{{ servizio.tipo }} "></td>
+                <td><input type="text" name="prezzo" value=" {{ servizio.prezzo }} "></td>
+                <td><input type="text" name="data inizio" value="{{ servizio.disponibilita_data_inizio }}"></td>
+                <td><input type="text" name="data fine" value="{{ servizio.disponibilita_data_fine }}"></td>
+                <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
+                <td><input type="text" name="foto"  value="{{ servizio.foto_servizio }}"></td>
+                <td><input type="text" name="elimina"></td>
+                <td>   <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}">Seleziona</a></button></td>
+                <!-- Continua per il resto delle colonne -->
+            </tr>
+            <!-- Ripeti la riga sopra per quante righe desideri -->
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
 </body>
 </html>
