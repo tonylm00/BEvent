@@ -1,36 +1,27 @@
 import hashlib
-
 from datetime import datetime
-import re
 
-from bson import ObjectId
+from flask import flash
+import re
 from flask import Flask, flash
-from ..InterfacciaPersistenza.Utente import Utente
-from ..InterfacciaPersistenza.Organizzatore import Organizzatore
-from ..InterfacciaPersistenza.Fornitore import Fornitore
-from BEvent_app.InterfacciaPersistenza.Admin import Admin
-from ..db import get_db
 from pymongo import MongoClient, collection
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
+# import hashlib
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['BEvent']
+users_collection = db['Utente']
+
+
+# def hash_password(password):
+#    return hashlib.sha256(password.encode()).hexdigest()
+
+
 def verify_user(email, password):
-    db = get_db()
-    user_data = db.Utente.find_one({'email': email})
-
-    if user_data:
-        utente = Utente(user_data)
-        if user_data['Ruolo'] == "1":
-            utente = Admin(user_data)
-        elif user_data['Ruolo'] == "2":
-            utente = Organizzatore(user_data, user_data['Organizzatore'])
-        elif user_data['Ruolo'] == "3":
-            utente = Fornitore(user_data, user_data['Fornitore'])
-
-        # if utente.check_password(password):
-        return utente  # Ritorna l'istanza dell'utente
-    else:
-        return None
+    user = users_collection.find_one({'email': email, 'password': password})
+    return user
 
 
 """ 
@@ -94,45 +85,7 @@ def conferma_password(password, cpassword):
     return False
 
 
-def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita):
-    hashed_password = generate_password_hash(password, method='sha256')
-    user_data = None
-    if ruolo == "1":
-        user_data = {
-            '_id': ObjectId(),  # Genera un nuovo ObjectId
-            'nome': nome,
-            'cognome': cognome,
-            'data_di_nascita': data_di_nascita,
-            'email': email,
-            'telefono': telefono,
-            'nome_utente': nome_utente,
-            'password': hashed_password,
-            "Admin": {
-                "isAdmin": True
-            },
-            'Ruolo': ruolo
-        }
-    else:
-        user_data = {
-            '_id': ObjectId(),  # Genera un nuovo ObjectId
-            'nome': nome,
-            'cognome': cognome,
-            'data_di_nascita': data_di_nascita,
-            'email': email,
-            'telefono': telefono,
-            'nome_utente': nome_utente,
-            'password': hashed_password,
-            "Admin": {
-                "isAdmin": False
-            },
-            'Ruolo': ruolo
-        }
-
-    return user_data
-
-
 def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo):
-    db = get_db()
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
             flash("Email esistente", "error")
@@ -141,80 +94,25 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
         elif not conferma_password(password, cpassword):
             flash("Le password non corrispondono", "error")
         else:
-
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita)
-
-            organizzatore_data = {
-                'Organizzatore': {
-                    'FotoOrganizzatore': "", 'Citta': citta
+            hashed_password = generate_password_hash(password, method='sha256')
+            user_document = {
+                "nome": nome,
+                "cognome": cognome,
+                "data_di_nascita": data_di_nascita,
+                "email": email,
+                "telefono": telefono,
+                "nome_utente": nome_utente,
+                "password": hashed_password,
+                "Admin": {
+                    "isAdmin": False
+                },
+                "Ruolo": ruolo,
+                "Organizzatore": {
+                    "FotoOrganizzatore": "",
+                    "Citta": citta
                 }
             }
-
-            documento_organizzatore = {**user_data, **organizzatore_data}
-            organizzatore = Organizzatore(user_data, organizzatore_data)
-
-            db.Utente.insert_one(documento_organizzatore)
+            users_collection.insert_one(user_document)
             flash("Registrazione avvenuta con successo!", "success")
-
-            return organizzatore
-    return None
-
-
-def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
-                  descrizione, tipo, prezzo, eventi_max_giorn, orario, quantita, via, piva):
-    db = get_db()
-    if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
-        if not is_valid_email(email):
-            flash("Email esistente", "error")
-        elif not controlla_password(password):
-            flash("Password non valida", "error")
-        elif not conferma_password(password, cpassword):
-            flash("Le password non corrispondono", "error")
-        else:
-
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita)
-
-            fornitore_data = {
-                'Fornitore': {
-                    'Descrizione': descrizione,
-                    'Tipo': tipo,
-                    'Prezzo': prezzo,
-                    'EventiMassimiGiornaliero': eventi_max_giorn,
-                    'OrarioDiLavoro': orario,
-                    'Quantità': quantita,
-                    'Foto': "",
-                    'Citta': citta,
-                    'Via': via,
-                    'Partita_Iva': piva
-                }
-            }
-
-            documento_fornitore = {**user_data, **fornitore_data}
-            fornitore = Fornitore(user_data, fornitore_data)
-
-            db.Utente.insert_one(documento_fornitore)
-            flash("Registrazione avvenuta con successo!", "success")
-
-            return fornitore
-    return None
-
-
-def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo):
-    db = get_db()
-    if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
-        if not is_valid_email(email):
-            flash("Email esistente", "error")
-        elif not controlla_password(password):
-            flash("Password non valida", "error")
-        elif not conferma_password(password, cpassword):
-            flash("Le password non corrispondono", "error")
-        else:
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita)
-
-            documento_admin = {**user_data}
-            admin = Admin(user_data)
-            db.Utente.insert_one(documento_admin)
-
-            flash("Registrazione avvenuta con successo!", "success")
-            return Admin
-    return None
+            return True
+    return False
