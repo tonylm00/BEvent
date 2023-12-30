@@ -16,8 +16,8 @@
                   <input type="text" name="cognome" placeholder="Cognome*" required>
                 </div>
                 <div class="field-container">
-                  <input type="date" name="data_nascita" placeholder="Data di nascita">
-                  <input type="text" name="username" placeholder="Nome Utente*" required>
+                  <input type="date" name="data_di_nascita" placeholder="Data di nascita">
+                  <input type="text" name="nome_utente" placeholder="Nome Utente*" required>
                 </div>
                 <div class="field-container">
                    <input type="text" name="telefono" placeholder="Telefono">
@@ -26,23 +26,36 @@
                 <div class="field-container">
                    <input type="email" name="email" placeholder="Email*" required>
                    <input type="password" name="password" placeholder="Password*" required>
-                   <input type="password" name="confirm_password" placeholder="Conferma Password*" required>
+                   <input type="password" name="cpassword" placeholder="Conferma Password*" required>
                 </div>
                 <div class="field-container">
-                    <input type="text" name="nome" placeholder="Prezzo">
-                    <input type="text" name="cognome" placeholder="Eventi massimi in un giorno">
+                    <input type="text" name="via" placeholder="Indirizzo">
+                    <input type="text" name="eventi_max_giorn" placeholder="Eventi massimi in un giorno">
+                </div>
+
+                <div class="field-container">
+                    <select name="tipo" style="border: 1px solid darkorange;
+                                                border-radius: 20px;
+                                                padding: 10px;
+                                                width: calc(50% - 10px);
+                                                background-color: #FFF7ED;
+                                                color: darkorange;" >
+                                                                    <option value="">Tipo</option>
+                                                                    <option value="tipo1">Fioraio</option>
+                                                                    <option value="tipo2">Location</option>
+                                                                    <option value="tipo3">Abito di matrimonio</option>
+                                                                    <option value="tipo4">Altro</option>
+                        <!-- Aggiungi qui altre opzioni se necessario -->
+                    </select>
+                    <input type="text" name="piva" placeholder="Partita iva">
                 </div>
                 <div class="field-container">
-                    <input type="text" name="nome" placeholder="Orario">
-                    <input type="text" name="cognome" placeholder="Quantita">
-                </div>
-                <div class="field-container">
-                    <input type="text" name="nome" placeholder="Indirizzo">
-                    <input type="text" name="cognome" placeholder="Partita iva">
-                </div>
-                <div class="field-container">
-                    <input type="text" name="nome" placeholder="Tipo">
-                    <input type="text" name="cognome" placeholder="Descrizione">
+                    <textarea style="border: 1px solid darkorange;
+                                border-radius: 20px;
+                                padding: 10px;
+                                width: 100%;
+                                background-color: #FFF7ED;
+                                color: darkorange;" id="descrizione" name="descrizione" rows="4" cols="100" placeholder="Descrizione"></textarea>
                 </div>
 
 

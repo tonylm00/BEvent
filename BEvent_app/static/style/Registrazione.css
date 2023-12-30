@@ -30,10 +30,21 @@
     justify-content: space-between;
     margin-bottom: 15px;
   }
-  input[type="text"],
+
+
+textarea{
+    border: 1px solid darkorange;
+    border-radius: 20px;
+    padding: 10px;
+
+    background-color: #FFF7ED;
+    color: darkorange;
+    width: 100%;
+}
+input[type="date"],
 input[type="email"],
 input[type="password"],
-input[type="date"] {
+input[type="text"] {
     border: 1px solid darkorange;
     border-radius: 20px;
     padding: 10px;
@@ -79,6 +90,7 @@ input[type="date"] {
     bottom: -25px;
     right: -50px;
   }
+
   /* Add responsiveness */
   @media (max-width: 600px) {
     .container {
