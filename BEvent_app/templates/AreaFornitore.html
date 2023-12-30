@@ -165,21 +165,58 @@
         <tbody>
         {% for servizio in servizi %}
             <tr>
-                <td><input type="text" name="descrizione" value=" {{ servizio.descrizione }}"></td>
+            <form method="POST" action="{{ url_for('Fornitori.modifica_servizio', servizio_id=servizio._id) }}">
+                <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
                 <td><input type="text" name="tipo" value="{{ servizio.tipo }} "></td>
-                <td><input type="text" name="prezzo" value=" {{ servizio.prezzo }} "></td>
-                <td><input type="text" name="data inizio" value="{{ servizio.disponibilita_data_inizio }}"></td>
-                <td><input type="text" name="data fine" value="{{ servizio.disponibilita_data_fine }}"></td>
+                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }} "></td>
+                <td><input type="text" name="data_inizio" value="{{ servizio.disponibilita_data_inizio }}"></td>
+                <td><input type="text" name="data_fine" value="{{ servizio.disponibilita_data_fine }}"></td>
                 <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
                 <td><input type="text" name="foto"  value="{{ servizio.foto_servizio }}"></td>
                 <td><input type="text" name="elimina"></td>
-                <td>   <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}">Seleziona</a></button></td>
+                <td>   <button type="submit"> modifica </button></td>
+            </form>
+                <td>   <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}">Elimina</a></button></td>
                 <!-- Continua per il resto delle colonne -->
             </tr>
             <!-- Ripeti la riga sopra per quante righe desideri -->
         {% endfor %}
         </tbody>
     </table>
+<h3>Inserisci Servizio</h3>
+<table>
+     <thead>
+            <tr>
+                <th>Descrizione</th>
+                <th>Tipo</th>
+                <th>Prezzo</th>
+                <th>Data inizio</th>
+                <th>Data fine</th>
+                <th>Quantità</th>
+                <th>Foto</th>
+                <th>Fornitore</th>
+                <th>aggiungi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+            <form method="POST" action="{{ url_for('Fornitori.aggiungi_servizio')}}">
+                <td><input type="text" name="descrizione" value=""></td>
+                <td><input type="text" name="tipo" value=""></td>
+                <td><input type="text" name="prezzo" value=""></td>
+                <td><input type="text" name="data_inizio" value=""></td>
+                <td><input type="text" name="data_fine" value=""></td>
+                <td><input type="text" name="quantità" value=""></td>
+                <td><input type="text" name="foto"  value=""></td>
+                <td><input type="text" name="elimina"></td>
+                <td>   <button type="submit"> aggiungi </button></td>
+            </form>
+            </tr>
+
+        </tbody>
+</table>
 </div>
 </body>
 </html>
