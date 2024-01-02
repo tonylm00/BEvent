@@ -84,17 +84,14 @@ def registrazione_organizzatore():
         elif ruolo == "3":
             descrizione = request.form.get('descrizione')
             tipo = request.form.get('tipo')
-            prezzo = request.form.get('prezzo')
             eventi_max_giorn = request.form.get('eventi_max_giornaliero')
-            orario = request.form.get('orario_lavoro')
-            quantita = request.form.get('quantita')
             citta = request.form.get('citta')
             via = request.form.get('via')
             piva = request.form.get('p_iva')
 
             user = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono,
-                                                       data_di_nascita, citta, ruolo, descrizione, tipo, prezzo,
-                                                       eventi_max_giorn, orario, quantita, via, piva)
+                                                       data_di_nascita, citta, ruolo, descrizione, tipo,
+                                                       eventi_max_giorn, via, piva)
             if user:
                 login_user(user)
                 registrazione = 1
