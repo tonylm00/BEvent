@@ -12,14 +12,14 @@ def fornitore_page():
     return render_template('AreaFornitore.html')
 
 
+@views.route('/organizzatore_page')
+def organizzatore_page():
+    return render_template('HomeOrganizzatore.html')
+
+
 @views.route('/admin_page')
 def admin_page():
     return render_template('AreaAdmin.html')
-
-
-@views.route('/organizzatore_page')
-def organizzatore_page():
-    return render_template('AreaOrganizzatore.html')
 
 
 @views.route('/error_page')
