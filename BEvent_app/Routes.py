@@ -25,10 +25,6 @@ def admin_page():
 def error_page():
     return render_template('ErrorPage.html')
 
-@views.route('/error_page')
-def error_page():
-    return render_template('ErrorPage.html')
-
 
 @views.route('/home')
 def home():

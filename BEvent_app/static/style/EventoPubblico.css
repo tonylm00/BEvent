@@ -1,0 +1,67 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #000; /* Testo in nero */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #ffe4c4; /* Arancione chiaro per i contenitori */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #ff7f50; /* Arancione chiaro per i titoli */
+}
+
+#event-list {
+    margin-bottom: 20px;
+}
+
+.event-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #ffe4c4; /* Arancione chiaro per gli elementi dell'evento */
+}
+
+#event-form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button, .btn {
+    background-color: #ff7f50; /* Arancione chiaro per i bottoni */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover, .btn:hover {
+    background-color: #ff6347; /* Arancione più scuro al passaggio del mouse */
+}
+
+.hidden {
+    display: none;
+}
+
