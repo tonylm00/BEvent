@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3c2cc2-329a-417c-afea-18652476713b" name="Changes" comment="Registrazione organizzatore completata, registrazione fornitore completata, forse da modificare tipo">
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/RicercaEvento.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BEvent_app/templates/RicercaEvento.html" afterDir="false" />
+    <list default="true" id="7c3c2cc2-329a-417c-afea-18652476713b" name="Changes" comment="Fatta css e HTML di Ricerca Evento">
+      <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/SceltaEventoDaCreare.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaEventoDaCreare.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Registrazione.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Registrazione.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/RicercaEvento.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/RicercaEvento.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JavaScript Debug.RicercaEvento.html">
+  <component name="RunManager" selected="Flask server.BEvent">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -124,6 +124,9 @@
       <method v="2" />
     </configuration>
     <configuration name="RicercaEvento.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/RicercaEvento.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="SceltaEventoDaCreare.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/SceltaEventoDaCreare.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
@@ -236,6 +239,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.SceltaEventoDaCreare.html" />
         <item itemvalue="JavaScript Debug.RicercaEvento.html" />
         <item itemvalue="JavaScript Debug.Registrazione.html" />
         <item itemvalue="JavaScript Debug.AreaFornitore.html" />
@@ -263,7 +267,8 @@
       <workItem from="1703595642903" duration="8000" />
       <workItem from="1703595678459" duration="2635000" />
       <workItem from="1703934090951" duration="6045000" />
-      <workItem from="1703946649523" duration="5572000" />
+      <workItem from="1703946649523" duration="6589000" />
+      <workItem from="1704211361925" duration="1941000" />
     </task>
     <task id="LOCAL-00001" summary="realizazzione html e css area fornitore">
       <option name="closed" value="true" />
@@ -297,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703941180301</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fatta css e HTML di Ricerca Evento">
+      <option name="closed" value="true" />
+      <created>1703954553596</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703954553596</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +320,8 @@
     <MESSAGE value="realizazzione html e css area fornitore" />
     <MESSAGE value="Registrazione organizzatore completata, registrazione fornitore da finire" />
     <MESSAGE value="Registrazione organizzatore completata, registrazione fornitore completata, forse da modificare tipo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registrazione organizzatore completata, registrazione fornitore completata, forse da modificare tipo" />
+    <MESSAGE value="Fatta css e HTML di Ricerca Evento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fatta css e HTML di Ricerca Evento" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
@@ -315,6 +329,6 @@
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703348206394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BEvent$provaDaria.coverage" NAME="provaDaria Coverage Results" MODIFIED="1703245177592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1703872682516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704212024178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

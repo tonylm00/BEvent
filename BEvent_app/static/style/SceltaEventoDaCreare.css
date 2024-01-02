@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Brush Script MT',cursive;
+    font-size: 24px;
+}
+
+.container {
+    background-image: url('../images/Crea.jpg'); /* sostituisci con il percorso corretto dell'immagine */
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 5px;
+    width: 400px; /* o la larghezza desiderata */
+}
+
+select, input[type=date] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: darkorange;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: darkorange;
+    color: darkorange;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+label {
+    display: block;
+}
+
