@@ -1,7 +1,7 @@
-// Script per l'apertura della modale login
+// Script per l'apertura della modale Accedi/Registrati
 const modal = document.getElementById('myModal');
 const button = document.getElementById("modal-button");
-const close = document.querySelector(".close"); // Assicurati che questo selettore corrisponda all'elemento di chiusura della tua modale
+const close = document.querySelector(".close");
 
 const openModal = function() {
     modal.style.display = "block";
@@ -16,7 +16,7 @@ const closeModal = function() {
 // Event listeners
 button.addEventListener('click', openModal, false);
 
-// Aggiungi il listener per l'elemento di chiusura solo se esiste
+// Aggiungi il listener per l'elemento di chiusura solo se esiste (non esiste :)
 if (close) {
     close.addEventListener('click', closeModal, false);
 }

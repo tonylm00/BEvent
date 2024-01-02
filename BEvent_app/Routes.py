@@ -42,3 +42,8 @@ def registrazione_page():
     if not current_user.is_authenticated:
         return render_template('Registrazione.html')
     return home()
+@views.route('/registrazione_organizzatore_page')
+def registrazione_organizzatore_page():
+    if not current_user.is_authenticated:
+        return render_template('RegistrazioneOrganizzatore.html')
+    return home()

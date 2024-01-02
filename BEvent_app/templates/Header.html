@@ -3,17 +3,17 @@
 <head>
         <title></title>
         <link rel="stylesheet" href="../static/style/Header.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.2/css/ionicons.min.css">
 
 </head>
 <header class="header">
 <div class="header__content">
-    <a class="header__logo" href="Home.html">
+    <a href="Home.html">
       <img class="header__logo" src="../static/images/Logo.jpg" alt="Logo BEvent" width="1000" height="1000">
     </a>
-<div class="brand-logo">
-    BEvent
+<div class="header__titolo">
+    BEVENT
 </div>
+
     {% if session.get('nomeutente') %}
         {% if session.get('fornitore') %}
             <li><a><form action="{{ url_for('views.fornitore_page') }}"><button class="button">{{ session['nomeutente'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
@@ -21,104 +21,55 @@
             <li><a><form action="{{ url_for('views.organizzatore_page') }}"><button class="button">{{ session['nomeutente'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
         {% endif %}
     {% else %}
-        <li><a><button class="button" id="modal-button">Utente <ion-icon name="finger-print-outline"></ion-icon></button></a></li>
+        <div style="display: flex; justify-content: flex-end">
+        <button class="button" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
+        <button class="button" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button>
+        <button class="button" id="modal-button"><ion-icon name="person-circle-outline" style="font-size: 50px; "></ion-icon></button>
+        </div>
     {% endif %}
 </div>
 
 <div id="myModal" class="modal">
-	<div class="modal-content slideDown ">
-
-        <div class="modal-left">
-		<h2 class="h2-Accedi">Accedi</h2>
-		<div>
-			<form action="/login" class="modal-form" method="post">
-
-				<div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input name="email" required>
-                        <label for="">Email</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" name="password" required>
-                        <label for="">Password</label>
-                    </div>
-
-				<br>
-			<button class="button btn-bot"> Accedi <span></span> <ion-icon name="finger-print-outline"></ion-icon>  </button>
-		   </form>
-		 </div>
+	<div class="container slideDown" id="container">
+        <div class="form-container sign-up">
+            <form id="registrazione" action="/registrazione_organizzatore_page">
+                <h1 style="color: #f68b44;">Crea il tuo Account</h1>
+                <p style="color: #f68b44; "> Sei un Organizzatore o un Fornitore?</p>
+                <select name="dropdown" id="dropdown">
+                    <option value="organizzatore" selected>Organizzatore</option>
+                    <option value="fornitore">Fornitore</option>
+                </select>
+                <button>Registrati</button>
+            </form>
         </div>
-        <div class="modal-right">
-		   <h2 class="h2-Registrati">Registrati</h2>
-		   <div>
-
-		   <form action="/registrazione" class="modal-form modal-right" method="post">
-
-				<div class="inputbox">
-					<ion-icon name="person-circle-outline"></ion-icon>
-					<input name="nome"required>
-					<label for="">Nome*</label>
-				</div>
-
-				<div class="inputbox">
-					<ion-icon name="person-circle-outline"></ion-icon>
-					<input name="cognome" required>
-					<label for="">Cognmome*</label>
-				</div>
-
-				<div class="inputbox">
-					<ion-icon name="mail-outline"></ion-icon>
-					<input name="email" required>
-					<label for="">Email*</label>
-				</div>
-
-				<div class="inputbox">
-					<ion-icon name="lock-closed-outline"></ion-icon>
-					<input type="password" name="password" required>
-					<label for="">Password*</label>
-				</div>
-
-
-				<div class="inputbox">
-					<ion-icon name="phone-portrait-outline"></ion-icon>
-					<input name="telefono" maxlenght="10">
-					<label for="">Cellulare</label>
-				</div>
-
-				<div class="inputbox">
-					<ion-icon name="phone-portrait-outline"></ion-icon>
-					<input name="cpassword" required>
-					<label for="">Conferma Password</label>
-				</div>
-
-               <div class="inputbox">
-					<ion-icon name="phone-portrait-outline"></ion-icon>
-					<input name="data_di_nascita" required>
-					<label for="">Data di Nascita</label>
-				</div>
-
-               <div class="inputbox">
-					<ion-icon name="phone-portrait-outline"></ion-icon>
-					<input name="nome_utente" required>
-					<label for="">Nome Utente</label>
-				</div>
-
-               <div class="inputbox">
-					<ion-icon name="phone-portrait-outline"></ion-icon>
-					<input name="citta" required>
-					<label for="">Citta</label>
-				</div>
-
-				<br>
-
-			<button class="button"  name="ruolo" value="2"> Registrati <span></span> <ion-icon name="finger-print-outline"></ion-icon>  </button>
-		</form>
-		</div>
+        <div class="form-container sign-in">
+            <form action="/login">
+                <h1 style="color: #f68b44;">Bentornato!</h1>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button>Accedi</button>
+            </form>
         </div>
-		  </div>
-		 </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1 >Bentornato!</h1>
+                    <p>Se possiedi un account, accedi da qui <ion-icon name="arrow-down-outline"></ion-icon></p>
+                    <button class="hidden" id="login">Accedi</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Benvenuto!</h1>
+                    <p>Non possiedi ancora un account? Registrati da qui <ion-icon name="arrow-down-outline"></ion-icon></p>
+                        <button class="hidden" id="register">Registrati</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </header>
-
-<script src="../static/js/Header.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../static/js/Header.js"></script>
+    <script src="../static/js/Header2.js"></script>
+    <script src="../static/js/Header3.js"></script>
 </html>
