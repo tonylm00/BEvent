@@ -1,13 +1,14 @@
 body {
-  font-family: Pacifico, Cursive;
+  font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    
   }
   .container {
     display: flex;
-    max-width: 1200px; /* o la larghezza che preferisci */
+    max-width: 100%;
+
   }
   .left-column, .right-column {
     flex: 1;
@@ -26,14 +27,15 @@ body {
     display: inline-block;
     margin-top: 10px;
     text-decoration: none;
-    color: #ff4500; /* Sostituisci con il colore desiderato */
+    color: darkorange; /* Sostituisci con il colore desiderato */
   }
   .right-column {
-    border-left: 2px solid grey; /* Linea di divisione tra le colonne */
+
+    border-left: 2px white; /* Linea di divisione tra le colonne */
     padding-left: 40px; /* Spazio dalla linea di divisione */
   }
   .right-column h2, .left-column h2 {
-    color: #ff4500; /* Sostituisci con il colore desiderato */
+    color: darkorange; /* Sostituisci con il colore desiderato */
     margin-bottom: 20px;
   }
   .right-column input[type="text"] {
@@ -41,10 +43,10 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     border: none;
-    border-bottom: 1px solid #ff4500; /* Sostituisci con il colore desiderato */
+    border-bottom: 1px solid darkorange; /* Sostituisci con il colore desiderato */
   }
   .right-column button {
-    background-color: #ff4500; /* Sostituisci con il colore desiderato */
+    background-color: darkorange; /* Sostituisci con il colore desiderato */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -90,13 +92,52 @@ body {
   display: block; /* Rimuove eventuali margini extra */
 }
 
-.event-link {
-  position: absolute;
-  bottom: 10px; /* Distanza dal basso del `div` */
-  left: 10px; /* Distanza dalla sinistra del `div` */
-  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semitrasparente */
-  color: #fff; /* Colore del testo */
-  padding: 5px; /* Spaziatura intorno al testo */
-  text-decoration: none; /* Rimuove il sottolineato dal link */
-  border-radius: 5px; /* Angoli arrotondati per il link */
+/* CSS base che hai già */
+
+/* Media query per tablet */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .left-column, .right-column {
+    flex: none;
+    width: 100%;
+    padding: 10px;
+  }
+  .right-column {
+    border-left: none;
+    padding-top: 20px;
+  }
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
+
+/* Media query per dispositivi mobili */
+@media (max-width: 480px) {
+  .left-column, .right-column {
+    padding: 5px;
+  }
+  .grid-container {
+    grid-template-columns: 1fr; /* Una colonna per le immagini su dispositivi mobili */
+  }
+  .grid-item img {
+    width: 100%; /* Le immagini occupano tutta la larghezza della colonna */
+    height: auto;
+  }
+  .right-column input[type="text"], .right-column button {
+    width: calc(100% - 20px); /* Prende in considerazione il padding */
+  }
+  .sidebar {
+    width: 100%; /* Sidebar a piena larghezza su dispositivi mobili */
+    position: relative; /* O static, a seconda di come desideri che si comporti */
+    height: auto;
+    overflow-y: visible;
+  }
+  .content {
+    margin-left: 0;
+  }
+}
+
+/* Puoi aggiungere ulteriori media queries per altri punti di rottura se necessario */
+

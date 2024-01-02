@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registrazione Fornitore</title>
+    <link rel="stylesheet"  type="text/css" href="../static/style/RegistrazioneOrganizzatore.css">
 </head>
 <body>
+
+
+        <div class="container">
+          <div class="title">BEVENT</div>
+            <form action="/registrazione" method="post">
+                <div class="field-container">
+                  <input type="text" name="nome" placeholder="Nome*" required>
+                  <input type="text" name="cognome" placeholder="Cognome*" required>
+                </div>
+                <div class="field-container">
+                  <input type="date" name="data_di_nascita" placeholder="Data di nascita">
+                  <input type="text" name="nome_utente" placeholder="Nome Utente*" required>
+                </div>
+                <div class="field-container">
+                   <input type="text" name="telefono" placeholder="Telefono">
+                   <input type="text" name="citta" placeholder="Città">
+                </div>
+                <div class="field-container">
+                   <input type="email" name="email" placeholder="Email*" required>
+                   <input type="password" name="password" placeholder="Password*" required>
+                   <input type="password" name="cpassword" placeholder="Conferma Password*" required>
+                </div>
+                <div class="field-container">
+                    <input type="text" name="via" placeholder="Indirizzo">
+                    <input type="text" name="eventi_max_giorn" placeholder="Eventi massimi in un giorno">
+                </div>
+
+                <div class="field-container">
+                    <select name="tipo" style="border: 1px solid darkorange;
+                                                border-radius: 20px;
+                                                padding: 10px;
+                                                width: calc(50% - 10px);
+                                                background-color: #FFF7ED;
+                                                color: darkorange;" >
+                        <option value="">Tipo</option>
+                        <option value="tipo1">Fioraio</option>
+                        <option value="tipo2">Location</option>
+                        <option value="tipo3">Abito di matrimonio</option>
+                        <option value="tipo4">Altro</option>
+
+                    </select>
+                    <input type="text" name="piva" placeholder="Partita iva">
+                </div>
+                <div class="field-container">
+                    <textarea style="border: 1px solid darkorange;
+                                border-radius: 20px;
+                                padding: 10px;
+                                width: 100%;
+                                background-color: #FFF7ED;
+                                color: darkorange;" id="descrizione" name="descrizione" rows="4" cols="100" placeholder="Descrizione"></textarea>
+                </div>
+
+
+          <button type="submit" class="button">Registrati</button>
+            </form>
+
+
+          <div class="decorative-circle circle-large"></div>
+          <div class="decorative-circle circle-small"></div>
+        </div>
+
 
 </body>
 </html>

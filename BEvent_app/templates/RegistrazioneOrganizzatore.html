@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrazione Organizzatore</title>
+    <link rel="stylesheet"  type="text/css" href="../static/style/RegistrazioneOrganizzatore.css">
+</head>
+<body>
+
+        <div class="container">
+          <div class="title">BEVENT</div>
+            <form action="/registrazione" method="post">
+          <div class="field-container">
+            <input type="text" name="nome" placeholder="Nome*" required>
+                <input type="text" name="cognome" placeholder="Cognome*" required>
+          </div>
+            <div class="field-container">
+            <input type="date" name="data_nascita" placeholder="Data di nascita">
+                <input type="text" name="username" placeholder="Nome Utente*" required>
+          </div>
+          <div class="field-container">
+           <input type="text" name="telefono" placeholder="Telefono">
+                <input type="text" name="citta" placeholder="Città">
+          </div>
+          <div class="field-container">
+               <input type="email" name="email" placeholder="Email*" required>
+                <input type="password" name="password" placeholder="Password*" required>
+                <input type="password" name="confirm_password" placeholder="Conferma Password*" required>
+          </div>
+
+
+          <button type="submit" class="button">Registrati</button>
+            </form>
+          <div class="secondary-text">Sei un fornitore?</div>
+
+          <div class="decorative-circle circle-large"></div>
+          <div class="decorative-circle circle-small"></div>
+        </div>
+
+
+</body>
+</html>
