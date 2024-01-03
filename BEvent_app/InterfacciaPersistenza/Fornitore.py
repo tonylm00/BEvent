@@ -1,4 +1,5 @@
 from .Utente import Utente
+from ..db import get_db
 
 
 class Fornitore(Utente):
@@ -14,3 +15,4 @@ class Fornitore(Utente):
         self.via = fornitore_info['Via']
         self.p_Iva = fornitore_info['Partita_Iva']
         self.isLocation = fornitore_info['isLocation']
+

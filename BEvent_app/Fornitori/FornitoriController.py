@@ -1,5 +1,5 @@
-from flask import Flask, render_template, Blueprint,request
-from .FornitoriService import get_tutti_servizi,elimina,modifica,aggiungi
+from flask import Flask, render_template, Blueprint, request
+from .FornitoriService import get_tutti_servizi, elimina, modifica, aggiungi
 from BEvent_app import Routes
 from flask import redirect, url_for
 
@@ -21,7 +21,8 @@ def elimina_servizio(servizio_id):
     elimina(servizio_id)
     return redirect(url_for('Fornitori.visualizza'))
 
-@Fornitori.route('/modifica/<servizio_id>',methods=['POST'])
+
+@Fornitori.route('/modifica/<servizio_id>', methods=['POST'])
 def modifica_servizio(servizio_id):
     nuovi_dati = {
         "Descrizione": request.form.get("descrizione"),
@@ -35,9 +36,11 @@ def modifica_servizio(servizio_id):
 
     }
 
-    modifica(nuovi_dati,servizio_id);
+    modifica(nuovi_dati, servizio_id);
     return redirect(url_for('Fornitori.visualizza'))
-@Fornitori.route('/aggiungi', methods = ['POST'])
+
+
+@Fornitori.route('/aggiungi', methods=['POST'])
 def aggiungi_servizio():
     nuovi_dati = {
         "Descrizione": request.form.get("descrizione"),
