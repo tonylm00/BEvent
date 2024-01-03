@@ -16,8 +16,12 @@
 
     {% if session.get('nomeutente') %}
         {% if session.get('fornitore') %}
+            <button class="button" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
+            <form action="/logout"> <button class="button" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
             <li><a><form action="{{ url_for('views.fornitore_page') }}"><button class="button">{{ session['nomeutente'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
         {% else %}
+            <button class="button" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
+            <button class="button" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button>
             <li><a><form action="{{ url_for('views.organizzatore_page') }}"><button class="button">{{ session['nomeutente'] }} <span></span> <ion-icon name="person-circle-outline"></ion-icon></button></form></a></li>
         {% endif %}
     {% else %}
@@ -30,7 +34,7 @@
 </div>
 
 <div id="myModal" class="modal">
-	<div class="container slideDown" id="container">
+	<div class="modal-container slideDown" id="modal-container">
         <div class="form-container sign-up">
             <form id="registrazione" action="/registrazione_organizzatore_page">
                 <h1 style="color: #fda067;">Crea il tuo Account</h1>

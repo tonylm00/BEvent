@@ -6,7 +6,6 @@ class Fornitore(Utente):
         super().__init__(user_data)
         fornitore_info = fornitore_data['Fornitore']
         self.descrizione = fornitore_info['Descrizione']
-        self.prezzo = fornitore_info['Prezzo']
         self.eventi_max_giornalieri = fornitore_info['EventiMassimiGiornaliero']
         self.orario_lavoro = fornitore_info['OrarioDiLavoro']
         self.quantita = fornitore_info['Quantità']
