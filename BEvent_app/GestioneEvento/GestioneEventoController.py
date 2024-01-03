@@ -5,8 +5,8 @@ from BEvent_app.Routes import creaeventomain_page, creaeventoinizio_page
 ge = Blueprint('ge', __name__)
 
 
-@ge.route('/visualizza_fornitoriLocation', methods=['POST'])
-def visualizza_fornitorilocation():
+@ge.route('/visualizza_fornitori', methods=['POST'])
+def visualizza_fornitori():
     tipo_evento = request.form.get('tipo_evento')
     data = request.form.get('data_evento')
     n_invitati = request.form.get('n_invitati')
@@ -16,7 +16,7 @@ def visualizza_fornitorilocation():
     session['n_invitati'] = n_invitati
 
     if GestioneEventoService.is_valid_data(data):
-        fornitori = GestioneEventoService.get_fornitori_by_tipo("Location")
+        fornitori = GestioneEventoService.get_fornitori()
         return creaeventomain_page(fornitori=fornitori)
     else:
         flash("Errore nella data inserita")
