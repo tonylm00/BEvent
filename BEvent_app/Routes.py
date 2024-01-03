@@ -1,4 +1,7 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, session
+from flask_login import current_user
+
+# from flask_login import login_required, current_user
 from flask_login import login_required, current_user
 
 views = Blueprint('views', __name__)
@@ -38,11 +41,21 @@ def login_page():
     return home()
 
 
+
 @views.route('/registrazione_page')
 def registrazione_page():
     if not current_user.is_authenticated:
         return render_template('Registrazione.html')
     return home()
+
+
+
+@views.route('/registrazione_organizzatore_page')
+def registrazione_organizzatore_page():
+    if not current_user.is_authenticated:
+        return render_template('RegistrazioneOrganizzatore.html')
+    return home()
+
 
 
 @views.route('/creaEventoInizio_page')
