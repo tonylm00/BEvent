@@ -1,56 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Management</title>
-    <link rel="stylesheet"  type="text/css" href="../static/style/EventoPubblico.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Page</title>
+
+<link rel="stylesheet"  type="text/css" href="../static/style/EventoPubblico.css">
 
 </head>
 <body>
-    <div class="container">
-        <h1>CREA IL TUO EVENTO PUBBLICO</h1>
 
-        <div id="event-list">
-
-        </div>
-
-        <div id="event-form">
-
-            <form id="event-form">
-                <label for="titolo">Titolo:</label>
-                <input type="text" id="titolo" name="titolo" required>
-
-                <label for="data">Data:</label>
-                <input type="text" id="data" name="data" required>
-
-                <label for="biglietti_disponibili">Biglietti Disponibili:</label>
-                <input type="number" id="biglietti_disponibili" name="biglietti_disponibili" required>
-
-                <label for="tipo_evento">Tipo Evento:</label>
-                <input type="text" id="tipo_evento" name="tipo_evento" required>
-
-                <label for="luogo">Luogo:</label>
-                <input type="text" id="luogo" name="luogo" required>
-
-                <label for="orario">Orario:</label>
-                <input type="text" id="orario" name="orario" required>
-
-                <label for="fornitori">Fornitori:</label>
-                <input type="text" id="fornitori" name="fornitori">
-
-                <label for="descrizione">Descrizione:</label>
-                <textarea id="descrizione" name="descrizione" rows="4"></textarea>
-
-                <label for="image_url">Image URL:</label>
-                <input type="text" id="image_url" name="image_url">
-
-            </form>
-        </div>
-
-        <button id="add-event-btn" onclick="showEventForm()">Add Event</button>
+<div class="wrapper">
+    <div class="header">
+        <input type="text" id="event-title" placeholder="TITOLO DELL'EVENTO">
+    </div>
+    <div class="main">
+        <input type="text" id="event-date" placeholder="DATA">
+        <input type="text" id="event-time" placeholder="ORA">
+        <input type="text" id="event-location" placeholder="LUOGO">
     </div>
 
-    <script src="../static/js/EventoPubblico.js"></script>
+    <div class="side side1">
+        <button id="upload-button">CARICA IMMAGINE</button>
+        <textarea id="event-description" placeholder="DESCRIZIONE"></textarea>
+    </div>
+    <div class="side side2">
+        <input type="number" id="tickets-available" placeholder="BIGLIETTI DISPONIBILI">
+        <input type="text" id="supplier" placeholder="Fornitori">
+        <select id="event-type">
+            <option value="">Seleziona tipo di evento</option>
+            <option value="Disco Party">DiscoParty</option>
+            <option value="Opera Teatrale">Teatro</option>
+            <option value="Festival">Concerto</option>
+            <option value="Altro">Altro</option>
+
+        </select>
+    </div>
+</div>
+
+<script src="../static/js/EventoPubblico.js"></script>
 </body>
 </html>
