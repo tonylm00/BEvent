@@ -1,93 +1,40 @@
-document.addEventListener("DOMContentLoaded", function () {
-    fetchEvents();
-});
+document.addEventListener('DOMContentLoaded', function() {
 
-function fetchEvents() {
-    fetch('/api/events')
-        .then(response => response.json())
-        .then(data => displayEvents(data.events))
-        .catch(error => console.error('Error fetching events:', error));
-}
+    var uploadButton = document.getElementById('upload-button');
+    uploadButton.addEventListener('click', function() {
+        var fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.onchange = e => {
+           var file = e.target.files[0];
+           var reader = new FileReader();
+           reader.readAsDataURL(file);
+           reader.onload = readerEvent => {
+              var content = readerEvent.target.result;
+              console.log('Image uploaded:', content);
 
-function displayEvents(events) {
-    const eventList = document.getElementById('event-list');
-    eventList.innerHTML = '';
-
-    events.forEach(event => {
-        const eventItem = document.createElement('div');
-        eventItem.classList.add('event-item');
-        eventItem.innerHTML = `
-            <strong>${event.titolo}</strong><br>
-            Data: ${event.data}<br>
-            Biglietti Disponibili: ${event.biglietti_disponibili}<br>
-            Tipo Evento: ${event.tipo_evento}<br>
-            Luogo: ${event.luogo}<br>
-            Orario: ${event.orario}<br>
-            Fornitori: ${event.fornitori.join(', ')}<br>
-            Descrizione: ${event.descrizione}<br>
-            Image URL: ${event.image_url}
-        `;
-        eventList.appendChild(eventItem);
+           };
+        }
+        fileInput.click();
     });
-}
 
-function showEventForm() {
-    const eventForm = document.getElementById('event-form');
-    eventForm.classList.remove('hidden');
-}
 
-function submitEventForm() {
-    const formData = {
-        titolo: document.getElementById('titolo').value,
-        data: document.getElementById('data').value,
-        biglietti_disponibili: document.getElementById('biglietti_disponibili').value,
-        tipo_evento: document.getElementById('tipo_evento').value,
-        luogo: document.getElementById('luogo').value,
-        orario: document.getElementById('orario').value,
-        fornitori: document.getElementById('fornitori').value.split(','),
-        descrizione: document.getElementById('descrizione').value,
-        image_url: document.getElementById('image_url').value
-    };
+    var ticketsAvailable = document.getElementById('tickets-available');
+    ticketsAvailable.addEventListener('change', function() {
+        console.log('Tickets available:', ticketsAvailable.value);
 
-    const eventId = document.getElementById('event-id').value;
+    });
 
-    const requestOptions = {
-        method: eventId ? 'PUT' : 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id: eventId, ...formData })
-    };
 
-    fetch('/api/events', requestOptions)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Failed to submit event form');
-            }
-        })
-        .then(data => {
-            console.log(data.message);
-            resetEventForm();
-            fetchEvents();
-        })
-        .catch(error => console.error('Error submitting event form:', error));
-}
+    var supplierInput = document.getElementById('supplier');
+    supplierInput.addEventListener('change', function() {
+        console.log('Supplier:', supplierInput.value);
 
-function resetEventForm() {
-    const eventForm = document.getElementById('event-form');
-    eventForm.classList.add('hidden');
+    });
 
-    document.getElementById('titolo').value = '';
-    document.getElementById('data').value = '';
-    document.getElementById('biglietti_disponibili').value = '';
-    document.getElementById('tipo_evento').value = '';
-    document.getElementById('luogo').value = '';
-    document.getElementById('orario').value = '';
-    document.getElementById('fornitori').value = '';
-    document.getElementById('descrizione').value = '';
-    document.getElementById('image_url').value = '';
 
-    document.getElementById('add-event-btn').innerText = 'Add Event';
-}
+    var eventTypeSelect = document.getElementById('event-type');
+    eventTypeSelect.addEventListener('change', function() {
+        console.log('Event type:', eventTypeSelect.value);
+
+    });
+});
