@@ -36,11 +36,12 @@
 
 .search-bar{
 	width:100%;
-  	background: rgba(0,0,0,.2);
+  	background: rgb(255, 255, 255);
   	display: flex;
  	align-items:center;
  	border-radius: 50px;
  	padding: 10px 20px;
+    border: 2px solid #ff7800;
 
 
 }
@@ -70,14 +71,18 @@
   display: flex;
   flex-wrap: wrap;
 }
+.container-principale {
+    display: flex;
+    width: 100%;
+}
 
 .left-column {
-  flex: 45%;
+  flex: 65%;
   margin-left: 5%;
 }
 
 .right-column {
-  flex: 45%;
+  flex: 25%;
   margin-left: 5%;
 }
 .inputbox2{
@@ -220,17 +225,17 @@
 
 .back {
 
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-
-  font-family: 'Droid Serif', serif;
-  font-weight: normal;
-  font-style: italic;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    background-color: black;
+    font-family: 'Droid Serif', serif;
+    font-weight: normal;
+    font-style: italic;
 
 }
 

@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-        <title></title>
+        <title>Fornitori</title>
         <link rel="stylesheet" href="../static/style/SceltaFornitore.css">
 
 </head>
-
-
-<title>Fornitori</title>
 
 
 <body>
@@ -16,15 +13,18 @@
 </header>
 
 <p class="projTitle textGradient">Scegli i Tuoi Fornitori</p>
-<div class="search-container watch fade-in">
-	<form action="Search" class="search-bar">
-		<input name="cerca" type="text" placeholder="cerca..." name="search">
-	<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="hover" colors="primary:#eee,secondary:#ffd700" style="width:45px;height:45px"></lord-icon>
+<div class="container-principale">
+
+    <div class="left-column">
+    <div class="search-container watch fade-in">
+	<form action="" class="search-bar">
+		<input name="cerca" type="text" placeholder="cerca...">
+	<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="hover" colors="primary:#000,secondary:#ff7800" style="width:45px;height:45px"></lord-icon>
 
 	</form>
 
 	<button id="modal-button2">
-	<ion-icon name="filter-circle-outline" style="width:45px;height:45px; color:#eee;"></ion-icon>
+	<ion-icon name="filter-circle-outline" style="width:45px;height:45px; color:#ff7800;"></ion-icon>
 	</button>
 
 </div>
@@ -73,12 +73,27 @@
 
 	<div class="grid">
 
-			 <form action="Product" method="post">
+			 <form action="" method="post">
    <div class="container watch fade-in">
 
     <div class="card">
       <div class="front">
-      <img src="<%= img %>" alt="immagine prodotto">
+      <img src="../static/images/Crea.jpg" alt="immagine prodotto">
+      </div>
+      <div class="back">
+        <h3>Location</h3>
+
+        <h3>70milioni di euro&euro;</h3>
+        <form action="Product" method="post">
+                 <button class="box b" type= "submit" value="<%= p.getId() %>" name = "Id">Visualizza</button>
+                  <input type="hidden" name="nomeSub" value="<%=p.getId()%>">
+        </form>
+      </div>
+    </div>
+
+     <div class="card">
+      <div class="front">
+      <img src="../static/images/Crea.jpg" alt="immagine prodotto">
       </div>
       <div class="back">
         <h3>Location</h3>
@@ -94,7 +109,11 @@
   </div>
     </div>
     </div>
-
+    </div>
+        <div class="right-column">
+            prova
+        </div>
+</div>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="../static/js/SceltaFornitore.js"></script>
