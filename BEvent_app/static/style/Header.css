@@ -14,7 +14,6 @@
 
 
 /* Reset */
-  body, html{color: #ffffff; font-family: 'Catamaran', sans-serif; font-size: 16px; box-sizing: border-box;margin: 0;padding: 0;}
 
   /* reveal password bianco*/
   ::-ms-reveal {
@@ -352,9 +351,14 @@
     @media (max-height: 1250px){
   	.header__logo{padding-top: 2px;padding-left:0px; height: 80%; width: 85px;}
     }
-
     @media (max-height: 1081px){
   	.header__logo{padding-top: 2px;padding-left:0px; height: 80%; width: 70px;}
     .header__titolo{font-size: 38px;}
     .button {padding-top: 3px; padding-right: 38px; padding-bottom: 5px; padding-left: 38px;}
+    }
+
+    @media (max-height: 900px){
+  	.header__logo{padding-top: 2px;padding-left:0px; height: 70%; width: 70px;}
+    .header__titolo{font-size: 32px;}
+    .button {padding-top: 2px; padding-right: 38px; padding-bottom: 6px; padding-left: 38px;}
     }
