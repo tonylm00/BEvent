@@ -5,18 +5,18 @@ const close = document.querySelector(".close");
 
 const openModal = function() {
     modal.style.display = "block";
-    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // Opacizza lo sfondo
+    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 };
 
 const closeModal = function() {
     modal.style.display = "none";
-    document.body.style.backgroundColor = ""; // Ripristina lo sfondo originale
+    document.body.style.backgroundColor = "";
 };
 
 // Event listeners
 button.addEventListener('click', openModal, false);
 
-// Aggiungi il listener per l'elemento di chiusura solo se esiste (non esiste :)
+// Aggiungi il listener per l'elemento di chiusura solo se esiste
 if (close) {
     close.addEventListener('click', closeModal, false);
 }
@@ -24,6 +24,6 @@ if (close) {
 // Chiude la modale quando si clicca al di fuori di essa
 window.onclick = function(event) {
     if (event.target == modal) {
-        closeModal(); // Utilizza la funzione definita per chiudere la modale
+        closeModal();
     }
 };
