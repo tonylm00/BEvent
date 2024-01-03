@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="Ultime modifiche header cambiando le classi container e reso compatibile con AreaFornitore">
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/js/SceltaFornitore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/js/SceltaFornitore2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/SceltaFornitore.css" afterDir="false" />
+    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="Piccole modifiche header il ritorno+ inizializzazione di HomeOrganizzatore.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/Fornitore.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/Fornitore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/Header2.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/Header2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Header.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,6 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Flask server.BEvent.executor": "Run",
-    "JavaScript Debug.AreaOrganizzatore.html.executor": "Run",
     "JavaScript Debug.EventoPubblico.html.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -100,7 +96,10 @@
       <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\RicercaEvento" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flask server.BEvent">
+    <configuration name="EventoPubblico.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/EventoPubblico.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="BEvent" type="Python.FlaskServer">
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/app.py" />
@@ -117,6 +116,11 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.EventoPubblico.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -184,15 +188,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704283770364</updated>
     </task>
-    <task id="LOCAL-00007" summary="Ultime modifiche header cambiando le classi container e reso compatibile con AreaFornitore">
-      <option name="closed" value="true" />
-      <created>1704286270339</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1704286270339</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,13 +213,12 @@
     <MESSAGE value="Reindirizzamenti funzionanti" />
     <MESSAGE value="Piccole modifiche header" />
     <MESSAGE value="Piccole modifiche header il ritorno+ inizializzazione di HomeOrganizzatore.html" />
-    <MESSAGE value="Ultime modifiche header cambiando le classi container e reso compatibile con AreaFornitore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ultime modifiche header cambiando le classi container e reso compatibile con AreaFornitore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Piccole modifiche header il ritorno+ inizializzazione di HomeOrganizzatore.html" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703348206394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BEvent$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1703598902571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$provaDaria.coverage" NAME="provaDaria Coverage Results" MODIFIED="1703245177592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704302407356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704285996566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
