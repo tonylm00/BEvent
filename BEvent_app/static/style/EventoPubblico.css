@@ -28,7 +28,7 @@ h1, h2 {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
-    background-color: #ffe4c4; /* Arancione chiaro per gli elementi dell'evento */
+    background-color: #ffe4c4;
 }
 
 #event-form {

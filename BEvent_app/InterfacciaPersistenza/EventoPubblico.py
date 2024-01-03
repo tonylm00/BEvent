@@ -9,14 +9,14 @@ app.config['MONGODB_SETTINGS'] = {
 db = MongoEngine(app)
 
 class Event(db.Document):
-    titolo = db.StringField(max_length=100, required=True)  # Modificato da title
-    data = db.StringField(max_length=20, required=True)  # Modificato da date
-    biglietti_disponibili = db.IntField(required=True)  # Modificato da tickets_available
-    tipo_evento = db.StringField(max_length=50, required=True)  # Modificato da event_type
-    luogo = db.StringField(max_length=100, required=True)  # Modificato da location
+    titolo = db.StringField(max_length=100, required=True)
+    data = db.StringField(max_length=20, required=True)
+    biglietti_disponibili = db.IntField(required=True)
+    tipo_evento = db.StringField(max_length=50, required=True)
+    luogo = db.StringField(max_length=100, required=True)
     orario = db.StringField(max_length=20, required=True)
-    fornitori = db.ListField(db.StringField(max_length=50))  # Modificato da vendors
-    descrizione = db.StringField(max_length=500)  # Modificato da description
+    fornitori = db.ListField(db.StringField(max_length=50))
+    descrizione = db.StringField(max_length=500)
     image_url = db.StringField()
 
 with app.app_context():
@@ -39,15 +39,15 @@ def create_or_update_event():
         if not existing_event:
             return jsonify({'error': 'Evento non trovato'}), 404
 
-        # Aggiornamento dei campi dell'evento
-        existing_event.titolo = data['titolo']  # Modificato da title
-        existing_event.data = data['data']  # Modificato da date
-        existing_event.biglietti_disponibili = data['biglietti_disponibili']  # Modificato da tickets_available
-        existing_event.tipo_evento = data['tipo_evento']  # Modificato da event_type
-        existing_event.luogo = data['luogo']  # Modificato da location
+
+        existing_event.titolo = data['titolo']
+        existing_event.data = data['data']
+        existing_event.biglietti_disponibili = data['biglietti_disponibili']
+        existing_event.tipo_evento = data['tipo_evento']
+        existing_event.luogo = data['luogo']
         existing_event.orario = data['orario']
-        existing_event.fornitori = data.get('fornitori', [])  # Modificato da vendors
-        existing_event.descrizione = data.get('descrizione', '')  # Modificato da description
+        existing_event.fornitori = data.get('fornitori', [])
+        existing_event.descrizione = data.get('descrizione', '')
         existing_event.image_url = data.get('image_url', '')
         existing_event.save()
 
@@ -55,14 +55,14 @@ def create_or_update_event():
     else:
         # Creazione di un nuovo evento
         new_event = Event(
-            titolo=data['titolo'],  # Modificato da title
-            data=data['data'],  # Modificato da date
-            biglietti_disponibili=data['biglietti_disponibili'],  # Modificato da tickets_available
-            tipo_evento=data['tipo_evento'],  # Modificato da event_type
-            luogo=data['luogo'],  # Modificato da location
+            titolo=data['titolo'],
+            data=data['data'],
+            biglietti_disponibili=data['biglietti_disponibili'],
+            tipo_evento=data['tipo_evento'],
+            luogo=data['luogo'],
             orario=data['orario'],
-            fornitori=data.get('fornitori', [])  # Modificato da vendors
-            descrizione=data.get('descrizione', '')  # Modificato da description
+            fornitori=data.get('fornitori', [])
+            descrizione=data.get('descrizione', '')
             image_url=data.get('image_url', '')
         )
 
@@ -78,14 +78,14 @@ def get_all_events():
     for event in events:
         event_data = {
             'id': str(event.id),
-            'titolo': event.titolo,  # Modificato da title
-            'data': event.data,  # Modificato da date
-            'biglietti_disponibili': event.biglietti_disponibili,  # Modificato da tickets_available
-            'tipo_evento': event.tipo_evento,  # Modificato da event_type
-            'luogo': event.luogo,  # Modificato da location
+            'titolo': event.titolo,
+            'data': event.data,
+            'biglietti_disponibili': event.biglietti_disponibili,
+            'tipo_evento': event.tipo_evento,
+            'luogo': event.luogo,
             'orario': event.orario,
-            'fornitori': event.fornitori,  # Modificato da vendors
-            'descrizione': event.descrizione,  # Modificato da description
+            'fornitori': event.fornitori,
+            'descrizione': event.descrizione,
             'image_url': event.image_url
         }
         event_list.append(event_data)
