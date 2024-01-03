@@ -165,7 +165,7 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
 
 
 def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
-                  descrizione, tipo, eventi_max_giorn, via, piva):
+                  descrizione, islocation, eventi_max_giorn, via, piva):
     db = get_db()
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
@@ -181,13 +181,13 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
             fornitore_data = {
                 'Fornitore': {
                     'Descrizione': descrizione,
-                    'Tipo': tipo,
                     'EventiMassimiGiornaliero': eventi_max_giorn,
                     'OrarioDiLavoro': "",
                     'Foto': "",
                     'Citta': citta,
                     'Via': via,
-                    'Partita_Iva': piva
+                    'Partita_Iva': piva,
+                    'isLocation': islocation
                 }
             }
 

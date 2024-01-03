@@ -83,14 +83,18 @@ def registrazione_organizzatore():
                 flash("Organizzatore non Registarto", "error")
         elif ruolo == "3":
             descrizione = request.form.get('descrizione')
-            tipo = request.form.get('tipo')
+            location = request.form.get('isLocation')
             eventi_max_giorn = request.form.get('eventi_max_giornaliero')
             citta = request.form.get('citta')
             via = request.form.get('via')
             piva = request.form.get('p_iva')
+            islocation = False
+
+            if location == "Si":
+                islocation = True
 
             user = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono,
-                                                       data_di_nascita, citta, ruolo, descrizione, tipo,
+                                                       data_di_nascita, citta, ruolo, descrizione, islocation,
                                                        eventi_max_giorn, via, piva)
             if user:
                 login_user(user)

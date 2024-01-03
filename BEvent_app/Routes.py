@@ -24,6 +24,7 @@ def organizzatore_page():
 def admin_page():
     return render_template('AreaAdmin.html')
 
+
 @views.route('/error_page')
 def error_page():
     return render_template('ErrorPage.html')
@@ -41,13 +42,11 @@ def login_page():
     return home()
 
 
-
 @views.route('/registrazione_page')
 def registrazione_page():
     if not current_user.is_authenticated:
         return render_template('Registrazione.html')
     return home()
-
 
 
 @views.route('/registrazione_organizzatore_page')
@@ -57,14 +56,13 @@ def registrazione_organizzatore_page():
     return home()
 
 
-
-@views.route('/creaEventoInizio_page')
+@views.route('/sceltaeventodacreare_page')
 @login_required
-def creaeventoinizio_page():
-    return render_template('CreazioneEventoIntro.html')
+def sceltaeventodacreare_page():
+    return render_template('SceltaEventoDaCreare.html')
 
 
-@views.route('/creaEventoMain_page')
+@views.route('/SceltaFornitori_page')
 @login_required
-def creaeventomain_page(fornitori=None):
-    return render_template('CreazioneEventoMain.html', fornitori=fornitori)
+def sceltafornitori_page(fornitori=None):
+    return render_template('SceltaFornitori.html', fornitori=fornitori)

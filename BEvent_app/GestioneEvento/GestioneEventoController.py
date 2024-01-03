@@ -1,6 +1,6 @@
 from flask import request, Blueprint, session, flash
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import creaeventomain_page, creaeventoinizio_page
+from BEvent_app.Routes import sceltaeventodacreare_page, sceltafornitori_page
 
 ge = Blueprint('ge', __name__)
 
@@ -16,14 +16,12 @@ def visualizza_fornitori():
     session['n_invitati'] = n_invitati
 
     if GestioneEventoService.is_valid_data(data):
+
         fornitori = GestioneEventoService.get_fornitori()
-        return creaeventomain_page(fornitori=fornitori)
+        return sceltafornitori_page(fornitori=fornitori)
+
     else:
         flash("Errore nella data inserita")
-        return creaeventoinizio_page()
+        return sceltaeventodacreare_page()
 
 
-'''
-@ge.route('/visualizza_categorie', methods=['POST'])
-def visualizza_categorie():
-'''
