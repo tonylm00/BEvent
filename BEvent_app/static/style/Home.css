@@ -57,10 +57,10 @@ h1{
 .bottone-invisibile{
     background: transparent;
     border: none;
-    cursor: pointer;        /* Mantiene il cursore come puntatore per indicare che è cliccabile */
-    padding: 10px;          /* Mantiene un po' di spazio intorno per facilitare il clic */
+    cursor: pointer;
+    padding: 10px;
 }
 
 .bottone-invisibile:focus {
-    outline: none;         /* Rimuove l'outline quando il bottone è in focus */
+    outline: none;
 }

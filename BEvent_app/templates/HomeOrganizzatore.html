@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La tua Pagina Evento</title>
+<link rel="stylesheet" href="../static/style/Home.css">
+</head>
+<body>
+
+
+<header>
+{% include 'Header.html' %}
+</header>
+
+<div class="split left">
+  <div class="centered">
+  <button class="bottone-invisibile" >
+    <h1>Crea il tuo evento</h1>
+  </button>
+    <p>Alcune informazioni sull'organizzazione di eventi personali.</p>
+      {% if session.logged %}
+            <form action="/logout">
+                <button type="submit">Logout</button>
+            </form>
+        {% endif %}
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+      <button class="bottone-invisibile">
+        <h1>Trova l'evento per te</h1>
+      </button>
+    <p>Dettagli su come scoprire eventi pubblici che potrebbero interessarti.</p>
+  </div>
+</div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

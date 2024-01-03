@@ -1,8 +1,8 @@
 from flask import request, Blueprint, session, redirect, flash
 from flask_login import login_user, logout_user
 from BEvent_app.Autenticazione import AutenticazioneService
-from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, error_page, fornitore_page
-
+from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, error_page, fornitore_page, \
+    organizzatore_page
 
 aut = Blueprint('aut', __name__)
 
@@ -25,15 +25,15 @@ def login():
             if user.ruolo == "1":
                 return admin_page()
             elif user.ruolo == "2":
-                return home()
+                return organizzatore_page()
             elif user.ruolo == "3":
                 return fornitore_page()
             else:
                 return error_page()
         else:
-            return login_page()
+            return home()
     else:
-        return login_page()
+        return home()
 
 
 @aut.route('/logout')
