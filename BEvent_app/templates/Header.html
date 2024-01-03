@@ -24,7 +24,7 @@
         <div style="display: flex; justify-content: flex-end">
         <button class="button" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
         <button class="button" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button>
-        <button class="button" id="modal-button"><ion-icon name="person-circle-outline" style="font-size: 50px; "></ion-icon></button>
+        <button class="button" id="modal-button"><lord-icon src="https://cdn.lordicon.com/bgebyztw.json" trigger="hover" colors="primary:#000000,secondary:#fe8415" style="width:50px;height:50px"></lord-icon></button>
         </div>
     {% endif %}
 </div>
@@ -33,8 +33,8 @@
 	<div class="container slideDown" id="container">
         <div class="form-container sign-up">
             <form id="registrazione" action="/registrazione_organizzatore_page">
-                <h1 style="color: #f68b44;">Crea il tuo Account</h1>
-                <p style="color: #f68b44; "> Sei un Organizzatore o un Fornitore?</p>
+                <h1 style="color: #fda067;">Crea il tuo Account</h1>
+                <p style="color: #f68b44; font-size: 17px; "> Sei un Organizzatore o un Fornitore?</p>
                 <select name="dropdown" id="dropdown">
                     <option value="organizzatore" selected>Organizzatore</option>
                     <option value="fornitore">Fornitore</option>
@@ -43,10 +43,10 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form action="/login">
-                <h1 style="color: #f68b44;">Bentornato!</h1>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+            <form action="/login" method="POST">
+                <h1 style="color: #fda067;">Bentornato!</h1>
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
                 <button>Accedi</button>
             </form>
         </div>
@@ -69,6 +69,7 @@
 </header>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="../static/js/Header.js"></script>
     <script src="../static/js/Header2.js"></script>
     <script src="../static/js/Header3.js"></script>
