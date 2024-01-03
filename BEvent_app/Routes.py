@@ -63,6 +63,6 @@ def sceltaeventodacreare_page():
 
 
 @views.route('/SceltaFornitori_page')
-@login_required
-def sceltafornitori_page(fornitori=None):
-    return render_template('SceltaFornitori.html', fornitori=fornitori)
+#@login_required
+def sceltafornitori_page(fornitori=None, servizi=None):
+    return render_template('SceltaFornitori.html', fornitori=fornitori, servizi=servizi)
