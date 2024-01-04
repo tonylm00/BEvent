@@ -9,7 +9,6 @@ class Fornitore(Utente):
         self.descrizione = fornitore_info['Descrizione']
         self.eventi_max_giornalieri = fornitore_info['EventiMassimiGiornaliero']
         self.orario_lavoro = fornitore_info['OrarioDiLavoro']
-        self.quantita = fornitore_info['Quantità']
         self.foto = fornitore_info['Foto']
         self.citta = fornitore_info['Citta']
         self.via = fornitore_info['Via']
