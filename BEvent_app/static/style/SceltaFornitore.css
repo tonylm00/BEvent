@@ -30,7 +30,6 @@
   align-items:center;
   justify-content:center;
   margin-top: 50px;
-  background: cover;
 
 }
 
@@ -52,7 +51,7 @@
 	border: 0;
 	outline: none;
 	padding: 14px 10px;
-	color: white;
+	color: black;
 	font-size:18px;
 }
 
@@ -78,89 +77,19 @@
 
 .left-column {
   flex: 65%;
-  margin-left: 5%;
+  margin-left: 0%;
+
 }
 
 .right-column {
-  flex: 25%;
+  flex: 30%;
   margin-left: 5%;
-}
-.inputbox2{
-	background: transparent;
-	flex: 1;
-	border: 0;
-	padding: 7px;
-	color: white;
-	font-size:18px;
-
-}
-
-.size{
-	width:30%;
-	font-size: 20px;
-}
-
-.radio-buttons-container {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.radio-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-.radio-button__input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.radio-button__label {
-  display: inline-block;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  position: relative;
-  font-size: 16px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.radio-button__custom {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #555;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.radio-button__input:checked + .radio-button__label .radio-button__custom {
-  transform: translateY(-50%) scale(0.9);
-  border: 5px solid #ffd700;
-  color: #ffd700;
-}
-
-.radio-button__input:checked + .radio-button__label {
-  color: #ffd700;
-}
-
-.radio-button__label:hover .radio-button__custom {
-  transform: translateY(-50%) scale(1.2);
-  border-color: #ffd700;
-  box-shadow: 0 0 10px #4c8bf580;
 }
 
 /* Griglia del Catalogo */
 .grid-container{
 
+    overflow: auto;
 	height:100%;
 	justify-items: center;
 	align-items: center;
@@ -175,149 +104,138 @@
 
 .grid{
 
-
-  display: grid;
-  grid-gap:1rem;
-  row-gap:3rem;
-  grid-template-columns: repeat(3,1fr);
-
-  justify-items: center;
-  align-items: center;
+    display: grid;
+    grid-gap:1rem;
+    row-gap:3rem;
+    grid-template-columns: repeat(1,1fr);
+    justify-items: center;
+    align-items: center;
 
 }
-.container {
-  width: 500px;
-  height: 500px;
+.container-in-grid {
+  width: 200px;
+  height: 200px;
   perspective: 800px;
   padding: 20px;
   display:flex;
 
 }
 
-.container:hover > .card {
+.container-in-grid:hover > .card {
   cursor: pointer;
   transform: rotateY(180deg);
 }
 
-.card {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  transition: transform 1500ms;
-  transform-style: preserve-3d;
-}
+/* Gestione delle Card nella Pagina */
 
-.front,
-.back {
-  height: 100%;
-  width: 100%;
-  border-radius: 2rem;
-  box-shadow: 0 0 5px 5px rgba(190, 190, 190, 0.4);
-  position: absolute;
-  backface-visibility: hidden;
-}
-.front img{
-	width:100%;
-	height:100%;
-	border-radius: 2rem;
-}
-
-
-.back {
-
-    transform: rotateY(180deg);
+.container{
+    width: 80%;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.container .card{
+    position: relative;
+    cursor: pointer;
+}
+
+.container .card .face{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.container .card .face.face1{
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    transform: translateY(100px);
+    align-items: stretch;
+}
+
+
+.container .card:hover .face.face1{
+    background: #ff7800;
+    transform: translateY(0);
+}
+
+.container .card .face.face1 .content img{
+    width: 300px;
+    height: 75%;
+}
+
+.container .card .face.face1 .content h3{
+    margin-top: 10px;
+
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.container .card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    color: white;
-    background-color: black;
-    font-family: 'Droid Serif', serif;
-    font-weight: normal;
-    font-style: italic;
-
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
 }
 
-/* Fade in dei prodotti */
+.container .card:hover .face.face2{
+    transform: translateY(0);
+}
+
+.container .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+}
+
+.container .card .face.face2 .content a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container .card .face.face2 .content a:hover{
+    background: #333;
+    color: #fff;
+}
+
+/* Fade in dei fornitori */
 .fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
 .fade-in.in-page{opacity: 1;transform: translateY(0vh);}
 
 
-/* Gestione Bottoni */
-.box {
-  width: 140px;
-  height: auto;
-  float: left;
-  transition: .5s linear;
-  position: relative;
-  display: block;
-  overflow: hidden;
-  padding: 15px;
-  text-align: center;
-  margin: 0 5px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 900;
-}
-
-.box:before {
-  position: absolute;
-  content: '';
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  width: 100%;
-  border-bottom: 4px solid transparent;
-  border-left: 4px solid transparent;
-  box-sizing: border-box;
-  transform: translateX(100%);
-}
-
-.box:after {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  border-top: 4px solid transparent;
-  border-right: 4px solid transparent;
-  box-sizing: border-box;
-  transform: translateX(-100%);
-}
-
-.box:hover {
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.5);
-}
-
-.box:hover:before {
-  border-color: #bebebe;
-  height: 100%;
-  transform: translateX(0);
-  transition: .3s transform linear, .3s height linear .3s;
-}
-
-.box:hover:after {
-  border-color: #bebebe;
-  height: 100%;
-  transform: translateX(0);
-  transition: .3s transform linear, .3s height linear .5s;
-}
-
-.b {
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background: transparent;
-  align: center;
-  margin-top: 70px;
-}
-
-
 /* TUTTO MODALE FILTRI */
+
+.modal2 {
+	display: none;
+	position: fixed;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	transition: all 0.5s ease 0.06s;
+
+	color: #fff;
+}
+
+
 .modal-container2{
     background-color: #fff;
     border-radius: 30px;
@@ -509,30 +427,6 @@
     transform: translateX(200%);
 }
 
-
-  /*****/
-/*   MODAL   */
-/*****/
-
-
-/* The Modal (background) */
-
-.modal2 {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
-	transition: all 0.5s ease 0.06s;
-
-	color: #fff;
-}
-
-
 /* Animazione della modale */
 
 .slideDown {
@@ -568,16 +462,14 @@
 
 /* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
 
-@media(max-width: 1550px){
+@media(max-width: 2000px){
 
 .grid{
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(3,1fr);
 }
 }
 
-@media(max-width: 1100px){
 
-.grid{
-  grid-template-columns: repeat(1,1fr);
-}
+@media (max-height: 1000px){
+    .grid{height: 550px;}
 }

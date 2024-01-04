@@ -6,8 +6,8 @@
 
 </head>
 
-
 <body>
+<!--<body  style="overflow: hidden;"> -->
 <header>
 {% include 'Header.html' %}
 </header>
@@ -73,47 +73,113 @@
 
 	<div class="grid">
 
-			 <form action="" method="post">
-   <div class="container watch fade-in">
-
-    <div class="card">
-      <div class="front">
-      <img src="../static/images/Crea.jpg" alt="immagine prodotto">
-      </div>
-      <div class="back">
-        <h3>Location</h3>
-
-        <h3>70milioni di euro&euro;</h3>
-        <form action="Product" method="post">
-                 <button class="box b" type= "submit" value="<%= p.getId() %>" name = "Id">Visualizza</button>
-                  <input type="hidden" name="nomeSub" value="<%=p.getId()%>">
-        </form>
-      </div>
+        <div class="container ">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Location2.jpg">
+                    <h3>Location</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Location.jpg">
+                    <h3>Location</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Fioraio.jpg">
+                    <h3>Fiori</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            <div class="grid">
+             <div class="container ">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Intrattenimento.jpg">
+                    <h3>Intrattenimento</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-     <div class="card">
-      <div class="front">
-      <img src="../static/images/Crea.jpg" alt="immagine prodotto">
-      </div>
-      <div class="back">
-        <h3>Location</h3>
 
-        <h3>70milioni di euro&euro;</h3>
-        <form action="Product" method="post">
-                 <button class="box b" type= "submit" value="<%= p.getId() %>" name = "Id">Visualizza</button>
-                  <input type="hidden" name="nomeSub" value="<%=p.getId()%>">
-        </form>
-      </div>
+
+
+
     </div>
 
-  </div>
-    </div>
-    </div>
+
+
+</div>
+
+
     </div>
         <div class="right-column">
             prova
         </div>
-</div>
+    </div>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="../static/js/SceltaFornitore.js"></script>
