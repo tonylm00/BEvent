@@ -48,6 +48,17 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #45a049;
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input[type="number"] {
+    margin-right: 0.5em;
+}
 
 label {
     display: block;

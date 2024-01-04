@@ -9,10 +9,10 @@ from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
 
 def is_valid_data(data):
     try:
-        datetime_data = datetime.strptime(data, '%d-%m-%Y')
-        data_odierna = datetime.now().strftime('%d-%m-%Y')
-
-        if datetime_data > datetime.strptime(data_odierna, '%d-%m-%Y'):
+        print(data)
+        datetime_data = datetime.strptime(data, '%Y-%m-%d')
+        data_odierna = datetime.now()
+        if datetime_data > data_odierna:
             return True
         else:
             return False
@@ -47,7 +47,7 @@ def get_fornitori_by_tipo(tipo_desiderato):
 def get_servizi():
     db = get_db()
     servizi_collection = db['ServizioOfferto']
-    servizi_data = list(servizi_collection)
+    servizi_data = list(servizi_collection.find())
 
     lista_servizi = []
 

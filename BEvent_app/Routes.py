@@ -56,13 +56,13 @@ def registrazione_organizzatore_page():
     return home()
 
 
-@views.route('/sceltaeventodacreare_page')
-@login_required
-def sceltaeventodacreare_page():
+@views.route('/scelta_evento_da_creare_page')
+#@login_required
+def scelta_evento_da_creare_page():
     return render_template('SceltaEventoDaCreare.html')
 
 
 @views.route('/SceltaFornitori_page')
 #@login_required
-def sceltafornitori_page(fornitori=None):
-    return render_template('SceltaFornitori.html', fornitori=fornitori)
+def sceltafornitori_page(fornitori=None, servizi=None):
+    return render_template('SceltaFornitori.html', fornitori=fornitori, servizi=servizi)

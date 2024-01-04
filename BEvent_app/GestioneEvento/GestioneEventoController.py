@@ -1,6 +1,6 @@
 from flask import request, Blueprint, session, flash, jsonify
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import sceltaeventodacreare_page, sceltafornitori_page
+from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page
 
 ge = Blueprint('ge', __name__)
 
@@ -10,6 +10,7 @@ def visualizza_fornitori():
     tipo_evento = request.form.get('tipo_evento')
     data = request.form.get('data_evento')
     n_invitati = request.form.get('n_invitati')
+
 
     session['tipo_evento'] = tipo_evento
     session['data_evento'] = data
@@ -21,7 +22,7 @@ def visualizza_fornitori():
         return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti)
     else:
         flash("Errore nella data inserita")
-        return sceltaeventodacreare_page()
+        return scelta_evento_da_creare_page()
 
 
 @ge.route('/filtro_categoria', methods=['POST'])
