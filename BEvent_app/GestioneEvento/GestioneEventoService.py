@@ -9,7 +9,6 @@ from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
 
 def is_valid_data(data):
     try:
-        print(data)
         datetime_data = datetime.strptime(data, '%Y-%m-%d')
         data_odierna = datetime.now()
         if datetime_data > data_odierna:
