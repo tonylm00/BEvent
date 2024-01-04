@@ -17,7 +17,7 @@
 
 
   /* ! Button System */
-  .button {
+  .button-header {
     border: none;
     display: block;
     position: relative;
@@ -34,7 +34,7 @@
 }
 
 
-  .button:hover {
+  .button-header:hover {
   color: black;
 }
 

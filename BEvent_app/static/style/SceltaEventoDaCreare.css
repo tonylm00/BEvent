@@ -1,12 +1,12 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: 'Brush Script MT',cursive;
+    font-family: 'Times New Roman';
     font-size: 24px;
 }
 
 .container {
-    background-image: url('../images/Crea.jpg'); /* sostituisci con il percorso corretto dell'immagine */
+    background-image: url('../images/Laurea.jpg'); /* sostituisci con il percorso corretto dell'immagine */
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,16 +16,15 @@ body, html {
     align-items: center;
 }
 
-form {
-    background-color: rgba(255, 255, 255, 0.8);
+.form-scelta {
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
     border-radius: 5px;
-    width: 400px; /* o la larghezza desiderata */
+    width: 500px;
+
 }
 
-select,
-input[type=date],
-input[type=number]{
+.input-scelta{
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -52,10 +51,6 @@ input[type=number]{
     box-sizing: border-box;
   }
 
-
-label {
-    display: block;
-}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button,
