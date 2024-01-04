@@ -21,6 +21,7 @@ def visualizza_fornitori():
     if GestioneEventoService.is_valid_data(data):
         fornitori = GestioneEventoService.get_fornitori()
         servizi_offerti = GestioneEventoService.get_servizi()
+
         return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti)
     else:
         flash("Errore nella data inserita")
@@ -73,3 +74,4 @@ def filtro_barra_ricerca():
 
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
+

@@ -45,7 +45,7 @@ def get_fornitori_by_tipo(tipo_desiderato):
 
 def get_servizi():
     db = get_db()
-    servizi_collection = db['ServizioOfferto']
+    servizi_collection = db['Servizio Offerto']
     servizi_data = list(servizi_collection.find())
 
     lista_servizi = []

@@ -15,6 +15,7 @@ class Utente(UserMixin):
         self.nome_utente = user_data['nome_utente']
         self.password_hash = user_data['password']
         self.ruolo = user_data['Ruolo']
+        self.regione = user_data['regione']
         self.isAdmin = False
 
     def check_password(self, password):

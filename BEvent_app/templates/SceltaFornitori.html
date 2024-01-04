@@ -72,53 +72,50 @@
 <div class="grid-container">
 
 	<div class="grid">
-
         <div class="container ">
-
+        {% for fornitore in fornitori %}
+            {% if fornitore.regione == session.get('regione') %}
         <div class="card">
             <div class="face face1">
                 <div class="content">
                     <img src="../static/images/Location2.jpg">
-                    <h3>Location</h3>
+                    <h3>{{ fornitore.nome }} </h3>
                 </div>
             </div>
             <div class="face face2">
                 <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
+                        {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }}</p>
                         <a href="#">Read More</a>
                 </div>
             </div>
         </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for fornitore in fornitori %}
+            {% if fornitore.regione != session.get('regione') %}
         <div class="card">
             <div class="face face1">
                 <div class="content">
-                    <img src="../static/images/Location.jpg">
-                    <h3>Location</h3>
+                    <img src="../static/images/Location2.jpg">
+                    <h3>{{ fornitore.nome }} </h3>
                 </div>
             </div>
             <div class="face face2">
                 <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
+                        {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
                         <a href="#">Read More</a>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <img src="../static/images/Fioraio.jpg">
-                    <h3>Fiori</h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
-                        <a href="#">Read More</a>
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
+
         </div>
     </div>
+
             <div class="grid">
              <div class="container ">
         <div class="card">
