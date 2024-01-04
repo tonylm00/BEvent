@@ -33,7 +33,7 @@ input[type=number]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    color: darkorange;
+    color: black;
 }
 
 .button {
@@ -55,5 +55,17 @@ input[type=number]{
 
 label {
     display: block;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"] {
+    -webkit-appearance: none;
+    margin: 10px;
+}
+
+
+input[type="number"] {
+    margin-right: 0.5em;
 }
 

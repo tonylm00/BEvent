@@ -1,11 +1,21 @@
-
+/* Stili di reset per il corpo del documento */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
+/* Aggiunta di stili per rendere il layout responsive */
+@media screen and (max-width: 900px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .header, .main, .side {
+        width: 100%;
+    }
+}
+
+/* Aggiunta di stili per i riquadri con contorno arancione */
 .wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -13,19 +23,76 @@ body {
     justify-content: center;
 }
 
-.header, .main, .side {
+.header,.side {
+    padding: 10px;
+    border: 2px solid #ff9800;
+    margin: 10px;
+    box-sizing: border-box;
+}
+.side {
+    padding: 10px;
+    border: 2px solid #ff9800;
+    margin: 10px;
+    box-sizing: border-box;
+}
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra orizzontalmente */
+    gap: 5%;
+    margin: 10px;
+    margin-top: 7%;
+}
+
+.sezione-foto {
+    flex-basis: calc(33% - 20px);
     padding: 10px;
 }
 
-
-.header {
-    flex-basis: 100%;
-    text-align: center;
+/* Stili per la sezione delle foto */
+.sezione-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
+.foto-contenitore {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
 
-input[type=text], input[type=number], select, textarea {
-    width: 100%;
+.foto-box {
+    width: 575px;
+    height: 375px;
+    background-color: #c4c4c4;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.foto-box_2 {
+    width: 150px;
+    height: 100px;
+    background-color: #c4c4c4;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Stili per gli input, textarea, e select */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 95%;
     padding: 10px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -33,14 +100,17 @@ input[type=text], input[type=number], select, textarea {
     background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=number]:focus, select:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
     background-color: #ddd;
     outline: none;
 }
 
-
+/* Stili per il pulsante di caricamento */
 button {
-    background-color: #4CAF50;
+    background-color: #ff9800;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -51,22 +121,5 @@ button {
 }
 
 button:hover {
-    opacity:1;
-}
-
-
-@media screen and (max-width: 768px) {
-    .side {
-        flex-basis: 100%;
-    }
-
-    .main {
-        flex-basis: 100%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .wrapper {
-        flex-direction: column;
-    }
+    opacity: 1;
 }

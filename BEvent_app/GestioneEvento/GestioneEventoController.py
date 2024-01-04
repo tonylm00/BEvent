@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import request, Blueprint, session, flash, jsonify
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page
@@ -9,11 +11,11 @@ ge = Blueprint('ge', __name__)
 def visualizza_fornitori():
     tipo_evento = request.form.get('tipo_evento')
     data = request.form.get('data_evento')
+    data_formattata = datetime.strptime(data, "%Y-%m-%d").strftime("%d-%m-%Y")
     n_invitati = request.form.get('n_invitati')
 
-
     session['tipo_evento'] = tipo_evento
-    session['data_evento'] = data
+    session['data_evento'] = data_formattata
     session['n_invitati'] = n_invitati
 
     if GestioneEventoService.is_valid_data(data):

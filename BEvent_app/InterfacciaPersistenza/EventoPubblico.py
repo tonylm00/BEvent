@@ -61,9 +61,9 @@ def create_or_update_event():
             tipo_evento=data['tipo_evento'],
             luogo=data['luogo'],
             orario=data['orario'],
-            fornitori=data.get('fornitori', [])
-            descrizione=data.get('descrizione', '')
-            image_url=data.get('image_url', '')
+            fornitori=data.get('fornitori', []),
+            descrizione=data.get('descrizione', ''),
+            image_url=data.get('image_url', ''),
         )
 
         new_event.save()
