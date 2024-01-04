@@ -35,6 +35,7 @@ input[type=number]{
     box-sizing: border-box;
     color: darkorange;
 }
+
 .button {
     background-color: darkorange;
     color: white;
