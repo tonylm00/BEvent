@@ -6,25 +6,35 @@
     <link rel="stylesheet"  type="text/css" href="../static/style/SceltaEventoDaCreare.css">
 </head>
 <body>
-    <div class="container">
+<header>
+{% include 'Header.html' %}
+</header>
+    <div class="container" id="container">
 
-        <form action="#" method="post">
-            <div class="dropdown-container">
-                <label for="tipo-evento">Che tipo di evento vorresti creare?</label>
-                    <select id="tipo-evento" name="tipo-evento">
-                        <option value="matrimonio">Matrimonio</option>
-                        <option value="matrimonio">Comunione</option>
-                        <option value="matrimonio">Compleanno</option>
-                        <!-- altre opzioni -->
+        <form class="form-scelta" action="/visualizza_fornitori" method="post">
+            <div>
+                <label>Che tipo di evento vorresti creare?</label>
+                    <select class="input-scelta" id="tipo_evento" name="tipo_evento">
+                        <option value="Cerimonia_di_Laurea">Cerimonia di Laurea</option>
+                        <option value="Compleanno">Compleanno</option>
+                        <option value="Convention">Convention</option>
+                        <option value="Evento_Religioso">Evento Religioso</option>
+                        <option value="Matrimonio">Matrimonio</option>
+                        <option value="Meeting Aziendale">Meeting Aziendale</option>
+                        <option value="Altro">Altro</option>
                     </select>
             </div>
-            <br>
-                <label for="data-evento">In che giorno?</label>
-                     <input type="date" id="data-evento" name="data-evento">
 
-            <!-- altri campi e pulsanti -->
+                <label>In che giorno?</label>
+                     <input class="input-scelta" type="date" id="data-evento" name="data_evento">
+            <br>
+                <label for="numero_invitati"> Numero di Invitati:</label>
+                    <input class="input-scelta" type="number" id="n_invitati" name="n_invitati">
+            <br>
+                <button type="submit" class="button">Conferma</button>
         </form>
     </div>
 
+<script src="../static/js/SceltaEventoDaCreare.js"></script>
 </body>
 </html>

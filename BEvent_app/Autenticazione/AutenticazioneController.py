@@ -20,12 +20,14 @@ def login():
             login_user(user)
 
             session['ruolo'] = user.ruolo
-            session['nomeutente'] = user.nome_utente
+            session['nome_utente'] = user.nome_utente
+            session['regione'] = user.regione
 
             if user.ruolo == "1":
                 return admin_page()
             elif user.ruolo == "2":
-                return organizzatore_page()
+                #return organizzatore_page()
+                return home()
             elif user.ruolo == "3":
                 return fornitore_page()
             else:
@@ -38,9 +40,9 @@ def login():
 
 @aut.route('/logout')
 def logout():
-    session.pop('logged', None)
-    session.pop('nome', None)
+    session.pop('nome_utente', None)
     session.pop('ruolo', None)
+    session.pop('regione', None)
     logout_user()
     return redirect('/')
 
@@ -58,12 +60,13 @@ def registrazione_organizzatore():
         cpassword = request.form.get('cpassword')
         telefono = request.form.get('telefono')
         ruolo = request.form.get('ruolo')
+        regione = request.form.get('regione')
         print(ruolo)
         registrazione = 0
 
         if ruolo == "1":
             user = AutenticazioneService.registra_admin(nome, cognome, nome_utente, email, password, cpassword,
-                                                        telefono, data_di_nascita, ruolo)
+                                                        telefono, data_di_nascita, ruolo, regione)
             if user:
                 login_user(user)
                 registrazione = 1
@@ -74,7 +77,7 @@ def registrazione_organizzatore():
 
             citta = request.form.get('citta')
             user = AutenticazioneService.registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono,
-                                                      data_di_nascita, citta, ruolo)
+                                                      data_di_nascita, citta, ruolo, regione)
             if user:
                 login_user(user)
                 registrazione = 1
@@ -95,7 +98,7 @@ def registrazione_organizzatore():
 
             user = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono,
                                                        data_di_nascita, citta, ruolo, descrizione, islocation,
-                                                       eventi_max_giorn, via, piva)
+                                                       eventi_max_giorn, via, piva, regione)
             if user:
                 login_user(user)
                 registrazione = 1
@@ -104,8 +107,9 @@ def registrazione_organizzatore():
                 flash("Fornitore non registrato", "error")
 
         if registrazione == 1:
-            session["nome"] = nome_utente
+            session["nome_utente"] = nome_utente
             session["ruolo"] = ruolo
+            session['regione'] = regione
             return home()
         else:
             return registrazione_page()

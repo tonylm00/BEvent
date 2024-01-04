@@ -22,7 +22,7 @@ class Event(db.Document):
 with app.app_context():
     db.create_all()
 
-# Endpoint per creare un nuovo evento o aggiornare uno esistente
+# serve a  creare un nuovo evento o aggiornare uno esistente
 @app.route('/api/events', methods=['POST'])
 def create_or_update_event():
     data = request.get_json()
@@ -61,9 +61,9 @@ def create_or_update_event():
             tipo_evento=data['tipo_evento'],
             luogo=data['luogo'],
             orario=data['orario'],
-            fornitori=data.get('fornitori', [])
-            descrizione=data.get('descrizione', '')
-            image_url=data.get('image_url', '')
+            fornitori=data.get('fornitori', []),
+            descrizione=data.get('descrizione', ''),
+            image_url=data.get('image_url', ''),
         )
 
         new_event.save()

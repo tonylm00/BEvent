@@ -1,64 +1,125 @@
+/* Stili di reset per il corpo del documento */
 body {
-    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #000; /* Testo in nero */
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #ffe4c4; /* Arancione chiaro per i contenitori */
+/* Aggiunta di stili per rendere il layout responsive */
+@media screen and (max-width: 900px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .header, .main, .side {
+        width: 100%;
+    }
+}
+
+/* Aggiunta di stili per i riquadri con contorno arancione */
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
 }
 
-h1, h2 {
-    color: #ff7f50; /* Arancione chiaro per i titoli */
-}
-
-#event-list {
-    margin-bottom: 20px;
-}
-
-.event-item {
-    border: 1px solid #ddd;
+.header,.side {
     padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    background-color: #ffe4c4;
-}
-
-#event-form {
-    margin-top: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+    border: 2px solid #ff9800;
+    margin: 10px;
     box-sizing: border-box;
 }
-
-button, .btn {
-    background-color: #ff7f50; /* Arancione chiaro per i bottoni */
-    color: white;
+.side {
     padding: 10px;
+    border: 2px solid #ff9800;
+    margin: 10px;
+    box-sizing: border-box;
+}
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra orizzontalmente */
+    gap: 5%;
+    margin: 10px;
+    margin-top: 7%;
+}
+
+.sezione-foto {
+    flex-basis: calc(33% - 20px);
+    padding: 10px;
+}
+
+/* Stili per la sezione delle foto */
+.sezione-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.foto-contenitore {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.foto-box {
+    width: 575px;
+    height: 375px;
+    background-color: #c4c4c4;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.foto-box_2 {
+    width: 150px;
+    height: 100px;
+    background-color: #c4c4c4;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Stili per gli input, textarea, e select */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
     border: none;
-    border-radius: 4px;
+    background: #f1f1f1;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Stili per il pulsante di caricamento */
+button {
+    background-color: #ff9800;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
     cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }
 
-button:hover, .btn:hover {
-    background-color: #ff6347; /* Arancione più scuro al passaggio del mouse */
+button:hover {
+    opacity: 1;
 }
-
-
