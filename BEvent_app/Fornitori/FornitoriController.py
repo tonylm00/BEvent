@@ -60,7 +60,7 @@ def modifica_servizio(servizio_id):
         "DisponibilitàDataInizio": request.form.get("data_inizio"),
         "DisponibilitàDataFine": request.form.get("data_fine"),
         "Quantità": request.form.get("quantità"),
-        "FotoServizo": request.form.get("foto_servizio"),
+        "FotoServizio": request.form.get("foto_servizio"),
         "fornitore_associato": request.form.get("fornitore_associato")
 
     }
@@ -91,7 +91,7 @@ def aggiungi_servizio():
         "Tipo": request.form.get("tipo"),
         "Prezzo": request.form.get("prezzo"),
         "Quantità": request.form.get("quantità"),
-        "FotoServizo": byte_arrays_bytes,
+        "FotoServizio": byte_arrays_bytes,
         "fornitore_associato": request.form.get("fornitore_associato")
     }
 

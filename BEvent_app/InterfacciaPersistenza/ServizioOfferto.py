@@ -9,7 +9,6 @@ class Servizio_Offerto:
         self.prezzo = service_data['Prezzo']
         self.quantita = service_data['Quantità']
         self.foto_servizio = []  # Inizializza un elenco vuoto per le immagini
-
         for foto_base64 in service_data['FotoServizio']:
             try:
                 immagine = Image.convert_byte_array_to_image(foto_base64)

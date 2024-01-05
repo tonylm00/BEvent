@@ -34,15 +34,6 @@ def get_fornitori():
     return lista_fornitori
 
 
-'''
-def get_fornitori_by_tipo(tipo_desiderato):
-    fornitori = get_fornitori()
-    fornitori_filtrati = [fornitore for fornitore in fornitori if
-                          fornitore.get("Fornitore", {}).get("Tipo") == tipo_desiderato]
-    return fornitori_filtrati
-'''
-
-
 def get_servizi():
     db = get_db()
     servizi_collection = db['Servizio Offerto']

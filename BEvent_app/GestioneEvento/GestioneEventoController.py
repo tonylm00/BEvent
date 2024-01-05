@@ -4,6 +4,7 @@ from flask import request, Blueprint, session, flash, jsonify
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page
 
+
 ge = Blueprint('ge', __name__)
 
 
