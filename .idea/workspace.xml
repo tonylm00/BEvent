@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="Ho modificato così tante cose che non mi ricordo nel dettaglio, a grandi linee è stato migliorato il css. Sono stati aggiustati tutti i reindirizzamenti ed ora sono funzionanti. Messo a commento il login required nelle Routes.py">
+    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="Modificato la caciara che c'era tra lo style in html e il css di entrambe le pagine di Registrazione. Non ho ancora aggiunto l'header perchè ci sono dei tag che sono stati modificati nell css e non ho voglia di farli adesso &lt;3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/Registrazione.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/Registrazione.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/RegistrazioneOrganizzatore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/RegistrazioneOrganizzatore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Header.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Registrazione.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Registrazione.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/RegistrazioneOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/RegistrazioneOrganizzatore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/SceltaFornitore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/SceltaFornitore.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +104,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -133,6 +131,7 @@
       <workItem from="1703244270696" duration="1844000" />
       <workItem from="1703328980020" duration="8158000" />
       <workItem from="1704378548656" duration="2141000" />
+      <workItem from="1704457959845" duration="3308000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento prova daria per vedere se funziona pycharm">
       <option name="closed" value="true" />
@@ -182,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704419933229</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Modificato la caciara che c'era tra lo style in html e il css di entrambe le pagine di Registrazione. Non ho ancora aggiunto l'header perchè ci sono dei tag che sono stati modificati nell css e non ho voglia di farli adesso &lt;3">
+      <option name="closed" value="true" />
+      <created>1704422624753</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704422624753</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +214,8 @@
     <MESSAGE value="Reindirizzamenti funzionanti" />
     <MESSAGE value="Piccole modifiche header" />
     <MESSAGE value="Ho modificato così tante cose che non mi ricordo nel dettaglio, a grandi linee è stato migliorato il css. Sono stati aggiustati tutti i reindirizzamenti ed ora sono funzionanti. Messo a commento il login required nelle Routes.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho modificato così tante cose che non mi ricordo nel dettaglio, a grandi linee è stato migliorato il css. Sono stati aggiustati tutti i reindirizzamenti ed ora sono funzionanti. Messo a commento il login required nelle Routes.py" />
+    <MESSAGE value="Modificato la caciara che c'era tra lo style in html e il css di entrambe le pagine di Registrazione. Non ho ancora aggiunto l'header perchè ci sono dei tag che sono stati modificati nell css e non ho voglia di farli adesso &lt;3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificato la caciara che c'era tra lo style in html e il css di entrambe le pagine di Registrazione. Non ho ancora aggiunto l'header perchè ci sono dei tag che sono stati modificati nell css e non ho voglia di farli adesso &lt;3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
@@ -216,6 +224,6 @@
     <SUITE FILE_PATH="coverage/BEvent$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1703598902571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$provaDaria.coverage" NAME="provaDaria Coverage Results" MODIFIED="1703245177592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704422269238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704460388392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

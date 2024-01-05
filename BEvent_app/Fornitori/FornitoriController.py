@@ -3,7 +3,7 @@ from .FornitoriService import get_tutti_servizi, elimina, modifica, aggiungi
 from BEvent_app import Routes
 from flask import redirect, url_for
 from ..Utils import Image
-from ..Routes import home
+from ..Routes import home, fornitore_page
 
 Fornitori = Blueprint('Fornitori', __name__)
 
@@ -39,7 +39,7 @@ def modifica_servizio(servizio_id):
     }
 
     modifica(nuovi_dati, servizio_id)
-    return redirect(url_for('Fornitori.visualizza'))
+    return fornitore_page()
 
 
 @Fornitori.route('/aggiungi_servizio', methods=['POST'])

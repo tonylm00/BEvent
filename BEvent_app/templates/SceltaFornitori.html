@@ -72,9 +72,11 @@
 <div class="grid-container">
 
 	<div class="grid">
-        <div class="container ">
+
         {% for fornitore in fornitori %}
             {% if fornitore.regione == session.get('regione') %}
+
+        <div class="container ">
         <div class="card">
             <div class="face face1">
                 <div class="content">
@@ -90,11 +92,13 @@
                 </div>
             </div>
         </div>
+        </div>
             {% endif %}
         {% endfor %}
 
         {% for fornitore in fornitori %}
             {% if fornitore.regione != session.get('regione') %}
+        <div class="container ">
         <div class="card">
             <div class="face face1">
                 <div class="content">
@@ -110,14 +114,13 @@
                 </div>
             </div>
         </div>
+        </div>
             {% endif %}
         {% endfor %}
 
-        </div>
-    </div>
 
-            <div class="grid">
-             <div class="container ">
+
+        <div class="container ">
         <div class="card">
             <div class="face face1">
                 <div class="content">
@@ -132,6 +135,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        <div class="container ">
         <div class="card">
             <div class="face face1">
                 <div class="content">
@@ -146,6 +151,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        <div class="container ">
         <div class="card">
             <div class="face face1">
                 <div class="content">
@@ -160,6 +167,25 @@
                 </div>
             </div>
         </div>
+        </div>
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
     </div>
 
 
@@ -168,12 +194,6 @@
 
     </div>
 
-
-
-</div>
-
-
-    </div>
         <div class="right-column">
             prova
 
