@@ -1,5 +1,5 @@
 from flask import request, Blueprint, session, redirect, flash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 from BEvent_app.Autenticazione import AutenticazioneService
 from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, error_page, fornitore_page, \
     organizzatore_page
@@ -19,6 +19,7 @@ def login():
 
             login_user(user)
 
+            session['id'] = current_user.get_id()
             session['ruolo'] = user.ruolo
             session['nome_utente'] = user.nome_utente
             session['regione'] = user.regione
