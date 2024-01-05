@@ -91,7 +91,7 @@ def conferma_password(password, cpassword):
     return False
 
 
-def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita):
+def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita, regione):
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
     user_data = None
     if ruolo == "1":
@@ -122,13 +122,14 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
             "Admin": {
                 "isAdmin": False
             },
-            'Ruolo': ruolo
+            'Ruolo': ruolo,
+            'regione': regione
         }
 
     return user_data
 
 
-def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo):
+def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo, regione):
     db = get_db()
     print("prova registrazione")
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
@@ -144,7 +145,8 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
             flash("Le password non corrispondono", "error")
         else:
             print("prova registrazione10")
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita)
+            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                                        regione)
 
             organizzatore_data = {
                 'Organizzatore': {
@@ -165,7 +167,7 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
 
 
 def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
-                  descrizione, islocation, eventi_max_giorn, via, piva):
+                  descrizione, islocation, eventi_max_giorn, via, piva, regione):
     db = get_db()
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
@@ -176,7 +178,8 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
             flash("Le password non corrispondono", "error")
         else:
 
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita)
+            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                                        regione)
 
             fornitore_data = {
                 'Fornitore': {
@@ -201,7 +204,7 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
     return None
 
 
-def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo):
+def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo, regione):
     db = get_db()
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
@@ -211,7 +214,8 @@ def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telef
         elif not conferma_password(password, cpassword):
             flash("Le password non corrispondono", "error")
         else:
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita)
+            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                                        regione)
 
             documento_admin = {**user_data}
             admin = Admin(user_data)

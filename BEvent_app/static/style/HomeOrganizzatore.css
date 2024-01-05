@@ -1,8 +1,9 @@
   body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
-  }
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    }
 
   .split {
     height: 30%;
@@ -16,14 +17,14 @@
 
   .left {
     left: 0;
-    background-color: #ccc;
+    background-color: white;
     background-image: url('../images/Crea.jpg');
     background-size: cover;
   }
 
   .right {
     right: 0;
-    background-color: #ccc;
+    background-color: white;
     background-image: url('../images/Cerca.jpg');
     background-size: cover;
   }
@@ -64,3 +65,202 @@ h1{
 .bottone-invisibile:focus {
     outline: none;
 }
+
+.lower-division{
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  overflow-x: hidden;
+  z-index: 1;
+}
+.divisione_sinistra{
+  float: left;
+  height: 100%;
+  width: 70%;
+  background-color: #ffffff;
+
+
+}
+.divisione_destra{
+  float: right;
+  height: 100%;
+  width: 30%;
+  background-color: white;
+
+}
+.superiore{
+    height: 45%;
+    background-color: white;
+}
+
+.inferiore{
+    height: 45%;
+    background-color: white;
+
+}
+
+.card-container {
+  display: flex;
+   /* Questo spazierà le card uniformemente */
+  flex-wrap: wrap; /* Permette alle card di andare a capo se necessario */
+}
+
+/* Stile base per le card */
+.card {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Aggiunge ombreggiatura per profondità */
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px; /* Bordi arrotondati per le card */
+  background: #FFF; /* Sfondo bianco per le card */
+  text-align: center; /* Centra il testo all'interno della card */
+  width: 150px; /* O un'altra misura che si adatta al tuo design */
+  height: 100px;
+}
+
+
+.card span{
+    font-size: 20px;
+    font-weight: bold;
+}
+.card p{
+    margin-top: 0px;
+}
+
+.button-card{
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0); /* Aggiunge ombreggiatura per profondità */
+  border-radius: 10px; /* Bordi arrotondati per le card */
+  background: #FFF; /* Sfondo bianco per le card */
+  text-align: center; /* Centra il testo all'interno della card */
+  width: 150px; /* O un'altra misura che si adatta al tuo design */
+  height: 10%;
+     display: flex;
+  align-items: center; /* Centra il bottone verticalmente all'interno della card */
+  justify-content: center
+;
+}
+
+.orange-button {
+  font-family: Arial, sans-serif; /* Sostituisci con il font che preferisci */
+  font-size: 16px; /* Adatta a seconda delle tue esigenze */
+  color: #FFA500; /* Codice colore arancione */
+  font-weight: bold;
+  background-color: #fff; /* Sfondo bianco */
+  border: 2px solid #FFA500; /* Bordo arancione */
+  border-radius: 20px; /* Angoli arrotondati */
+  padding: 10px 20px; /* Spaziatura interna */
+  cursor: pointer; /* Cambia il cursore quando è sopra il bottone */
+  outline: none; /* Rimuove l'outline al focus */
+  box-shadow: 0 2px 5px rgba(255, 165, 0, 0.4); /* Ombra leggera per effetto 3D */
+  transition: all 0.3s ease; /* Transizione fluida per effetti hover */
+  text-align: center; /* Centra il testo nel bottone */
+   /* Permette di applicare padding e margin */
+}
+
+.orange-button .arrow {
+  margin-left: 5px; /* Spaziatura tra testo e freccia */
+  display: inline-block; /* Permette di applicare margin */
+}
+
+/* Effetto al passaggio del mouse */
+.orange-button:hover {
+  background-color: #FFA500; /* Cambia colore di sfondo al hover */
+  color: #fff; /* Cambia colore del testo al hover */
+  box-shadow: 0 2px 10px rgba(255, 165, 0, 0.6); /* Ombra più profonda al hover */
+}
+
+.event-card-container {
+    display: flex;
+    overflow-x: auto; /* Permette lo scorrimento orizzontale delle card */
+    padding: 0;
+    margin-top: 50px;
+    overflow-y: hidden;
+
+}
+
+.event-card {
+
+    margin-top: -22px;
+    border: none;
+    background: none;
+    margin-right: 20px; /* Distanza tra le card */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.event-card img {
+
+    width: 250px; /* o la dimensione desiderata */
+    height: auto; /* mantiene il rapporto dell'immagine */
+    border-radius: 10px; /* Angoli arrotondati per le immagini delle card */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Ombra per profondità */
+}
+
+.event-card:hover {
+    transform: scale(1.05); /* Effetto zoom al passaggio del mouse */
+}
+
+
+.movimentoH1 {
+	animation-name: movimentoH1;
+	-webkit-animation-name: movimentoH1;
+	animation-duration: 2s;
+	-webkit-animation-duration: 2s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+
+@keyframes movimentoH1 {
+	0% {
+		transform: translateY(0%);
+	}
+	50%{
+		transform: translateY(-10%);
+	}
+	65%{
+		transform: translateY(0%);
+ 	}
+	80%{
+		transform: translateY(-20%);
+	}
+	95%{
+		transform: translateY(+10%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+.h2{
+    color:darkorange;
+    font-weight: normal;
+    padding-left: 2%;
+}
+
+.grind-container{
+    display: flex;
+    justify-content: start;
+    padding: 10px;
+    gap: 40px;
+    margin-left: 20px;
+}
+.grind-item{
+  height: 90px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Ombra per dare profondità */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  transition: transform 0.2s;
+}
+
+.grind-item h3{
+    margin-top: 15px;
+    font-size: 15px;
+}
+

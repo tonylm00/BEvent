@@ -1,18 +1,25 @@
-from flask import Flask, render_template, Blueprint, request
+from flask import Flask, render_template, Blueprint, request, session
+from flask_login import current_user
+
 from .FornitoriService import get_tutti_servizi, elimina, modifica, aggiungi
 from BEvent_app import Routes
 from flask import redirect, url_for
+from ..Utils import Image
+from ..Routes import home, fornitore_page
 
 Fornitori = Blueprint('Fornitori', __name__)
 
 
-@Fornitori.route('/fornitori')
+@Fornitori.route('/fornitori', methods=['POST'])
 def visualizza():  # put application's code here
-
-    servizi = get_tutti_servizi()
+    id_fornitore = session['id']
+    print(id_fornitore)
+    servizi = get_tutti_servizi(id_fornitore)
     for servizio in servizi:
-        print("Documento Servizio:", servizio)
-    return render_template('AreaFornitore.html', servizi=servizi)
+
+        print(servizio)
+
+    return fornitore_page(servizi=servizi)
 
 
 @Fornitori.route('/elimina_servizio/<servizio_id>')
@@ -36,23 +43,35 @@ def modifica_servizio(servizio_id):
 
     }
 
-    modifica(nuovi_dati, servizio_id);
-    return redirect(url_for('Fornitori.visualizza'))
+    modifica(nuovi_dati, servizio_id)
+    return fornitore_page()
 
 
-@Fornitori.route('/aggiungi', methods=['POST'])
+@Fornitori.route('/aggiungi_servizio', methods=['POST'])
 def aggiungi_servizio():
+    files = request.files.getlist('photos')
+
+    byte_arrays = []
+
+    for file in files:
+        filename = file.filename
+        content_type = file.content_type
+        content = file.read()
+        print(filename)
+
+        byte_array = Image.convert_image_to_byte_array(content)
+        byte_arrays.append(byte_array)
+
+    byte_arrays_bytes = [bytes(byte_array) for byte_array in byte_arrays]
+
     nuovi_dati = {
         "Descrizione": request.form.get("descrizione"),
         "Tipo": request.form.get("tipo"),
         "Prezzo": request.form.get("prezzo"),
-        "DisponibilitàDataInizio": request.form.get("data_inizio"),
-        "DisponibilitàDataFine": request.form.get("data_fine"),
         "Quantità": request.form.get("quantità"),
-        "FotoServizo": request.form.get("foto_servizio"),
+        "FotoServizo": byte_arrays_bytes,
         "fornitore_associato": request.form.get("fornitore_associato")
-
     }
 
-    aggiungi(nuovi_dati);
-    return redirect(url_for('Fornitori.visualizza'))
+    aggiungi(nuovi_dati)
+    return home()

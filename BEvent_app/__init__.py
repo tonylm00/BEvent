@@ -23,6 +23,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(aut, url_prefix='/')
     app.register_blueprint(ge, url_prefix='/')
+    login_manager.login_view = 'auth.login'
 
     @login_manager.user_loader
     def load_user(user_id):

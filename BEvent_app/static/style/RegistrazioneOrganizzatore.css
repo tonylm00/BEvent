@@ -30,16 +30,17 @@
     justify-content: space-between;
     margin-bottom: 15px;
   }
+  select,
   input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"] {
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
     border: 1px solid darkorange;
     border-radius: 20px;
     padding: 10px;
     width: calc(50% - 10px);
     background-color: #FFF7ED;
-    color: darkorange;
+    color: black;
   }
   .button {
     background-color: darkorange;

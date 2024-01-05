@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrazione Fornitore</title>
-    <link rel="stylesheet"  type="text/css" href="../static/style/RegistrazioneOrganizzatore.css">
+    <link rel="stylesheet"  type="text/css" href="../static/style/Registrazione.css">
 </head>
 <body>
 
@@ -34,12 +34,7 @@
                 </div>
 
                 <div class="field-container">
-                    <select name="isLocation" style="border: 1px solid darkorange;
-                                                border-radius: 20px;
-                                                padding: 10px;
-                                                width: calc(50% - 10px);
-                                                background-color: #FFF7ED;
-                                                color: darkorange;">
+                    <select name="isLocation" >
                         <option value="" disabled selected>Sei una Location?</option>
                         <option value="tipo1">Si</option>
                         <option value="tipo2">No</option>
@@ -48,12 +43,36 @@
                     <input type="text" name="piva" placeholder="Partita iva">
                 </div>
                 <div class="field-container">
-                    <textarea style="border: 1px solid darkorange;
-                                border-radius: 20px;
-                                padding: 10px;
-                                width: 100%;
-                                background-color: #FFF7ED;
-                                color: darkorange;" id="descrizione" name="descrizione" rows="4" cols="100" placeholder="Descrizione"></textarea>
+                    <textarea id="descrizione" name="descrizione" rows="4" cols="100" placeholder="Descrizione"></textarea>
+                </div>
+
+                <div class="field-container">
+                    <select name="regione" style="width: 100%;"  >
+                        <option value="" disabled selected>Scegli La Tua Regione</option>
+                        <option value="Abruzzo">Abruzzo</option>
+                        <option value="Basilicata">Basilicata</option>
+                        <option value="Calabria">Calabria</option>
+                        <option value="Campania">Campania</option>
+                        <option value="Emilia Romagna">Emilia Romagna</option>
+                        <option value="Friuli Venezia Giulia">Friuli Venezia Giulia</option>
+                        <option value="Lazio">Lazio</option>
+                        <option value="Liguria">Liguria</option>
+                        <option value="Lombardia">Lombardia</option>
+                        <option value="Marche">Marche</option>
+                        <option value="Molise">Molise</option>
+                        <option value="Piemonte">Piemonte</option>
+                        <option value="Puglia">Puglia</option>
+                        <option value="Sardegna">Sardegna</option>
+                        <option value="Sicilia">Sicilia</option>
+                        <option value="Toscana">Toscana</option>
+                        <option value="Trentino Alto Adige">Trentino Alto Adige</option>
+                        <option value="Umbria">Umbria</option>
+                        <option value="Valle d'Aosta">Valle d'Aosta</option>
+                        <option value="Veneto">Veneto</option>
+                    </select>
+                </div>
+                <div class="field-container">
+                    <input style="width: 100%;" type="text" name="piva" placeholder="Partita iva">
                 </div>
 
 

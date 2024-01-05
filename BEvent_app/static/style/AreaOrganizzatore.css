@@ -1,4 +1,4 @@
-body {
+.body {
   font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -8,6 +8,7 @@ body {
   .container {
     display: flex;
     max-width: 100%;
+    margin-top: 80px;
 
   }
   .left-column, .right-column {

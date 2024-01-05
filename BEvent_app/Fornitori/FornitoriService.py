@@ -1,40 +1,21 @@
 from bson import ObjectId
 from pymongo import MongoClient
 from ..db import get_db
+from ..InterfacciaPersistenza import ServizioOfferto
 
 
-class Servizio:
-    def __init__(self, _id, descrizione, tipo, prezzo, disponibilita_data_inizio, disponibilita_data_fine, quantita,
-                 foto_servizio, fornitore_associato):
-        self._id = _id
-        self.descrizione = descrizione
-        self.tipo = tipo
-        self.prezzo = prezzo
-        self.disponibilita_data_inizio = disponibilita_data_inizio
-        self.disponibilita_data_fine = disponibilita_data_fine
-        self.quantita = quantita
-        self.foto_servizio = foto_servizio
-        self.fornitore_associato = fornitore_associato
-
-    def __repr__(self):
-        return f"Servizio(_id={self._id}, descrizione={self.descrizione}, tipo={self.tipo}, prezzo={self.prezzo}, disponibilita_data_inizio={self.disponibilita_data_inizio}, disponibilita_data_fine={self.disponibilita_data_fine}, quantita={self.quantita}, foto_servizio={self.foto_servizio}, fornitore_associato={self.fornitore_associato})"
-
-
-def get_tutti_servizi():
+def get_tutti_servizi(id_fornitore):
     db = get_db()
-    servizi = db.ServizioOfferto.find({})
+    servizi_collection = db['Servizio Offerto']
+    servizi_data = list(servizi_collection.find('fornitore_associato' == id_fornitore))
 
-    return [Servizio(
-        _id=str(servizio["_id"]) if "_id" in servizio else None,
-        descrizione=servizio["Descrizione"],
-        tipo=servizio["Tipo"],
-        prezzo=servizio["Prezzo"],
-        disponibilita_data_inizio=servizio["DisponibilitàDataInizio"],
-        disponibilita_data_fine=servizio["DisponibilitàDataFine"],
-        quantita=servizio["Quantità"],
-        foto_servizio=servizio["FotoServizo"],
-        fornitore_associato=servizio["fornitore_associato"]
-    ) for servizio in servizi]
+    lista_servizi = []
+
+    for data in servizi_data:
+        servizio = ServizioOfferto.Servizio_Offerto(data)
+        lista_servizi.append(servizio)
+
+    return lista_servizi
 
 
 def elimina(servizio_id):
@@ -46,13 +27,17 @@ def elimina(servizio_id):
     except Exception as e:
         print("Errore durante l'eliminazione:", e)
         return 0
-def modifica(nuovi_dati,servizio_id):
-    db= get_db()
+
+
+def modifica(nuovi_dati, servizio_id):
+    db = get_db()
     result = db.ServizioOfferto.update_one(
-            {"_id": ObjectId(servizio_id)},
-            {"$set": nuovi_dati}
-        )
+        {"_id": ObjectId(servizio_id)},
+        {"$set": nuovi_dati}
+    )
     return result.modified_count
+
+
 def aggiungi(nuovi_dati):
-    db= get_db()
-    db.ServizioOfferto.insert_one(nuovi_dati)
+    db = get_db()
+    db['Servizio Offerto'].insert_one(nuovi_dati)

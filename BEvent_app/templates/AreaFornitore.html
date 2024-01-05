@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Orario Lavorativo</title>
+    <title>Area Fornitore</title>
     <link rel="stylesheet" type="text/css" href="../static/style/AreaFornitore.css">
 </head>
+
+
 
 <body>
 <header>
 {% include 'Header.html' %}
 </header>
 
-<div class="container">
 
-    <!-- Sezione per le immagini -->
+<div class="container">
     <div class="sezione-foto">
         <div class="foto-box">Aggiungi foto</div>
         <div class="foto-contenitore">
@@ -24,7 +25,7 @@
         </div>
     </div>
 
-    <!-- Sezione per le informazioni personali -->
+
     <div class="sezione-info">
         <form id="moduloContatto">
 
@@ -43,10 +44,7 @@
                         <label for="telefono">Telefono</label>
                         <input type="tel" id="telefono" name="telefono">
                     </div>
-                     <div class="campo">
-                        <label for="prezzo">Prezzo</label>
-                        <input type="text" id="prezzo" name="prezzo">
-                    </div>
+
                     <div class="campo">
                         <label for="partitaiva">Partita Iva</label>
                         <input type="text" id="partitaiva" name="partitaiva">
@@ -67,10 +65,7 @@
                         <label for="via">Via</label>
                         <input type="text" id="via" name="via">
                     </div>
-                    <div class="campo">
-                        <label for="tipo">Tipo</label>
-                        <input type="text" id="tipo" name="tipo">
-                    </div>
+
                     <div class="campo">
                         <label for="eventomassimogiornaliero">Eventi Massimo Giornaliero</label>
                         <input type="text" id="eventomassimogiornaliero" name="eventomassimogiornaliero">
@@ -88,11 +83,11 @@
         </form>
     </div>
 
-    <!-- Sezione per gli orari di lavoro -->
+
     <div class="sezione-orari">
         <table class="table-container">
             <tr>
-                <th class="header-cell"></th> <!-- cella vuota per allineare con i giorni della settimana -->
+                <th class="header-cell"></th>
                 <th class="header-cell" colspan="2">mattina</th>
                 <th class="header-cell" colspan="2">sera</th>
             </tr>
@@ -148,7 +143,53 @@
         </table>
     </div>
 
+
+<div class="contenitore-bottoni">
+    <button id="modal-buttonAF" class="modalButtonAF">Aggiungi Servizio</button>
+
+    <button  class="modalButtonAF">Pubblica Evento</button>
 </div>
+
+<div id="myModalAF" class="modalAF">
+	<div class="modal-containerAF slideDown" id="modal-containerAF">
+<div>
+        <span id="closeModalAF" style="cursor:pointer;">&times;</span>
+
+        <h2>Aggiungi Servizio</h2>
+
+        <form method="POST" action="/aggiungi_servizio" enctype="multipart/form-data">
+            <div class="container-modale">
+            <div class="left-column">
+            <label for="description">Descrizione:</label>
+                <input type="text" id="description" name="descrizione"><br><br>
+            <label for="type">Tipo:</label>
+                <input type="text" id="type" name="tipo"><br><br>
+            <label for="price">Prezzo:</label>
+                <input type="number" id="price" name="prezzo"><br><br>
+                </div><div class="right-column">
+
+            <label for="quantity">Quantità:</label>
+                <input type="number" id="quantity" name="quantità"><br><br>
+
+                #gestione immagini
+            <label for="photo">Foto:</label>
+            <input type="file" id="fileInput" name="photos" multiple="multiple"><br>
+            <ul id="selectedFileList"></ul>
+
+
+            <label for="supplier">Fornitore:</label>
+                <input type="text" id="supplier" name="fornitore_associato"><br><br>
+                </div>
+            </div>
+            <input type="submit" value="Aggiungi">
+        </form>
+    </div>
+        </div>
+    </div>
+
+
+
+
 <div class="sezione-tabella">
     <table>
         <thead>
@@ -179,51 +220,34 @@
                 <td><input type="text" name="elimina"></td>
                 <td>   <button type="submit"> modifica </button></td>
             </form>
-                <td>   <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}">Elimina</a></button></td>
-                <!-- Continua per il resto delle colonne -->
+                <td> <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}"><lord-icon
+                 src="https://cdn.lordicon.com/wpyrrmcq.json"
+                 trigger="hover"
+                 style="width:25px;height:25px;background-color: white">
+                </lord-icon></a></button></td>
+
             </tr>
-            <!-- Ripeti la riga sopra per quante righe desideri -->
+
         {% endfor %}
         </tbody>
     </table>
-<h3>Inserisci Servizio</h3>
-<table>
-     <thead>
-            <tr>
-                <th>Descrizione</th>
-                <th>Tipo</th>
-                <th>Prezzo</th>
-                <th>Data inizio</th>
-                <th>Data fine</th>
-                <th>Quantità</th>
-                <th>Foto</th>
-                <th>Fornitore</th>
-                <th>aggiungi</th>
 
-            </tr>
-        </thead>
-        <tbody>
 
-            <tr>
-            <form method="POST" action="{{ url_for('Fornitori.aggiungi_servizio')}}">
-                <td><input type="text" name="descrizione" value=""></td>
-                <td><input type="text" name="tipo" value=""></td>
-                <td><input type="text" name="prezzo" value=""></td>
-                <td><input type="text" name="data_inizio" value=""></td>
-                <td><input type="text" name="data_fine" value=""></td>
-                <td><input type="text" name="quantità" value=""></td>
-                <td><input type="text" name="foto"  value=""></td>
-                <td><input type="text" name="elimina"></td>
-                <td>   <button type="submit"> aggiungi </button></td>
-            </form>
-            </tr>
 
-        </tbody>
-</table>
+
+
 </div>
+
+
+
+</div>
+
+
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="../static/js/AreaFornitore.js"></script>
+<script src="../static/js/AreaFornitore2.js"></script>
+
 </body>
 </html>
 
 
-</body>
-</html>
