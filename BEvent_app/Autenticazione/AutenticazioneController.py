@@ -26,8 +26,7 @@ def login():
             if user.ruolo == "1":
                 return admin_page()
             elif user.ruolo == "2":
-                #return organizzatore_page()
-                return home()
+                return organizzatore_page()
             elif user.ruolo == "3":
                 return fornitore_page()
             else:

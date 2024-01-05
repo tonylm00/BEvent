@@ -6,7 +6,7 @@
     margin-left:280px;
     text-align: center;
     font-family: 'Pacifico', cursive;
-    font-size: 52px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -31,6 +31,7 @@
     font-family: inherit;
     font-weight: 500;
     margin-right: 10px;
+    font-size: 20px;
 }
 
 
@@ -49,7 +50,9 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   }
   .header__content{max-width: 1500px;width: 100%;margin: 0 auto; display: flex;justify-content: space-between;}
-  .header__logo{padding-top: 2px;padding-left:0px; height: 90%; width: 85px;}
+  .header__logo{padding-top: 2px;padding-left:0px; height: 80%; width: 70px;}
+
+
 
 
 .modal-container{
@@ -340,31 +343,16 @@
 
 
   }
-    @media (max-width: 690px) {
 
-  	.inputbox{
-    position: relative;
-    margin: 30px 0;
-    width: 210px;
-    border-bottom: 2px solid #fff8e7;
-	}
-    }
  /* MEDIA ALTEZZA--------------------------------------- */
-    @media (max-height: 1550px){
-  	.header__logo{padding-top: 2px;padding-left:0px; height: 90%; width: 85px;}
-    }
 
-    @media (max-height: 1250px){
-  	.header__logo{padding-top: 2px;padding-left:0px; height: 80%; width: 85px;}
-    }
-    @media (max-height: 1081px){
+    @media (max-height: 2000px){
   	.header__logo{padding-top: 2px;padding-left:0px; height: 80%; width: 70px;}
     .header__titolo{font-size: 38px;}
-    .button {padding-top: 3px; padding-right: 38px; padding-bottom: 5px; padding-left: 38px;}
+
     }
 
     @media (max-height: 900px){
   	.header__logo{padding-top: 2px;padding-left:0px; height: 70%; width: 70px;}
     .header__titolo{font-size: 32px;}
-    .button {padding-top: 2px; padding-right: 38px; padding-bottom: 6px; padding-left: 38px;}
     }

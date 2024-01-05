@@ -64,3 +64,34 @@ h1{
 .bottone-invisibile:focus {
     outline: none;
 }
+
+.movimentoH1 {
+	animation-name: movimentoH1;
+	-webkit-animation-name: movimentoH1;
+	animation-duration: 2s;
+	-webkit-animation-duration: 2s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+
+@keyframes movimentoH1 {
+	0% {
+		transform: translateY(0%);
+	}
+	50%{
+		transform: translateY(-10%);
+	}
+	65%{
+		transform: translateY(0%);
+ 	}
+	80%{
+		transform: translateY(-20%);
+	}
+	95%{
+		transform: translateY(+10%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
