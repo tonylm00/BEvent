@@ -25,15 +25,15 @@
         {% if session.get('ruolo') == "3" %}
             <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
             <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
-            <form style="padding-top: 13px;" action="{{ url_for('views.fornitore_page') }}"><button class="button-header">{{ session['nome_utente'] }} </button></form>
+            <form style="padding-top: 16px;" action="{{ url_for('views.fornitore_page') }}"><button class="button-header">{{ session['nome_utente'] }} </button></form>
         {% elif session.get('ruolo')== "2" %}
             <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
             <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
-            <form style="padding-top: 13px" action="{{ url_for('views.organizzatore_page') }}"><button class="button-header">{{ session['nome_utente'] }}</button></form>
+            <form style="padding-top: 16px;" action="{{ url_for('views.organizzatore_page') }}"><button class="button-header">{{ session['nome_utente'] }}</button></form>
         {% elif session.get('ruolo')== "1" %}
             <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
             <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
-            <form style="padding-top: 13px;" action="{{ url_for('views.admin_page') }}"><button class="button-header">{{ session['nome_utente'] }} </button></form>
+            <form style="padding-top: 16px;;" action="{{ url_for('views.admin_page') }}"><button class="button-header">{{ session['nome_utente'] }} </button></form>
         {% endif %}
         </div>
     {% else %}
