@@ -356,6 +356,7 @@ body {
     align-items: center; /* Centra verticalmente i bottoni */
     grid-column: 1 / 2; /* Assicurati che occupi la giusta colonna nel layout della griglia */
     grid-row: 2 / 3; /* Assicurati che occupi la giusta riga nel layout della griglia */
+    margin-left: 36px;
 }
 
 
