@@ -6,33 +6,135 @@
 <title>La tua Pagina Evento</title>
 <link rel="stylesheet" href="../static/style/HomeOrganizzatore.css">
 </head>
-<body>
+<div>
 
 
 <header>
 {% include 'Header.html' %}
 </header>
-
-<div class="split left">
-  <div class="centered">
-  <button class="bottone-invisibile" >
-    <h1>Crea il tuo evento</h1>
-  </button>
-      {% if session.logged %}
-            <form action="/logout">
-                <button type="submit">Logout</button>
-            </form>
-        {% endif %}
-  </div>
-</div>
-
-<div class="split right">
-  <div class="centered">
-      <button class="bottone-invisibile">
-        <h1>Trova l'evento per te</h1>
+<br>
+<div class="upper-division">
+    <div class="split left">
+      <div class="centered">
+      <button class="bottone-invisibile" >
+        <h1>Crea il tuo evento</h1>
       </button>
-  </div>
+         <!-- {% if session.logged %}
+                <form action="/logout">
+                    <button type="submit">Logout</button>
+                </form>
+            {% endif %}-->
+      </div>
+    </div>
+
+    <div class="split right">
+      <div class="centered">
+          <button class="bottone-invisibile">
+            <h1>Trova l'evento per te</h1>
+          </button>
+      </div>
+    </div>
 </div>
+<div class="lower-division">
+        <div class="divisione_destra">
+            <h2 style="color:darkorange; font-weight: normal">Fornitori del tuo evento</h2>
+
+        </div>
+        <div class="divisione_sinistra">
+            <div class="superiore">
+                <h2 style="color:darkorange; font-weight: normal">Tutto sul tuo evento</h2>
+                        <div class="card-container">
+                        <!-- Card per il conteggio alla rovescia -->
+                        <div class="card">
+                            <span style="font-size: 30px; font-weight: bold">Antonio & Daria</span>
+                            <p>21 settembre 2024</p>
+
+                        </div>
+
+                        <!-- Card per i servizi -->
+                        <div class="card">
+                            <div class="superiore-card">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/lenjvibx.json"
+                                trigger="hover"
+                                colors="primary:#121331,secondary:#e88c30"
+                                style="width:50px;height:50px">
+                            </lord-icon>
+                            </div>
+                            <div class="inferiore-card">
+                            <span>I tuoi servizi</span>
+                            <br>
+                            <p>10</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="superiore-card">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/bgebyztw.json"
+                                trigger="hover"
+                                colors="primary:#121331,secondary:#e88c30"
+                                style="width:50px;height:50px">
+                            </lord-icon>
+                            </div>
+                            <div class="inferiore-card">
+                            <span>Invitati confermati</span>
+                            <br>
+                            <p>5 di 500</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="superiore-card">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/wyqtxzeh.json"
+                                trigger="hover"
+                                colors="primary:#121331,secondary:#e88c30"
+                                style="width:50px;height:50px">
+                            </lord-icon>
+                            </div>
+                            <div class="inferiore-card">
+                            <span>Budget</span>
+                            <br>
+                            <p>10.000$</p>
+                            </div>
+                        </div>
+                <div class="card button-card">
+                <button class="orange-button">Scheda Completa>></button>
+                </div>
+            </div>
+
+            </div>
+            <div class="inferiore">
+                <h2 style="color:darkorange; font-weight: normal">Prossimi eventi</h2>
+                <div class="event-card-container">
+                    <!-- Card Evento 1 -->
+                    <button class="event-card" onclick="location.href='url_evento_1';">
+                        <img src="../static/images/Crea.jpg" alt="DJ Lorem">
+                    </button>
+
+                    <!-- Card Evento 2 -->
+                    <button class="event-card" onclick="location.href='url_evento_2';">
+                        <img src="../static/images/Crea.jpg" alt="Orchestra Sinfonica">
+                    </button>
+                    <div class="card button-card" style="background-color: black">
+                <button class="orange-button">Scheda Completa>></button>
+                </div>
+                    <!-- Aggiungi altre card come necessario... -->
+                </div>
+
+
+            </div>
+        </div>
+</div>
+
+
+
+
+
+
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
