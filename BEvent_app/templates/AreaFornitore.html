@@ -157,27 +157,28 @@
 
         <h2>Aggiungi Servizio</h2>
 
-        <form method="POST" action="{{ url_for('Fornitori.aggiungi_servizio')}}">
+        <form method="POST" action="/aggiungi_servizio" enctype="multipart/form-data">
             <div class="container-modale">
             <div class="left-column">
             <label for="description">Descrizione:</label>
-            <input type="text" id="description" name="description"><br><br>
+                <input type="text" id="description" name="descrizione"><br><br>
             <label for="type">Tipo:</label>
-            <input type="text" id="type" name="type"><br><br>
+                <input type="text" id="type" name="tipo"><br><br>
             <label for="price">Prezzo:</label>
-            <input type="number" id="price" name="price"><br><br>
-            <label for="startDate">Data Inizio:</label>
-            <input type="date" id="startDate" name="startDate"><br><br>
+                <input type="number" id="price" name="prezzo"><br><br>
                 </div><div class="right-column">
-            <label for="endDate">Data Fine:</label>
-            <input type="date" id="endDate" name="endDate"><br><br>
+
             <label for="quantity">Quantità:</label>
-            <input type="number" id="quantity" name="quantity"><br><br>
+                <input type="number" id="quantity" name="quantità"><br><br>
+
+                #gestione immagini
             <label for="photo">Foto:</label>
-            <input type="file" id="fileInput" style="display: none;">
-            <button id="customButton">Scegli il file</button>
+            <input type="file" id="fileInput" name="photos" multiple="multiple"><br>
+            <ul id="selectedFileList"></ul>
+
+
             <label for="supplier">Fornitore:</label>
-            <input type="text" id="supplier" name="supplier"><br><br>
+                <input type="text" id="supplier" name="fornitore_associato"><br><br>
                 </div>
             </div>
             <input type="submit" value="Aggiungi">

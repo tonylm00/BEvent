@@ -3,23 +3,6 @@ from pymongo import MongoClient
 from ..db import get_db
 
 
-class Servizio:
-    def __init__(self, _id, descrizione, tipo, prezzo, disponibilita_data_inizio, disponibilita_data_fine, quantita,
-                 foto_servizio, fornitore_associato):
-        self._id = _id
-        self.descrizione = descrizione
-        self.tipo = tipo
-        self.prezzo = prezzo
-        self.disponibilita_data_inizio = disponibilita_data_inizio
-        self.disponibilita_data_fine = disponibilita_data_fine
-        self.quantita = quantita
-        self.foto_servizio = foto_servizio
-        self.fornitore_associato = fornitore_associato
-
-    def __repr__(self):
-        return f"Servizio(_id={self._id}, descrizione={self.descrizione}, tipo={self.tipo}, prezzo={self.prezzo}, disponibilita_data_inizio={self.disponibilita_data_inizio}, disponibilita_data_fine={self.disponibilita_data_fine}, quantita={self.quantita}, foto_servizio={self.foto_servizio}, fornitore_associato={self.fornitore_associato})"
-
-
 def get_tutti_servizi():
     db = get_db()
     servizi = db.ServizioOfferto.find({})
@@ -59,4 +42,4 @@ def modifica(nuovi_dati, servizio_id):
 
 def aggiungi(nuovi_dati):
     db = get_db()
-    db.ServizioOfferto.insert_one(nuovi_dati)
+    db['Servizio Offerto'].insert_one(nuovi_dati)

@@ -4,45 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="Piccole modifiche header">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/HomeOrganizzatore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/HomeOrganizzatore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/HomeOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/HomeOrganizzatore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/SceltaEventoDaCreare.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/SceltaEventoDaCreare.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
-    <envs>
-      <env key="FLASK_APP" value="app" />
-    </envs>
-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
-    <option name="myEnvs">
-      <map>
-        <entry key="FLASK_APP" value="app" />
-      </map>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dariasimonetti&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">
@@ -57,55 +41,27 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2ZtbLJP7vSHeoDsoyqmwPXI6ls1" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Flask server.BEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.EventoPubblico.html.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PythonContentEntriesConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\static\images" />
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\templates" />
-      <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\RicercaEvento" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JavaScript Debug.HomeOrganizzatore.html">
-    <configuration name="EventoPubblico.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/EventoPubblico.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="HomeOrganizzatore.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/HomeOrganizzatore.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="Registrazione.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/Registrazione.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="SceltaEventoDaCreare.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/SceltaEventoDaCreare.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="BEvent" type="Python.FlaskServer">
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
@@ -121,75 +77,88 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript Debug.HomeOrganizzatore.html" />
-        <item itemvalue="JavaScript Debug.SceltaEventoDaCreare.html" />
-        <item itemvalue="JavaScript Debug.Registrazione.html" />
-        <item itemvalue="JavaScript Debug.EventoPubblico.html" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="" />
-      <created>1703244269580</created>
+      <changelist id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="" />
+      <created>1703709830675</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1703244269580</updated>
-      <workItem from="1703244270696" duration="1844000" />
-      <workItem from="1703328980020" duration="8158000" />
-      <workItem from="1704378548656" duration="2141000" />
+      <updated>1703709830675</updated>
+      <workItem from="1703709831728" duration="2408000" />
+      <workItem from="1703759590567" duration="10396000" />
+      <workItem from="1703778212655" duration="13757000" />
+      <workItem from="1703846025765" duration="6746000" />
+      <workItem from="1704279606634" duration="15780000" />
+      <workItem from="1704363282119" duration="3281000" />
+      <workItem from="1704399460847" duration="1238000" />
     </task>
-    <task id="LOCAL-00001" summary="aggiornamento prova daria per vedere se funziona pycharm">
+    <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
-      <created>1703244837072</created>
+      <created>1703759811355</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1703244837072</updated>
+      <updated>1703759811355</updated>
     </task>
-    <task id="LOCAL-00002" summary="inserimento app.py">
+    <task id="LOCAL-00002" summary="Ho finito Autenticazione Service e Autenticazione Contorller. Ho scritto le Interfacce di Persistenza: Admin, Organizzatore, fornitore e Utente. Ho aggiornato il file init per aggiustare la connessione. A tal fine ho creato il file db.py">
       <option name="closed" value="true" />
-      <created>1703245075160</created>
+      <created>1703797057971</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1703245075160</updated>
+      <updated>1703797057971</updated>
     </task>
-    <task id="LOCAL-00003" summary="unversioned files">
+    <task id="LOCAL-00003" summary="Ho finito Autenticazione Service e Autenticazione Contorller. Ho scritto le Interfacce di Persistenza: Admin, Organizzatore, fornitore e Utente. Ho aggiornato il file init per aggiustare la connessione. A tal fine ho creato il file db.py">
       <option name="closed" value="true" />
-      <created>1703347410307</created>
+      <created>1703797469845</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1703347410307</updated>
+      <updated>1703797469845</updated>
     </task>
-    <task id="LOCAL-00004" summary="unversioned files">
+    <task id="LOCAL-00004" summary="Riristino progetto">
       <option name="closed" value="true" />
-      <created>1703599039456</created>
+      <created>1703848213668</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1703599039456</updated>
+      <updated>1703848213668</updated>
     </task>
-    <task id="LOCAL-00005" summary="Piccole modifiche header">
+    <task id="LOCAL-00005" summary="modifica package autenticazione">
       <option name="closed" value="true" />
-      <created>1704279789947</created>
+      <created>1703852081414</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1704279789947</updated>
+      <updated>1703852081414</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="modifica &#10;EventoPubblico.css e EventoPubblico.html">
+      <option name="closed" value="true" />
+      <created>1704280714854</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704280714854</updated>
+    </task>
+    <task id="LOCAL-00007" summary="modifica templates e gestionevento">
+      <option name="closed" value="true" />
+      <created>1704283115063</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704283115063</updated>
+    </task>
+    <task id="LOCAL-00008" summary="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori">
+      <option name="closed" value="true" />
+      <created>1704298190746</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1704298190746</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,21 +176,19 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aggiornamento prova daria per vedere se funziona pycharm" />
-    <MESSAGE value="inserimento app.py" />
-    <MESSAGE value="AutenticazioneController.py e AutenticazioneService.py Sono stati inizializzati" />
-    <MESSAGE value="unversioned files" />
-    <MESSAGE value="Reindirizzamenti funzionanti" />
-    <MESSAGE value="Piccole modifiche header" />
-    <option name="LAST_COMMIT_MESSAGE" value="Piccole modifiche header" />
+    <MESSAGE value="correzione autenticazione" />
+    <MESSAGE value="Ho finito Autenticazione Service e Autenticazione Contorller. Ho scritto le Interfacce di Persistenza: Admin, Organizzatore, fornitore e Utente. Ho aggiornato il file init per aggiustare la connessione. A tal fine ho creato il file db.py" />
+    <MESSAGE value="Riristino progetto" />
+    <MESSAGE value="modifica package autenticazione" />
+    <MESSAGE value="modifica &#10;EventoPubblico.css e EventoPubblico.html" />
+    <MESSAGE value="modifica templates e gestionevento" />
+    <MESSAGE value="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori" />
+    <option name="LAST_COMMIT_MESSAGE" value="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
-    <SUITE FILE_PATH="coverage/BEvent$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1703598902571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703348206394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$provaDaria.coverage" NAME="provaDaria Coverage Results" MODIFIED="1703245177592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704400474712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
-    <SUITE FILE_PATH="coverage/BEvent$Flask__BEvent_app_InterfacciaPersistenza_EventoPubblico_py_.coverage" NAME="Flask (BEvent_app/InterfacciaPersistenza/EventoPubblico.py) Coverage Results" MODIFIED="1704223148884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704283838750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
