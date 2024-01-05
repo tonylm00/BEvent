@@ -1,23 +1,21 @@
 from bson import ObjectId
 from pymongo import MongoClient
 from ..db import get_db
+from ..InterfacciaPersistenza import ServizioOfferto
 
 
-def get_tutti_servizi():
+def get_tutti_servizi(id_fornitore):
     db = get_db()
-    servizi = db.ServizioOfferto.find({})
+    servizi_collection = db['Servizio Offerto']
+    servizi_data = list(servizi_collection.find('fornitore_associato' == id_fornitore))
 
-    return [Servizio(
-        _id=str(servizio["_id"]) if "_id" in servizio else None,
-        descrizione=servizio["Descrizione"],
-        tipo=servizio["Tipo"],
-        prezzo=servizio["Prezzo"],
-        disponibilita_data_inizio=servizio["DisponibilitàDataInizio"],
-        disponibilita_data_fine=servizio["DisponibilitàDataFine"],
-        quantita=servizio["Quantità"],
-        foto_servizio=servizio["FotoServizo"],
-        fornitore_associato=servizio["fornitore_associato"]
-    ) for servizio in servizi]
+    lista_servizi = []
+
+    for data in servizi_data:
+        servizio = ServizioOfferto.Servizio_Offerto(data)
+        lista_servizi.append(servizio)
+
+    return lista_servizi
 
 
 def elimina(servizio_id):

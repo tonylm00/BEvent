@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Blueprint, request
+from flask import Flask, render_template, Blueprint, request, session
 from .FornitoriService import get_tutti_servizi, elimina, modifica, aggiungi
 from BEvent_app import Routes
 from flask import redirect, url_for
@@ -10,11 +10,10 @@ Fornitori = Blueprint('Fornitori', __name__)
 
 @Fornitori.route('/fornitori')
 def visualizza():  # put application's code here
+    id_fornitore = session["id"]
+    servizi = get_tutti_servizi(id_fornitore)
 
-    servizi = get_tutti_servizi()
-    for servizio in servizi:
-        print("Documento Servizio:", servizio)
-    return render_template('AreaFornitore.html', servizi=servizi)
+    return fornitore_page(servizi=servizi)
 
 
 @Fornitori.route('/elimina_servizio/<servizio_id>')
