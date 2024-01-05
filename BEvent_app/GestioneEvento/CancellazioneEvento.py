@@ -1,3 +1,4 @@
+import mongo
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson import ObjectId
@@ -5,11 +6,13 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+from BEvent_app import get_db
+
 #DA FINIRE BISOGNA MODIFICARE GRAN PARTE DEI DATI
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/eventiDB'
-mongo = PyMongo(app)
+app = get_db()
+
 
 # Funzione per cancellare l'evento dal profilo dell'utente
 def cancella_evento_utente(organizzatore_id, evento_id):

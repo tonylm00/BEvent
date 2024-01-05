@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="modifica al front end per renderlo responsive">
-      <change afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/CancellazioneEvento.py" afterDir="false" />
+    <list default="true" id="c0916999-3c85-427c-8bec-cee07ea6ba26" name="Changes" comment="prima parte del back and di cancellazione evento">
+      <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/VisualizzaServizio.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BEvent_app/templates/VisualizzaServizio.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/CancellazioneEvento.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/CancellazioneEvento.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaOrganizzatore.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +19,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -69,12 +73,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Flask server.BEvent.executor": "Run",
     "Flask server.Flask (BEvent_app/GestioneEvento/CancellazioneEvento.py).executor": "Run",
     "JavaScript Debug.AreaFornitore.html.executor": "Run",
     "JavaScript Debug.EventoPubblico.html.executor": "Run",
     "JavaScript Debug.RicercaEvento.html.executor": "Run",
     "JavaScript Debug.SceltaFornitori.html.executor": "Run",
+    "JavaScript Debug.VisualizzaServizio.html.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -97,7 +103,7 @@
       <recent name="C:\Users\Anton\PycharmProjects\BEvent\BEvent_app\RicercaEvento" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.Flask (BEvent_app/GestioneEvento/CancellazioneEvento.py)">
+  <component name="RunManager" selected="JavaScript Debug.VisualizzaServizio.html">
     <configuration name="AreaFornitore.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/AreaFornitore.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -107,7 +113,7 @@
     <configuration name="RicercaEvento.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/RicercaEvento.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="SceltaFornitori.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/SceltaFornitori.html" useBuiltInWebServerPort="true">
+    <configuration name="VisualizzaServizio.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/VisualizzaServizio.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="BEvent" type="Python.FlaskServer">
@@ -118,7 +124,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -134,7 +140,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -144,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.VisualizzaServizio.html" />
+        <item itemvalue="JavaScript Debug.AreaFornitore.html" />
         <item itemvalue="Flask server.Flask (BEvent_app/GestioneEvento/CancellazioneEvento.py)" />
         <item itemvalue="JavaScript Debug.EventoPubblico.html" />
-        <item itemvalue="JavaScript Debug.AreaFornitore.html" />
         <item itemvalue="JavaScript Debug.RicercaEvento.html" />
-        <item itemvalue="JavaScript Debug.SceltaFornitori.html" />
       </list>
     </recent_temporary>
   </component>
@@ -169,6 +175,7 @@
       <updated>1703244269580</updated>
       <workItem from="1703244270696" duration="1844000" />
       <workItem from="1703328980020" duration="8158000" />
+      <workItem from="1704469029117" duration="7436000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento prova daria per vedere se funziona pycharm">
       <option name="closed" value="true" />
@@ -210,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704389444666</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="prima parte del back and di cancellazione evento">
+      <option name="closed" value="true" />
+      <created>1704394501889</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704394501889</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +250,8 @@
     <MESSAGE value="Reindirizzamenti funzionanti" />
     <MESSAGE value="Evento pubblico back and e front and" />
     <MESSAGE value="modifica al front end per renderlo responsive" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifica al front end per renderlo responsive" />
+    <MESSAGE value="prima parte del back and di cancellazione evento" />
+    <option name="LAST_COMMIT_MESSAGE" value="prima parte del back and di cancellazione evento" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704385706511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
