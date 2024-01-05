@@ -17,14 +17,14 @@
 
   .left {
     left: 0;
-    background-color: #ccc;
+    background-color: white;
     background-image: url('../images/Crea.jpg');
     background-size: cover;
   }
 
   .right {
     right: 0;
-    background-color: #ccc;
+    background-color: white;
     background-image: url('../images/Cerca.jpg');
     background-size: cover;
   }
@@ -81,12 +81,14 @@ h1{
   width: 70%;
   background-color: #ffffff;
 
+
 }
 .divisione_destra{
   float: right;
   height: 100%;
   width: 30%;
-  background-color: #777;
+  background-color: white;
+
 }
 .superiore{
     height: 45%;
@@ -95,7 +97,8 @@ h1{
 
 .inferiore{
     height: 45%;
-    background-color: black;
+    background-color: white;
+
 }
 
 .card-container {
@@ -126,17 +129,16 @@ h1{
 }
 
 .button-card{
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0); /* Aggiunge ombreggiatura per profondità */
-  margin: 10px;
-  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0); /* Aggiunge ombreggiatura per profondità */
   border-radius: 10px; /* Bordi arrotondati per le card */
   background: #FFF; /* Sfondo bianco per le card */
   text-align: center; /* Centra il testo all'interno della card */
   width: 150px; /* O un'altra misura che si adatta al tuo design */
-  height: 100px;
+  height: 10%;
      display: flex;
   align-items: center; /* Centra il bottone verticalmente all'interno della card */
-  justify-content: center;
+  justify-content: center
+;
 }
 
 .orange-button {
@@ -153,7 +155,7 @@ h1{
   box-shadow: 0 2px 5px rgba(255, 165, 0, 0.4); /* Ombra leggera per effetto 3D */
   transition: all 0.3s ease; /* Transizione fluida per effetti hover */
   text-align: center; /* Centra il testo nel bottone */
-  display: inline-block; /* Permette di applicare padding e margin */
+   /* Permette di applicare padding e margin */
 }
 
 .orange-button .arrow {
@@ -172,9 +174,13 @@ h1{
     display: flex;
     overflow-x: auto; /* Permette lo scorrimento orizzontale delle card */
     padding: 0;
+    margin-top: 50px;
+    overflow-y: hidden;
+
 }
 
 .event-card {
+
     margin-top: -22px;
     border: none;
     background: none;
@@ -185,8 +191,8 @@ h1{
 
 .event-card img {
 
-    width: 115px; /* o la dimensione desiderata */
-    height: 150px; /* mantiene il rapporto dell'immagine */
+    width: 250px; /* o la dimensione desiderata */
+    height: auto; /* mantiene il rapporto dell'immagine */
     border-radius: 10px; /* Angoli arrotondati per le immagini delle card */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Ombra per profondità */
 }
@@ -226,3 +232,35 @@ h1{
 		transform: translateY(0%);
 	}
 }
+.h2{
+    color:darkorange;
+    font-weight: normal;
+    padding-left: 2%;
+}
+
+.grind-container{
+    display: flex;
+    justify-content: start;
+    padding: 10px;
+    gap: 40px;
+    margin-left: 20px;
+}
+.grind-item{
+  height: 90px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Ombra per dare profondità */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  transition: transform 0.2s;
+}
+
+.grind-item h3{
+    margin-top: 15px;
+    font-size: 15px;
+}
+
