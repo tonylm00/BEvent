@@ -201,7 +201,6 @@ h1{
     transform: scale(1.05); /* Effetto zoom al passaggio del mouse */
 }
 
-
 .movimentoH1 {
 	animation-name: movimentoH1;
 	-webkit-animation-name: movimentoH1;
