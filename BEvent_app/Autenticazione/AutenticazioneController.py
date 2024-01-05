@@ -7,7 +7,7 @@ from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, 
 aut = Blueprint('aut', __name__)
 
 
-@aut.route('/login', methods=['POST'])
+@aut.route('/login', methods=[ 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -29,7 +29,7 @@ def login():
             elif user.ruolo == "2":
                 return organizzatore_page()
             elif user.ruolo == "3":
-                return fornitore_page()
+                return redirect('/fornitori')
             else:
                 return error_page()
         else:

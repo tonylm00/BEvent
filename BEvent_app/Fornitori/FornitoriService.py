@@ -7,7 +7,7 @@ from ..InterfacciaPersistenza import ServizioOfferto
 def get_tutti_servizi(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find('fornitore_associato' == id_fornitore))
+    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore}))
 
     lista_servizi = []
 
@@ -16,6 +16,23 @@ def get_tutti_servizi(id_fornitore):
         lista_servizi.append(servizio)
 
     return lista_servizi
+
+
+def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
+    db = get_db()
+    collection = db['Utente']
+    try:
+
+        result = collection.update_one(
+            {"_id": ObjectId(id_fornitore)},
+            {"$set": {"Fornitore.Foto": byte_arrays_bytes}}
+        )
+        if result.modified_count > 0:
+            return "Foto aggiornata con successo"
+        else:
+            return "Nessun documento aggiornato"
+    except Exception as e:
+        return f"Si è verificato un errore: {e}"
 
 
 def elimina(servizio_id):

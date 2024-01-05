@@ -17,7 +17,14 @@
 
 <div class="container">
     <div class="sezione-foto">
+        <form action="/aggiungi_foto_fornitore" method="post" enctype="multipart/form-data">
         <div class="foto-box">Aggiungi foto</div>
+
+            <label for="photo">Foto:</label>
+            <input type="file" id="fileInput2" name="foto" multiple="multiple"><br>
+            <ul id="selectedFileList2"></ul>
+            <button type="submit">Conferma</button>
+        </form>
         <div class="foto-contenitore">
             <div class="foto-box_2">Aggiungi foto</div>
             <div class="foto-box_2">Aggiungi foto</div>
@@ -208,6 +215,9 @@
         </thead>
         <tbody>
         {% for servizio in servizi %}
+            {% for immagine_base64 in servizio.foto_servizio %}
+                <img src="data:image/jpeg;base64,{{ immagine_base64 }}" alt="Foto del Servizio">
+                {% endfor %}
             <tr>
             <form method="POST" action="{{ url_for('Fornitori.modifica_servizio', servizio_id=servizio._id) }}">
                 <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
@@ -216,7 +226,8 @@
                 <td><input type="text" name="data_inizio" value="{{ servizio.disponibilita_data_inizio }}"></td>
                 <td><input type="text" name="data_fine" value="{{ servizio.disponibilita_data_fine }}"></td>
                 <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
-                <td><input type="text" name="foto"  value="{{ servizio.foto_servizio }}"></td>
+
+                <!-- <td><input type="text" name="foto"  value="{{ servizio.foto_servizio }}"></td> -->
                 <td><input type="text" name="elimina"></td>
                 <td>   <button type="submit"> modifica </button></td>
             </form>
@@ -246,7 +257,7 @@
 <script src="https://cdn.lordicon.com/lordicon.js"></script>
 <script src="../static/js/AreaFornitore.js"></script>
 <script src="../static/js/AreaFornitore2.js"></script>
-
+<script src="../static/js/AreaFornitore3.js"></script>
 </body>
 </html>
 

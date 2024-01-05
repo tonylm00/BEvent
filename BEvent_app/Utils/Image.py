@@ -1,3 +1,4 @@
+import base64
 import io
 from PIL import Image
 
@@ -9,7 +10,6 @@ def convert_image_to_byte_array(image_content):
     return byte_array.getvalue()
 
 
-def convert_byte_array_to_image(byte_array_byte):
-    #il byte_array_byte corrisponde agli attributi nel db che sono foto
-    immagini = [Image.open(io.BytesIO(byte_array)) for byte_array in byte_array_byte]
-    return immagini
+def convert_byte_array_to_image(byte_array):
+    return base64.b64encode(byte_array).decode('utf-8')
+

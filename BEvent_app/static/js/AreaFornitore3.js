@@ -1,6 +1,6 @@
-    document.getElementById('fileInput').addEventListener('change', function(event) {
+    document.getElementById('fileInput2').addEventListener('change', function(event) {
     let selectedFiles = event.target.files;
-    let selectedFileList = document.getElementById('selectedFileList');
+    let selectedFileList = document.getElementById('selectedFileList2');
     selectedFileList.innerHTML = ''; // Pulisci la lista dei file selezionati
 
     for (let i = 0; i < selectedFiles.length; i++) {
@@ -12,5 +12,5 @@
 
 
 document.getElementById('customButton').addEventListener('click', function() {
-    document.getElementById('fileInput').click();
+    document.getElementById('fileInput2').click();
 });
