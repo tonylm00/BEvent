@@ -27,7 +27,7 @@ function aggiornaDOM(data) {
 
         let nuovoContenuto = `
             <img style="box-shadow: #333333; margin-top: 50px;" src="data:image/jpeg;base64,${data.fornitore_scelto.foto[0]}" alt="Immagine">
-            <h1>${data.fornitore_scelto.nome}</h1>
+            <h1>${data.fornitore_scelto.nome_utente}</h1>
             <p>${data.fornitore_scelto.descrizione}</p>
         `;
 

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="commit inutile">
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxRicercaFornitori.js" afterDir="false" />
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="ho creato la funzione ajax per lo swap delle card">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/AjaxRicercaFornitori.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxRicercaFornitori.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +103,8 @@
       <workItem from="1704399460847" duration="13725000" />
       <workItem from="1704413669491" duration="5325000" />
       <workItem from="1704460353329" duration="20377000" />
-      <workItem from="1704488016035" duration="10827000" />
+      <workItem from="1704488016035" duration="12716000" />
+      <workItem from="1704537931975" duration="8668000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -241,7 +242,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704480241098</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi">
+      <option name="closed" value="true" />
+      <created>1704500668789</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704500668789</updated>
+    </task>
+    <task id="LOCAL-00019" summary="ho creato la funzione ajax per lo swap delle card">
+      <option name="closed" value="true" />
+      <created>1704546540757</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1704546540757</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,13 +292,15 @@
     <MESSAGE value="Modifica sessioine" />
     <MESSAGE value="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore" />
     <MESSAGE value="commit inutile" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit inutile" />
+    <MESSAGE value="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi" />
+    <MESSAGE value="ho creato la funzione ajax per lo swap delle card" />
+    <option name="LAST_COMMIT_MESSAGE" value="ho creato la funzione ajax per lo swap delle card" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704499910448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704547716071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
   </component>
 </project>

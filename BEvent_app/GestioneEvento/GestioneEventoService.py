@@ -74,7 +74,7 @@ def filtro_ricerca(ricerca):
     fornitori_non_filtrati = get_fornitori()
 
     fornitori_filtrati_nome = [fornitore for fornitore in fornitori_non_filtrati if
-                               ricerca.lower() in fornitore.nome.lower()
+                               ricerca.lower() in fornitore.nome_utente.lower()
                                ]
 
     fornitori_filtrati_desctizione = [fornitore for fornitore in fornitori_non_filtrati if ricerca.lower() in

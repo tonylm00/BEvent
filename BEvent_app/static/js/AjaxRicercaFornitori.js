@@ -43,7 +43,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
     if (datiFiltrati.fornitori_filtrati || datiFiltrati.servizi_filtrati){
         datiFiltrati.fornitori_filtrati.forEach(function(fornitore) {
         // Estrai le informazioni del fornitore
-        let nomeFornitore = fornitore.nome;
+        let nomeFornitore = fornitore.nome_utente;
         let fotoFornitore = fornitore.foto[0]; // Assumi che sia un URL o un dato codificato in base64
         let citta = fornitore.citta;
         let regione = fornitore.regione;
@@ -69,7 +69,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
                             <b>${serviziDelFornitore.map(s => s.tipo).join(', ')}</b><br>
                             <br> ${citta}, ${regione}
                         </p>
-                        <a href="#">Read More</a>
+                        <button style="border: none; background: transparent" id="${ fornitore.email }" onclick="aggiornaColonnaDx('${ fornitore.email }')"> <a href="#">Visualizza</a></button>
                     </div>
                 </div>
             </div>
