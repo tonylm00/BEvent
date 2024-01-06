@@ -1,20 +1,15 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
 
 .container {
     text-align: center;
     margin: 50px;
 }
 
-img {
+.img {
     max-width: 100%;
     height: auto;
 }
 
-h1 {
+.h1 {
     color: #333;
 }
 

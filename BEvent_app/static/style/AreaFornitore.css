@@ -11,6 +11,11 @@ body {
     background-color: white;
 }
 
+img{
+    height: 150px;
+    width: 150px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; /* Divide il contenitore in tre colonne uguali */

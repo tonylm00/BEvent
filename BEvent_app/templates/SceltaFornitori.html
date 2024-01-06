@@ -6,8 +6,9 @@
 
 </head>
 
+
+<!--<body  style="overflow: hidden;">-->
 <body>
-<!--<body  style="overflow: hidden;"> -->
 <header>
 {% include 'Header.html' %}
 </header>
@@ -110,7 +111,7 @@
                 <div class="content">
                     <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
                         {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
-                        <a href="#">Read More</a>
+                        <a href="#">Visualizza</a>
                 </div>
             </div>
         </div>
@@ -185,6 +186,146 @@
             </div>
         </div>
         </div>
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container ">
+         <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Musica2.jpg">
+                    <h3>Musica</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        </div>
         </div>
     </div>
 
@@ -195,7 +336,35 @@
     </div>
 
         <div class="right-column">
-            prova
+
+                <img style="box-shadow: #333333; margin-top: 50px;"src="../static/images/Fioraio.jpg" alt="Immagine">
+                <h1>{{ fornitori[0].nome}}</h1>
+                <p>{{ fornitori[0].descrizione }}</p>
+
+                {% for servizio in servizi %}
+                    {% if servizio.fornitore_associato == fornitori[0].id %}
+
+                <div class="container ">
+                <div class="card">
+                    <div class="face face1">
+                        <div class="content">
+                            <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
+                            <h3>{{ servizio.tipo }} </h3>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <p> <b>
+                                {{ servizio.tipo }} <br></b> <br> {{ servizio.descrizione }}, {{ servizio.prezzo }}</p>
+                                <a href="#">Prenota</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    {% endif %}
+                {% endfor %}
+
+
 
         </div>
     </div>
