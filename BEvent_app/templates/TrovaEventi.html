@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizzazione Eventi</title>
+
+        <link rel="stylesheet" href="../static/style/TrovaEventi.css">
+</head>
+<body>
+<header>
+{% include 'Header.html' %}
+</header>
+
+<p class="projTitle textGradient">Trova l'Evento Adatto a Te!</p>
+
+<div class="container-principale">
+
+    <div class="left-column">
+    <div class="search-container watch fade-in">
+	<form action="" class="search-bar">
+		<input name="cerca" type="text" placeholder="cerca...">
+	<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="hover" colors="primary:#000,secondary:#ff7800" style="width:45px;height:45px"></lord-icon>
+
+	</form>
+
+	<button id="modal-button2">
+	<ion-icon name="filter-circle-outline" style="width:45px;height:45px; color:#ff7800;"></ion-icon>
+	</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <div class="right-column">
+                <img style="box-shadow: #333333; margin-top: 50px;"src="../static/images/Fioraio.jpg" alt="Immagine">
+                <h1>{{ eventopubblico[0].nome}}</h1>
+                <p>{{ eventopubblico[0].descrizione }}</p>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+ <div id="myModal2" class="modal2">
+	<div class="modal-container2 slideDown" id="modal-container2">
+        <div class="form-container2 sign-up">
+            <form id="registrazione" action="/registrazione_organizzatore_page">
+                <h1 style="color: #fda067;">Crea il tuo Account</h1>
+                <p style="color: #f68b44; font-size: 17px; "> Sei un Organizzatore o un Fornitore?</p>
+                <select name="dropdown" id="dropdown">
+                    <option value="organizzatore" selected>Organizzatore</option>
+                    <option value="fornitore">Fornitore</option>
+                </select>
+                <button>Registrati</button>
+            </form>
+        </div>
+        <div class="form-container2 sign-in">
+            <form action="/login" method="POST">
+                <h1 style="color: #fda067;">Bentornato!</h1>
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <button>Accedi</button>
+            </form>
+        </div>
+        <div class="toggle-container2">
+            <div class="toggle2">
+                <div class="toggle-panel2 toggle-left2">
+                    <h1 >Bentornato!</h1>
+                    <p>Se possiedi un account, accedi da qui <ion-icon name="arrow-down-outline"></ion-icon></p>
+                    <button class="hidden2" id="login">Accedi</button>
+                </div>
+                <div class="toggle-panel2 toggle-right2">
+                    <h1>Benvenuto!</h1>
+                    <p>Non possiedi ancora un account? Registrati da qui <ion-icon name="arrow-down-outline"></ion-icon></p>
+                        <button class="hidden2" id="register">Registrati</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../static/js/SceltaFornitore.js"></script>
+    <script src="../static/js/SceltaFornitore2.js"></script>
+    <script src="../static/js/AjaxRicercaFornitori.js"></script>
+
+
+</body>
+</html>
