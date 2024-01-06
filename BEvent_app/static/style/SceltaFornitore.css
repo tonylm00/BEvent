@@ -457,7 +457,12 @@
 }
 
 /* PARTE DESTRA DELLA PAGINA */
-
+.img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 302px;
+    width: 474px;
+}
 
 
 /* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
