@@ -3,7 +3,7 @@ from datetime import datetime
 
 from flask import request, Blueprint, session, flash, jsonify, make_response
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page
+from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page
 
 ge = Blueprint('ge', __name__)
 
@@ -20,7 +20,7 @@ def visualizza_fornitori():
     session['n_invitati'] = n_invitati
 
     if GestioneEventoService.is_valid_data(data):
-        fornitori = GestioneEventoService.get_fornitori(data_formattata)
+        fornitori = GestioneEventoService.get_fornitori_disponibli(data_formattata)
         servizi_non_filtrati = GestioneEventoService.get_servizi()
         servizi_offerti = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori)
 
@@ -140,3 +140,26 @@ def salva_nel_carrello():
             return jsonify({"errore nel passaggio del parametro"}), 500
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
+
+
+@ge.route('/visualizza_riepilogo', methods=['POST'])
+def visualizza_riepilogo():
+    cookie_carrello = request.cookies.get('carrello')
+
+    carrello = json.loads(cookie_carrello)
+
+    lista_servizi = []
+
+    for id_servizio in carrello:
+        servizio = GestioneEventoService.get_servizio_by_id(id_servizio)
+        lista_servizi.append(servizio)
+
+    lista_fornitori = []
+
+    if lista_servizi:
+        for servizio in lista_servizi:
+            fornitore = GestioneEventoService.get_fornitore_by_id(servizio.fornitore_associato)
+            lista_fornitori.append(fornitore)
+
+    return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
+

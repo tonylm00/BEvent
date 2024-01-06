@@ -73,7 +73,14 @@ def scelta_evento_da_creare_page():
 def sceltafornitori_page(fornitori=None, servizi=None):
     return render_template('SceltaFornitori.html', fornitori=fornitori, servizi=servizi)
 
+
 @views.route('/TrovaEventi_page')
 # @login_required
 def trova_eventi_page():
     return render_template('TrovaEventi.html')
+
+
+@views.route('/RiepilogoScelte_page')
+# @login_required
+def riepilogo_scelte_page(fornitori=None, servizi=None):
+    return render_template('RiepilogoScelte.html', fornitori=fornitori, servizi=servizi)

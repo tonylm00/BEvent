@@ -20,7 +20,7 @@ def is_valid_data(data):
         return False
 
 
-def get_fornitori(data_richiesta):
+def get_fornitori_disponibli(data_richiesta):
     db = get_db()
 
     pipeline = [
@@ -87,7 +87,7 @@ def get_servizi():
 
 def filtro_categoria_liste(categoria, data):
     servizi = get_servizi()
-    fornitori_non_filtrati = get_fornitori(data)
+    fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
     servizi_filtrati = [servizio for servizio in servizi_non_filtrati if servizio.tipo == categoria]
@@ -109,7 +109,7 @@ def filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati):
 
 def filtro_ricerca(ricerca, data):
     servizi = get_servizi()
-    fornitori_non_filtrati = get_fornitori(data)
+    fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
     fornitori_filtrati_nome = [fornitore for fornitore in fornitori_non_filtrati if
@@ -190,3 +190,10 @@ def get_servizio_by_id(id_servizio):
     servizio_data = db["Servizio Offerto"].find_one({"_id": id_servizio})
     servizio = Servizio_Offerto(servizio_data)
     return servizio
+
+
+def get_fornitore_by_id(id_fornitore):
+    db = get_db()
+    fornitore_data = db['Utente'].find_one({"_id": id_fornitore})
+    fornitore = Fornitore(fornitore_data, fornitore_data)
+    return fornitore
