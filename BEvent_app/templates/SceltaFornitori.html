@@ -183,7 +183,7 @@
                     <div class="face3 face5">
                         <div class="content2">
                             <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
-                                <button style="border: none; background: transparent" id="{{ servizio._id }}"> <a href="#">Prenota</a></button>
+                                <button style="border: none; background: transparent" id="{{ servizio._id }}" onclick="salvaServizio('{{ servizio._id }}')"> <a href="#">Prenota</a></button>
                         </div>
                     </div>
                 </div>
@@ -203,6 +203,7 @@
     <script src="../static/js/SceltaFornitore2.js"></script>
     <script src="../static/js/AjaxRicercaFornitori.js"></script>
     <script src="../static/js/AjaxSwapCard.js"></script>
+    <script src="../static/js/SalvaServizio.js"></script>
 
 	</body>
 </html>

@@ -20,24 +20,61 @@ def is_valid_data(data):
         return False
 
 
-def get_fornitori():
+def get_fornitori(data_richiesta):
     db = get_db()
-    fornitori_collection = db['Utente']
-    fornitori_data = list(fornitori_collection.find({'Ruolo': '3'}))
 
+    pipeline = [
+        {"$match": {"Ruolo": "3"}},
+        {
+            "$lookup": {
+                "from": "Evento",
+                "let": {"fornitore_id_str": {"$toString": "$_id"}},
+                "pipeline": [
+                    {
+                        "$unwind": "$Evento.fornitori_associati"
+                    },
+                    {
+                        "$match": {
+                            "$expr": {
+                                "$and": [
+                                    {"$eq": ["$$fornitore_id_str", "$Evento.fornitori_associati"]},
+                                    {"$eq": ["$Evento.Data", data_richiesta]},
+                                    {"$eq": ["$Evento.isPagato", True]}  # Aggiungi questa condizione se applicabile
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "as": "eventi_associati"
+            }
+        },
+        {
+            "$addFields": {
+                "eventiPrenotati": {"$size": "$eventi_associati"},
+                "EventiMassimiGiornaliero": "$Fornitore.EventiMassimiGiornaliero"
+            }
+        },
+        {
+            "$match": {
+                "$expr": {"$lt": ["$eventiPrenotati", "$EventiMassimiGiornaliero"]}
+            }
+        }
+    ]
+
+    fornitori_disponibili = list(db.Utente.aggregate(pipeline))
     lista_fornitori = []
 
-    for data in fornitori_data:
+    for data in fornitori_disponibili:
         fornitore = Fornitore(data, data)
         lista_fornitori.append(fornitore)
-
+    print(lista_fornitori)
     return lista_fornitori
 
 
 def get_servizi():
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find())
+    servizi_data = list(servizi_collection.find({}))
 
     lista_servizi = []
 
@@ -48,9 +85,10 @@ def get_servizi():
     return lista_servizi
 
 
-def filtro_categoria_liste(categoria):
-    servizi_non_filtrati = get_servizi()
-    fornitori_non_filtrati = get_fornitori()
+def filtro_categoria_liste(categoria, data):
+    servizi = get_servizi()
+    fornitori_non_filtrati = get_fornitori(data)
+    servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
     servizi_filtrati = [servizio for servizio in servizi_non_filtrati if servizio.tipo == categoria]
 
@@ -69,9 +107,10 @@ def filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati):
     return servizi_filtrati
 
 
-def filtro_ricerca(ricerca):
-    servizi_non_filtrati = get_servizi()
-    fornitori_non_filtrati = get_fornitori()
+def filtro_ricerca(ricerca, data):
+    servizi = get_servizi()
+    fornitori_non_filtrati = get_fornitori(data)
+    servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
     fornitori_filtrati_nome = [fornitore for fornitore in fornitori_non_filtrati if
                                ricerca.lower() in fornitore.nome_utente.lower()
