@@ -4,7 +4,6 @@ from flask import request, Blueprint, session, flash, jsonify
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page
 
-
 ge = Blueprint('ge', __name__)
 
 
@@ -53,19 +52,23 @@ def filtro_categoria():
         return jsonify({"errore": str(e)}), 500
 
 
-@ge.route('/filtro_barra_ricerca', methods=['POST'])
+@ge.route('/filtro_barra_ricerca', methods=['GET', 'POST'])
 def filtro_barra_ricerca():
     try:
         data = request.get_json()
 
         if 'ricerca' in data:
             ricerca = data['ricerca']
-            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_ricerca(ricerca)
 
-            if servizi_filtrati and fornitori_filtrati:
+            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_ricerca(ricerca)
+            print(servizi_filtrati)
+            if servizi_filtrati or fornitori_filtrati:
+                fornitori_serializzati = [fornitore_serializer(f) for f in fornitori_filtrati]
+                servizi_serializzati = [servizio_serializer(s) for s in servizi_filtrati]
+
                 return jsonify({
-                    "servizi_filtrati": servizi_filtrati,
-                    "fornitori_filtrati": fornitori_filtrati
+                    "servizi_filtrati": servizi_serializzati,
+                    "fornitori_filtrati": fornitori_serializzati
                 }), 200
             else:
                 return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
@@ -76,3 +79,22 @@ def filtro_barra_ricerca():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
+
+def fornitore_serializer(fornitore):
+    return {
+        "id": fornitore.id,
+        "nome": fornitore.nome,
+        "foto": fornitore.foto,  # Assicurati che sia un formato serializzabile
+        "citta": fornitore.citta,
+        "regione": fornitore.regione
+        # Aggiungi altri campi necessari
+    }
+
+
+def servizio_serializer(servizio):
+    return {
+        "id": servizio._id,
+        "tipo": servizio.tipo,
+        "fornitore_associato": servizio.fornitore_associato,
+        # Aggiungi altri campi necessari
+    }

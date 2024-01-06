@@ -73,16 +73,30 @@ def filtro_ricerca(ricerca):
     servizi_non_filtrati = get_servizi()
     fornitori_non_filtrati = get_fornitori()
 
-    fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if ricerca.lower() in fornitore.nome.lower()
-                          ]
+    fornitori_filtrati_nome = [fornitore for fornitore in fornitori_non_filtrati if
+                               ricerca.lower() in fornitore.nome.lower()
+                               ]
 
-    if not fornitori_filtrati:
-        fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if ricerca.lower() in
-                              fornitore.descrizione.lower()]
-        if not fornitori_filtrati:
-            flash('Parola non trovata', 'error')
-            return None, None
+    fornitori_filtrati_desctizione = [fornitore for fornitore in fornitori_non_filtrati if ricerca.lower() in
+                                      fornitore.descrizione.lower()]
 
-    servizi_filtrati = filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati)
+    fornitori_filtrati = None
+    if fornitori_filtrati_desctizione and fornitori_filtrati_nome:
+        fornitori_unici = {}
+
+        for fornitore in fornitori_filtrati_nome + fornitori_filtrati_desctizione:
+
+            fornitori_unici[fornitore.id] = fornitore
+
+        fornitori_filtrati = list(fornitori_unici.values())
+    elif fornitori_filtrati_desctizione:
+        fornitori_filtrati = fornitori_filtrati_desctizione
+    elif fornitori_filtrati_nome:
+        fornitori_filtrati = fornitori_filtrati_nome
+
+    if fornitori_filtrati:
+        servizi_filtrati = filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati)
+    else:
+        servizi_filtrati = None
 
     return servizi_filtrati, fornitori_filtrati
