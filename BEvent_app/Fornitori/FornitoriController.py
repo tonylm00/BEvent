@@ -14,7 +14,6 @@ Fornitori = Blueprint('Fornitori', __name__)
 def visualizza():  # put application's code here
     id_fornitore = session['id']
 
-
     servizi = get_tutti_servizi(id_fornitore)
 
     return fornitore_page(servizi=servizi)
@@ -25,14 +24,12 @@ def aggiungi_foto_fornitore():
     files = request.files.getlist('foto')
     id_fornitore = session['id']
 
-    print(files)
     byte_arrays = []
 
     for file in files:
         filename = file.filename
         content_type = file.content_type
         content = file.read()
-        print(filename)
 
         byte_array = Image.convert_image_to_byte_array(content)
         byte_arrays.append(byte_array)
@@ -46,7 +43,6 @@ def aggiungi_foto_fornitore():
 
 @Fornitori.route('/elimina_servizio/<servizio_id>')
 def elimina_servizio(servizio_id):
-    print(servizio_id)
     elimina(servizio_id)
     return redirect(url_for('Fornitori.visualizza'))
 
@@ -72,14 +68,13 @@ def modifica_servizio(servizio_id):
 @Fornitori.route('/aggiungi_servizio', methods=['POST'])
 def aggiungi_servizio():
     files = request.files.getlist('photos')
-
+    fornitore_associato = session['id']
     byte_arrays = []
 
     for file in files:
         filename = file.filename
         content_type = file.content_type
         content = file.read()
-        print(filename)
 
         byte_array = Image.convert_image_to_byte_array(content)
         byte_arrays.append(byte_array)
@@ -92,7 +87,7 @@ def aggiungi_servizio():
         "Prezzo": request.form.get("prezzo"),
         "Quantità": request.form.get("quantità"),
         "FotoServizio": byte_arrays_bytes,
-        "fornitore_associato": request.form.get("fornitore_associato")
+        "fornitore_associato": fornitore_associato
     }
 
     aggiungi(nuovi_dati)
