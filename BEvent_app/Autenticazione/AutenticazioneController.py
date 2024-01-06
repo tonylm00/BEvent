@@ -7,7 +7,7 @@ from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, 
 aut = Blueprint('aut', __name__)
 
 
-@aut.route('/login', methods=[ 'POST'])
+@aut.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -61,7 +61,6 @@ def registrazione_organizzatore():
         telefono = request.form.get('telefono')
         ruolo = request.form.get('ruolo')
         regione = request.form.get('regione')
-        print(ruolo)
         registrazione = 0
 
         if ruolo == "1":
@@ -78,6 +77,7 @@ def registrazione_organizzatore():
             citta = request.form.get('citta')
             user = AutenticazioneService.registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono,
                                                       data_di_nascita, citta, ruolo, regione)
+
             if user:
                 login_user(user)
                 registrazione = 1
@@ -110,6 +110,7 @@ def registrazione_organizzatore():
             session["nome_utente"] = nome_utente
             session["ruolo"] = ruolo
             session['regione'] = regione
+            session['id'] = current_user.get_id()
             return home()
         else:
             return registrazione_page()

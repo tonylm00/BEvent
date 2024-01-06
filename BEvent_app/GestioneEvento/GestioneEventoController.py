@@ -62,8 +62,8 @@ def filtro_barra_ricerca():
 
             servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_ricerca(ricerca)
             if servizi_filtrati or fornitori_filtrati:
-                fornitori_serializzati = [fornitore_serializer(f) for f in fornitori_filtrati]
-                servizi_serializzati = [servizio_serializer(s) for s in servizi_filtrati]
+                fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
+                servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in servizi_filtrati]
 
                 return jsonify({
                     "servizi_filtrati": servizi_serializzati,
@@ -79,31 +79,6 @@ def filtro_barra_ricerca():
         return jsonify({"errore": str(e)}), 500
 
 
-def fornitore_serializer(fornitore):
-    return {
-        "id": fornitore.id,
-        "nome": fornitore.nome,
-        "foto": fornitore.foto,
-        "citta": fornitore.citta,
-        "regione": fornitore.regione,
-        "OrarioDiLavoro": fornitore.orario_lavoro,
-        "email": fornitore.email,
-        "nome_utente": fornitore.nome_utente,
-        "descrizione": fornitore.descrizione
-    }
-
-
-def servizio_serializer(servizio):
-    return {
-        "id": servizio._id,
-        "tipo": servizio.tipo,
-        "fornitore_associato": servizio.fornitore_associato,
-        "descrizione": servizio.descrizione,
-        "prezzo": servizio.prezzo,
-        "foto_servizio": servizio.foto_servizio
-    }
-
-
 @ge.route('/aggiorna_right_column', methods=['POST'])
 def aggiorna_right_column():
     data = request.get_json()
@@ -116,8 +91,8 @@ def aggiorna_right_column():
 
             if fornitore_scelto:
                 lista_servizi = GestioneEventoService.get_servizi_fornitore(fornitore_scelto)
-                servizi_serializzati = [servizio_serializer(s) for s in lista_servizi]
-                fornitore_serializzato = fornitore_serializer(fornitore_scelto)
+                servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in lista_servizi]
+                fornitore_serializzato = GestioneEventoService.fornitore_serializer(fornitore_scelto)
 
                 return jsonify({
                     "lista_servizi": servizi_serializzati,
@@ -131,3 +106,16 @@ def aggiorna_right_column():
 
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
+
+'''
+@ge.route('/salva_nel_carrello', methods=['POST'])
+def salva_nel_carrello():
+
+    data = request.get_json()
+    try:
+        if 'id_servizio' in data:
+            id_servizio = data['id_servizio']
+
+
+
+'''

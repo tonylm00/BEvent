@@ -85,7 +85,6 @@ def filtro_ricerca(ricerca):
         fornitori_unici = {}
 
         for fornitore in fornitori_filtrati_nome + fornitori_filtrati_desctizione:
-
             fornitori_unici[fornitore.id] = fornitore
 
         fornitori_filtrati = list(fornitori_unici.values())
@@ -120,3 +119,35 @@ def get_servizi_fornitore(fornitore):
         lista_servizi.append(servizio)
 
     return lista_servizi
+
+
+def fornitore_serializer(fornitore):
+    return {
+        "id": fornitore.id,
+        "nome": fornitore.nome,
+        "foto": fornitore.foto,
+        "citta": fornitore.citta,
+        "regione": fornitore.regione,
+        "OrarioDiLavoro": fornitore.orario_lavoro,
+        "email": fornitore.email,
+        "nome_utente": fornitore.nome_utente,
+        "descrizione": fornitore.descrizione
+    }
+
+
+def servizio_serializer(servizio):
+    return {
+        "id": servizio._id,
+        "tipo": servizio.tipo,
+        "fornitore_associato": servizio.fornitore_associato,
+        "descrizione": servizio.descrizione,
+        "prezzo": servizio.prezzo,
+        "foto_servizio": servizio.foto_servizio
+    }
+
+
+def get_servizio_by_id(id_servizio):
+    db = get_db()
+    servizio_data = db["Servizio Offerto"].find_one({"_id": id_servizio})
+    servizio = Servizio_Offerto(servizio_data)
+    return servizio

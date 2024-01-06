@@ -20,17 +20,17 @@
                   <input type="text" name="nome_utente" placeholder="Nome Utente*" required>
                 </div>
                 <div class="field-container">
-                   <input type="text" name="telefono" placeholder="Telefono">
-                   <input type="text" name="citta" placeholder="Città">
-                </div>
-                <div class="field-container">
                    <input type="email" name="email" placeholder="Email*" required>
                    <input type="password" name="password" placeholder="Password*" required>
                    <input type="password" name="cpassword" placeholder="Conferma Password*" required>
                 </div>
                 <div class="field-container">
+                   <input type="text" name="telefono" placeholder="Telefono">
+                   <input type="text" name="citta" placeholder="Città">
+                </div>
+                <div class="field-container">
                     <input type="text" name="via" placeholder="Indirizzo">
-                    <input type="text" name="eventi_max_giorn" placeholder="Eventi massimi in un giorno">
+                    <input type="text" name="eventi_max_giornaliero" placeholder="Eventi massimi in un giorno">
                 </div>
 
                 <div class="field-container">
@@ -40,7 +40,7 @@
                         <option value="tipo2">No</option>
 
                     </select>
-                    <input type="text" name="piva" placeholder="Partita iva">
+                    <input type="text" name="p_iva" placeholder="Partita iva">
                 </div>
                 <div class="field-container">
                     <textarea id="descrizione" name="descrizione" rows="4" cols="100" placeholder="Descrizione"></textarea>
@@ -71,12 +71,10 @@
                         <option value="Veneto">Veneto</option>
                     </select>
                 </div>
-                <div class="field-container">
-                    <input style="width: 100%;" type="text" name="piva" placeholder="Partita iva">
-                </div>
 
 
-          <button type="submit" class="button">Registrati</button>
+
+          <button type="submit" class="button" name="ruolo" value="3">Registrati</button>
             </form>
 
 
