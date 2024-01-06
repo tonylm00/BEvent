@@ -1,5 +1,7 @@
 from bson import ObjectId
 from pymongo import MongoClient
+
+from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
 
@@ -16,6 +18,12 @@ def get_tutti_servizi(id_fornitore):
         lista_servizi.append(servizio)
 
     return lista_servizi
+
+def get_tutti_dati(id_fornitore):
+    db=get_db()
+    user_data= db['Utente'].find({"_id":id_fornitore})
+    fornitore= Fornitore(user_data,user_data)
+    return fornitore
 
 
 def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):

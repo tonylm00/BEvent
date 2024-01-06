@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Blueprint, request, session
 from flask_login import current_user
 
-from .FornitoriService import get_tutti_servizi, elimina, modifica, aggiungi, aggiorna_foto_fornitore
+from .FornitoriService import get_tutti_servizi, elimina, modifica, aggiungi, aggiorna_foto_fornitore, get_tutti_dati
 from BEvent_app import Routes
 from flask import redirect, url_for
 from ..Utils import Image
@@ -18,6 +18,11 @@ def visualizza():  # put application's code here
 
     return fornitore_page(servizi=servizi)
 
+@Fornitori.route('/dati_fornitori', methods=['GET', 'POST'])
+def visualizza_dati_fornitore():  # put application's code here
+    id_fornitore = session['id']
+    dati=get_tutti_dati(id_fornitore)
+    return fornitore_page(dati=dati)
 
 @Fornitori.route('/aggiungi_foto_fornitore', methods=['POST'])
 def aggiungi_foto_fornitore():
