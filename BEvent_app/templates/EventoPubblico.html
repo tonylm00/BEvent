@@ -8,17 +8,17 @@
 <link rel="stylesheet"  type="text/css" href="../static/style/EventoPubblico.css">
 
 </head>
-<body>
+<div>
 
-<div class="wrapper">
-    <div class="header">
+<div class="container">
+    <div class="colonna-sx">
         <input type="text" id="event-title" placeholder="TITOLO DELL'EVENTO">
         <input type="text" id="event-date" placeholder="DATA">
         <input type="text" id="event-time" placeholder="ORA">
         <input type="text" id="event-location" placeholder="LUOGO">
     </div>
 
-    <div class="main">
+    <div class="colonna-cen">
 
     <div class="sezione-foto">
         <div class="foto-box">Aggiungi foto</div>
@@ -28,9 +28,11 @@
             <div class="foto-box_2">Aggiungi foto</div>
         </div>
     </div>
+
         <textarea id="event-description" placeholder="DESCRIZIONE"></textarea>
+
     </div>
-    <div class="side side1">
+    <div class="colonna-dx">
         <input type="number" id="tickets-available" placeholder="BIGLIETTI DISPONIBILI">
         <input type="text" id="supplier" placeholder="Fornitori">
         <select id="event-type">
@@ -42,8 +44,21 @@
 
         </select>
     </div>
+
+
+
+</div>
+<div style="display:flex; justify-content:center; justify-items: center;">
+<button class="button" onclick="pubblicaEvento()">Pubblica Evento</button>
 </div>
 
+<script>
+    function pubblicaEvento() {
+
+      alert("Evento pubblicato con successo!");
+
+    }
+  </script>
 <script src="../static/js/EventoPubblico.js"></script>
 </body>
 </html>

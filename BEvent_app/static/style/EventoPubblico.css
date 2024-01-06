@@ -1,47 +1,24 @@
-/* Stili di reset per il corpo del documento */
-body {
-    margin: 0;
-    padding: 0;
+
+.container{
+
+    display:flex;
+    width:100%;
+
 }
 
-/* Aggiunta di stili per rendere il layout responsive */
-@media screen and (max-width: 900px) {
-    .wrapper {
-        flex-direction: column;
-    }
+.colonna-sx{
 
-    .header, .main, .side {
-        width: 100%;
-    }
+    flex:33%;
+    border: 2px solid rgba(255, 152, 0, 0.71);
 }
+.colonna-cen{
 
-/* Aggiunta di stili per i riquadri con contorno arancione */
-.wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    justify-content: center;
+    flex:33%;
 }
+.colonna-dx{
 
-.header,.side {
-    padding: 10px;
-    border: 2px solid #ff9800;
-    margin: 10px;
-    box-sizing: border-box;
-}
-.side {
-    padding: 10px;
-    border: 2px solid #ff9800;
-    margin: 10px;
-    box-sizing: border-box;
-}
-.main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centra orizzontalmente */
-    gap: 5%;
-    margin: 10px;
-    margin-top: 7%;
+    flex:33%;
+    border: 2px solid rgba(255, 152, 0, 0.71);
 }
 
 .sezione-foto {
@@ -64,8 +41,7 @@ body {
 }
 
 .foto-box {
-    width: 575px;
-    height: 375px;
+    width: 100%;
     background-color: #c4c4c4;
     margin-bottom: 10px;
     display: flex;
@@ -92,9 +68,9 @@ input[type="text"],
 input[type="number"],
 select,
 textarea {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0 22px 0;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 30px;
     display: inline-block;
     border: none;
     background: #f1f1f1;
@@ -108,18 +84,37 @@ textarea:focus {
     outline: none;
 }
 
-/* Stili per il pulsante di caricamento */
-button {
-    background-color: #ff9800;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+
+.button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff9800;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 3%;
+    }
+
+.button:hover {
+    opacity: 0.5;
 }
 
-button:hover {
-    opacity: 1;
+@media screen and (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .colonna-sx,
+    .colonna-cen,
+    .colonna-dx {
+        flex: 100%;
+        width: 100%;
+    }
+
+    .sezione-foto {
+
+        flex-basis: calc(50% - 20px);
+    }
 }
+
