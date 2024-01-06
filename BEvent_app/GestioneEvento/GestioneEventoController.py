@@ -21,7 +21,7 @@ def visualizza_fornitori():
 
     if GestioneEventoService.is_valid_data(data):
         fornitori = GestioneEventoService.get_fornitori(data_formattata)
-        servizi_non_filtrati = GestioneEventoService.get_servizi(fornitori)
+        servizi_non_filtrati = GestioneEventoService.get_servizi()
         servizi_offerti = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori)
 
         return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti)
