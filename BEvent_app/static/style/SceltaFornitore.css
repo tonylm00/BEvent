@@ -74,6 +74,7 @@
     display: flex;
     max-height: 100vh;
     width: 100%;
+
 }
 
 .left-column {
@@ -471,25 +472,68 @@
     margin-top: 20px;
 
 }
-.riepilogo-button{
-
-
-    background-color: transparent;
-    border-radius: 50px;
- 	padding: 10px 20px;
+.bookmarkBtn {
+    width: 70%;
+    margin-left: 15%;
+    height: 50px;
+    border-radius: 40px;
     border: 2px solid #ff7800;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    margin-left:15%;
-    width:70%;
-    height: 72px;
-    font-size: 18px;
-    text-align: center;
-}
-.riepilogo-button:hover{
+    transition-duration: 0.3s;
+    overflow: hidden;
 
-    background: -webkit-linear-gradient(0deg, #ffcbaf, #ff7800);
-	color: black;
 }
+
+.IconContainer {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, #f68b44, #ff7800);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 1.04em;
+}
+
+.bookmarkBtn:hover .IconContainer {
+  width: 100%;
+  transition-duration: 0.5s;
+}
+
+.bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
+}
+
+.bookmarkBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.3s;
+}
+
 .img{
     box-shadow: #333333;
     margin-top: 50px;
@@ -501,8 +545,7 @@
 
 .grid-container-servizi{
 
-    overflow: auto;
-	height: calc(33% - 1px);
+
 	justify-items: center;
 	align-items: center;
 	margin-left:7.5%;
