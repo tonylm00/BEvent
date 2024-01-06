@@ -52,7 +52,7 @@ function aggiornaDOM(data) {
             `;
         });
 
-        // Sostituisci il contenuto della right-column
+
         document.querySelector('.right-column').innerHTML = nuovoContenuto;
     } else {
         console.error('Errore nella risposta:', data.errore);

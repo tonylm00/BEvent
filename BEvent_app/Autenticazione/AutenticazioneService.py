@@ -41,19 +41,24 @@ spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
 def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
     if not isinstance(nome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
         flash("Nome non valido", category="error")
+
     elif not isinstance(cognome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
         flash("Cognome non valido", category="error")
+
     elif not isinstance(nome_utente, str) or not 0 < len(nome_utente) <= 30:
         flash("Nome Utente non valido", category="error")
+
     elif not isinstance(telefono, str) or not len(telefono) == 10 or not telefono.isdigit():
         flash("Numero telefono non valido", category="error")
+
     elif not is_valid_email(email):
         flash("E-mail non valido", category="error")
+
     elif not is_valid_data_di_nascita(data_di_nascita):
         flash("Data di nascita non valida", category="error")
+
     else:
         return True
-    return False
 
 
 def is_valid_email(email):
@@ -61,17 +66,22 @@ def is_valid_email(email):
     return bool(re.match(email_pattern, email))
 
 
-def is_valid_data_di_nascita(data_di_nascita):
+def is_valid_data_di_nascita(data):
     try:
-        datetime_object = datetime.strptime(data_di_nascita, '%d-%m-%Y')
-        return True
+        datetime_data = datetime.strptime(data, '%Y-%m-%d')
+        data_odierna = datetime.now()
+        if datetime_data < data_odierna:
+            return True
+        else:
+            return False
+
     except ValueError:
         return False
 
 
 def controlla_password(password):
     if not isinstance(password, str) or len(password) < 8:
-        print("prova registrazione11")
+
         flash("Lunghezza non valida", "error")
     else:
         # Utilizza l'espressione regolare per convalidare il formato della password
@@ -93,13 +103,14 @@ def conferma_password(password, cpassword):
 
 def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita, regione):
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+    data_formattata = datetime.strptime(data_di_nascita, "%Y-%m-%d").strftime("%d-%m-%Y")
     user_data = None
     if ruolo == "1":
         user_data = {
             '_id': ObjectId(),  # Genera un nuovo ObjectId
             'nome': nome,
             'cognome': cognome,
-            'data_di_nascita': data_di_nascita,
+            'data_di_nascita': data_formattata,
             'email': email,
             'telefono': telefono,
             'nome_utente': nome_utente,
@@ -114,7 +125,7 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
             '_id': ObjectId(),  # Genera un nuovo ObjectId
             'nome': nome,
             'cognome': cognome,
-            'data_di_nascita': data_di_nascita,
+            'data_di_nascita': data_formattata,
             'email': email,
             'telefono': telefono,
             'nome_utente': nome_utente,
@@ -129,22 +140,23 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
     return user_data
 
 
-def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo, regione):
+def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
+                 regione):
     db = get_db()
-    print("prova registrazione")
+
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
-        print("prova registrazione2")
+
         if not is_valid_email(email):
-            print("prova registrazione6")
+
             flash("Email esistente", "error")
         elif not controlla_password(password):
-            print("prova registrazione7")
+
             flash("Password non valida", "error")
         elif not conferma_password(password, cpassword):
-            print("prova registrazione8")
+
             flash("Le password non corrispondono", "error")
         else:
-            print("prova registrazione10")
+
             user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
                                         regione)
 
@@ -157,9 +169,9 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
 
             documento_organizzatore = {**user_data, **organizzatore_data}
             organizzatore = Organizzatore(user_data, organizzatore_data)
-            print("prova registrazione3")
+
             db.Utente.insert_one(documento_organizzatore)
-            print("prova registrazion4")
+
             flash("Registrazione avvenuta con successo!", "success")
 
             return organizzatore
