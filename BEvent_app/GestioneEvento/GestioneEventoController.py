@@ -61,7 +61,6 @@ def filtro_barra_ricerca():
             ricerca = data['ricerca']
 
             servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_ricerca(ricerca)
-            print(servizi_filtrati)
             if servizi_filtrati or fornitori_filtrati:
                 fornitori_serializzati = [fornitore_serializer(f) for f in fornitori_filtrati]
                 servizi_serializzati = [servizio_serializer(s) for s in servizi_filtrati]
@@ -84,10 +83,13 @@ def fornitore_serializer(fornitore):
     return {
         "id": fornitore.id,
         "nome": fornitore.nome,
-        "foto": fornitore.foto,  # Assicurati che sia un formato serializzabile
+        "foto": fornitore.foto,
         "citta": fornitore.citta,
-        "regione": fornitore.regione
-        # Aggiungi altri campi necessari
+        "regione": fornitore.regione,
+        "OrarioDiLavoro": fornitore.orario_lavoro,
+        "email": fornitore.email,
+        "nome_utente": fornitore.nome_utente,
+        "descrizione": fornitore.descrizione
     }
 
 
@@ -96,5 +98,36 @@ def servizio_serializer(servizio):
         "id": servizio._id,
         "tipo": servizio.tipo,
         "fornitore_associato": servizio.fornitore_associato,
-        # Aggiungi altri campi necessari
+        "descrizione": servizio.descrizione,
+        "prezzo": servizio.prezzo,
+        "foto_servizio": servizio.foto_servizio
     }
+
+
+@ge.route('/aggiorna_right_column', methods=['POST'])
+def aggiorna_right_column():
+    data = request.get_json()
+    try:
+
+        if 'email' in data:
+            email = data['email']
+
+            fornitore_scelto = GestioneEventoService.get_fornitore_by_email(email)
+
+            if fornitore_scelto:
+                lista_servizi = GestioneEventoService.get_servizi_fornitore(fornitore_scelto)
+                servizi_serializzati = [servizio_serializer(s) for s in lista_servizi]
+                fornitore_serializzato = fornitore_serializer(fornitore_scelto)
+
+                return jsonify({
+                    "lista_servizi": servizi_serializzati,
+                    "fornitore_scelto": fornitore_serializzato
+                }), 200
+            else:
+                return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
+
+        else:
+            return jsonify({"errore": "Parametro 'categoria' non presente nei dati JSON"}), 400
+
+    except Exception as e:
+        return jsonify({"errore": str(e)}), 500

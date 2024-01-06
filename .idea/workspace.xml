@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati">
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxRicercaEventi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BEvent_app/static/style/TrovaEventi.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BEvent_app/templates/TrovaEventi.html" afterDir="false" />
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="ho creato la funzione ajax per lo swap delle card">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/AjaxRicercaFornitori.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxRicercaFornitori.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,20 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="HTML File" />
-        <option value="CSS File" />
       </list>
-    </option>
-  </component>
-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
-    <envs>
-      <env key="FLASK_APP" value="app" />
-    </envs>
-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
-    <option name="myEnvs">
-      <map>
-        <entry key="FLASK_APP" value="app" />
-      </map>
     </option>
   </component>
   <component name="Git.Settings">
@@ -68,40 +52,32 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Flask server.BEvent.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BEvent" type="Python.FlaskServer">
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
       <option name="targetType" value="PATH" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -126,7 +102,9 @@
       <workItem from="1704363282119" duration="3281000" />
       <workItem from="1704399460847" duration="13725000" />
       <workItem from="1704413669491" duration="5325000" />
-      <workItem from="1704460353329" duration="1153000" />
+      <workItem from="1704460353329" duration="20377000" />
+      <workItem from="1704488016035" duration="12716000" />
+      <workItem from="1704537931975" duration="8668000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -224,7 +202,63 @@
       <option name="project" value="LOCAL" />
       <updated>1704418377545</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="modifica area fornitore">
+      <option name="closed" value="true" />
+      <created>1704461545057</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704461545057</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modifica Fornitori Controller">
+      <option name="closed" value="true" />
+      <created>1704464464430</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704464464430</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Modifica sessioine">
+      <option name="closed" value="true" />
+      <created>1704466298720</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704466298720</updated>
+    </task>
+    <task id="LOCAL-00016" summary="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore">
+      <option name="closed" value="true" />
+      <created>1704479201318</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1704479201318</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commit inutile">
+      <option name="closed" value="true" />
+      <created>1704480241098</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1704480241098</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi">
+      <option name="closed" value="true" />
+      <created>1704500668789</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704500668789</updated>
+    </task>
+    <task id="LOCAL-00019" summary="ho creato la funzione ajax per lo swap delle card">
+      <option name="closed" value="true" />
+      <created>1704546540757</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1704546540757</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,12 +287,20 @@
     <MESSAGE value="Ho cambiato il database, la registrazione di tutti i tipi di utente e collegato le funzioni alle pagine html di scelta fornitori" />
     <MESSAGE value="commit Header.html" />
     <MESSAGE value="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati" />
+    <MESSAGE value="modifica area fornitore" />
+    <MESSAGE value="Modifica Fornitori Controller" />
+    <MESSAGE value="Modifica sessioine" />
+    <MESSAGE value="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore" />
+    <MESSAGE value="commit inutile" />
+    <MESSAGE value="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi" />
+    <MESSAGE value="ho creato la funzione ajax per lo swap delle card" />
+    <option name="LAST_COMMIT_MESSAGE" value="ho creato la funzione ajax per lo swap delle card" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704543537640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704547716071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
   </component>
 </project>

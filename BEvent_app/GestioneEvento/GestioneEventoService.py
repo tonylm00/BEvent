@@ -74,7 +74,7 @@ def filtro_ricerca(ricerca):
     fornitori_non_filtrati = get_fornitori()
 
     fornitori_filtrati_nome = [fornitore for fornitore in fornitori_non_filtrati if
-                               ricerca.lower() in fornitore.nome.lower()
+                               ricerca.lower() in fornitore.nome_utente.lower()
                                ]
 
     fornitori_filtrati_desctizione = [fornitore for fornitore in fornitori_non_filtrati if ricerca.lower() in
@@ -100,3 +100,23 @@ def filtro_ricerca(ricerca):
         servizi_filtrati = None
 
     return servizi_filtrati, fornitori_filtrati
+
+
+def get_fornitore_by_email(email):
+    db = get_db()
+    fornitore_data = db['Utente'].find_one({"email": email})
+    fornitore = Fornitore(fornitore_data, fornitore_data)
+    return fornitore
+
+
+def get_servizi_fornitore(fornitore):
+    db = get_db()
+    servizi_data = list(db['Servizio Offerto'].find({"fornitore_associato": fornitore.id}))
+
+    lista_servizi = []
+
+    for data in servizi_data:
+        servizio = Servizio_Offerto(data)
+        lista_servizi.append(servizio)
+
+    return lista_servizi
