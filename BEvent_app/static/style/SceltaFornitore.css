@@ -15,9 +15,6 @@
   margin-top: 100px;
 }
 
-.scroll{
-	overflow:auto;
-}
 
 /* Barra di ricerca */
 .search-container {
@@ -94,7 +91,7 @@
 .grid-container{
 
     overflow: auto;
-	height: calc(100% - 250px);
+	height: calc(100% - 270px);
 	justify-items: center;
 	align-items: center;
 	margin-left:7.5%;
@@ -461,6 +458,11 @@
 
 /* PARTE DESTRA DELLA PAGINA */
 
+.overflow-container{
+    overflow: auto;
+    height: calc(100% - 270px);
+}
+
 .riepilogo-container{
     margin-left: 0%;
     padding-bottom: 5%;
@@ -721,7 +723,11 @@
     .grid{
         grid-template-columns: repeat(2,1fr);
 
-}
+    }
+    .grid-servizi {
+            grid-template-columns: repeat(1, 1fr);
+
+    }
 }
 
 @media(max-width: 1050px) {
@@ -730,12 +736,6 @@
 
     }
 
-    @media (max-width: 870px) {
-        .grid-servizi {
-            grid-template-columns: repeat(1, 1fr);
-
-        }
-    }
 }
 
 
