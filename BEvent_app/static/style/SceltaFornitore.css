@@ -71,7 +71,6 @@
     display: flex;
     max-height: 100vh;
     width: 100%;
-
 }
 
 .left-column {
@@ -209,7 +208,7 @@
     color: #fff;
 }
 
-/* Fade in della barra di ricerca */
+/* Fade in della barra della pagina */
 .fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
 .fade-in.in-page{opacity: 1;transform: translateY(0vh);}
 
@@ -520,8 +519,8 @@
 }
 
 .bookmarkBtn:hover .IconContainer {
-  width: 100%;
-  transition-duration: 0.5s;
+    width: 100%;
+    transition-duration: 0.5s;
 }
 
 .bookmarkBtn:hover .text {

@@ -23,8 +23,8 @@ def verify_user(email, password):
         elif user_data['Ruolo'] == "3":
             utente = Fornitore(user_data, user_data)
 
-        # if utente.check_password(password):
-        return utente  # Ritorna l'istanza dell'utente
+        if utente.check_password(password):
+            return utente  # Ritorna l'istanza dell'utente
     else:
         return None
 
