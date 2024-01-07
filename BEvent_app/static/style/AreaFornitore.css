@@ -275,6 +275,7 @@ img{
 .modalAF input[type="tel"],
 .modalAF input[type="date"],
 .modalAF input[type="number"],
+.modalAF select,
 .modalAF textarea {
     border: 2px solid orange; /* Bordo arancione */
     border-radius: 5px; /* Bordi arrotondati */

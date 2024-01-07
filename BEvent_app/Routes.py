@@ -8,9 +8,10 @@ views = Blueprint('views', __name__)
 
 
 @views.route('/fornitore_page')
-#@login_required
-def fornitore_page(servizi=None,dati=None):
+# @login_required
+def fornitore_page(servizi=None, dati=None):
     return render_template('AreaFornitore.html', servizi=servizi, dati=dati)
+
 
 @views.route('/organizzatore_page')
 # @login_required
