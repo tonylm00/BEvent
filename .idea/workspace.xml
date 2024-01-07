@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/Evento.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/Evento.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPrivato.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPrivato.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPubblico.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPubblico.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/ServizioOfferto.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/ServizioOfferto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" afterDir="false" />
-    </list>
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +34,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="c76dac88-ac2b-4c40-a5d9-5977caf89a82" />
+        <option name="accountId" value="d3bee7a4-c265-4d19-95ec-528264d74c07" />
         <option name="url" value="https://github.com/tonylm00/BEvent.git" />
       </UrlAndAccount>
     </option>
@@ -57,6 +46,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -79,6 +71,7 @@
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
       <option name="targetType" value="PATH" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
