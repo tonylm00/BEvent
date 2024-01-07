@@ -202,7 +202,7 @@ def elimina_servizio():
     response = make_response(jsonify({"messaggio": messaggio}))
     response.set_cookie('carrello', carrello_serializzato, httponly=True, path='/', max_age=60 * 60 * 24 * 31)
 
-    return redirect(url_for('/visualizza_riepilogo'))
+    return redirect('/visualizza_riepilogo')
 
 
 '''
