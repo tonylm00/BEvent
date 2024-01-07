@@ -61,6 +61,7 @@ def modifica(nuovi_dati, servizio_id):
     result = servizi_collection.update_one(
         {"_id": ObjectId(servizio_id)},
         {"$set": campi_da_modificare}
+
     )
     return result.modified_count
 

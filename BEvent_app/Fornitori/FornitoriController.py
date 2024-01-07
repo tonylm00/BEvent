@@ -15,6 +15,7 @@ def visualizza():  # put application's code here
     id_fornitore = session['id']
     dati = get_tutti_dati(id_fornitore)
     servizi = get_tutti_servizi(id_fornitore)
+
     return fornitore_page(servizi=servizi,dati=dati)
 
 @Fornitori.route('/dati_fornitori', methods=['GET', 'POST'])
