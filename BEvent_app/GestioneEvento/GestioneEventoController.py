@@ -185,7 +185,7 @@ def visualizza_riepilogo():
     return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
 
 
-@ge.route('/elimina_servizio', methods=['POST'])
+@ge.route('/elimina_servizio', methods=['GET','POST'])
 def elimina_servizio():
     id_servizio = request.form.get('id_servizio')
 
