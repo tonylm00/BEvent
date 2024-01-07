@@ -55,6 +55,29 @@ def filtro_categoria():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
+@ge.route('/filtro_regione', methods=['POST'])
+def filtro_regione():
+    try:
+        data = request.get_json()
+        data_evento = session['data_evento']
+
+        if 'regione' in data:
+            regione = data['regione']
+            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_regione_liste(regione, data_evento)
+
+            if servizi_filtrati and fornitori_filtrati:
+                return jsonify({
+                    "servizi_filtrati": servizi_filtrati,
+                    "fornitori_filtrati": fornitori_filtrati
+                }), 200
+            else:
+                return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
+
+        else:
+            return jsonify({"errore": "Parametro 'regione' non presente nei dati JSON"}), 400
+
+    except Exception as e:
+        return jsonify({"errore": str(e)}), 500
 
 @ge.route('/filtro_barra_ricerca', methods=['GET', 'POST'])
 def filtro_barra_ricerca():
@@ -148,6 +171,7 @@ def visualizza_riepilogo():
     cookie_carrello = request.cookies.get('carrello')
 
     carrello = json.loads(cookie_carrello)
+    print(carrello)
 
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 

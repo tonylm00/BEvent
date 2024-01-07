@@ -100,6 +100,20 @@ def filtro_categoria_liste(categoria, data):
     return servizi_filtrati, fornitori_filtrati
 
 
+def filtro_regione_liste(regione, data):
+    servizi = get_servizi()
+    fornitori_non_filtrati = get_fornitori_disponibli(data)
+    servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
+
+    servizi_filtrati = [servizio for servizio in servizi_non_filtrati if servizio.tipo == regione]
+
+    id_fornitori = set(servizio.fornitore_associato for servizio in servizi_filtrati)
+
+    fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if fornitore.id in id_fornitori]
+
+    return servizi_filtrati, fornitori_filtrati
+
+
 def filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati):
     id_fornitori = set(fornitore.id for fornitore in fornitori_filtrati)
 
@@ -213,7 +227,8 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
     if lista_servizi:
         for servizio in lista_servizi:
             fornitore = get_fornitore_by_id(servizio.fornitore_associato)
-            lista_fornitori.append(fornitore)
+            if fornitore not in lista_fornitori:
+                lista_fornitori.append(fornitore)
 
     return lista_servizi, lista_fornitori
 
