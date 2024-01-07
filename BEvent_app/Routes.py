@@ -8,25 +8,19 @@ views = Blueprint('views', __name__)
 
 
 @views.route('/fornitore_page')
-# @login_required
-def fornitore_page(servizi=None):
-    return render_template('AreaFornitore.html', servizi=servizi)
+#@login_required
+def fornitore_page(servizi=None,dati=None):
+    return render_template('AreaFornitore.html', servizi=servizi, dati=dati)
 
 
 @views.route('/organizzatore_page')
-# @login_required
+#@login_required
 def organizzatore_page():
     return render_template('HomeOrganizzatore.html')
 
 
-@views.route('/area_organizzatore_page')
-# @login_required
-def area_organizzatore_page():
-    return render_template('AreaOrganizzatore.html')
-
-
 @views.route('/admin_page')
-# @login_required
+#@login_required
 def admin_page():
     return render_template('AreaAdmin.html')
 
@@ -63,17 +57,12 @@ def registrazione_organizzatore_page():
 
 
 @views.route('/scelta_evento_da_creare_page')
-# @login_required
+#@login_required
 def scelta_evento_da_creare_page():
     return render_template('SceltaEventoDaCreare.html')
 
 
 @views.route('/SceltaFornitori_page')
-# @login_required
+#@login_required
 def sceltafornitori_page(fornitori=None, servizi=None):
     return render_template('SceltaFornitori.html', fornitori=fornitori, servizi=servizi)
-
-@views.route('/TrovaEventi_page')
-# @login_required
-def trova_eventi_page():
-    return render_template('TrovaEventi.html')

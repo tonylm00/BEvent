@@ -78,6 +78,10 @@ def filtro_barra_ricerca():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
+@ge.route('CagatalogoEventi')
+def CagatalogoEventi():
+
+    return catalogo_eventi_page(eventi=eventi)
 
 @ge.route('/aggiorna_right_column', methods=['POST'])
 def aggiorna_right_column():
