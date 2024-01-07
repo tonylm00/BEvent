@@ -173,7 +173,7 @@ def salva_nel_carrello():
         return jsonify({"errore": str(e)}), 500
 
 
-@ge.route('/visualizza_riepilogo', methods=['POST'])
+@ge.route('/visualizza_riepilogo', methods=['GET','POST'])
 def visualizza_riepilogo():
     cookie_carrello = request.cookies.get('carrello')
 
@@ -185,7 +185,7 @@ def visualizza_riepilogo():
     return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
 
 
-@ge.route('/elimina_servizio', methods=['GET','POST'])
+@ge.route('/elimina_servizio', methods=['POST'])
 def elimina_servizio():
     id_servizio = request.form.get('id_servizio')
 
