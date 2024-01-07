@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from flask import request, Blueprint, session, flash, jsonify, make_response, redirect
+from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page
 from BEvent_app.Utils import Image
@@ -55,6 +55,7 @@ def filtro_categoria():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
+
 @ge.route('/filtro_regione', methods=['POST'])
 def filtro_regione():
     try:
@@ -78,6 +79,7 @@ def filtro_regione():
 
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
+
 
 @ge.route('/filtro_barra_ricerca', methods=['GET', 'POST'])
 def filtro_barra_ricerca():
@@ -105,10 +107,11 @@ def filtro_barra_ricerca():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
+
 @ge.route('CagatalogoEventi')
 def CagatalogoEventi():
-
     return catalogo_eventi_page(eventi=eventi)
+
 
 @ge.route('/aggiorna_right_column', methods=['POST'])
 def aggiorna_right_column():
@@ -184,26 +187,22 @@ def visualizza_riepilogo():
 
 @ge.route('/elimina_servizio', methods=['POST'])
 def elimina_servizio():
-    data = request.json.get('data')
-    try:
-        id_servizio = data['id_servizio']
+    id_servizio = request.form.get('id_servizio')
 
-        carrello_cookie = request.cookies.get('carrello')
-        carrello = json.loads(carrello_cookie)
+    carrello_cookie = request.cookies.get('carrello')
+    carrello = json.loads(carrello_cookie)
 
-        if id_servizio in carrello:
-            carrello.remove(id_servizio)
-            messaggio = "Servizio rimosso dal carrello"
-        else:
-            messaggio = "Servizio non trovato nel carrello"
+    if id_servizio in carrello:
+        carrello.remove(id_servizio)
+        messaggio = "Servizio rimosso dal carrello"
+    else:
+        messaggio = "Servizio non trovato nel carrello"
+    print(carrello)
+    carrello_serializzato = json.dumps(carrello)
+    response = make_response(jsonify({"messaggio": messaggio}))
+    response.set_cookie('carrello', carrello_serializzato, httponly=True, path='/', max_age=60 * 60 * 24 * 31)
 
-        carrello_serializzato = json.dumps(carrello)
-        response = make_response(jsonify({"messaggio": messaggio}))
-        response.set_cookie('carrello', carrello_serializzato, httponly=True, max_age=60 * 60 * 24 * 31)
-        return redirect('/visualizza_riepilogo')
-    except Exception as e:
-        return jsonify({"errore": str(e)}), 500
-
+    return redirect(url_for('/visualizza_riepilogo'))
 
 
 '''
