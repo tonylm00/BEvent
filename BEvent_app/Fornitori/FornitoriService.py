@@ -6,7 +6,7 @@ from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
 
 
-def get_tutti_servizi(id_fornitore):
+def get_tutti_servizi_byFornitore(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore}))
@@ -19,7 +19,7 @@ def get_tutti_servizi(id_fornitore):
 
     return lista_servizi
 
-def get_tutti_dati(id_fornitore):
+def get_dati_fornitore(id_fornitore):
     db = get_db()
     user_data = db['Utente'].find_one({"_id":ObjectId(id_fornitore)})
     fornitore = Fornitore(user_data,user_data)
@@ -43,10 +43,11 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
         return f"Si è verificato un errore: {e}"
 
 
-def elimina(servizio_id):
+def elimina_servizio(servizio_id):
     db = get_db()
+    servizi = db['Servizio Offerto']
     try:
-        result = db.ServizioOfferto.delete_one({"_id": ObjectId(servizio_id)})
+        result = servizi.delete_one({"_id": ObjectId(servizio_id)})
         print("Risultato eliminazione:", result.raw_result)
         return result.deleted_count
     except Exception as e:
@@ -54,7 +55,7 @@ def elimina(servizio_id):
         return 0
 
 
-def modifica(nuovi_dati, servizio_id):
+def modifica_servizio(nuovi_dati, servizio_id):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
@@ -65,6 +66,8 @@ def modifica(nuovi_dati, servizio_id):
     return result.modified_count
 
 
-def aggiungi(nuovi_dati):
+def aggiungi_servizio(nuovi_dati):
     db = get_db()
     db['Servizio Offerto'].insert_one(nuovi_dati)
+
+

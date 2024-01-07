@@ -217,19 +217,19 @@
             <tr>
             <form method="POST" action="/modifica_servizio">
                 <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
-                <td><input type="text" name="tipo" value="{{ servizio.tipo }} "></td>
-                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }} "></td>
+                <td><input type="text" name="tipo" value="{{ servizio.tipo }}"></td>
+                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }}"></td>
                 <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
 
                 <!-- <td><input type="text" name="foto"  value="{{ servizio.foto_servizio }}"></td> -->
                 <td><input type="text" name="elimina"></td>
                 <td>   <button type="submit" name="servizio_id" value="{{ servizio._id }}"> modifica </button></td>
             </form>
-                <td> <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}"><lord-icon
+                <td> <form method="POST" action="/elimina_servizio">  <button type="submit" value="{{ servizio._id }}" name="servizio_id"> <lord-icon
                  src="https://cdn.lordicon.com/wpyrrmcq.json"
                  trigger="hover"
                  style="width:25px;height:25px;background-color: white">
-                </lord-icon></a></button></td>
+                </lord-icon></a></button> </form></td>
 
             </tr>
 
