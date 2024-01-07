@@ -53,6 +53,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
             return servizio.fornitore_associato === fornitore.id;
         });
 
+
         // Crea l'HTML per la card del fornitore
         let cardHTML = `
         <div class="container">

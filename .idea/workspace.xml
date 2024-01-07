@@ -4,19 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Modifica Fornitori Controller">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_23__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_23__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_12_2023_16_52__Changes_.xml" afterDir="false" />
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/Evento.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/Evento.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPrivato.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPrivato.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPubblico.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/EventoPubblico.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/ServizioOfferto.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/ServizioOfferto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/js/AjaxSwapCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/SceltaFornitori.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -47,16 +57,12 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Flask server.BEvent.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -65,7 +71,6 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -74,7 +79,6 @@
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
       <option name="targetType" value="PATH" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -86,13 +90,6 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,9 +107,12 @@
       <workItem from="1704363282119" duration="3281000" />
       <workItem from="1704399460847" duration="13725000" />
       <workItem from="1704413669491" duration="5325000" />
-      <workItem from="1704460353329" duration="5812000" />
-      <workItem from="1704556084732" duration="4194000" />
-      <workItem from="1704560313875" duration="2009000" />
+      <workItem from="1704460353329" duration="20377000" />
+      <workItem from="1704488016035" duration="12716000" />
+      <workItem from="1704537931975" duration="14396000" />
+      <workItem from="1704559869241" duration="14647000" />
+      <workItem from="1704589769819" duration="211000" />
+      <workItem from="1704625494441" duration="6315000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -226,15 +226,103 @@
       <option name="project" value="LOCAL" />
       <updated>1704464464430</updated>
     </task>
-    <task id="LOCAL-00015" summary="Modifica Fornitori Controller">
+    <task id="LOCAL-00015" summary="Modifica sessioine">
       <option name="closed" value="true" />
-      <created>1704635518939</created>
+      <created>1704466298720</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1704635518939</updated>
+      <updated>1704466298720</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore">
+      <option name="closed" value="true" />
+      <created>1704479201318</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1704479201318</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commit inutile">
+      <option name="closed" value="true" />
+      <created>1704480241098</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1704480241098</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi">
+      <option name="closed" value="true" />
+      <created>1704500668789</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704500668789</updated>
+    </task>
+    <task id="LOCAL-00019" summary="ho creato la funzione ajax per lo swap delle card">
+      <option name="closed" value="true" />
+      <created>1704546540757</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1704546540757</updated>
+    </task>
+    <task id="LOCAL-00020" summary="leggera modifcia alle funzioni ajax">
+      <option name="closed" value="true" />
+      <created>1704547816200</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1704547816200</updated>
+    </task>
+    <task id="LOCAL-00021" summary="leggera modifcia alle funzioni ajax">
+      <option name="closed" value="true" />
+      <created>1704548274870</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1704548274870</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix della funzione registrazione">
+      <option name="closed" value="true" />
+      <created>1704553460880</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1704553460880</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies">
+      <option name="closed" value="true" />
+      <created>1704568119741</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704568119741</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies">
+      <option name="closed" value="true" />
+      <created>1704568299488</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1704568299488</updated>
+    </task>
+    <task id="LOCAL-00025" summary="collegamento forntend e backend">
+      <option name="closed" value="true" />
+      <created>1704575168541</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1704575168541</updated>
+    </task>
+    <task id="LOCAL-00026" summary="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento">
+      <option name="closed" value="true" />
+      <created>1704576873302</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1704576873302</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,12 +353,23 @@
     <MESSAGE value="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati" />
     <MESSAGE value="modifica area fornitore" />
     <MESSAGE value="Modifica Fornitori Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifica Fornitori Controller" />
+    <MESSAGE value="Modifica sessioine" />
+    <MESSAGE value="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore" />
+    <MESSAGE value="commit inutile" />
+    <MESSAGE value="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi" />
+    <MESSAGE value="ho creato la funzione ajax per lo swap delle card" />
+    <MESSAGE value="leggera modifcia alle funzioni ajax" />
+    <MESSAGE value="fix della funzione registrazione" />
+    <MESSAGE value="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies" />
+    <MESSAGE value="collegamento forntend e backend" />
+    <MESSAGE value="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento" />
+    <option name="LAST_COMMIT_MESSAGE" value="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
+    <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704561575672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704628483316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
   </component>
 </project>
