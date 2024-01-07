@@ -4,15 +4,54 @@
     <meta charset="UTF-8">
     <title>Visualizzazione Eventi</title>
 
-        <link rel="stylesheet" href="../static/style/TrovaEventi.css">
+        <link rel="stylesheet" href="../static/style/RiepilogoScelte.css">
 </head>
-<body>
+<body  style="height: 100%; overflow: hidden">
 <header>
 {% include 'Header.html' %}
 </header>
 
 <p class="projTitle textGradient">Il Tuo Riepilogo!</p>
 
+<div class="container-principale">
+    <div class="grid-container watch fade-in">
+        <div class="grid watch fade-in">
 
+            {% for servizio in servizi %}
+                    <div class="container2 watch fade-in ">
+                    <div class="card2">
+                        <div class="face3 face4">
+                            <div class="content2">
+                                <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
+                                <h3>{{ servizio.tipo }} </h3>
+                            </div>
+                        </div>
+                        <div class="face3 face5">
+                            <div class="content2">
+                                <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
+                                <p> <br></p>
+                                    <button style="border: none; background: transparent" id="{{ servizio.id }}"> <a href="#">{% for fornitore in fornitori %} {% if fornitore.id == servizio.fornitore_associato %}
+                            {{ fornitore.nome_utente }} {% endif %} {% endfor %}</a></button>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+            {% endfor %}
+
+
+            </div>
+    </div>
+
+
+
+<div class="container-bottoni " >
+    <button>Salva bozza</button>
+    <button class="button2">Prenota</button>
+    <button>Elimina Evento</button>
+</div>
+</div>
+<script src="../static/js/SceltaFornitore2.js"></script>
 </body>
 </html>
