@@ -18,11 +18,13 @@ def visualizza():  # put application's code here
 
     return fornitore_page(servizi=servizi)
 
+
 @Fornitori.route('/dati_fornitori', methods=['GET', 'POST'])
 def visualizza_dati_fornitore():  # put application's code here
     id_fornitore = session['id']
-    dati=get_tutti_dati(id_fornitore)
+    dati = get_tutti_dati(id_fornitore)
     return fornitore_page(dati=dati)
+
 
 @Fornitori.route('/aggiungi_foto_fornitore', methods=['POST'])
 def aggiungi_foto_fornitore():

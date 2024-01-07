@@ -147,7 +147,7 @@
 
         <div class="right-column">
         <div class="riepilogo-container watch fade-in">
-            <form target="_blank" method="post" action="">
+            <form style="width: 100%" target="_blank" method="post" action="/visualizza_riepilogo">
                 <button class="bookmarkBtn">
                   <span class="IconContainer">
                     <svg viewBox="0 0 384 512" height="0.9em" class="icon">
@@ -184,7 +184,7 @@
                     <div class="face3 face5">
                         <div class="content2">
                             <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
-                                <button style="border: none; background: transparent" id="{{ servizio._id }}" onclick="salvaServizio('{{ servizio._id }}')"> <a href="#">Prenota</a></button>
+                                <button style="border: none; background: transparent" id="{{ servizio.id }}" onclick="salvaServizio('{{ servizio.id }}')"> <a href="#">Prenota</a></button>
                         </div>
                     </div>
                 </div>

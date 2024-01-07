@@ -4,6 +4,7 @@ from datetime import datetime
 from flask import request, Blueprint, session, flash, jsonify, make_response
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page
+from BEvent_app.Utils import Image
 
 ge = Blueprint('ge', __name__)
 
@@ -148,18 +149,34 @@ def visualizza_riepilogo():
 
     carrello = json.loads(cookie_carrello)
 
-    lista_servizi = []
-
-    for id_servizio in carrello:
-        servizio = GestioneEventoService.get_servizio_by_id(id_servizio)
-        lista_servizi.append(servizio)
-
-    lista_fornitori = []
-
-    if lista_servizi:
-        for servizio in lista_servizi:
-            fornitore = GestioneEventoService.get_fornitore_by_id(servizio.fornitore_associato)
-            lista_fornitori.append(fornitore)
+    lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 
     return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
 
+
+'''
+@ge.route('/aggiungi_foto_evento', methods=['POST'])
+def aggiungi_foto_evento():
+    file = request.files.get('photo')
+    id_evento = request.form.get('id_evento')
+
+    byte_arrays = []
+    byte_array = Image.convert_image_to_byte_array(file.read())
+    byte_arrays.append(byte_array)
+
+    risultato = GestioneEventoService.aggiungi_foto(byte_arrays, id_evento)
+
+
+@ge.route('/salva_evento_db', methods=['POST'])
+def 
+'''
+
+@ge.route('/salva_evento_come_bozza', methods=['POST'])
+def salva_evento_come_bozza():
+    cookie_carrello = request.cookies.get('carrello')
+    data_evento = session['data_evento']
+    tipo_evento = session['tipo_evento']
+    n_invitati = session['n_invitati']
+
+    carrello = json.loads(cookie_carrello)
+    lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from bson import ObjectId
 from flask import flash
 
 from ..db import get_db
@@ -39,7 +40,7 @@ def get_fornitori_disponibli(data_richiesta):
                                 "$and": [
                                     {"$eq": ["$$fornitore_id_str", "$Evento.fornitori_associati"]},
                                     {"$eq": ["$Evento.Data", data_richiesta]},
-                                    {"$eq": ["$Evento.isPagato", True]}  # Aggiungi questa condizione se applicabile
+                                    {"$eq": ["$Evento.isPagato", True]}
                                 ]
                             }
                         }
@@ -67,7 +68,7 @@ def get_fornitori_disponibli(data_richiesta):
     for data in fornitori_disponibili:
         fornitore = Fornitore(data, data)
         lista_fornitori.append(fornitore)
-    print(lista_fornitori)
+
     return lista_fornitori
 
 
@@ -187,13 +188,31 @@ def servizio_serializer(servizio):
 
 def get_servizio_by_id(id_servizio):
     db = get_db()
-    servizio_data = db["Servizio Offerto"].find_one({"_id": id_servizio})
+    id_servizio_obj = ObjectId(id_servizio)
+    servizio_data = db["Servizio Offerto"].find_one({"_id": id_servizio_obj})
     servizio = Servizio_Offerto(servizio_data)
     return servizio
 
 
 def get_fornitore_by_id(id_fornitore):
     db = get_db()
-    fornitore_data = db['Utente'].find_one({"_id": id_fornitore})
+    id_fornitore_obj = ObjectId(id_fornitore)
+    fornitore_data = db['Utente'].find_one({"_id": id_fornitore_obj})
     fornitore = Fornitore(fornitore_data, fornitore_data)
     return fornitore
+
+
+def ottieni_servizi_e_fornitori_cookie(carrello):
+    lista_servizi = []
+
+    for id_servizio in carrello:
+        servizio = get_servizio_by_id(id_servizio)
+        lista_servizi.append(servizio)
+
+    lista_fornitori = []
+    if lista_servizi:
+        for servizio in lista_servizi:
+            fornitore = get_fornitore_by_id(servizio.fornitore_associato)
+            lista_fornitori.append(fornitore)
+
+    return lista_servizi, lista_fornitori

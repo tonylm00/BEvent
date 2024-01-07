@@ -49,7 +49,7 @@ function aggiornaDOM(data) {
                         <div class="face3 face5">
                             <div class="content2">
                                 <p>${servizio.descrizione}, ${servizio.prezzo}&euro;</p>
-                                <button style="border: none; background: transparent" id="${servizio._id}" onclick="salvaServizio('${servizio._id}')"> 
+                                <button style="border: none; background: transparent" id="${servizio.id}" onclick="salvaServizio('${servizio.id}')"> 
                                     <a href="#">Prenota</a>
                                 </button>
                             </div>
