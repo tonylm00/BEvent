@@ -169,7 +169,8 @@ def aggiungi_foto_evento():
 
 @ge.route('/salva_evento_db', methods=['POST'])
 def 
-'''
+
+
 
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
@@ -177,6 +178,22 @@ def salva_evento_come_bozza():
     data_evento = session['data_evento']
     tipo_evento = session['tipo_evento']
     n_invitati = session['n_invitati']
+    descrizione = request.form.get('descrizione')
+    nome_festeggiato = request.form.get('nome_festeggiato')
+
+    is_pagato = False
+    ruolo = "2"
+
+    file = request.files.get('photo')
+    if file:
+        foto_byte_array = Image.convert_image_to_byte_array(file.read())
+    else:
+        path_img = "./static/images/" + tipo_evento + ".jpg"
+        foto_byte_array = Image.convert_image_to_byte_array(path_img)
 
     carrello = json.loads(cookie_carrello)
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
+
+    GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
+                                      nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array)
+'''

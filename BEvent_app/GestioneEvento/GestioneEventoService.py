@@ -216,3 +216,9 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
             lista_fornitori.append(fornitore)
 
     return lista_servizi, lista_fornitori
+
+'''
+def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
+                is_pagato, ruolo, foto_byte_array):
+
+'''
