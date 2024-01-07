@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from flask import request, Blueprint, session, flash, jsonify, make_response
+from flask import request, Blueprint, session, flash, jsonify, make_response, redirect
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page
 from BEvent_app.Utils import Image
@@ -182,6 +182,30 @@ def visualizza_riepilogo():
     return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
 
 
+@ge.route('/elimina_servizio', methods=['POST'])
+def elimina_servizio():
+    data = request.json.get('data')
+    try:
+        id_servizio = data['id_servizio']
+
+        carrello_cookie = request.cookies.get('carrello')
+        carrello = json.loads(carrello_cookie)
+
+        if id_servizio in carrello:
+            carrello.remove(id_servizio)
+            messaggio = "Servizio rimosso dal carrello"
+        else:
+            messaggio = "Servizio non trovato nel carrello"
+
+        carrello_serializzato = json.dumps(carrello)
+        response = make_response(jsonify({"messaggio": messaggio}))
+        response.set_cookie('carrello', carrello_serializzato, httponly=True, max_age=60 * 60 * 24 * 31)
+        return redirect('/visualizza_riepilogo')
+    except Exception as e:
+        return jsonify({"errore": str(e)}), 500
+
+
+
 '''
 @ge.route('/aggiungi_foto_evento', methods=['POST'])
 def aggiungi_foto_evento():
@@ -197,9 +221,9 @@ def aggiungi_foto_evento():
 
 @ge.route('/salva_evento_db', methods=['POST'])
 def 
+'''
 
-
-
+'''
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
     cookie_carrello = request.cookies.get('carrello')

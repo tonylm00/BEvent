@@ -31,9 +31,9 @@
                                 <p><b>{% for fornitore in fornitori %} {% if fornitore.id == servizio.fornitore_associato %}
                             {{ fornitore.nome_utente }} {% endif %} {% endfor %}</b></p>
                                 <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
-
+                                    <form action="/elimina_servizio" method="post">
                                     <button style="border: none; background: transparent" id="{{ servizio.id }}" name="id_servizio" value="{{ servizio.id }}"> <a href="#">Elimina Servizio</a></button>
-
+                                    </form>
                             </div>
                         </div>
                     </div>
