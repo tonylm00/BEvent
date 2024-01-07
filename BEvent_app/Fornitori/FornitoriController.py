@@ -13,10 +13,9 @@ Fornitori = Blueprint('Fornitori', __name__)
 @Fornitori.route('/fornitori', methods=['GET', 'POST'])
 def visualizza():  # put application's code here
     id_fornitore = session['id']
-
+    dati = get_tutti_dati(id_fornitore)
     servizi = get_tutti_servizi(id_fornitore)
-
-    return fornitore_page(servizi=servizi)
+    return fornitore_page(servizi=servizi,dati=dati)
 
 @Fornitori.route('/dati_fornitori', methods=['GET', 'POST'])
 def visualizza_dati_fornitore():  # put application's code here
@@ -52,22 +51,20 @@ def elimina_servizio(servizio_id):
     return redirect(url_for('Fornitori.visualizza'))
 
 
-@Fornitori.route('/modifica/<servizio_id>', methods=['POST'])
-def modifica_servizio(servizio_id):
+@Fornitori.route('/modifica_servizio/', methods=['POST'])
+def modifica_servizio():
     nuovi_dati = {
         "Descrizione": request.form.get("descrizione"),
         "Tipo": request.form.get("tipo"),
         "Prezzo": request.form.get("prezzo"),
-        "DisponibilitàDataInizio": request.form.get("data_inizio"),
-        "DisponibilitàDataFine": request.form.get("data_fine"),
         "Quantità": request.form.get("quantità"),
         "FotoServizio": request.form.get("foto_servizio"),
-        "fornitore_associato": request.form.get("fornitore_associato")
+        "fornitore_associato":  session["id"]
 
     }
-
-    modifica(nuovi_dati, servizio_id)
-    return fornitore_page()
+    print(nuovi_dati)
+    modifica(nuovi_dati, request.form.get("servizio_id"))
+    return visualizza()
 
 
 @Fornitori.route('/aggiungi_servizio', methods=['POST'])
@@ -92,8 +89,9 @@ def aggiungi_servizio():
         "Prezzo": request.form.get("prezzo"),
         "Quantità": request.form.get("quantità"),
         "FotoServizio": byte_arrays_bytes,
+        "FotoServizio": byte_arrays_bytes,
         "fornitore_associato": fornitore_associato
     }
 
     aggiungi(nuovi_dati)
-    return home()
+    return visualizza()

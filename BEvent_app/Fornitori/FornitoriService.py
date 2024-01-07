@@ -20,9 +20,9 @@ def get_tutti_servizi(id_fornitore):
     return lista_servizi
 
 def get_tutti_dati(id_fornitore):
-    db=get_db()
-    user_data= db['Utente'].find({"_id":id_fornitore})
-    fornitore= Fornitore(user_data,user_data)
+    db = get_db()
+    user_data = db['Utente'].find_one({"_id":ObjectId(id_fornitore)})
+    fornitore = Fornitore(user_data,user_data)
     return fornitore
 
 
@@ -56,9 +56,11 @@ def elimina(servizio_id):
 
 def modifica(nuovi_dati, servizio_id):
     db = get_db()
-    result = db.ServizioOfferto.update_one(
+    servizi_collection = db['Servizio Offerto']
+    campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
+    result = servizi_collection.update_one(
         {"_id": ObjectId(servizio_id)},
-        {"$set": nuovi_dati}
+        {"$set": campi_da_modificare}
     )
     return result.modified_count
 
