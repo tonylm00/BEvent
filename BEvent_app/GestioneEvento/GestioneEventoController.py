@@ -1,18 +1,11 @@
 import json
-import os
 from datetime import datetime
-from importlib.metadata import files
 
 from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
-
-from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
     organizzatore_page
 from BEvent_app.Utils import Image
-from PIL import Image
-
-from flask import current_app as app
 
 ge = Blueprint('ge', __name__)
 
@@ -115,12 +108,12 @@ def filtro_barra_ricerca():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
-'''
+
 @ge.route('CagatalogoEventi')
 def CagatalogoEventi():
     return catalogo_eventi_page(eventi=eventi)
 
-'''
+
 @ge.route('/aggiorna_right_column', methods=['POST'])
 def aggiorna_right_column():
     data = request.get_json()
@@ -156,27 +149,25 @@ def salva_nel_carrello():
     try:
         if 'id_servizio' in data:
             id_servizio = data['id_servizio']
-            if id_servizio != '':
-                carrello_cookie = request.cookies.get('carrello')
 
-                if carrello_cookie:
-                    carrello = json.loads(carrello_cookie)
-                else:
-                    carrello = []
+            carrello_cookie = request.cookies.get('carrello')
 
-                if id_servizio not in carrello:
-                    carrello.append(id_servizio)
-                    messaggio = "Servizio aggiunto al carrello"
-                else:
-                    messaggio = "Servizio già presente nel carrello"
-
-                carrello_serializzato = json.dumps(carrello)
-
-                response = make_response(jsonify(messaggio))
-                response.set_cookie('carrello', carrello_serializzato, httponly=True, max_age=60 * 60 * 24 * 31)
-                return response
+            if carrello_cookie:
+                carrello = json.loads(carrello_cookie)
             else:
-                return jsonify({"errore nel passaggio del parametro"}), 500
+                carrello = []
+
+            if id_servizio not in carrello:
+                carrello.append(id_servizio)
+                messaggio = "Servizio aggiunto al carrello"
+            else:
+                messaggio = "Servizio già presente nel carrello"
+
+            carrello_serializzato = json.dumps(carrello)
+
+            response = make_response(jsonify(messaggio))
+            response.set_cookie('carrello', carrello_serializzato, httponly=True, max_age=60 * 60 * 24 * 31)
+            return response
         else:
             return jsonify({"errore nel passaggio del parametro"}), 500
     except Exception as e:
@@ -187,8 +178,8 @@ def salva_nel_carrello():
 def visualizza_riepilogo():
     cookie_carrello = request.cookies.get('carrello')
     if cookie_carrello:
-
         carrello = json.loads(cookie_carrello)
+
         lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
     else:
         lista_servizi = None
@@ -229,6 +220,16 @@ def annulla_creazione_evento():
     return response
 
 
+
+@ge.route('/elimina_evento/<id_evento>', methods=['POST'])
+def elimina_evento_route():
+    id_evento=request.form.get('id_evento')
+    successo, mail = GestioneEventoService.elimina_evento( id_evento)
+
+    flash(mail, 'success' if successo else 'error')
+    return redirect(url_for('funzione_di_redirect'))
+
+
 '''
 @ge.route('/aggiungi_foto_evento', methods=['POST'])
 def aggiungi_foto_evento():
@@ -246,7 +247,7 @@ def aggiungi_foto_evento():
 def 
 '''
 
-
+'''
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
     cookie_carrello = request.cookies.get('carrello')
@@ -255,35 +256,20 @@ def salva_evento_come_bozza():
     n_invitati = session['n_invitati']
     descrizione = request.form.get('descrizione')
     nome_festeggiato = request.form.get('nome_festeggiato')
-    prezzo = request.form.get('prezzo')
+
     is_pagato = False
     ruolo = "2"
-    id_organizzatore = session['id']
 
     file = request.files.get('photo')
     if file:
         foto_byte_array = Image.convert_image_to_byte_array(file.read())
     else:
-        path_img = os.path.join(app.root_path, 'static', 'images', tipo_evento + '.jpg')
-        with open(path_img, 'rb') as img_file:
-            image_content = img_file.read()
-        foto_byte_array = Utils.Image.convert_image_to_byte_array(image_content)
+        path_img = "./static/images/" + tipo_evento + ".jpg"
+        foto_byte_array = Image.convert_image_to_byte_array(path_img)
 
     carrello = json.loads(cookie_carrello)
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 
-    evento = GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
-                                               nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array, prezzo,
-                                               id_organizzatore)
-
-    if evento:
-        session.pop('data_evento', None)
-        session.pop('tipo_evento', None)
-        session.pop('n_invitati', None)
-        response = make_response(redirect(url_for('views.organizzatore_page')))
-        response.set_cookie('carrello', '', expires=0, httponly=True)
-        flash("Evento salvato con successo!", "success")
-        return response
-    else:
-        flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
-        return redirect('/visualizza_riepilogo')
+    GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
+                                      nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array)
+'''

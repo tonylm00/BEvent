@@ -1,5 +1,3 @@
-// Script per l'apertura e la chiusura della modale
-
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('uploadForm');
 
