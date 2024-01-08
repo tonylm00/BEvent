@@ -40,7 +40,7 @@ def visualizza_controller():  # put application's code here
     id_fornitore = session["id"]
     dati = get_dati_fornitore(id_fornitore)
     servizi = get_tutti_servizi_byFornitore(id_fornitore)
-    return fornitore_page(servizi=servizi,dati=dati)
+    return fornitore_page(servizi=servizi, dati=dati)
 
 @Fornitori.route('/aggiungi_foto_fornitore', methods=['POST'])
 def aggiungi_foto_fornitore_controller():

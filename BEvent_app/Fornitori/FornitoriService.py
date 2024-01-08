@@ -33,7 +33,7 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
 
         result = collection.update_one(
             {"_id": ObjectId(id_fornitore)},
-            {"$set": {"Fornitore.Foto": byte_arrays_bytes}}
+            {"$push": {"Fornitore.Foto": {"$each": byte_arrays_bytes}}}
         )
         if result.modified_count > 0:
             return "Foto aggiornata con successo"

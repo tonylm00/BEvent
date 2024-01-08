@@ -108,7 +108,7 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
     user_data = None
     if ruolo == "1":
         user_data = {
-            '_id': ObjectId(),  # Genera un nuovo ObjectId
+            '_id': ObjectId(),
             'nome': nome,
             'cognome': cognome,
             'data_di_nascita': data_formattata,
@@ -123,7 +123,7 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
         }
     else:
         user_data = {
-            '_id': ObjectId(),  # Genera un nuovo ObjectId
+            '_id': ObjectId(),
             'nome': nome,
             'cognome': cognome,
             'data_di_nascita': data_formattata,
