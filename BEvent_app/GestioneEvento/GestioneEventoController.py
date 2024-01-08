@@ -197,12 +197,13 @@ def elimina_servizio():
         messaggio = "Servizio rimosso dal carrello"
     else:
         messaggio = "Servizio non trovato nel carrello"
-    print(carrello)
+
+    lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
     carrello_serializzato = json.dumps(carrello)
-    response = make_response(jsonify({"messaggio": messaggio}))
+    response = make_response(redirect('/visualizza_riepilogo'))
     response.set_cookie('carrello', carrello_serializzato, httponly=True, path='/', max_age=60 * 60 * 24 * 31)
 
-    return redirect('/visualizza_riepilogo')
+    return response
 
 
 '''

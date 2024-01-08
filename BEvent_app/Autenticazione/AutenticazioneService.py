@@ -24,6 +24,7 @@ def verify_user(email, password):
             utente = Fornitore(user_data, user_data)
 
         if utente.check_password(password):
+            print("prova")
             return utente  # Ritorna l'istanza dell'utente
     else:
         return None
