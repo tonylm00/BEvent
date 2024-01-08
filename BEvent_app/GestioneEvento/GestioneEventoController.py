@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from flask import request, Blueprint, session, flash, jsonify, make_response
+from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page
 from BEvent_app.Utils import Image
@@ -56,6 +56,31 @@ def filtro_categoria():
         return jsonify({"errore": str(e)}), 500
 
 
+@ge.route('/filtro_regione', methods=['POST'])
+def filtro_regione():
+    try:
+        data = request.get_json()
+        data_evento = session['data_evento']
+
+        if 'regione' in data:
+            regione = data['regione']
+            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_regione_liste(regione, data_evento)
+
+            if servizi_filtrati and fornitori_filtrati:
+                return jsonify({
+                    "servizi_filtrati": servizi_filtrati,
+                    "fornitori_filtrati": fornitori_filtrati
+                }), 200
+            else:
+                return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
+
+        else:
+            return jsonify({"errore": "Parametro 'regione' non presente nei dati JSON"}), 400
+
+    except Exception as e:
+        return jsonify({"errore": str(e)}), 500
+
+
 @ge.route('/filtro_barra_ricerca', methods=['GET', 'POST'])
 def filtro_barra_ricerca():
     try:
@@ -81,6 +106,11 @@ def filtro_barra_ricerca():
 
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
+
+
+@ge.route('CagatalogoEventi')
+def CagatalogoEventi():
+    return catalogo_eventi_page(eventi=eventi)
 
 
 @ge.route('/aggiorna_right_column', methods=['POST'])
@@ -143,15 +173,36 @@ def salva_nel_carrello():
         return jsonify({"errore": str(e)}), 500
 
 
-@ge.route('/visualizza_riepilogo', methods=['POST'])
+@ge.route('/visualizza_riepilogo', methods=['GET','POST'])
 def visualizza_riepilogo():
     cookie_carrello = request.cookies.get('carrello')
 
     carrello = json.loads(cookie_carrello)
+    print(carrello)
 
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 
     return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
+
+
+@ge.route('/elimina_servizio', methods=['POST'])
+def elimina_servizio():
+    id_servizio = request.form.get('id_servizio')
+
+    carrello_cookie = request.cookies.get('carrello')
+    carrello = json.loads(carrello_cookie)
+
+    if id_servizio in carrello:
+        carrello.remove(id_servizio)
+        messaggio = "Servizio rimosso dal carrello"
+    else:
+        messaggio = "Servizio non trovato nel carrello"
+    print(carrello)
+    carrello_serializzato = json.dumps(carrello)
+    response = make_response(jsonify({"messaggio": messaggio}))
+    response.set_cookie('carrello', carrello_serializzato, httponly=True, path='/', max_age=60 * 60 * 24 * 31)
+
+    return redirect('/visualizza_riepilogo')
 
 
 '''
@@ -169,9 +220,9 @@ def aggiungi_foto_evento():
 
 @ge.route('/salva_evento_db', methods=['POST'])
 def 
+'''
 
-
-
+'''
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
     cookie_carrello = request.cookies.get('carrello')

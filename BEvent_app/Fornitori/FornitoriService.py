@@ -6,10 +6,10 @@ from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
 
 
-def get_tutti_servizi(id_fornitore):
+def get_tutti_servizi_byFornitore(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore}))
+    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore, 'isCurrentVersion': True,'isDeleted': False}))
 
     lista_servizi = []
 
@@ -19,10 +19,10 @@ def get_tutti_servizi(id_fornitore):
 
     return lista_servizi
 
-def get_tutti_dati(id_fornitore):
-    db=get_db()
-    user_data= db['Utente'].find({"_id":id_fornitore})
-    fornitore= Fornitore(user_data,user_data)
+def get_dati_fornitore(id_fornitore):
+    db = get_db()
+    user_data = db['Utente'].find_one({"_id":ObjectId(id_fornitore)})
+    fornitore = Fornitore(user_data,user_data)
     return fornitore
 
 
@@ -43,26 +43,36 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
         return f"Si è verificato un errore: {e}"
 
 
-def elimina(servizio_id):
+def elimina_servizio(servizio_id):
     db = get_db()
-    try:
-        result = db.ServizioOfferto.delete_one({"_id": ObjectId(servizio_id)})
-        print("Risultato eliminazione:", result.raw_result)
-        return result.deleted_count
-    except Exception as e:
-        print("Errore durante l'eliminazione:", e)
-        return 0
+    servizi = db['Servizio Offerto']
+    result = servizi.update_one(
+            {"_id": ObjectId(servizio_id)},
+            {"$set": {"isDeleted": True}}
+        )
+    return result
 
 
-def modifica(nuovi_dati, servizio_id):
+def modifica_servizio(nuovi_dati, servizio_id):
     db = get_db()
-    result = db.ServizioOfferto.update_one(
-        {"_id": ObjectId(servizio_id)},
-        {"$set": nuovi_dati}
-    )
-    return result.modified_count
+    servizi_collection = db['Servizio Offerto']
+    servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
+    if servizio_corrente:
+        servizi_collection.update_one(
+            {"_id": ObjectId(servizio_id)},
+            {"$set": {"isCurrentVersion": False}}
+        )
+    servizio_modificato = servizio_corrente.copy()
+    campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
+    servizio_modificato.update(campi_da_modificare)
+
+    servizio_modificato["isCurrentVersion"] = True;
+    db['Servizio Offerto'].insert_one(servizio_modificato)
 
 
-def aggiungi(nuovi_dati):
+
+def aggiungi_servizio(nuovi_dati):
     db = get_db()
     db['Servizio Offerto'].insert_one(nuovi_dati)
+
+

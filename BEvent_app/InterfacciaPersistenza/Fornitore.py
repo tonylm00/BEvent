@@ -18,7 +18,8 @@ class Fornitore(Utente):
                 self.foto.append(immagine)
             except Exception as e:
                 print(f"Errore nella conversione dell'array di byte in immagine: {str(e)}")
-
+        self.isCurrentVersion = True,
+        self.isDeleted = False,
         self.citta = fornitore_info['Citta']
         self.via = fornitore_info['Via']
         self.p_Iva = fornitore_info['Partita_Iva']
