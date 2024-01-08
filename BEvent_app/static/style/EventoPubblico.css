@@ -92,6 +92,8 @@ textarea:focus {
       color: #fff;
       border: none;
       border-radius: 5px;
+      box-shadow: 5 5 10px rgba(0, 0, 0, 1);
+      padding: 10px;
       cursor: pointer;
       margin-top: 3%;
     }

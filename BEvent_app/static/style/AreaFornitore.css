@@ -192,8 +192,8 @@ img{
 }
 
 .sezione-tabella th {
-    background-color: #f0f0f0;
-    border-bottom: 2px solid #ccc;
+    background-color: #ff9800;
+    border-bottom: 2px solid rgba(213, 129, 5, 0.71);
 }
 
 .sezione-tabella th:first-child, .sezione-tabella td:first-child {
@@ -204,10 +204,23 @@ img{
     width: 8%; /* Più stretta per le altre colonne */
 }
 
+.sezione-tabella img {
+    width: auto;
+    height: 50px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.sezione-tabella tr td:nth-child(6) input[type="text"] {
+    display: none;
+}
+
+
+
 .sezione-tabella input[type="text"] {
     width: 100%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ff8800;
     border-radius: 4px;
 }
 
