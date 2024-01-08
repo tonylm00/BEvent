@@ -11,9 +11,10 @@
 {% include 'Header.html' %}
 </header>
  {% if servizi != None %}
-<p class="projTitle textGradient">Il Tuo Riepilogo!</p>
+<p class="projTitle textGradient watch fade-in">Il Tuo Riepilogo!</p>
 
-<div class="container-principale">
+<div class="container-principale watch fade-in">
+    <div class="left-column watch fade-in">
     <div class="grid-container watch fade-in">
         <div class="grid watch fade-in">
 
@@ -45,13 +46,26 @@
 
             </div>
     </div>
-
-</div>
-
-
- <div style="display:flex; justify-items: flex-end; justify-content: flex-end">
-     <span style="margin-right: 15%"> 45€ </span>
- </div>
+    </div>
+    <div class="right-column">
+    <div style="display:flex; justify-items: flex-end; justify-content: flex-end; width: 100%;">
+        <div>
+        <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
+        <span class="label">Subtotale:</span>
+        <span class="label">Spedizione:</span>
+        <span class="label">Di cui Iva:</span>
+        <span class="label">Totale:</span>
+        </ul>
+        </div>
+        <div style="margin-right: 15%">
+        <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
+        <span class="value">3 &euro;</span>
+        <span class="value">5.00 &euro;</span>
+         </span><span class="value">22%</span>
+        <span class="value">10 &euro;</span>
+        </ul>
+        </div>
+    </div>
 <div class="container-form">
 <form id="formDati" action="" method="post">
     <input type="text" placeholder="Descrizione Evento" class="textarea" name="descrizione" value="">
@@ -61,9 +75,7 @@
 
 <div class="container-bottoni " >
 
-    <form action="/annulla_creazione_evento" method="post"><button class="button" onclick="impostaAzione('Elimina')">Elimina Evento</button></form>
-
-
+    <button class="button" onclick="impostaAzione('Elimina')">Elimina Evento</button>
     <button class="button2"  onclick="impostaAzione('Salva_bozza')">Salva bozza</button>
     <button class="btn" onclick="impostaAzione('Prenota_evento')">
         <span class="icon">
@@ -73,6 +85,12 @@
     </button>
 
 </div>
+    </div>
+</div>
+
+
+
+
 {% else %}
 <p class="projTitle textGradient">Aggiungi Servizi al tuo Evento ❤️!</p>
 {% endif %}

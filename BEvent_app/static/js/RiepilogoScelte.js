@@ -7,7 +7,7 @@
         } else if (azione === 'Prenota_evento') {
             formDati.action = '/Prenota';
          } else if (azione === 'Elimina') {
-            console.log("Il form di eliminazione non è stato inviato.");
+            formDati.action = '/annulla_creazione_evento'
             return;
         }
 
