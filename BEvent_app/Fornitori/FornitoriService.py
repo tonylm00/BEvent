@@ -9,7 +9,7 @@ from ..InterfacciaPersistenza import ServizioOfferto
 def get_tutti_servizi_byFornitore(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore}))
+    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore, 'isCurrentVersion': True,'isDeleted': False}))
 
     lista_servizi = []
 
@@ -46,24 +46,29 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
 def elimina_servizio(servizio_id):
     db = get_db()
     servizi = db['Servizio Offerto']
-    try:
-        result = servizi.delete_one({"_id": ObjectId(servizio_id)})
-        print("Risultato eliminazione:", result.raw_result)
-        return result.deleted_count
-    except Exception as e:
-        print("Errore durante l'eliminazione:", e)
-        return 0
+    result = servizi.update_one(
+            {"_id": ObjectId(servizio_id)},
+            {"$set": {"isDeleted": True}}
+        )
+    return result
 
 
 def modifica_servizio(nuovi_dati, servizio_id):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
+    servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
+    if servizio_corrente:
+        servizi_collection.update_one(
+            {"_id": ObjectId(servizio_id)},
+            {"$set": {"isCurrentVersion": False}}
+        )
+    servizio_modificato = servizio_corrente.copy()
     campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
-    result = servizi_collection.update_one(
-        {"_id": ObjectId(servizio_id)},
-        {"$set": campi_da_modificare}
-    )
-    return result.modified_count
+    servizio_modificato.update(campi_da_modificare)
+
+    servizio_modificato["isCurrentVersion"] = True;
+    db['Servizio Offerto'].insert_one(servizio_modificato)
+
 
 
 def aggiungi_servizio(nuovi_dati):
