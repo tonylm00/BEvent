@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import mail
 from bson import ObjectId
 from flask import flash
 
@@ -275,3 +276,29 @@ def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invi
     evento_privato = Evento_Privato(documento_evento_generico, documento_evento_privato)
 
     return evento_privato
+
+def elimina_evento( id_evento):
+    db=get_db()
+    evento = db.eventi.find_one({"_id": ObjectId(id_evento)})
+    if evento is None:
+        return False, "Evento non trovato"
+
+    if evento:
+        fornitori_associati = evento.get("fornitori_associati", [])
+
+        for id_fornitore in fornitori_associati:
+            fornitore = db.utenti.find_one({"_id": ObjectId(id_fornitore)})
+
+            if fornitore:
+                invia_email_fornitore(fornitore["email"], "Annullamento Evento", "L'evento è stato annullato.")
+
+
+        # Eliminazione dell'evento
+    db.eventi.delete_one({"_id": ObjectId(id_evento)})
+
+    return True, "Evento eliminato e fornitori notificati"
+
+def invia_email_fornitore(destinatario, oggetto, corpo):
+    msg = mail(oggetto, sender="tuo@email.com", recipients=["Fornitore"])
+    msg.body = corpo
+    mail.send(msg)

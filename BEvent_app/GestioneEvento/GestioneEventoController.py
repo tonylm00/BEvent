@@ -287,3 +287,12 @@ def salva_evento_come_bozza():
     else:
         flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
         return redirect('/visualizza_riepilogo')
+
+@ge.route('/elimina_evento/<id_evento>', methods=['POST'])
+def elimina_evento_route():
+    id_evento=request.form.get('id_evento')
+    successo, mail = GestioneEventoService.elimina_evento( id_evento)
+
+    flash(mail, 'success' if successo else 'error')
+    return redirect(url_for('funzione_di_redirect'))
+

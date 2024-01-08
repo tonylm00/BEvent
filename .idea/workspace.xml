@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="funzione annulla creazione evento funzionante">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="implementazione di elimina evento lato back and">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/HomeOrganizzatore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/HomeOrganizzatore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/HomeOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/HomeOrganizzatore.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +48,18 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.AreaOrganizzatore.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.RicercaEvento.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.RiepilogoScelte.html.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -68,14 +68,25 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flask server.BEvent">
+    <configuration name="AreaOrganizzatore.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/AreaOrganizzatore.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="RicercaEvento.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/RicercaEvento.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="RiepilogoScelte.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/RiepilogoScelte.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="BEvent" type="Python.FlaskServer">
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
       <option name="targetType" value="PATH" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -87,6 +98,20 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.RiepilogoScelte.html" />
+        <item itemvalue="JavaScript Debug.RicercaEvento.html" />
+        <item itemvalue="JavaScript Debug.AreaOrganizzatore.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -111,7 +136,9 @@
       <workItem from="1704589769819" duration="211000" />
       <workItem from="1704625494441" duration="10967000" />
       <workItem from="1704668964438" duration="3282000" />
-      <workItem from="1704709764220" duration="15739000" />
+      <workItem from="1704709764220" duration="7582000" />
+      <workItem from="1704738321572" duration="14000" />
+      <workItem from="1704738474982" duration="333000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -385,13 +412,13 @@
       <option name="project" value="LOCAL" />
       <updated>1704718219677</updated>
     </task>
-    <task id="LOCAL-00035" summary="funzione annulla creazione evento funzionante">
+    <task id="LOCAL-00035" summary="implementazione di elimina evento lato back and">
       <option name="closed" value="true" />
-      <created>1704720485357</created>
+      <created>1704738256439</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1704720485357</updated>
+      <updated>1704738256439</updated>
     </task>
     <option name="localTasksCounter" value="36" />
     <servers />
@@ -435,14 +462,16 @@
     <MESSAGE value="commento del slavataggio di evento come bozza" />
     <MESSAGE value="funzione leimina servizio non funzionante" />
     <MESSAGE value="funzione elimina servizio funzionante" />
-    <MESSAGE value="funzione annulla creazione evento funzionante" />
-    <option name="LAST_COMMIT_MESSAGE" value="funzione annulla creazione evento funzionante" />
+    <MESSAGE value="implementazione di elimina evento lato back and" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementazione di elimina evento lato back and" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
-    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704725902443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704727605369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
+    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoService.coverage" NAME="GestioneEventoService Coverage Results" MODIFIED="1704737557888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
+    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoController.coverage" NAME="GestioneEventoController Coverage Results" MODIFIED="1704734563125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
+    <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
+    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
