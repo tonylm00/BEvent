@@ -132,7 +132,7 @@
 }
 
 
-.container2 .card2 .face3.face5 .content2 a{
+.container2 .card2 .face3.face5 .content2 span{
     margin: 15px 0 0;
     display:  inline-block;
     text-decoration: none;
@@ -142,7 +142,7 @@
     border: 1px solid #333;
 }
 
-.container2 .card2 .face3.face5 .content2 a:hover{
+.container2 .card2 .face3.face5 .content2 span:hover{
     background: #333;
     color: #fc6a6a;
 
@@ -158,9 +158,81 @@
 
 }
 
+/* Bottone ELIMINA */
+.button {
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    margin-right: 20px;
+    z-index: 1;
+    color: #090909;
+    font-weight: 600;
+    padding: 0.7em 1.7em;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.button:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.button:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+
+}
+
+.button:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #fc6a6a;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.button:hover {
+    color: #ffffff;
+    border: 1px solid #fc6a6a;
+}
+
+.button:hover:before {
+    top: -35%;
+    background-color: #fc6a6a;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.button:hover:after {
+    top: -45%;
+    background-color: #fc6a6a;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
 
 
-/* Bottone PRENOTA */
+/* Bottone SALVA BOZZA */
 .button2 {
     display: inline-block;
     transition: all 0.2s ease-in;
@@ -233,8 +305,9 @@
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-/* BOTTONE ELIMINA */
+/* BOTTONE PRENOTA */
 .btn {
+    cursor: pointer;
     width: 150px;
     height: 50px;
     margin: 10px;
