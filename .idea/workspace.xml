@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Modifica Fornitori Controller">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="funzione elimina servizio funzionante">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/RiepilogoScelte.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/RiepilogoScelte.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +38,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="d3bee7a4-c265-4d19-95ec-528264d74c07" />
+        <option name="accountId" value="c76dac88-ac2b-4c40-a5d9-5977caf89a82" />
         <option name="url" value="https://github.com/tonylm00/BEvent.git" />
       </UrlAndAccount>
     </option>
@@ -52,33 +50,28 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flask server.BEvent.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BEvent" type="Python.FlaskServer">
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
       <option name="targetType" value="PATH" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -112,7 +105,9 @@
       <workItem from="1704537931975" duration="14396000" />
       <workItem from="1704559869241" duration="14647000" />
       <workItem from="1704589769819" duration="211000" />
-      <workItem from="1704625494441" duration="6315000" />
+      <workItem from="1704625494441" duration="10967000" />
+      <workItem from="1704668964438" duration="3282000" />
+      <workItem from="1704709764220" duration="7582000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -322,15 +317,71 @@
       <option name="project" value="LOCAL" />
       <updated>1704576873302</updated>
     </task>
-    <task id="LOCAL-00027" summary="Modifica Fornitori Controller">
+    <task id="LOCAL-00027" summary="fix della funzione per la pagina di visualizzazione ripeilogo, creazione delle interfacce di persistenza di evento, evento pubblico ed evento privato">
       <option name="closed" value="true" />
-      <created>1704639667317</created>
+      <created>1704633220963</created>
       <option name="number" value="00027" />
       <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1704639667317</updated>
+      <updated>1704633220963</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="commento del slavataggio di evento come bozza">
+      <option name="closed" value="true" />
+      <created>1704637568347</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1704637568347</updated>
+    </task>
+    <task id="LOCAL-00029" summary="funzione leimina servizio non funzionante">
+      <option name="closed" value="true" />
+      <created>1704670787192</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1704670787192</updated>
+    </task>
+    <task id="LOCAL-00030" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671530090</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671530090</updated>
+    </task>
+    <task id="LOCAL-00031" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671778595</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671778595</updated>
+    </task>
+    <task id="LOCAL-00032" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671825308</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671825308</updated>
+    </task>
+    <task id="LOCAL-00033" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671921265</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671921265</updated>
+    </task>
+    <task id="LOCAL-00034" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704718219677</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1704718219677</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,8 +399,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="correzione autenticazione" />
-    <MESSAGE value="Ho finito Autenticazione Service e Autenticazione Contorller. Ho scritto le Interfacce di Persistenza: Admin, Organizzatore, fornitore e Utente. Ho aggiornato il file init per aggiustare la connessione. A tal fine ho creato il file db.py" />
     <MESSAGE value="Riristino progetto" />
     <MESSAGE value="modifica package autenticazione" />
     <MESSAGE value="modifica &#10;EventoPubblico.css e EventoPubblico.html" />
@@ -360,6 +409,7 @@
     <MESSAGE value="commit Header.html" />
     <MESSAGE value="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati" />
     <MESSAGE value="modifica area fornitore" />
+    <MESSAGE value="Modifica Fornitori Controller" />
     <MESSAGE value="Modifica sessioine" />
     <MESSAGE value="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore" />
     <MESSAGE value="commit inutile" />
@@ -370,14 +420,17 @@
     <MESSAGE value="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies" />
     <MESSAGE value="collegamento forntend e backend" />
     <MESSAGE value="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento" />
-    <MESSAGE value="Modifica Fornitori Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifica Fornitori Controller" />
+    <MESSAGE value="fix della funzione per la pagina di visualizzazione ripeilogo, creazione delle interfacce di persistenza di evento, evento pubblico ed evento privato" />
+    <MESSAGE value="commento del slavataggio di evento come bozza" />
+    <MESSAGE value="funzione leimina servizio non funzionante" />
+    <MESSAGE value="funzione elimina servizio funzionante" />
+    <option name="LAST_COMMIT_MESSAGE" value="funzione elimina servizio funzionante" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
-    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704649284241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
+    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704720266432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
   </component>
 </project>

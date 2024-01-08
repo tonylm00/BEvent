@@ -10,12 +10,13 @@
 <header>
 {% include 'Header.html' %}
 </header>
-
+ {% if servizi != None %}
 <p class="projTitle textGradient">Il Tuo Riepilogo!</p>
 
 <div class="container-principale">
     <div class="grid-container watch fade-in">
         <div class="grid watch fade-in">
+
 
             {% for servizio in servizi %}
                     <div class="container2 watch fade-in ">
@@ -49,7 +50,7 @@
 
 <div class="container-bottoni " >
 
-    <button class="button">Elimina Evento</button>
+    <form action="/annulla_creazione_evento" method="post"><button class="button">Elimina Evento</button></form>
     <button class="button2">Salva bozza</button>
     <button class="btn">
         <span class="icon">
@@ -59,6 +60,9 @@
     </button>
 
 </div>
+{% else %}
+<p class="projTitle textGradient">Aggiungi Servizi al tuo Evento ❤️!</p>
+{% endif %}
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
