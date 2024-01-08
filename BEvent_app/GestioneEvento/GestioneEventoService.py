@@ -3,6 +3,7 @@ from datetime import datetime
 from bson import ObjectId
 from flask import flash
 
+from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
 from ..db import get_db
 from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
@@ -99,7 +100,7 @@ def filtro_categoria_liste(categoria, data):
 
     return servizi_filtrati, fornitori_filtrati
 
-
+#da aggiustare
 def filtro_regione_liste(regione, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
@@ -232,8 +233,43 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
 
     return lista_servizi, lista_fornitori
 
-'''
-def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
-                is_pagato, ruolo, foto_byte_array):
 
-'''
+def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati, foto_byte_array, ruolo,
+                                   lista_fornitori, lista_servizi, is_pagato):
+    id_fornitori = [fornitore.id for fornitore in lista_fornitori]
+    id_servizi = [servizio._id for servizio in lista_servizi]
+    documento = {
+        '_id': ObjectId(),
+        'Data': data_evento,
+        'Descrizione': descrizione,
+        'Tipo': tipo_evento,
+        'Invitati/Posti': n_invitati,
+        'Locandina': foto_byte_array,
+        'Ruolo': ruolo,
+        'fornitori_associati': id_fornitori,
+        'servizi_associati': id_servizi,
+        'is_pagato': is_pagato
+    }
+
+    return documento
+
+
+def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
+                is_pagato, ruolo, foto_byte_array, prezzo):
+    db = get_db()
+    documento_evento_generico = crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati,
+                                                               foto_byte_array, ruolo, lista_fornitori, lista_servizi,
+                                                               is_pagato)
+
+    documento_evento_privato = {
+        'EventoPrivato': {
+            'Prezzo': prezzo,
+            'Festeggiato/i': nome_festeggiato
+        }
+    }
+
+    documento_evento = {**documento_evento_generico, **documento_evento_privato}
+    db.Evento.insert_one(documento_evento)
+    evento_privato = Evento_Privato(documento_evento_generico, documento_evento_privato)
+
+    return evento_privato

@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="funzione elimina servizio funzionante">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="funzione annulla creazione evento funzionante">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Autenticazione/AutenticazioneService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/RiepilogoScelte.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/RiepilogoScelte.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/HomeOrganizzatore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/HomeOrganizzatore.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/HomeOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/HomeOrganizzatore.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +111,7 @@
       <workItem from="1704589769819" duration="211000" />
       <workItem from="1704625494441" duration="10967000" />
       <workItem from="1704668964438" duration="3282000" />
-      <workItem from="1704709764220" duration="7582000" />
+      <workItem from="1704709764220" duration="15739000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -381,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704718219677</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="funzione annulla creazione evento funzionante">
+      <option name="closed" value="true" />
+      <created>1704720485357</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1704720485357</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +411,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Riristino progetto" />
     <MESSAGE value="modifica package autenticazione" />
     <MESSAGE value="modifica &#10;EventoPubblico.css e EventoPubblico.html" />
     <MESSAGE value="modifica templates e gestionevento" />
@@ -424,13 +435,14 @@
     <MESSAGE value="commento del slavataggio di evento come bozza" />
     <MESSAGE value="funzione leimina servizio non funzionante" />
     <MESSAGE value="funzione elimina servizio funzionante" />
-    <option name="LAST_COMMIT_MESSAGE" value="funzione elimina servizio funzionante" />
+    <MESSAGE value="funzione annulla creazione evento funzionante" />
+    <option name="LAST_COMMIT_MESSAGE" value="funzione annulla creazione evento funzionante" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704720266432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704725902443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
   </component>
 </project>

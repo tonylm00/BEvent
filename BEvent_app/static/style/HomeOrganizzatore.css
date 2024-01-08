@@ -1,4 +1,10 @@
+.flash.success {
+    color: green;
+}
 
+.flash.error {
+    color: red;
+}
 
 .upper-division{
     margin-top: 100px;

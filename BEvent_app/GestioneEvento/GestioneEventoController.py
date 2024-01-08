@@ -237,7 +237,7 @@ def aggiungi_foto_evento():
 def 
 '''
 
-'''
+
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
     cookie_carrello = request.cookies.get('carrello')
@@ -246,7 +246,7 @@ def salva_evento_come_bozza():
     n_invitati = session['n_invitati']
     descrizione = request.form.get('descrizione')
     nome_festeggiato = request.form.get('nome_festeggiato')
-
+    prezzo = request.form.get('prezzo')
     is_pagato = False
     ruolo = "2"
 
@@ -260,6 +260,17 @@ def salva_evento_come_bozza():
     carrello = json.loads(cookie_carrello)
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 
-    GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
-                                      nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array)
-'''
+    evento = GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
+                                               nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array, prezzo)
+
+    if evento:
+        session.pop('data_evento', None)
+        session.pop('tipo_evento', None)
+        session.pop('n_invitati', None)
+        response = make_response(redirect(url_for('views.organizzatore_page')))
+        response.set_cookie('carrello', '', expires=0, httponly=True)
+        flash("Evento salvato con successo!", "success")
+        return response
+    else:
+        flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
+        return redirect('/visualizza_riepilogo')
