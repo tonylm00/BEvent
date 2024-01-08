@@ -211,9 +211,7 @@
         <tbody>
         
         {% for servizio in servizi %}
-            {% for immagine_base64 in servizio.foto_servizio %}
-                <img src="data:image/jpeg;base64,{{ immagine_base64 }}" alt="Foto del Servizio">
-                {% endfor %}
+
             <tr>
             <form method="POST" action="{{ url_for('Fornitori.modifica_servizio', servizio_id=servizio._id) }}">
                 <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
@@ -221,8 +219,11 @@
                 <td><input type="text" name="prezzo" value="{{ servizio.prezzo }} "></td>
                 <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
 
-                <!-- <td><input type="text" name="foto"  value="{{ servizio.foto_servizio }}"></td> -->
-                <td><input type="text" name="elimina"></td>
+                <td>{% for immagine in servizio.foto_servizio %}
+                        <img src="data:image/jpeg;base64,{{ immagine }}" alt="Foto del Servizio">
+                    {% endfor %}
+                </td>
+
                 <td>   <button type="submit"> modifica </button></td>
             </form>
                 <td> <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}"><lord-icon

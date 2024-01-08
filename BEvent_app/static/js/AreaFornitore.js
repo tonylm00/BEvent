@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('uploadForm');
 
     form.onsubmit = function(event) {
-        event.preventDefault(); /
+        event.preventDefault();
 
         var formData = new FormData(form);
-        fetch('/aggiungi_foto_fornitore', { /
+        fetch('/aggiungi_foto_fornitore', {
             method: 'POST',
             body: formData
         })
