@@ -148,6 +148,24 @@
 
 }
 
+/* FORM */
+.container-form{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.textarea {
+    border: 2px solid orange;
+    border-radius: 5px;
+    padding: 12px;
+    text-align: center;
+
+
+
+}
+
+
 /* BOTTONI */
 
 .container-bottoni{
