@@ -160,34 +160,15 @@
 }
 
 /* PREZZO TOTALE */
-.subtotal {
-  float: right;
-  width: 35%;
-  display: inline-block;
-    margin-right: 15%;
+.label {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+    color: #777;
 }
-.subtotal .totalRow {
-  padding: 0.5em;
-  text-align: right;
-}
-.subtotal .totalRow.final {
-  font-size: 1.25em;
-  font-weight: bold;
-}
-.subtotal .totalRow span {
-
-  padding: 0 0 0 1em;
-  text-align: right;
-}
-.subtotal .totalRow .label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85em;
-  text-transform: uppercase;
-  color: #777;
-}
-.subtotal .totalRow .value {
-  letter-spacing: -0.025em;
-  width: 35%;
+.value {
+    letter-spacing: -0.025em;
+    margin-bottom: 7px;
 }
 
 /* FORM */
@@ -202,7 +183,7 @@
     border-radius: 5px;
     padding: 12px;
     text-align: center;
-
+    width: 40%;
 
 }
 

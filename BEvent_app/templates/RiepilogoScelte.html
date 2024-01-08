@@ -10,6 +10,8 @@
 <header>
 {% include 'Header.html' %}
 </header>
+{% set summ = 0.00 %}
+{% set prezzo = 0.00 %}
  {% if servizi != None %}
 <p class="projTitle textGradient watch fade-in">Il Tuo Riepilogo!</p>
 
@@ -18,14 +20,16 @@
     <div class="grid-container watch fade-in">
         <div class="grid watch fade-in">
 
-
             {% for servizio in servizi %}
+                {% set prezzo = servizio.prezzo | float %}
+                {% set summ = summ + prezzo %}
                     <div class="container2 watch fade-in ">
                     <div class="card2">
                         <div class="face3 face4">
                             <div class="content2">
                                 <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
                                 <h3>{{ servizio.tipo }} </h3>
+                                {{ summ }}
                             </div>
                         </div>
                         <div class="face3 face5">
@@ -48,6 +52,7 @@
     </div>
     </div>
     <div class="right-column">
+        <p class="projTitle textGradient watch fade-in" style="margin-bottom: 0">Informazioni</p>
     <div style="display:flex; justify-items: flex-end; justify-content: flex-end; width: 100%;">
         <div>
         <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
@@ -59,7 +64,7 @@
         </div>
         <div style="margin-right: 15%">
         <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
-        <span class="value">3 &euro;</span>
+        <span class="value">{{ summ }} &euro;</span>
         <span class="value">5.00 &euro;</span>
          </span><span class="value">22%</span>
         <span class="value">10 &euro;</span>
@@ -67,9 +72,9 @@
         </div>
     </div>
 <div class="container-form">
-<form id="formDati" action="" method="post">
+<form style="width: 100%; display:flex" id="formDati" action="" method="post">
     <input type="text" placeholder="Descrizione Evento" class="textarea" name="descrizione" value="">
-    <input type="text" placeholder="nome del festeggat*" class="textarea" name="nome_festeggiato" value="">
+    <input type="text" placeholder="Nome Del Festeggiat*" class="textarea" name="nome_festeggiato" value="">
 </form>
 </div>
 
