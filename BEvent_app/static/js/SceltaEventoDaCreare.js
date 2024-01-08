@@ -4,7 +4,7 @@ document.getElementById('tipo_evento').addEventListener('change', function() {
 
     switch(tipoEvento) {
         case 'Cerimonia_di_Laurea':
-            backgroundImage = 'url(../static/images/Laurea.jpg)';
+            backgroundImage = 'url(../static/images/Cerimonia_di_Laurea.jpg)';
             break;
         case 'Compleanno':
             backgroundImage = 'url(../static/images/Compleanno.jpg)';

@@ -3,7 +3,7 @@
 
         // Imposta l'attributo "action" del form in base all'azione selezionata
         if (azione === 'Salva_bozza') {
-            formDati.action = '/Salva';
+            formDati.action = '/salva_evento_come_bozza';
         } else if (azione === 'Prenota_evento') {
             formDati.action = '/Prenota';
          } else if (azione === 'Elimina') {

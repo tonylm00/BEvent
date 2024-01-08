@@ -1,11 +1,18 @@
 import json
+import os
 from datetime import datetime
+from importlib.metadata import files
 
 from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
+
+from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
     organizzatore_page
 from BEvent_app.Utils import Image
+from PIL import Image
+
+from flask import current_app as app
 
 ge = Blueprint('ge', __name__)
 
@@ -254,8 +261,10 @@ def salva_evento_come_bozza():
     if file:
         foto_byte_array = Image.convert_image_to_byte_array(file.read())
     else:
-        path_img = "./static/images/" + tipo_evento + ".jpg"
-        foto_byte_array = Image.convert_image_to_byte_array(path_img)
+        path_img = os.path.join(app.root_path, 'static', 'images', tipo_evento + '.jpg')
+        with open(path_img, 'rb') as img_file:
+            image_content = img_file.read()
+        foto_byte_array = Utils.Image.convert_image_to_byte_array(image_content)
 
     carrello = json.loads(cookie_carrello)
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)

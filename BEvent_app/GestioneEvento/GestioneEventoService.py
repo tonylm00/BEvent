@@ -248,7 +248,7 @@ def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invi
         'Ruolo': ruolo,
         'fornitori_associati': id_fornitori,
         'servizi_associati': id_servizi,
-        'is_pagato': is_pagato
+        'isPagato': is_pagato
     }
 
     return documento

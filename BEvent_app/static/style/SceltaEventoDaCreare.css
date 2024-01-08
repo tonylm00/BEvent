@@ -6,7 +6,7 @@ body, html {
 }
 
 .container {
-    background-image: url('../images/Laurea.jpg'); /* sostituisci con il percorso corretto dell'immagine */
+    background-image: url('../images/Cerimonia_di_Laurea.jpg'); /* sostituisci con il percorso corretto dell'immagine */
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
