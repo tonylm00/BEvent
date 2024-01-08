@@ -166,6 +166,7 @@
     overflow: hidden;
     margin: 10px;
     margin-right: 20px;
+    margin-left: -40px;
     z-index: 1;
     color: #090909;
     font-weight: 600;
@@ -194,7 +195,7 @@
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     display: block;
-    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: all 1s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
 
 }
@@ -210,7 +211,7 @@
     background-color: #fc6a6a;
     border-radius: 50%;
     display: block;
-    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: all 1s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
 }
 
@@ -268,7 +269,7 @@
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     display: block;
-    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: all 1.0s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
 
 }
@@ -284,7 +285,7 @@
     background-color: #ff7800;
     border-radius: 50%;
     display: block;
-    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: all 1.0s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
 }
 
@@ -360,8 +361,10 @@
     outline: none;
 }
 
+
 .btn:active .icon {
-    transform: scale(0.85);
+    transition-duration: 0.1s;
+    transform: scale(0.75);
 }
 
 

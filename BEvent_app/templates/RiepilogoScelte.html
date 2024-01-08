@@ -29,7 +29,7 @@
                         <div class="face3 face5">
                             <div class="content2">
                                 <p><b>{% for fornitore in fornitori %} {% if fornitore.id == servizio.fornitore_associato %}
-                            {{ fornitore.nome_utente }} {% endif %} {% endfor %}</b></p>
+                            {{ fornitore.nome_utente }} {% endif %} {% endfor %}</b> <br></p>
                                 <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
                                     <form action="/elimina_servizio" method="post">
                                     <button style="border: none; background: transparent;  " id="{{ servizio._id }}" name="id_servizio" value="{{ servizio._id }}"> <span>Elimina Servizio</span></button>
@@ -49,7 +49,7 @@
 
 <div class="container-bottoni " >
 
-    <button class="button">Elimina</button>
+    <button class="button">Elimina Evento</button>
     <button class="button2">Salva bozza</button>
     <button class="btn">
         <span class="icon">
