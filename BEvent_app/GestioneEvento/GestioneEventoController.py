@@ -3,7 +3,8 @@ from datetime import datetime
 
 from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page
+from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
+    organizzatore_page
 from BEvent_app.Utils import Image
 
 ge = Blueprint('ge', __name__)
@@ -173,14 +174,16 @@ def salva_nel_carrello():
         return jsonify({"errore": str(e)}), 500
 
 
-@ge.route('/visualizza_riepilogo', methods=['GET','POST'])
+@ge.route('/visualizza_riepilogo', methods=['GET', 'POST'])
 def visualizza_riepilogo():
     cookie_carrello = request.cookies.get('carrello')
+    if cookie_carrello:
+        carrello = json.loads(cookie_carrello)
 
-    carrello = json.loads(cookie_carrello)
-    print(carrello)
-
-    lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
+        lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
+    else:
+        lista_servizi = None
+        lista_fornitori = None
 
     return riepilogo_scelte_page(fornitori=lista_fornitori, servizi=lista_servizi)
 
@@ -203,6 +206,17 @@ def elimina_servizio():
     response = make_response(redirect('/visualizza_riepilogo'))
     response.set_cookie('carrello', carrello_serializzato, httponly=True, path='/', max_age=60 * 60 * 24 * 31)
 
+    return response
+
+
+@ge.route("/annulla_creazione_evento", methods=['POST'])
+def annulla_creazione_evento():
+    session.pop('data_evento', None)
+    session.pop('tipo_evento', None)
+    session.pop('n_invitati', None)
+
+    response = make_response(redirect(url_for('views.organizzatore_page')))
+    response.set_cookie('carrello', '', expires=0, httponly=True)
     return response
 
 
