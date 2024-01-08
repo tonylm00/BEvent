@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Blueprint, request, session
 from flask_login import current_user
-
+from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
 from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byFornitore,aggiorna_foto_fornitore,aggiungi_servizio,modifica_servizio,elimina_servizio
 from BEvent_app import Routes
 from flask import redirect, url_for
@@ -64,11 +64,11 @@ def aggiungi_foto_fornitore_controller():
     return redirect('/fornitori')
 
 
-@Fornitori.route('/elimina_servizio/', methods=['POST'])
+@Fornitori.route('/elimina_servizio_areaFornitore/', methods=['POST'])
 def elimina_servizio_controller():
     servizio_id = request.form.get('servizio_id')
     elimina_servizio(servizio_id)
-    return redirect(url_for('Fornitori.visualizza'))
+    return visualizza_controller()
 
 
 @Fornitori.route('/modifica_servizio/', methods=['POST'])
@@ -87,8 +87,7 @@ def modifica_servizio_controller():
         "FotoServizio": request.form.get("foto_servizio"),
         "fornitore_associato": session["id"]
     }
-    nuovi_dati = Fornitori(nuovi_dati)
-    print(nuovi_dati)
+    print(request.form.get("servizio_id"))
     modifica_servizio(nuovi_dati, request.form.get("servizio_id"))
     return visualizza_controller()
 
@@ -120,7 +119,9 @@ def aggiungi_servizio_controller():
         "Prezzo": prezzo,
         "Quantità": quantita,
         "FotoServizio": byte_arrays_bytes,
-        "fornitore_associato": fornitore_associato
+        "fornitore_associato": fornitore_associato,
+        "isDeleted": False,
+        "isCurrentVersion" : None
     }
     aggiungi_servizio(nuovi_dati)
     return visualizza_controller()

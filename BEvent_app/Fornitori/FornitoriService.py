@@ -9,7 +9,7 @@ from ..InterfacciaPersistenza import ServizioOfferto
 def get_tutti_servizi_byFornitore(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore, 'isCurrentVersion': True,'isDeleted': False}))
+    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore,'isCurrentVersion': { '$in': [None, ''] }, 'isDeleted': False}))
 
     lista_servizi = []
 
@@ -44,6 +44,7 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
 
 
 def elimina_servizio(servizio_id):
+    print(servizio_id)
     db = get_db()
     servizi = db['Servizio Offerto']
     result = servizi.update_one(
@@ -52,25 +53,32 @@ def elimina_servizio(servizio_id):
         )
     return result
 
-
 def modifica_servizio(nuovi_dati, servizio_id):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
+
     if servizio_corrente:
+        # Crea una copia del servizio corrente con le modifiche
+        servizio_modificato = servizio_corrente.copy()
+        campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
+        servizio_modificato.update(campi_da_modificare)
+        servizio_modificato.pop('_id', None)
+        # Inserisci il servizio modificato come nuovo documento
+        result = db['Servizio Offerto'].insert_one(servizio_modificato)
+
+        # Ottieni l'ID del nuovo servizio appena inserito
+        nuovo_servizio_id = result.inserted_id
+
+        # Aggiorna il servizio corrente con l'ID del nuovo servizio
         servizi_collection.update_one(
             {"_id": ObjectId(servizio_id)},
-            {"$set": {"isCurrentVersion": False}}
+            {"$set": {"isCurrentVersion": nuovo_servizio_id}}
         )
-    servizio_modificato = servizio_corrente.copy()
-    campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
-    servizio_modificato.update(campi_da_modificare)
+        # Restituisci l'ID del servizio appena inserito
+        return nuovo_servizio_id
 
-    servizio_modificato["isCurrentVersion"] = True;
-    db['Servizio Offerto'].insert_one(servizio_modificato)
-
-
-
+    return None  # Ritorna None se il servizio corrente non esiste
 def aggiungi_servizio(nuovi_dati):
     db = get_db()
     db['Servizio Offerto'].insert_one(nuovi_dati)
