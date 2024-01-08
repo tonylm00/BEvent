@@ -1,9 +1,9 @@
 from datetime import datetime
 
-import mail
 from bson import ObjectId
 from flask import flash
 
+from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
 from ..db import get_db
 from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
@@ -86,7 +86,7 @@ def get_servizi():
 
     return lista_servizi
 
-
+''''''
 def filtro_categoria_liste(categoria, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
@@ -100,7 +100,7 @@ def filtro_categoria_liste(categoria, data):
 
     return servizi_filtrati, fornitori_filtrati
 
-
+#da aggiustare
 def filtro_regione_liste(regione, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
@@ -221,8 +221,9 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
     lista_servizi = []
 
     for id_servizio in carrello:
-        servizio = get_servizio_by_id(id_servizio)
-        lista_servizi.append(servizio)
+        if id_servizio != '':
+            servizio = get_servizio_by_id(id_servizio)
+            lista_servizi.append(servizio)
 
     lista_fornitori = []
     if lista_servizi:
@@ -233,36 +234,44 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
 
     return lista_servizi, lista_fornitori
 
-def elimina_evento( id_evento):
-    db=get_db()
-    evento = db.eventi.find_one({"_id": ObjectId(id_evento)})
-    if evento is None:
-        return False, "Evento non trovato"
 
-    if evento:
-        fornitori_associati = evento.get("fornitori_associati", [])
+def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati, foto_byte_array, ruolo,
+                                   lista_fornitori, lista_servizi, is_pagato):
+    id_fornitori = [fornitore.id for fornitore in lista_fornitori]
+    id_servizi = [servizio._id for servizio in lista_servizi]
+    documento = {
+        '_id': ObjectId(),
+        'Data': data_evento,
+        'Descrizione': descrizione,
+        'Tipo': tipo_evento,
+        'Invitati/Posti': n_invitati,
+        'Locandina': foto_byte_array,
+        'Ruolo': ruolo,
+        'fornitori_associati': id_fornitori,
+        'servizi_associati': id_servizi,
+        'isPagato': is_pagato
+    }
 
-        for id_fornitore in fornitori_associati:
-            fornitore = db.utenti.find_one({"_id": ObjectId(id_fornitore)})
-
-            if fornitore:
-                invia_email_fornitore(fornitore["email"], "Annullamento Evento", "L'evento è stato annullato.")
-
-
-        # Eliminazione dell'evento
-    db.eventi.delete_one({"_id": ObjectId(id_evento)})
-
-    return True, "Evento eliminato e fornitori notificati"
-
-def invia_email_fornitore(destinatario, oggetto, corpo):
-    msg = mail(oggetto, sender="tuo@email.com", recipients=["Fornitore"])
-    msg.body = corpo
-    mail.send(msg)
+    return documento
 
 
-
-'''
 def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
-                is_pagato, ruolo, foto_byte_array):
+                is_pagato, ruolo, foto_byte_array, prezzo, id_organizzatore):
+    db = get_db()
+    documento_evento_generico = crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati,
+                                                               foto_byte_array, ruolo, lista_fornitori, lista_servizi,
+                                                               is_pagato)
 
-'''
+    documento_evento_privato = {
+        'EventoPrivato': {
+            'Prezzo': prezzo,
+            'Festeggiato/i': nome_festeggiato,
+            'Organizzatore': id_organizzatore
+        }
+    }
+
+    documento_evento = {**documento_evento_generico, **documento_evento_privato}
+    db.Evento.insert_one(documento_evento)
+    evento_privato = Evento_Privato(documento_evento_generico, documento_evento_privato)
+
+    return evento_privato
