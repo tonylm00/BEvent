@@ -1,18 +1,18 @@
-  body, html {
-    height: 100%;
-    margin: 0;
-    font-family: 'Times New Roman';
-    font-size: 20px;
-    }
 
-  .split {
+
+.upper-division{
+    margin-top: 100px;
+}
+
+.split {
     height: 30%;
     width: 50%;
     position: fixed;
     z-index: 1;
     top: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     padding-top: 20px;
+
   }
 
   .left {
