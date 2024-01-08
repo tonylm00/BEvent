@@ -86,7 +86,7 @@ def get_servizi():
 
     return lista_servizi
 
-
+''''''
 def filtro_categoria_liste(categoria, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
