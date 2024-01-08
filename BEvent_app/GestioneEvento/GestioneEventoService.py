@@ -221,8 +221,9 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
     lista_servizi = []
 
     for id_servizio in carrello:
-        servizio = get_servizio_by_id(id_servizio)
-        lista_servizi.append(servizio)
+        if id_servizio != '':
+            servizio = get_servizio_by_id(id_servizio)
+            lista_servizi.append(servizio)
 
     lista_fornitori = []
     if lista_servizi:
@@ -255,7 +256,7 @@ def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invi
 
 
 def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
-                is_pagato, ruolo, foto_byte_array, prezzo):
+                is_pagato, ruolo, foto_byte_array, prezzo, id_organizzatore):
     db = get_db()
     documento_evento_generico = crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati,
                                                                foto_byte_array, ruolo, lista_fornitori, lista_servizi,
@@ -264,7 +265,8 @@ def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invi
     documento_evento_privato = {
         'EventoPrivato': {
             'Prezzo': prezzo,
-            'Festeggiato/i': nome_festeggiato
+            'Festeggiato/i': nome_festeggiato,
+            'Organizzatore': id_organizzatore
         }
     }
 

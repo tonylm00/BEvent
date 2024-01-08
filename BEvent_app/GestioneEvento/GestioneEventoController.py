@@ -156,25 +156,27 @@ def salva_nel_carrello():
     try:
         if 'id_servizio' in data:
             id_servizio = data['id_servizio']
+            if id_servizio != '':
+                carrello_cookie = request.cookies.get('carrello')
 
-            carrello_cookie = request.cookies.get('carrello')
+                if carrello_cookie:
+                    carrello = json.loads(carrello_cookie)
+                else:
+                    carrello = []
 
-            if carrello_cookie:
-                carrello = json.loads(carrello_cookie)
+                if id_servizio not in carrello:
+                    carrello.append(id_servizio)
+                    messaggio = "Servizio aggiunto al carrello"
+                else:
+                    messaggio = "Servizio già presente nel carrello"
+
+                carrello_serializzato = json.dumps(carrello)
+
+                response = make_response(jsonify(messaggio))
+                response.set_cookie('carrello', carrello_serializzato, httponly=True, max_age=60 * 60 * 24 * 31)
+                return response
             else:
-                carrello = []
-
-            if id_servizio not in carrello:
-                carrello.append(id_servizio)
-                messaggio = "Servizio aggiunto al carrello"
-            else:
-                messaggio = "Servizio già presente nel carrello"
-
-            carrello_serializzato = json.dumps(carrello)
-
-            response = make_response(jsonify(messaggio))
-            response.set_cookie('carrello', carrello_serializzato, httponly=True, max_age=60 * 60 * 24 * 31)
-            return response
+                return jsonify({"errore nel passaggio del parametro"}), 500
         else:
             return jsonify({"errore nel passaggio del parametro"}), 500
     except Exception as e:
@@ -185,8 +187,8 @@ def salva_nel_carrello():
 def visualizza_riepilogo():
     cookie_carrello = request.cookies.get('carrello')
     if cookie_carrello:
-        carrello = json.loads(cookie_carrello)
 
+        carrello = json.loads(cookie_carrello)
         lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
     else:
         lista_servizi = None
@@ -256,6 +258,7 @@ def salva_evento_come_bozza():
     prezzo = request.form.get('prezzo')
     is_pagato = False
     ruolo = "2"
+    id_organizzatore = session['id']
 
     file = request.files.get('photo')
     if file:
@@ -270,7 +273,8 @@ def salva_evento_come_bozza():
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 
     evento = GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
-                                               nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array, prezzo)
+                                               nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array, prezzo,
+                                               id_organizzatore)
 
     if evento:
         session.pop('data_evento', None)
