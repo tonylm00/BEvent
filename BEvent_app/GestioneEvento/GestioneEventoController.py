@@ -296,3 +296,4 @@ def elimina_evento_route():
     flash(mail, 'success' if successo else 'error')
     return redirect(url_for('funzione_di_redirect'))
 
+

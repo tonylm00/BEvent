@@ -283,6 +283,7 @@ def elimina_evento( id_evento):
     if evento is None:
         return False, "Evento non trovato"
 
+
     if evento:
         fornitori_associati = evento.get("fornitori_associati", [])
 
