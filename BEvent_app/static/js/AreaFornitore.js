@@ -7,33 +7,38 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         var formData = new FormData(form);
-        fetch('/aggiungi_foto_fornitore', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.success) {
-                // Aggiungi le immagini caricate alla tabella
-                var imageCell = document.getElementById('imageCell');
-                data.images.forEach(image => {
-                    var img = document.createElement('img');
-                    img.src = image.path;
-                    img.alt = 'Foto del Servizio';
-                    img.height = 100;
-                    imageCell.appendChild(img);
-                });
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '/aggiungi_foto_fornitore', true);
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                if(data.success) {
+                    var imageCell = document.getElementById('imageCell');
+                    data.images.forEach(image => {
+                        var img = document.createElement('img');
+                        img.src = image.path;
+                        img.alt = 'Foto del Servizio';
+                        img.height = 100;
+                        imageCell.appendChild(img);
+                    });
+                } else {
+                    console.error('Caricamento non riuscito');
+                }
             } else {
-
-                console.error('Caricamento non riuscito');
+                console.error('Errore nella richiesta:', xhr.status);
             }
-        })
-        .catch(error => {
+        };
 
-            console.error('Errore di rete:', error);
-        });
+        xhr.onerror = function() {
+            console.error('Errore di rete');
+        };
+
+        xhr.send(formData);
     };
 });
+
 // Script per l'apertura e la chiusura della modale
 document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('myModalAF');

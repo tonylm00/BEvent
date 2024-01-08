@@ -315,14 +315,7 @@ img{
     margin-left: 25%;
     /* Altre proprietà come margin, ecc. */
 }
-#customButton {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
 
   /*****/
 /*   MODAL   */
