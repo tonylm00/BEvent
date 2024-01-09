@@ -109,8 +109,15 @@
             </div>
             <div class="face face2">
                 <div style="display: flex; flex-wrap: wrap; justify-content: center;" class="content">
-                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
-                        {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
+                    <p> <b>
+                        {% set types_seen = set() %}
+                            {% for servizio in servizi %}
+                                {% if servizio.fornitore_associato == fornitore.id and servizio.tipo not in types_seen %}
+                                    {{ servizio.tipo }}
+                                    {% set _ = types_seen.add(servizio.tipo) %}
+                                {% endif %}
+                            {% endfor %}
+                    </b><br><br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
                     <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
                 </div>
             </div>
