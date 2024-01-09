@@ -97,7 +97,7 @@ def filtro_regione_eventi():
 def filtro_prezzo_eventi():
     try:
         data = request.get_json()
-        if 'prezzo' in data:
+        if 'prezzo_min' in data and 'prezzo_max' in data:
             prezzo_max = data['prezzo_max']
             prezzo_min = data['prezzo_min']
 

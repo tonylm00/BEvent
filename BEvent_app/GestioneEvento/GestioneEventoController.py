@@ -116,12 +116,35 @@ def filtro_barra_ricerca():
         return jsonify({"errore": str(e)}), 500
 
 
-'''
-@ge.route('CagatalogoEventi')
-def CagatalogoEventi():
-    return catalogo_eventi_page(eventi=eventi)
+@ge.route('/filtro_prezzo', methods=['POST'])
+def filtro_prezzo():
+    try:
+        data = request.get_json()
+        data_evento = session['data_evento']
 
-'''
+        if 'prezzo_min' in data and 'prezzo_max' in data:
+            prezzo_max = data['prezzo_max']
+            prezzo_min = data['prezzo_min']
+
+            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_prezzo_liste(prezzo_min, prezzo_max,
+                                                                                             data_evento)
+
+            if servizi_filtrati and fornitori_filtrati:
+                fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
+                servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in servizi_filtrati]
+
+                return jsonify({
+                    "servizi_filtrati": servizi_serializzati,
+                    "fornitori_filtrati": fornitori_serializzati
+                }), 200
+            else:
+                return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
+
+        else:
+            return jsonify({"errore": "Parametro 'categoria' non presente nei dati JSON"}), 400
+
+    except Exception as e:
+        return jsonify({"errore": str(e)}), 500
 
 
 @ge.route('/aggiorna_right_column', methods=['POST'])

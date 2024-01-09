@@ -88,9 +88,6 @@ def get_servizi():
     return lista_servizi
 
 
-''''''
-
-
 def filtro_categoria_liste(categoria, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
@@ -105,16 +102,24 @@ def filtro_categoria_liste(categoria, data):
     return servizi_filtrati, fornitori_filtrati
 
 
-# da aggiustare
 def filtro_regione_liste(regione, data):
+    servizi = get_servizi()
+    fornitori_non_filtrati = get_fornitori_disponibli(data)
+
+    fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if fornitore.regione == regione]
+
+    servizi_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_filtrati)
+
+    return servizi_filtrati, fornitori_filtrati
+
+
+def filtro_prezzo_liste(prezzo_min, prezzo_max, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
-    servizi_filtrati = [servizio for servizio in servizi_non_filtrati if servizio.tipo == regione]
-
+    servizi_filtrati = [servizio for servizio in servizi_non_filtrati if prezzo_min <= servizio.prezzo <= prezzo_max]
     id_fornitori = set(servizio.fornitore_associato for servizio in servizi_filtrati)
-
     fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if fornitore.id in id_fornitori]
 
     return servizi_filtrati, fornitori_filtrati
@@ -307,3 +312,4 @@ def invia_email_fornitore(destinatario, oggetto, corpo):
     msg = mail(oggetto, sender="tuo@email.com", recipients=["Fornitore"])
     msg.body = corpo
     mail.send(msg)
+
