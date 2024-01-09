@@ -13,13 +13,13 @@ document.getElementById('tipo_evento').addEventListener('change', function() {
             backgroundImage = 'url(../static/images/Convention.jpg)';
             break;
         case 'Matrimonio':
-            backgroundImage = 'url(../static/images/Crea.jpg)';
+            backgroundImage = 'url(../static/images/Matrimonio.jpg)';
             break;
         case 'Evento_Religioso':
-            backgroundImage = 'url(../static/images/Religiosi.jpg)';
+            backgroundImage = 'url(../static/images/Evento_Religioso.jpg)';
             break;
         case 'Meeting_Aziendale':
-            backgroundImage = 'url(../static/images/Meeting.jpg)';
+            backgroundImage = 'url(../static/images/Meeting_Aziendale.jpg)';
             break;
         case 'Altro':
             backgroundImage = 'url(../static/images/Altro.jpg)';

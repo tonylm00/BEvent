@@ -232,24 +232,6 @@ def annulla_creazione_evento():
     return response
 
 
-'''
-@ge.route('/aggiungi_foto_evento', methods=['POST'])
-def aggiungi_foto_evento():
-    file = request.files.get('photo')
-    id_evento = request.form.get('id_evento')
-
-    byte_arrays = []
-    byte_array = Image.convert_image_to_byte_array(file.read())
-    byte_arrays.append(byte_array)
-
-    risultato = GestioneEventoService.aggiungi_foto(byte_arrays, id_evento)
-
-
-@ge.route('/salva_evento_db', methods=['POST'])
-def 
-'''
-
-
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
     evento = salva_evento(is_pagato=False)
