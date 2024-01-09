@@ -1,7 +1,6 @@
 from bson import ObjectId
-from flask import Flask, render_template, request, session
+from flask import Flask
 from flask_login import LoginManager
-from pymongo import MongoClient
 from BEvent_app.Routes import home, login_page
 from .InterfacciaPersistenza.Utente import Utente
 from .Routes import views
@@ -9,6 +8,7 @@ from .db import get_db
 from .Autenticazione.AutenticazioneController import aut
 from .GestioneEvento.GestioneEventoController import ge
 from .Fornitori.FornitoriController import Fornitori
+from .RicercaEvento.RicercaEventoController import re
 
 
 def create_app():
@@ -24,6 +24,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(aut, url_prefix='/')
     app.register_blueprint(ge, url_prefix='/')
+    app.register_blueprint(re, url_prefix='/')
 
     @login_manager.user_loader
     def load_user(user_id):

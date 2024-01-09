@@ -77,7 +77,7 @@ def sceltafornitori_page(fornitori=None, servizi=None):
 @views.route('/TrovaEventi_page')
 # @login_required
 def trova_eventi_page():
-    return render_template('TrovaEventi.html')
+    return render_template('RicercaEventi.html')
 
 
 @views.route('/RiepilogoScelte_page')
