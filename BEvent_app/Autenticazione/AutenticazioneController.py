@@ -29,6 +29,7 @@ def login():
             elif user.ruolo == "2":
                 return organizzatore_page()
             elif user.ruolo == "3":
+                session['is_location'] = user.isLocation
                 return redirect('/fornitori')
             else:
                 return error_page()
@@ -101,6 +102,7 @@ def registrazione_organizzatore():
                                                        eventi_max_giorn, via, piva, regione)
             if user:
                 login_user(user)
+                session['is_location'] = user.isLocation
                 registrazione = 1
                 flash("Fornitore Registrato con Successo", "success")
             else:

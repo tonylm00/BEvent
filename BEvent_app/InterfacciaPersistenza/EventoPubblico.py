@@ -6,3 +6,4 @@ class Evento_Pubblico(Evento):
         super().__init__(evento_data)
         evento_info = evento_pubblico_data['EventoPubblico']
         self.prezzo = evento_info['Prezzo']
+        self.nome = evento_info['Nome']
