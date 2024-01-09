@@ -43,37 +43,40 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
         return f"Si è verificato un errore: {e}"
 
 
-def elimina_servizio(servizio_id,id_fornitore):
+def elimina_servizio(servizio_id):
+    print("ci sono qui sto per eliminare attenti")
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
 
     # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
     evento_associato = eventi_collection.find_one({
-        "Evento.servizi_associati": servizio_id,
-        "Evento.fornitori_associati": id_fornitore
+        "servizi_associati": servizio_id,
+        "isPagato": True
     })
-
+    print(evento_associato)
     if evento_associato:
+        print("ci sono")
         result = servizi_collection.update_one(
             {"_id": ObjectId(servizio_id)},
             {"$set": {"isDeleted": True}}
         )
         return result
     else:
+        print("ci sono 2")
         servizi_collection.delete_one({"_id": ObjectId(servizio_id)})
 
 
 
-def modifica_servizio(nuovi_dati, servizio_id, id_fornitore):
+def modifica_servizio(nuovi_dati, servizio_id):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
 
     # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
     evento_associato = eventi_collection.find_one({
-        "Evento.servizi_associati": servizio_id,
-        "Evento.fornitori_associati": id_fornitore
+        "servizi_associati": servizio_id,
+        "isPagato" : True
     })
 
     if evento_associato:
@@ -129,11 +132,4 @@ def aggiungi_servizio(nuovi_dati):
     db['Servizio Offerto'].insert_one(nuovi_dati)
 
 
-def is_servizio_presente_in_evento(servizio_id, id_fornitore):
-    db = get_db()
-    eventi_collection = db['Evento']
-    # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
-    return eventi_collection.find_one({
-        "Evento.servizi_associati": ObjectId(servizio_id),
-        "Evento.fornitori_associati": ObjectId(id_fornitore)
-    }) is not None
+

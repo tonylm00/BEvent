@@ -67,8 +67,8 @@ def aggiungi_foto_fornitore_controller():
 @Fornitori.route('/elimina_servizio_areaFornitore/', methods=['POST'])
 def elimina_servizio_controller():
     servizio_id = request.form.get('servizio_id')
-    elimina_servizio(servizio_id,session["id"])
-    return visualizza_controller()
+    elimina_servizio(servizio_id)
+    return redirect('/fornitori')
 
 
 @Fornitori.route('/modifica_servizio/', methods=['POST'])
@@ -88,8 +88,8 @@ def modifica_servizio_controller():
         "fornitore_associato": session["id"]
     }
     print(request.form.get("servizio_id"))
-    modifica_servizio(nuovi_dati, request.form.get("servizio_id"),session['id'])
-    return visualizza_controller()
+    modifica_servizio(nuovi_dati, request.form.get("servizio_id"))
+    return redirect('/fornitori')
 
 
 @Fornitori.route('/aggiungi_servizio', methods=['POST'])
@@ -124,4 +124,4 @@ def aggiungi_servizio_controller():
         "isCurrentVersion" : None
     }
     aggiungi_servizio(nuovi_dati)
-    return visualizza_controller()
+    return redirect('/fornitori')
