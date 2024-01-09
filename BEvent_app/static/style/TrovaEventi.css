@@ -1,3 +1,4 @@
+
 .textGradient{
 	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
 	-webkit-background-clip: text;
@@ -8,16 +9,12 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   text-align: center;
-  font-size: 2em;
+  font-size: 32px;
   border-bottom: 3px solid #FE8415;
   letter-spacing: 3px;
   margin-top: 100px;
 }
 
-
-.scroll{
-	overflow:auto;
-}
 
 /* Barra di ricerca */
 .search-container {
@@ -29,7 +26,7 @@
   display: flex;
   align-items:center;
   justify-content:center;
-  margin-top: 50px;
+  margin-top: 20px;
 
 }
 
@@ -72,18 +69,20 @@
 }
 .container-principale {
     display: flex;
+    max-height: 100vh;
     width: 100%;
 }
 
 .left-column {
   flex: 65%;
-  margin-left: 0%;
+  margin-left: 0;
 
 }
 
 .right-column {
-  flex: 30%;
-  margin-left: 0;
+
+    flex: 30%;
+    margin-right: 2.5%;
 }
 
 
@@ -91,7 +90,7 @@
 .grid-container{
 
     overflow: auto;
-	height: 740px;
+	height: calc(100% - 270px);
 	justify-items: center;
 	align-items: center;
 	margin-left:7.5%;
@@ -173,7 +172,7 @@
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 20px 25px rgb(0, 0, 0, 0.8);
     transform: translateY(-100px);
 }
 
@@ -181,10 +180,18 @@
     transform: translateY(0);
 }
 
+.container .card .face.face2 .content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .container .card .face.face2 .content p{
     margin: 0;
     padding: 0;
+    text-align: center;
 }
+
 
 .container .card .face.face2 .content a{
     margin: 15px 0 0;
@@ -201,7 +208,7 @@
     color: #fff;
 }
 
-/* Fade in dei fornitori */
+/* Fade in della barra della pagina  */
 .fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
 .fade-in.in-page{opacity: 1;transform: translateY(0vh);}
 
@@ -450,9 +457,222 @@
 
 /* PARTE DESTRA DELLA PAGINA */
 
+.overflow-container{
+    overflow: auto;
+    height: calc(100% - 270px);
+}
 
+.riepilogo-container{
+    margin-left: 0%;
+    padding-bottom: 5%;
+    width: 90%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+.bookmarkBtn {
+    width: 70%;
+    margin-left: 15%;
+    height: 50px;
+    border-radius: 40px;
+    border: 2px solid #ff7800;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+
+}
+
+.IconContainer {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, #f68b44, #ff7800);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 1.04em;
+}
+
+.bookmarkBtn:hover .IconContainer {
+    width: 100%;
+    transition-duration: 0.5s;
+}
+
+.bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
+}
+
+.bookmarkBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.3s;
+}
+
+.img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 300px;
+    width: 450px;
+}
+
+/* Gestione delle Card di servizi nella parte di destra */
+
+.grid-container-servizi{
+
+
+	justify-items: center;
+	align-items: center;
+	margin-left:7.5%;
+  	width:85%;
+  	margin-bottom: 5%;
+
+
+}
+
+
+
+.grid-servizi{
+
+    display: grid;
+    justify-items: center;
+     grid-gap:0px;
+    row-gap:0px;
+    grid-template-columns: repeat(2,1fr);
+
+}
+
+
+.container2{
+    /*  width: 80%;  */
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.container2 .card2{
+    position: relative;
+    cursor: pointer;
+}
+
+.container2 .card2 .face3{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.container2 .card2 .face3.face4{
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    transform: translateY(100px);
+    align-items: stretch;
+}
+
+
+.container2 .card2:hover .face3.face4{
+    background: #ff7800;
+    transform: translateY(0);
+}
+
+.container2 .card2 .face3.face4 .content2 img{
+    width: 300px;
+    height: 75%;
+}
+
+.container2 .card2 .face3.face4 .content2 h3{
+    margin-top: 10px;
+
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.container2 .card2 .face3.face5{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 25px rgb(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.container2 .card2:hover .face3.face5{
+    transform: translateY(0);
+}
+
+.container2 .card2 .face3.face5 .content2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container2 .card2 .face3.face5 .content2 p{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+.container2 .card2 .face3.face5 .content2 a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container2 .card2 .face3.face5 .content2 a:hover{
+    background: #333;
+    color: #fff;
+}
 
 /* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+@media (max-height:900px ) {
+    .img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 150px;
+    width: 225px;
+}
+}
 
 @media(max-width: 2130px){
 
@@ -465,16 +685,57 @@
         width: 200px;
         height: 75%;
 }
-}
 
-@media(max-width: 1410px){
-
-    .container .card .face{
-        width: 150px;
+    .container2 .card2 .face3{
+        width: 200px;
         height: 200px;
+        transition: 0.5s;
 }
-    .container .card .face.face1 .content img{
-        width: 150px;
+    .container2 .card2 .face3.face4 .content2 img{
+        width: 200px;
         height: 75%;
 }
+
 }
+
+@media(max-width: 1610px) {
+
+    .container2 .card2 .face3.face4{
+        width: 175px;
+
+}
+    .container2 .card2 .face3.face5{
+        width: 175px;
+
+}
+    .container2 .card2 .face3.face4 .content2 img{
+        width: 175px;
+        height: 75%;
+}
+    .container2 .card2 .face3.face5 .content2 img{
+        width: 175px;
+        height: 75%;
+}
+
+}
+@media(max-width: 1410px){
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+
+    }
+    .grid-servizi {
+            grid-template-columns: repeat(1, 1fr);
+
+    }
+}
+
+@media(max-width: 1050px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+}
+
+
+
