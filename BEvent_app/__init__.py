@@ -12,7 +12,9 @@ from .Fornitori.FornitoriController import Fornitori
 
 
 def create_app():
+
     app = Flask(__name__)
+
     app.secret_key = 'BEvent'  # comando per impostare una password alle session, altrimenti non funziona
 
     app.config['SECRET_KEY'] = "BEVENT"
@@ -40,5 +42,6 @@ def create_app():
     @app.route('/')
     def index():
         return home()
+
 
     return app
