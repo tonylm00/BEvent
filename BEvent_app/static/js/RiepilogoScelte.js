@@ -6,11 +6,11 @@
             formDati.action = '/salva_evento_come_bozza';
             formDati.method= "post"
         } else if (azione === 'Prenota_evento') {
-            formDati.action = '/Prenota';
+            formDati.action = '/salva_evento_pagato';
             formDati.method= "post"
          } else if (azione === 'Elimina') {
-            formDati.action = '/annulla_creazione_evento'
-            formDati.method= "post"
+            formDati.action = '/annulla_creazione_evento';
+            formDati.method = 'POST';
             return;
         }
 
