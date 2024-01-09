@@ -222,7 +222,7 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
     lista_servizi = []
 
     for id_servizio in carrello:
-        if id_servizio != '':
+        if id_servizio != '' and id_servizio is not None:
             servizio = get_servizio_by_id(id_servizio)
             lista_servizi.append(servizio)
 

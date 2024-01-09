@@ -71,16 +71,17 @@
         </ul>
         </div>
     </div>
+        <form  id="formDati" action="" method="post">
 <div class="container-form">
-<form style="width: 100%; display: flex; justify-items: center; justify-content: center" id="formDati" action="" method="post">
+
     <input style="margin-right: 10px" type="text" placeholder="Descrizione Evento" class="textarea" name="descrizione" value="">
     <input type="text" placeholder="Nome Del Festeggiat*" class="textarea" name="nome_festeggiato" value="">
-</form>
+
 </div>
 
 <div class="container-bottoni " >
 
-    <button class="button" onclick="impostaAzione('Elimina')">Elimina Evento</button>
+    <button class="button" type="submit" onclick="impostaAzione('Elimina')">Elimina Evento</button>
     <button class="button2"  onclick="impostaAzione('Salva_bozza')">Salva bozza</button>
     <button class="btn" onclick="impostaAzione('Prenota_evento')">
         <span class="icon">
@@ -90,6 +91,7 @@
     </button>
 
 </div>
+            </form>
     </div>
 </div>
 

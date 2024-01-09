@@ -252,12 +252,38 @@ def
 
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
-    flag = False
-    salva_evento_pagato(flag)
+    evento = salva_evento(is_pagato=False)
+
+    if evento is not None:
+        session.pop('data_evento', None)
+        session.pop('tipo_evento', None)
+        session.pop('n_invitati', None)
+        response = make_response(redirect(url_for('views.organizzatore_page')))
+        response.set_cookie('carrello', '', expires=0, httponly=True)
+        flash("Evento salvato con successo!", "success")
+        return response
+    else:
+        flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
+        return redirect('/visualizza_riepilogo')
 
 
 @ge.route('/salva_evento_pagato', methods=['POST'])
-def salva_evento_pagato(flag):
+def salva_evento_pagato():
+    evento = salva_evento(is_pagato=True)
+    if evento is not None:
+        session.pop('data_evento', None)
+        session.pop('tipo_evento', None)
+        session.pop('n_invitati', None)
+        response = make_response(redirect(url_for('views.organizzatore_page')))
+        response.set_cookie('carrello', '', expires=0, httponly=True)
+        flash("Evento salvato con successo!", "success")
+        return response
+    else:
+        flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
+        return redirect('/visualizza_riepilogo')
+
+
+def salva_evento(is_pagato):
     cookie_carrello = request.cookies.get('carrello')
     data_evento = session['data_evento']
     tipo_evento = session['tipo_evento']
@@ -265,12 +291,8 @@ def salva_evento_pagato(flag):
     descrizione = request.form.get('descrizione')
     nome_festeggiato = request.form.get('nome_festeggiato')
     prezzo = request.form.get('prezzo')
-    is_pagato = True
     ruolo = "2"
     id_organizzatore = session['id']
-
-    if flag == False:
-        is_pagato = False
 
     file = request.files.get('photo')
     if file:
@@ -288,17 +310,7 @@ def salva_evento_pagato(flag):
                                                nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array, prezzo,
                                                id_organizzatore)
 
-    if evento:
-        session.pop('data_evento', None)
-        session.pop('tipo_evento', None)
-        session.pop('n_invitati', None)
-        response = make_response(redirect(url_for('views.organizzatore_page')))
-        response.set_cookie('carrello', '', expires=0, httponly=True)
-        flash("Evento salvato con successo!", "success")
-        return response
-    else:
-        flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
-        return redirect('/visualizza_riepilogo')
+    return evento
 
 
 @ge.route('/elimina_evento/<id_evento>', methods=['POST'])
