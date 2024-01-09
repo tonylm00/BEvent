@@ -7,40 +7,34 @@
 }
 
 .upper-division{
-    margin-top: 100px;
+    padding-top: 3%;
+
+
+}
+body{
+    margin: 0;
 }
 
-.split {
-    height: 30%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow: hidden;
-    padding-top: 20px;
-
-  }
-
   .left {
-    left: 0;
+
+      text-align: center;
+     height: 35%;
+    width: 50%;
+    float: left;
     background-color: white;
     background-image: url('../images/Crea.jpg');
     background-size: cover;
   }
 
   .right {
-    right: 0;
+
+      text-align: center;
+      height: 35%;
+    width: 50%;
+    float: left;
     background-color: white;
     background-image: url('../images/Cerca.jpg');
     background-size: cover;
-  }
-
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
   }
 
   .centered img {
@@ -62,6 +56,7 @@ h1{
 }
 
 .bottone-invisibile{
+
     background: transparent;
     border: none;
     cursor: pointer;
@@ -73,12 +68,11 @@ h1{
 }
 
 .lower-division{
-  position: absolute;
-  top: 30%;
-  left: 0;
+
+ margin-top: 10%;
   width: 100%;
   height: 70%;
-  overflow-x: hidden;
+
   z-index: 1;
 }
 .divisione_sinistra{
@@ -269,3 +263,29 @@ h1{
     font-size: 15px;
 }
 
+
+.button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: transparent;
+    width: 100%;  /* Assicurati che copra l'intera area della card */
+    height: 40px;
+}
+.service-title{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+@media (max-width: 800px) {
+   .upper-division, .lower-division, .divisione_sinistra, .divisione_destra {
+    width: 100%;
+    /* altri stili per il layout a schermo intero */
+  }
+
+  h1, .service-title {
+    font-size: 18px; /* ridimensiona il font per dispositivi più piccoli */
+  }
+
+  /* Altri adattamenti specifici per elementi come .card, .event-card, etc. */
+}

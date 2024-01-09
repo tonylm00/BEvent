@@ -13,16 +13,16 @@
 {% include 'Header.html' %}
 </header>
 <br>
-{% with messages = get_flashed_messages(with_categories=true) %}
+<!--{% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
             <div class="flash {{ category }}">{{ message }}</div>
         {% endfor %}
     {% endif %}
-{% endwith %}
+{% endwith %}-->
 <div class="upper-division">
-    <div class="split left">
-      <div class="centered">
+    <div class="left">
+
       <form action="/scelta_evento_da_creare_page" >
           <button class="bottone-invisibile" >
             <h1 class="movimentoH1">Crea il tuo evento</h1>
@@ -33,7 +33,7 @@
                     <button type="submit">Logout</button>
                 </form>
             {% endif %}-->
-      </div>
+
     </div>
 
     <div class="split right">
@@ -49,17 +49,29 @@
             <h2 class="h2">Fornitori del tuo evento</h2>
                 <div class="grind-container">
                     <div class="grind-item">
-                        <div class="icon">
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button">
+                                <div class="icon">
                         <lord-icon
                             src="https://cdn.lordicon.com/laqlvddb.json"
                             trigger="hover"
                             state="hover-partial-roll"
                             colors="primary:#121331,secondary:#e88c30"
                             style="width:50px;height:50px">
-                        </lord-icon></div>
-                        <div class="service-title">Location</div>
+                        </lord-icon>
+                        </div>
+
+                                </button>
+                        </form>
+                            <div class="service-title">Location</div>
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button"></button>
+                        </form>
+
                     </div>
                     <div class="grind-item">
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button">
                         <div class="icon">
                         <lord-icon
                             src="https://cdn.lordicon.com/nsgykrsg.json"
@@ -67,11 +79,18 @@
                             colors="primary:#121331,secondary:#e88c30"
                             style="width:50px;height:50px">
                         </lord-icon></div>
+                                </button>
+                        </form>
                         <div class="service-title">Musica e Luci</div>
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button"></button>
+                        </form>
                     </div>
                 </div>
                 <div class="grind-container">
                     <div class="grind-item">
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button">
                         <div class="icon">
                         <lord-icon
                             src="https://cdn.lordicon.com/ppwsfvnn.json"
@@ -79,9 +98,16 @@
                             colors="primary:#121331,secondary:#e88c30"
                             style="width:50px;height:50px">
                         </lord-icon></div>
+                                </button>
+                        </form>
                         <div class="service-title">Fotografo</div>
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button"></button>
+                        </form>
                     </div>
                     <div class="grind-item">
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button">
                         <div class="icon">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
@@ -90,12 +116,22 @@
                             colors="primary:#121331,secondary:#e88c30"
                             style="width:50px;height:50px">
                         </lord-icon></div>
+                                </button>
+                        </form>
+
                         <div class="service-title">Fiorario e Decorazioni</div>
+                        <form action="AreaOrganizzatore.html">
+                            <button class="button"></button>
+                        </form>
                     </div>
                 </div>
+
             <div class="card button-card">
+                <form action="SceltaFornitori.html">
                 <button class="orange-button">Tutti i fornitori>></button>
+                     </form>
                 </div>
+
 
         </div>
         <div class="divisione_sinistra">
@@ -159,7 +195,9 @@
                             </div>
                         </div>
                 <div class="card button-card">
+                    <form action="RiepilogoScelte.html">
                 <button class="orange-button">Scheda Completa>></button>
+                        </form>
                 </div>
             </div>
 
@@ -177,7 +215,9 @@
                         <img src="../static/images/Musica.jpg" alt="Orchestra Sinfonica">
                     </button>
                     <div class="card button-card">
+                        <form action="RicercaEvento.html">
                 <button class="orange-button">Tutti gli eventi>></button>
+                            </form>
                 </div>
                     <!-- Aggiungi altre card come necessario... -->
                 </div>
