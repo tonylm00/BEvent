@@ -43,44 +43,97 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
         return f"Si è verificato un errore: {e}"
 
 
-def elimina_servizio(servizio_id):
-    print(servizio_id)
+def elimina_servizio(servizio_id,id_fornitore):
     db = get_db()
-    servizi = db['Servizio Offerto']
-    result = servizi.update_one(
+    servizi_collection = db['Servizio Offerto']
+    eventi_collection = db['Evento']
+
+    # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
+    evento_associato = eventi_collection.find_one({
+        "Evento.servizi_associati": servizio_id,
+        "Evento.fornitori_associati": id_fornitore
+    })
+
+    if evento_associato:
+        result = servizi_collection.update_one(
             {"_id": ObjectId(servizio_id)},
             {"$set": {"isDeleted": True}}
         )
-    return result
+        return result
+    else:
+        servizi_collection.delete_one({"_id": ObjectId(servizio_id)})
 
-def modifica_servizio(nuovi_dati, servizio_id):
+
+
+def modifica_servizio(nuovi_dati, servizio_id, id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
+    eventi_collection = db['Evento']
 
-    if servizio_corrente:
-        # Crea una copia del servizio corrente con le modifiche
-        servizio_modificato = servizio_corrente.copy()
-        campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
-        servizio_modificato.update(campi_da_modificare)
-        servizio_modificato.pop('_id', None)
-        # Inserisci il servizio modificato come nuovo documento
-        result = db['Servizio Offerto'].insert_one(servizio_modificato)
+    # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
+    evento_associato = eventi_collection.find_one({
+        "Evento.servizi_associati": servizio_id,
+        "Evento.fornitori_associati": id_fornitore
+    })
 
-        # Ottieni l'ID del nuovo servizio appena inserito
-        nuovo_servizio_id = result.inserted_id
+    if evento_associato:
+        # Gestisci la logica se il servizio è presente in un evento
+        print("Il servizio è associato a un evento. Esegue la procedura di copia.")
 
-        # Aggiorna il servizio corrente con l'ID del nuovo servizio
-        servizi_collection.update_one(
-            {"_id": ObjectId(servizio_id)},
-            {"$set": {"isCurrentVersion": nuovo_servizio_id}}
-        )
-        # Restituisci l'ID del servizio appena inserito
-        return nuovo_servizio_id
+        # Procedi con la procedura di copia del servizio
+        servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
+
+        if servizio_corrente:
+            # Crea una copia del servizio corrente con le modifiche
+            servizio_modificato = servizio_corrente.copy()
+            campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
+            servizio_modificato.update(campi_da_modificare)
+
+            # Rimuovi temporaneamente il campo _id prima dell'inserimento
+            servizio_modificato.pop('_id', None)
+
+            # Inserisci il servizio modificato come nuovo documento
+            result = servizi_collection.insert_one(servizio_modificato)
+
+            # Ottieni l'ID del nuovo servizio appena inserito
+            nuovo_servizio_id = result.inserted_id
+
+            # Aggiorna il servizio corrente con l'ID del nuovo servizio
+            servizi_collection.update_one(
+                {"_id": ObjectId(servizio_id)},
+                {"$set": {"isCurrentVersion": nuovo_servizio_id}}
+            )
+
+            # Restituisci l'ID del servizio appena inserito
+            return nuovo_servizio_id
+
+    else:
+        # Il servizio non è associato a nessun evento, quindi modificalo direttamente
+        servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
+
+        if servizio_corrente:
+            # Modifica direttamente il servizio
+            campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
+            servizi_collection.update_one(
+                {"_id": ObjectId(servizio_id)},
+                {"$set": campi_da_modificare}
+            )
+
+            # Restituisci l'ID del servizio modificato
+            return servizio_id
 
     return None  # Ritorna None se il servizio corrente non esiste
+
 def aggiungi_servizio(nuovi_dati):
     db = get_db()
     db['Servizio Offerto'].insert_one(nuovi_dati)
 
 
+def is_servizio_presente_in_evento(servizio_id, id_fornitore):
+    db = get_db()
+    eventi_collection = db['Evento']
+    # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
+    return eventi_collection.find_one({
+        "Evento.servizi_associati": ObjectId(servizio_id),
+        "Evento.fornitori_associati": ObjectId(id_fornitore)
+    }) is not None

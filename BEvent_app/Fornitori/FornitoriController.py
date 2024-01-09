@@ -67,7 +67,7 @@ def aggiungi_foto_fornitore_controller():
 @Fornitori.route('/elimina_servizio_areaFornitore/', methods=['POST'])
 def elimina_servizio_controller():
     servizio_id = request.form.get('servizio_id')
-    elimina_servizio(servizio_id)
+    elimina_servizio(servizio_id,session["id"])
     return visualizza_controller()
 
 
@@ -88,7 +88,7 @@ def modifica_servizio_controller():
         "fornitore_associato": session["id"]
     }
     print(request.form.get("servizio_id"))
-    modifica_servizio(nuovi_dati, request.form.get("servizio_id"))
+    modifica_servizio(nuovi_dati, request.form.get("servizio_id"),session['id'])
     return visualizza_controller()
 
 
