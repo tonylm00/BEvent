@@ -224,7 +224,6 @@ function scambiaImmagine(imgCliccata) {
 
 
 
-
 <div class="sezione-tabella">
     <table>
         <thead>
@@ -240,14 +239,14 @@ function scambiaImmagine(imgCliccata) {
             </tr>
         </thead>
         <tbody>
-        
+
         {% for servizio in servizi %}
 
             <tr>
-            <form method="POST" action="{{ url_for('Fornitori.modifica_servizio', servizio_id=servizio._id) }}">
+            <form method="POST" action="/modifica_servizio">
                 <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
-                <td><input type="text" name="tipo" value="{{ servizio.tipo }} "></td>
-                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }} "></td>
+                <td><input type="text" name="tipo" value="{{ servizio.tipo }}"></td>
+                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }}"></td>
                 <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
 
                 <td>{% for immagine in servizio.foto_servizio %}
@@ -255,14 +254,11 @@ function scambiaImmagine(imgCliccata) {
                     {% endfor %}
                 </td>
 
-                <td>   <button type="submit"> modifica </button></td>
+                <td>   <button type="submit" value="{{ servizio._id }}" name="servizio_id"> modifica </button></td>
             </form>
-                <td> <button type="button" value="{{ servizio._id }}"> <a href="{{ url_for('Fornitori.elimina_servizio', servizio_id=servizio._id) }}"><lord-icon
-                 src="https://cdn.lordicon.com/wpyrrmcq.json"
-                 trigger="hover"
-                 style="width:25px;height:25px;background-color: white">
-                </lord-icon></a></button></td>
-
+            <td>
+            <form method="POST" action="elimina_servizio_areaFornitore"><button type="submit" value="{{ servizio._id }}" name="servizio_id"> ciao </form>
+            </td>
             </tr>
 
         {% endfor %}
