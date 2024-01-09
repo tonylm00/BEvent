@@ -276,7 +276,9 @@ def salva_evento_pagato(flag):
     if file:
         foto_byte_array = Image.convert_image_to_byte_array(file.read())
     else:
-        image_content = Image.convert_path_to_image(tipo_evento)
+        path_img = os.path.join(app.root_path, 'static', 'images', tipo_evento + '.jpg')
+        with open(path_img, 'rb') as img_file:
+            image_content = img_file.read()
         foto_byte_array = Utils.Image.convert_image_to_byte_array(image_content)
 
     carrello = json.loads(cookie_carrello)

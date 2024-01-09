@@ -12,7 +12,6 @@ from .Fornitori.FornitoriController import Fornitori
 
 
 def create_app():
-
     app = Flask(__name__)
 
     app.secret_key = 'BEvent'  # comando per impostare una password alle session, altrimenti non funziona
@@ -25,7 +24,6 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(aut, url_prefix='/')
     app.register_blueprint(ge, url_prefix='/')
-
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -42,6 +40,5 @@ def create_app():
     @app.route('/')
     def index():
         return home()
-
 
     return app
