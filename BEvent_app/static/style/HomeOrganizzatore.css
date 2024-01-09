@@ -13,6 +13,7 @@
 }
 body{
     margin: 0;
+    overflow-x: hidden;
 }
 
   .left {
@@ -25,6 +26,9 @@ body{
     background-image: url('../images/Matrimonio.jpg');
     background-size: cover;
   }
+  .left:hover{
+       transform: scale(1.05);
+  }
 
   .right {
 
@@ -36,7 +40,9 @@ body{
     background-image: url('../images/Cerca.jpg');
     background-size: cover;
   }
-
+.right:hover{
+       transform: scale(1.05);
+  }
   .centered img {
     width: 150px;
     border-radius: 50%;
@@ -174,7 +180,7 @@ h1{
     display: flex;
     overflow-x: auto; /* Permette lo scorrimento orizzontale delle card */
     padding: 0;
-    margin-top: 50px;
+
     overflow-y: hidden;
 
 }
