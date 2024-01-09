@@ -87,7 +87,10 @@ def get_servizi():
 
     return lista_servizi
 
+
 ''''''
+
+
 def filtro_categoria_liste(categoria, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
@@ -101,7 +104,8 @@ def filtro_categoria_liste(categoria, data):
 
     return servizi_filtrati, fornitori_filtrati
 
-#da aggiustare
+
+# da aggiustare
 def filtro_regione_liste(regione, data):
     servizi = get_servizi()
     fornitori_non_filtrati = get_fornitori_disponibli(data)
@@ -277,12 +281,12 @@ def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invi
 
     return evento_privato
 
-def elimina_evento( id_evento):
-    db=get_db()
+
+def elimina_evento(id_evento):
+    db = get_db()
     evento = db.eventi.find_one({"_id": ObjectId(id_evento)})
     if evento is None:
         return False, "Evento non trovato"
-
 
     if evento:
         fornitori_associati = evento.get("fornitori_associati", [])
@@ -293,14 +297,13 @@ def elimina_evento( id_evento):
             if fornitore:
                 invia_email_fornitore(fornitore["email"], "Annullamento Evento", "L'evento è stato annullato.")
 
-
         # Eliminazione dell'evento
     db.eventi.delete_one({"_id": ObjectId(id_evento)})
 
     return True, "Evento eliminato e fornitori notificati"
 
+
 def invia_email_fornitore(destinatario, oggetto, corpo):
     msg = mail(oggetto, sender="tuo@email.com", recipients=["Fornitore"])
     msg.body = corpo
     mail.send(msg)
-
