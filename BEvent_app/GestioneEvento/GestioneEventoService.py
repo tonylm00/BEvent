@@ -303,3 +303,4 @@ def invia_email_fornitore(destinatario, oggetto, corpo):
     msg = mail(oggetto, sender="tuo@email.com", recipients=["Fornitore"])
     msg.body = corpo
     mail.send(msg)
+

@@ -115,12 +115,15 @@ def filtro_barra_ricerca():
     except Exception as e:
         return jsonify({"errore": str(e)}), 500
 
+
 '''
 @ge.route('CagatalogoEventi')
 def CagatalogoEventi():
     return catalogo_eventi_page(eventi=eventi)
 
 '''
+
+
 @ge.route('/aggiorna_right_column', methods=['POST'])
 def aggiorna_right_column():
     data = request.get_json()
@@ -249,6 +252,12 @@ def
 
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
+    flag = False
+    salva_evento_pagato(flag)
+
+
+@ge.route('/salva_evento_pagato', methods=['POST'])
+def salva_evento_pagato(flag):
     cookie_carrello = request.cookies.get('carrello')
     data_evento = session['data_evento']
     tipo_evento = session['tipo_evento']
@@ -256,17 +265,18 @@ def salva_evento_come_bozza():
     descrizione = request.form.get('descrizione')
     nome_festeggiato = request.form.get('nome_festeggiato')
     prezzo = request.form.get('prezzo')
-    is_pagato = False
+    is_pagato = True
     ruolo = "2"
     id_organizzatore = session['id']
+
+    if flag == False:
+        is_pagato = False
 
     file = request.files.get('photo')
     if file:
         foto_byte_array = Image.convert_image_to_byte_array(file.read())
     else:
-        path_img = os.path.join(app.root_path, 'static', 'images', tipo_evento + '.jpg')
-        with open(path_img, 'rb') as img_file:
-            image_content = img_file.read()
+        image_content = Image.convert_path_to_image(tipo_evento)
         foto_byte_array = Utils.Image.convert_image_to_byte_array(image_content)
 
     carrello = json.loads(cookie_carrello)
@@ -288,12 +298,11 @@ def salva_evento_come_bozza():
         flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
         return redirect('/visualizza_riepilogo')
 
+
 @ge.route('/elimina_evento/<id_evento>', methods=['POST'])
 def elimina_evento_route():
-    id_evento=request.form.get('id_evento')
-    successo, mail = GestioneEventoService.elimina_evento( id_evento)
+    id_evento = request.form.get('id_evento')
+    successo, mail = GestioneEventoService.elimina_evento(id_evento)
 
     flash(mail, 'success' if successo else 'error')
     return redirect(url_for('funzione_di_redirect'))
-
-
