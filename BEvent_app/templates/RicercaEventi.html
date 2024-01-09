@@ -75,48 +75,25 @@
 	<div class="grid">
 
         {% for evento in eventi %}
-            {% if evento.regione == session.get('regione') %}
+
 
         <div class="container watch fade-in">
         <div class="card">
             <div class="face face1">
                 <div class="content">
-                    <img src="data:image/jpeg;base64,{{ evento.foto[0] }}">
-                    <h3>{{ evento.nome_utente }} </h3>
+                    <img src="../static/images/Cerca.jpg">
+                    <h3>{{ evento.nome }} </h3>
                 </div>
             </div>
             <div class="face face2">
                 <div class="content">
-                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
-                        {{ evento.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }}</p>
-                        <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
+                    <p> <b> {{ evento.tipo }} <br></b> {{ evento.descrizione }}<br> </p>
+                        <button style="border: none; background: transparent" id="{{ evento.id }}" onclick="aggiornaColonnaDx('{{ evento.id }}')"> <a href="#">Visualizza</a></button>
                 </div>
             </div>
         </div>
         </div>
-            {% endif %}
-        {% endfor %}
 
-        {% for fornitore in fornitori %}
-            {% if fornitore.regione != session.get('regione') %}
-        <div class="container watch fade-in ">
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <img src="data:image/jpeg;base64,{{ fornitore.foto[0] }}">
-                    <h3>{{ fornitore.nome_utente }} </h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div style="display: flex; flex-wrap: wrap; justify-content: center;" class="content">
-                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
-                        {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
-                    <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
-                </div>
-            </div>
-        </div>
-        </div>
-            {% endif %}
         {% endfor %}
 
 
@@ -146,33 +123,30 @@
                 <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
                 <img class="img" src="../static/images/Fioraio.jpg" alt="Immagine">
                 </div>
-                <h1 class="watch fade-in" style="text-align: center">{{ fornitori[0].nome}}</h1>
-                <p class="watch fade-in" style="text-align: center">{{ fornitori[0].descrizione }}</p>
-                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Servizi offerti da {{ fornitori[0].nome}}: </p>
+                <h1 class="watch fade-in" style="text-align: center">{{ eventi[0].tipo}}</h1>
+                <p class="watch fade-in" style="text-align: center">{{ eventi[0].descrizione }}</p>
+                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> {{ eventi [0].nome}}: </p>
 
 
                 <div class="grid-container-servizi">
                 <div class="grid-servizi">
-                {% for servizio in servizi %}
-                    {% if servizio.fornitore_associato == fornitori[0].id %}
                 <div class="container2 watch fade-in ">
                 <div class="card2">
                     <div class="face3 face4">
                         <div class="content2">
-                            <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
-                            <h3>{{ servizio.tipo }} </h3>
+                            <img src="data:image/jpeg;base64">
+                            <h3>titolo tipo </h3>
                         </div>
                     </div>
                     <div class="face3 face5">
                         <div class="content2">
-                            <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
-                                <button style="border: none; background: transparent" id="{{ servizio.id }}" onclick="salvaServizio('{{ servizio.id }}')"> <a href="#">Prenota</a></button>
+                            <p>descrizione, prezzo &euro;</p>
+                                <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
                         </div>
                     </div>
                 </div>
                 </div>
-                    {% endif %}
-                {% endfor %}
+
                 </div>
                 </div>
         </div>
