@@ -12,9 +12,11 @@ body {
 }
 
 img{
-    height: 150px;
-    width: 150px;
+    height: 100%;
+    width: 100%;
 }
+.fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
+.fade-in.in-page{opacity: 1;transform: translateY(0vh);}
 
 .container {
     display: grid;
@@ -42,16 +44,19 @@ img{
 
 /* Stili per la sezione delle foto */
 .sezione-foto {
-    display: flex;
+    display: inline;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
 .foto-contenitore {
-    display: flex;
+    display: -webkit-box;
+
     justify-content: center;
     gap: 10px;
+    overflow-x: auto;
+    width: 500px;
 }
 
 .foto-box {
@@ -266,22 +271,37 @@ img{
     color: black; /* Colore del testo nero */
     margin-top: 5px; /* Margine superiore */
     margin-bottom: 5px;
-    /* Altre proprietà come necessario */
-}
-.modalAF input[type="file"]{
-    align-content: center;
-    align-items: center;
-    padding: 0px;
-    color:black;
-    border: 1px solid black;
 
 }
 
+.right-column{
+    margin-right:15%;
+    margin-left:5%
+}
+.left-column{
+    margin-left:15%;
+     margin-right:5%;
+}
 .modalAF form{
     display: flex;
     justify-content: center;
     justify-items: center;
     flex-direction: column;
+}
+
+
+#fileInput {
+   border: 2px solid orange; /* Bordo arancione */
+    color:black;
+    border-radius: 5px; /* Bordi arrotondati */
+    padding: 8px; /* Spazio interno per un aspetto migliore */
+   display: block; /* Rende i campi del form come blocchi */
+    margin: 10px auto; /* Margini automatici per centrare orizzontalmente */
+    text-align: center; /* Centra il testo nei campi */
+    margin-top: 5px; /* Riduci il margine superiore */
+    margin-bottom: 5px; /* Riduci il margine inferiore */
+    max-width: 200px;
+    text-overflow: ellipsis;
 }
 
 .modalAF input[type="text"],
@@ -298,7 +318,8 @@ img{
     text-align: center; /* Centra il testo nei campi */
     margin-top: 5px; /* Riduci il margine superiore */
     margin-bottom: 5px; /* Riduci il margine inferiore */
-    /* Altre proprietà a seconda delle tue necessità */
+    max-width: 190px;
+    text-overflow: ellipsis;
 }
 .modalAF input[type="submit"] {
     padding: 15px 30px; /* Aumenta il padding per ingrandire il bottone */
@@ -309,12 +330,13 @@ img{
     color: white; /* Colore del testo */
     cursor: pointer; /* Cursor tipo puntatore */
     display: block; /* Rende il bottone come blocco */
-    width: 50% ;
+    width: 100% ;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 25%;
+
     /* Altre proprietà come margin, ecc. */
 }
+
 
 
   /*****/

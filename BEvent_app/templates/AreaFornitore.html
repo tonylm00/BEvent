@@ -18,20 +18,36 @@
 <div class="container">
     <div class="sezione-foto">
         <form action="/aggiungi_foto_fornitore" method="post" enctype="multipart/form-data">
-        <div class="foto-box"><img src="" alt="Immagine" id="immagine1"></div>
+        <div class="foto-box"><img src="data:image/jpeg;base64,{{ dati.foto[0] }}" alt="Immagine" id="immagine_sopra"></div>
 
-            <label for="photo">Foto:</label>
-            <input type="file" id="fileInput2" name="foto" multiple="multiple"><br>
-            <ul id="selectedFileList2"></ul>
-            <button type="submit">Conferma</button>
-        </form>
+
         <div class="foto-contenitore">
-            <div class="foto-box_2"><img src="" alt="Immagine" id="immagine1"></div>
-            <div class="foto-box_2"><img src="" alt="Immagine" id="immagine1"></div>
-            <div class="foto-box_2"><img src="" alt="Immagine" id="immagine1"></div>
+            {% for foto in dati.foto[1:] %}
+            <div class="foto-box_2"><img src="data:image/jpeg;base64,{{ foto }}" alt="Immagine" id="immagine_sotto"  onclick="scambiaImmagine(this)"></div>
+             {% endfor  %}
         </div>
+
+            <input type="file" id="fileInput2" name="foto" multiple="multiple" ><br>
+            <button type="submit">Conferma</button>
+         </form>
     </div>
 
+<script >
+   $(function() {
+       const $gallery = $('.gallery a').simpleLightbox();
+     });
+
+function scambiaImmagine(imgCliccata) {
+	  const immagineSopra = document.getElementById('immagine_sopra');
+	  const srcCliccata = imgCliccata.src;
+
+	  imgCliccata.src = immagineSopra.src;
+	  immagineSopra.src = srcCliccata;
+	}
+
+
+
+	</script>
 
     <div class="sezione-info">
         <form id="moduloContatto" method="post" action="/visualizza_dati_fornitore">
@@ -41,7 +57,7 @@
                 <div class="colonna">
                     <div class="campo">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome">
+                        <input type="text" id="nome" name="nome" >
                     </div>
                     <div class="campo">
                         <label for="cognome">Cognome</label>
@@ -162,7 +178,7 @@
 <div>
         <span id="closeModalAF" style="cursor:pointer;">&times;</span>
 
-        <h2>Aggiungi Servizio</h2>
+
 
         <form method="POST" action="/aggiungi_servizio" enctype="multipart/form-data">
             <div class="container-modale">
@@ -185,19 +201,22 @@
                     </select><br><br>
             <label for="price">Prezzo:</label>
                 <input type="number" id="price" name="prezzo"><br><br>
-                </div><div class="right-column">
 
+
+                </div><div class="right-column">
             <label for="quantity">Quantità:</label>
                 <input type="number" id="quantity" name="quantità"><br><br>
 
-                #gestione immagini
+
             <label for="photo">Foto:</label>
             <input type="file" id="fileInput" name="photos" multiple="multiple"><br>
-            <ul id="selectedFileList"></ul>
 
+
+
+            </div>
+
+            </div>
             <input type="submit" value="Aggiungi">
-            </div>
-            </div>
         </form>
     </div>
         </div>
