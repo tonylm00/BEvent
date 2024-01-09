@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Visualizzazione Eventi</title>
-
+        <title>Fornitori</title>
         <link rel="stylesheet" href="../static/style/TrovaEventi.css">
+
 </head>
-<body>
+
+
+
+<body  style="height: 100%; overflow: hidden">
 <header>
 {% include 'Header.html' %}
 </header>
 
-<p class="projTitle textGradient">Trova l'Evento Adatto a Te!</p>
-
+<p class="projTitle textGradient">Trova L'Evento Adatto a Te</p>
 <div class="container-principale">
 
     <div class="left-column">
@@ -28,46 +29,6 @@
 	</button>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       <div class="right-column">
-                <img style="box-shadow: #333333; margin-top: 50px;"src="../static/images/Fioraio.jpg" alt="Immagine">
-                <h1>{{ eventopubblico[0].nome}}</h1>
-                <p>{{ eventopubblico[0].descrizione }}</p>
-
-        </div>
-    </div>
-
-
-
-
-
-
-
 
  <div id="myModal2" class="modal2">
 	<div class="modal-container2 slideDown" id="modal-container2">
@@ -105,17 +66,127 @@
             </div>
         </div>
     </div>
-    </div>
 </div>
 
 
 
+<div class="grid-container">
+
+	<div class="grid">
+
+        {% for fornitore in fornitori %}
+            {% if fornitore.regione == session.get('regione') %}
+
+        <div class="container watch fade-in">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="data:image/jpeg;base64,{{ fornitore.foto[0] }}">
+                    <h3>{{ fornitore.nome_utente }} </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
+                        {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }}</p>
+                        <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for fornitore in fornitori %}
+            {% if fornitore.regione != session.get('regione') %}
+        <div class="container watch fade-in ">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="data:image/jpeg;base64,{{ fornitore.foto[0] }}">
+                    <h3>{{ fornitore.nome_utente }} </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;" class="content">
+                    <p> <b>{% for servizio in servizi %} {% if servizio.fornitore_associato == fornitore.id %}
+                        {{ servizio.tipo }} {% endif %} {% endfor %}<br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
+                    <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+    </div>
+
+        <div class="right-column">
+        <div class="riepilogo-container watch fade-in">
+            <form style="width: 100%" target="_blank" method="post" action="/visualizza_riepilogo">
+                <button class="bookmarkBtn">
+                  <span class="IconContainer">
+                    <svg viewBox="0 0 384 512" height="0.9em" class="icon">
+                      <path
+                        d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <p class="text">Riepilogo Scelte</p>
+                </button>
+            </form>
+        </div>
+        <div class="overflow-container">
+                <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
+                <img class="img" src="../static/images/Fioraio.jpg" alt="Immagine">
+                </div>
+                <h1 class="watch fade-in" style="text-align: center">{{ fornitori[0].nome}}</h1>
+                <p class="watch fade-in" style="text-align: center">{{ fornitori[0].descrizione }}</p>
+                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Servizi offerti da {{ fornitori[0].nome}}: </p>
+
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                {% for servizio in servizi %}
+                    {% if servizio.fornitore_associato == fornitori[0].id %}
+                <div class="container2 watch fade-in ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
+                            <h3>{{ servizio.tipo }} </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+                        <div class="content2">
+                            <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
+                                <button style="border: none; background: transparent" id="{{ servizio.id }}" onclick="salvaServizio('{{ servizio.id }}')"> <a href="#">Prenota</a></button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                </div>
+        </div>
+
+
+        </div>
+    </div>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="../static/js/SceltaFornitore.js"></script>
     <script src="../static/js/SceltaFornitore2.js"></script>
     <script src="../static/js/AjaxRicercaFornitori.js"></script>
+    <script src="../static/js/AjaxSwapCard.js"></script>
+    <script src="../static/js/SalvaServizio.js"></script>
 
-
-</body>
+	</body>
 </html>
