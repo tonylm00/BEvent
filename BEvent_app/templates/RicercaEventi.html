@@ -81,7 +81,7 @@
         <div class="card">
             <div class="face face1">
                 <div class="content">
-                    <img src="../static/images/Cerca.jpg">
+                    <img src="data:image/jpeg;base64,{{ evento.locandina }}">
                     <h3>{{ evento.nome }} </h3>
                 </div>
             </div>
@@ -134,13 +134,13 @@
                 <div class="card2">
                     <div class="face3 face4">
                         <div class="content2">
-                            <img src="data:image/jpeg;base64">
+                            <img src="data:image/jpeg;base64,{{ eventi[0].locandina }}">
                             <h3>titolo tipo </h3>
                         </div>
                     </div>
                     <div class="face3 face5">
                         <div class="content2">
-                            <p>descrizione, prezzo &euro;</p>
+                            <p>{{ eventi[0].descrizione }}, {{ eventi[0].prezzo }} &euro;</p>
                                 <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
                         </div>
                     </div>
