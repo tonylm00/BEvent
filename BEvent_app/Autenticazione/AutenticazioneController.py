@@ -1,6 +1,7 @@
 from flask import request, Blueprint, session, redirect, flash
 from flask_login import login_user, logout_user, current_user
 from BEvent_app.Autenticazione import AutenticazioneService
+from BEvent_app.Autenticazione.AutenticazioneService import get_dati_area_organizzatore, get_dati_home_organizzatore
 from BEvent_app.Routes import (home, registrazione_page, admin_page, error_page, organizzatore_page,
                                area_organizzatore_page)
 
@@ -27,7 +28,7 @@ def login():
             if user.ruolo == "1":
                 return admin_page()
             elif user.ruolo == "2":
-                return organizzatore_page()
+                return redirect('/home_organizzatore')
             elif user.ruolo == "3":
                 session['is_location'] = user.isLocation
                 return redirect('/fornitori')
@@ -113,7 +114,13 @@ def registrazione_organizzatore():
             session["ruolo"] = ruolo
             session['regione'] = regione
             session['id'] = current_user.get_id()
-            return home()
+            if ruolo == "1":
+                return home()
+            elif ruolo == "2":
+                return redirect('/home_organizzatore')
+            elif ruolo == "3":
+                return redirect('/fornitori')
+
         else:
             return registrazione_page()
 
@@ -122,5 +129,16 @@ def registrazione_organizzatore():
 def area_organizzatore():
     id_organizzatore = session['id']
 
-    organizzatore = get_organizzatore_by_id(id_organizzatore)
-    return area_organizzatore_page()
+    organizzatore, eventi_privati, biglietti_comprati = get_dati_area_organizzatore(id_organizzatore)
+
+    return area_organizzatore_page(organizzatore=organizzatore, eventi_privati=eventi_privati,
+                                   biglietti_comprati=biglietti_comprati)
+
+
+@aut.route('/home_organizzatore', methods=['GET', 'POST'])
+def home_organizzatore():
+    id_organizzatore = session['id']
+
+    evento_privato, eventi_pubblici = get_dati_home_organizzatore(id_organizzatore)
+
+    return organizzatore_page(evento_privato=evento_privato, eventi_pubblici=eventi_pubblici)

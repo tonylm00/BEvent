@@ -15,14 +15,15 @@ def fornitore_page(servizi=None, dati=None):
 
 @views.route('/organizzatore_page')
 # @login_required
-def organizzatore_page():
-    return render_template('HomeOrganizzatore.html')
+def organizzatore_page(evento_privato=None, eventi_pubblici=None):
+    return render_template('HomeOrganizzatore.html', evento_privato=evento_privato, eventi_pubblici=eventi_pubblici)
 
 
 @views.route('/area_organizzatore_page')
 # @login_required
-def area_organizzatore_page():
-    return render_template('AreaOrganizzatore.html')
+def area_organizzatore_page(organizzatore=None, eventi_privati=None, biglietti_comprati=None):
+    return render_template('AreaOrganizzatore.html', organizzatore=organizzatore, eventi_privati=eventi_privati,
+                           biglietti_comprati=biglietti_comprati)
 
 
 @views.route('/admin_page')

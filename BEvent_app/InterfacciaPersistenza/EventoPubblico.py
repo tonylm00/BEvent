@@ -8,3 +8,5 @@ class Evento_Pubblico(Evento):
         self.prezzo = evento_info['Prezzo']
         self.nome = evento_info['Nome']
         self.regione = evento_info['Regione']
+        self.luogo = evento_info['Luogo']
+        self.ora = evento_info['Ora']
