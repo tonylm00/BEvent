@@ -37,10 +37,7 @@ img{
     grid-row: 1 / 2; /* Prima riga */
 }
 
-.sezione-orari {
-    grid-column: 3 / 4; /* Terza colonna */
-    grid-row: 1 / 2; /* Prima riga */
-}
+
 
 /* Stili per la sezione delle foto */
 .sezione-foto {
@@ -145,38 +142,9 @@ img{
 }
 
 /* Stili per la sezione degli orari di lavoro */
-.table-container {
-    width: 100%;
-    margin-top: 20px;
-
-}
-
-.table-container th, .table-container td {
-    padding: 8px;
-    border: none;
-}
 
 
-.table-container th.day-cell {
-     background-color: white;
-    color: black;
-    border: 2px solid orange;
-    border-radius: 5px;
-    padding: 5px;
-    text-align: center;
-}
 
-.table-container th, .table-container td {
-    border: none;
-    padding:8px;
-}
-.table-container input[type="text"] {
-    width: 100%;
-    padding: 5px;
-    border: none;
-    border-bottom: 2px solid orange;
-    outline: none;
-}
 
 
 
