@@ -1,7 +1,7 @@
 from datetime import datetime
 import re
 from bson import ObjectId
-from flask import flash
+from flask import flash, jsonify
 
 from ..InterfacciaPersistenza.Biglietto import Biglietto
 from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
@@ -277,9 +277,12 @@ def get_dati_home_organizzatore(id_organizzatore):
         "EventoPrivato.Organizzatore": id_organizzatore,
         "Data": {"$gte": data_odierna},
     }
-
-    evento_data = db['Evento'].find(query).sort("Data", 1).limit(1)
-    evento_privato = Evento_Privato(evento_data[0], evento_data[0])
+    try:
+        evento_data = db['Evento'].find(query).sort("Data", 1).limit(1).next()
+        evento_privato = Evento_Privato(evento_data, evento_data)
+    except StopIteration:
+        evento_data = None
+        evento_privato = None
 
     query = {
         "Ruolo": "1",
