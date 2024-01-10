@@ -1,81 +1,62 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Area Organizzatore</title>
-        <link rel="stylesheet"  type="text/css" href="../static/style/AreaOrganizzatore.css">
-    </head>
-    <body clas="body">
-    <header>
-        {% include 'Header.html' %}
-    </header>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+        <title>Area Utente</title>
+        <link rel="stylesheet" href="../static/style/AreaOrganizzatore.css">
 
-    <div class="container">
-      <!-- Colonna Sinistra: I Tuoi Eventi -->
-      <div class="left-column">
+</head>
+
+
+
+<body  style="height: 100%; overflow: hidden">
+<header>
+{% include 'Header.html' %}
+</header>
+
+<p class="projTitle textGradient watch fade-in">La Tua Area Personale</p>
+<div class="container-principale">
+
+    <div class="left-column">
+
         <h2>I Tuoi Eventi</h2>
+<div class="grid-container">
 
-    <div class="containerEventi">   <!-- Repeti il seguente blocco per ogni evento -->
-        <div class="event">
-                <div class="grid-container">
-                  <div class="grid-item">
-                    <img src="../static/images/Matrimonio.jpg" alt="Evento 1">
-                    <a href="#" >Scheda Completa »</a>
-                  </div>
-                  <div class="grid-item">
-                    <img src="../static/images/Matrimonio.jpg" alt="Evento 2">
-                    <a href="#">Scheda Completa »</a>
-                  </div>
-                  <!-- Ripeti per altre immagini -->
-        </div>
-        </div>
-         <div class="event">
-                <div class="grid-container">
-                  <div class="grid-item">
-                    <img src="../static/images/Matrimonio.jpg" alt="Evento 1">
-                    <a href="#" >Scheda Completa »</a>
-                  </div>
-                  <div class="grid-item">
-                    <img src="../static/images/Matrimonio.jpg" alt="Evento 2">
-                    <a href="#">Scheda Completa »</a>
-                  </div>
-                  <!-- Ripeti per altre immagini -->
-        </div>
-        </div>
-         <div class="event">
-                <div class="grid-container">
-                  <div class="grid-item">
-                    <img src="../static/images/Matrimonio.jpg" alt="Evento 1">
-                    <a href="#" >Scheda Completa »</a>
-                  </div>
-                  <div class="grid-item">
-                    <img src="../static/images/Matrimonio.jpg" alt="Evento 2">
-                    <a href="#">Scheda Completa »</a>
-                  </div>
-                  <!-- Ripeti per altre immagini -->
-        </div>
-        </div>
+	<div class="grid">
 
 
+        <div class="container watch fade-in">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="../static/images/Altro.jpg">
+                    <h3>Nome Evento </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> <b> Tipo Evento
+                            <br></b> <br> Dati, Altri Dati</p>
+                        <button style="border: none; background: transparent" id="DA CAMBIARE"> <a href="#">Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
     </div>
-        <!-- Fine blocco evento -->
-        <!-- Aggiungi altri blocchi evento come necessario -->
-      </div>
-
-      <!-- Colonna Destra: I Tuoi Dati -->
-      <div class="right-column">
-        <h2>I Tuoi Dati</h2>
-        <form>
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome">
-          <label for="cognome">Cognome</label>
-          <input type="text" id="cognome" name="cognome">
-          <label for="telefono">Telefono</label>
-          <input type="text" id="telefono" name="telefono">
-          <button type="submit">Modifica</button>
-        </form>
-      </div>
     </div>
-    <script src="VisualizzaServizio.js"></script>
-    </body>
-    </html>
+
+
+        <div class="right-column">
+
+            <h2>I Tuoi Dati</h2>
+            Dati dell'utente che saranno aggiunti il 10/01 con una bellissima form <3
+
+        </div>
+    </div>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../static/js/SceltaFornitore2.js"></script>
+
+
+	</body>
+</html>
