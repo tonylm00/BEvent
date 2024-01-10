@@ -50,17 +50,17 @@ h2 {
 
 .rating-details {
     text-align: center;
-    margin-bottom: 15px; /* Aggiunge spazio tra le categorie */
+    margin-bottom: 15px;
 }
 
 .rating-details label {
-    display: block; /* Ogni label occupa una linea intera */
-    margin-bottom: 5px; /* Aggiunge spazio sotto ogni label */
+    display: block;
+    margin-bottom: 5px;
 }
 
 .star-rating {
-    display: inline-block; /* Mantiene le stelle sulla stessa linea */
-    margin: 0 auto; /* Centra il blocco delle stelle */
+    display: inline-block;
+    margin: 0 auto;
 }
 
 
