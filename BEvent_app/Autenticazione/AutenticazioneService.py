@@ -1,7 +1,7 @@
 from datetime import datetime
 import re
 from bson import ObjectId
-from flask import flash, jsonify
+from flask import flash
 
 from ..InterfacciaPersistenza.Biglietto import Biglietto
 from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico

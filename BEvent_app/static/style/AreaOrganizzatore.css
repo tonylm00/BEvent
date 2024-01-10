@@ -156,15 +156,9 @@
 }
 
 /* Fade in della barra della pagina  */
-.fade-in{
-    opacity: 0;
-    transform: translateY(10vh);
-    transition: all 1s cubic-bezier(.215, .61, .355, 1);
-}
-.fade-in.in-page{
-    opacity: 1;
-    transform: translateY(0vh);
-}
+.fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
+.fade-in.in-page{opacity: 1;transform: translateY(0vh);}
+
 .label{
     color: #ff7800;
     font-size: 20px;
@@ -197,4 +191,28 @@
     display: flex;
 
     align-items: center;
+}
+
+@media(max-width: 2800px){
+
+    .container .card .face{
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+}
+    .container .card .face.face1 .content img{
+        width: 200px;
+        height: 75%;
+}
+
+    .container2 .card2 .face3{
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+}
+    .container2 .card2 .face3.face4 .content2 img{
+        width: 200px;
+        height: 75%;
+}
+
 }
