@@ -18,20 +18,28 @@
 <div class="container">
     <div class="sezione-foto">
         <form action="/aggiungi_foto_fornitore" method="post" enctype="multipart/form-data">
-        <div class="foto-box"><img src="" alt="Immagine" id="immagine1"></div>
-
-            <label for="photo">Foto:</label>
-            <input type="file" id="fileInput2" name="foto" multiple="multiple"><br>
-            <ul id="selectedFileList2"></ul>
-            <button type="submit">Conferma</button>
-        </form>
+        <div class="foto-box"><img src="data:image/jpeg;base64,{{ dati.foto[0] }}" alt="Immagine" id="immagine_sopra"></div>
         <div class="foto-contenitore">
-            <div class="foto-box_2"><img src="" alt="Immagine" id="immagine1"></div>
-            <div class="foto-box_2"><img src="" alt="Immagine" id="immagine1"></div>
-            <div class="foto-box_2"><img src="" alt="Immagine" id="immagine1"></div>
+            {% for foto in dati.foto[1:] %}
+            <div class="foto-box_2"><img src="data:image/jpeg;base64,{{ foto }}" alt="Immagine" id="immagine_sotto"  onclick="scambiaImmagine(this)"></div>
+             {% endfor  %}
         </div>
+            <input type="file" id="fileInput2" name="foto" multiple="multiple" ><br>
+            <button type="submit">Conferma</button>
+         </form>
     </div>
 
+<script >
+   $(function() {
+       const $gallery = $('.gallery a').simpleLightbox();
+     });
+function scambiaImmagine(imgCliccata) {
+	  const immagineSopra = document.getElementById('immagine_sopra');
+	  const srcCliccata = imgCliccata.src;
+	  imgCliccata.src = immagineSopra.src;
+	  immagineSopra.src = srcCliccata;
+	}
+	</script>
 
     <div class="sezione-info">
         <form id="moduloContatto" method="post" action="/visualizza_dati_fornitore">
@@ -41,20 +49,20 @@
                 <div class="colonna">
                     <div class="campo">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome">
+                        <input type="text" id="nome" name="nome" value="nome">
                     </div>
                     <div class="campo">
                         <label for="cognome">Cognome</label>
-                        <input type="text" id="cognome" name="cognome">
+                        <input type="text" id="cognome" name="cognome" value="cognome">
                     </div>
                     <div class="campo">
                         <label for="telefono">Telefono</label>
-                        <input type="tel" id="telefono" name="telefono">
+                        <input type="tel" id="telefono" name="telefono" value="telefono">
                     </div>
 
                     <div class="campo">
                         <label for="p_iva">Partita Iva</label>
-                        <input type="text" id="p_iva" name="partitaiva">
+                        <input type="text" id="p_Iva" name="partitaiva" value="p_Iva">
                     </div>
                 </div>
 
@@ -62,20 +70,20 @@
                 <div class="colonna">
                     <div class="campo">
                         <label for="data_nascita">Data di nascita</label>
-                        <input type="date" id="data_nascita" name="dataNascita">
+                        <input type="date" id="data_nascita" name="dataNascita" value="data_nascita">
                     </div>
                     <div class="campo">
                         <label for="citta">Città</label>
-                        <input type="text" id="citta" name="citta">
+                        <input type="text" id="citta" name="citta" value="citta">
                     </div>
                     <div class="campo">
                         <label for="via">Via</label>
-                        <input type="text" id="via" name="via">
+                        <input type="text" id="via" name="via" value="via">
                     </div>
 
                     <div class="campo">
                         <label for="eventi_max_giornaliero">Eventi Massimo Giornaliero</label>
-                        <input type="text" id="eventi_max_giornaliero" name="eventomassimogiornaliero">
+                        <input type="text" id="eventi_max_giornalieri" name="eventimassimigiornalieri" value="eventi_max_giornalieri">
                     </div>
 
                 </div>
@@ -254,11 +262,12 @@
 
 
 </div>
-
+</div>
 <script src="https://cdn.lordicon.com/lordicon.js"></script>
 <script src="../static/js/AreaFornitore.js"></script>
 <script src="../static/js/AreaFornitore2.js"></script>
 <script src="../static/js/AreaFornitore3.js"></script>
+
 </body>
 </html>
 
