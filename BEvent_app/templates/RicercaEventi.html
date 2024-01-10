@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-        <title>Fornitori</title>
+        <title>Trova Evento</title>
         <link rel="stylesheet" href="../static/style/RicercaEventi.css">
 
 </head>
@@ -125,22 +125,23 @@
                 </div>
                 <h1 class="watch fade-in" style="text-align: center">{{ eventi[0].tipo}}</h1>
                 <p class="watch fade-in" style="text-align: center">{{ eventi[0].descrizione }}</p>
-                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> {{ eventi [0].nome}}: </p>
+                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Biglietto </p>
 
 
                 <div class="grid-container-servizi">
                 <div class="grid-servizi">
-                <div class="container2 watch fade-in ">
+                <div class="container2 ">
                 <div class="card2">
                     <div class="face3 face4">
                         <div class="content2">
                             <img src="data:image/jpeg;base64,{{ eventi[0].locandina }}">
-                            <h3>titolo tipo </h3>
+                            <h3>Biglietto </h3>
                         </div>
                     </div>
                     <div class="face3 face5">
                         <div class="content2">
-                            <p>{{ eventi[0].descrizione }}, {{ eventi[0].prezzo }} &euro;</p>
+
+                            <p>{{ eventi[0].descrizione }},<input type="number" class="input-scelta"> {{ eventi[0].prezzo }} &euro;</p>
                                 <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
                         </div>
                     </div>
