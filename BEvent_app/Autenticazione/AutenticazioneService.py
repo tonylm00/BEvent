@@ -276,13 +276,10 @@ def get_dati_home_organizzatore(id_organizzatore):
         "Ruolo": "2",
         "EventoPrivato.Organizzatore": id_organizzatore,
         "Data": {"$gte": data_odierna},
-        "isPagato": True
     }
 
     evento_data = db['Evento'].find(query).sort("Data", 1).limit(1)
-    evento_privato = Evento_Privato(evento_data, evento_data)
-
-    # aggiungere anche due eventi_pubblici
+    evento_privato = Evento_Privato(evento_data[0], evento_data[0])
 
     query = {
         "Ruolo": "1",
