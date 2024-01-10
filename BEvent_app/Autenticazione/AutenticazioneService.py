@@ -1,11 +1,15 @@
 from datetime import datetime
 import re
 from bson import ObjectId
-from flask import flash
+from flask import flash, jsonify
+
+from ..InterfacciaPersistenza.Biglietto import Biglietto
+from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
 from ..InterfacciaPersistenza.Utente import Utente
 from ..InterfacciaPersistenza.Organizzatore import Organizzatore
 from ..InterfacciaPersistenza.Fornitore import Fornitore
-from BEvent_app.InterfacciaPersistenza.Admin import Admin
+from ..InterfacciaPersistenza.Admin import Admin
+from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
 from ..db import get_db
 from werkzeug.security import generate_password_hash
 
@@ -239,8 +243,69 @@ def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telef
     return None
 
 
-def get_organizzatore_by_id(id_organizzatore):
+def get_dati_area_organizzatore(id_organizzatore):
     db = get_db()
     organizzatore_data = db['Utente'].find_one({'_id': ObjectId(id_organizzatore)})
     organizzatore = Organizzatore(organizzatore_data, organizzatore_data)
-    return organizzatore
+
+    eventi_privati_data = list(db['Evento'].find({
+        'Organizzatore': id_organizzatore,
+        'Ruolo': "2"
+    }))
+    eventi_privati = []
+    for data in eventi_privati_data:
+        evento_privato = Evento_Privato(data, data)
+        eventi_privati.append(evento_privato)
+
+    biglietti_comprati_data = list(db['Biglietto'].find({
+        'Comprato_da': id_organizzatore
+    }))
+    biglietti_comprati = []
+    for data in biglietti_comprati_data:
+        biglietto = Biglietto(data)
+        biglietti_comprati.append(biglietto)
+
+    return organizzatore, eventi_privati, biglietti_comprati
+
+
+def get_dati_home_organizzatore(id_organizzatore):
+    db = get_db()
+    data_odierna = datetime.now().strftime("%d-%m-%Y")
+
+    query = {
+        "Ruolo": "2",
+        "EventoPrivato.Organizzatore": id_organizzatore,
+        "Data": {"$gte": data_odierna},
+    }
+    try:
+        evento_data = db['Evento'].find(query).sort("Data", 1).limit(1).next()
+        evento_privato = Evento_Privato(evento_data, evento_data)
+    except StopIteration:
+        evento_data = None
+        evento_privato = None
+
+    query = {
+        "Ruolo": "1",
+        "Data": {"$gte": data_odierna},
+        "isPagato": True
+    }
+
+    evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(2)
+    if evento_pubblico_data:
+        eventi_pubblici = []
+        for data in evento_pubblico_data:
+            evento_pubblico = Evento_Pubblico(data, data)
+            eventi_pubblici.append(evento_pubblico)
+    else:
+        query = {
+            "Ruolo": "1",
+            "Data": {"$gte": data_odierna},
+            "isPagato": False
+        }
+        evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(2)
+        eventi_pubblici = []
+        for data in evento_pubblico_data:
+            evento_pubblico = Evento_Pubblico(data, data)
+            eventi_pubblici.append(evento_pubblico)
+
+    return evento_privato, eventi_pubblici
