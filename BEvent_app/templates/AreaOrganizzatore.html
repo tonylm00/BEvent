@@ -35,7 +35,8 @@
             <div class="face face2">
                 <div class="content">
                     <p> <b> Tipo Evento
-                            <br></b> <br> Dati, Altri Dati</p>
+                            <br></b> <br> Dati, Altri Dati<br> </p>
+
                         <button style="border: none; background: transparent" id="DA CAMBIARE"> <a href="#">Visualizza</a></button>
                 </div>
             </div>
@@ -49,7 +50,50 @@
         <div class="right-column">
 
             <h2>I Tuoi Dati</h2>
-            Dati dell'utente che saranno aggiunti il 10/01 con una bellissima form <3
+            <form>
+                <div class="divisione_dati">
+                    <label class="label" for="nome">Nome Utente</label>
+                    <input class="input" type="text" id="nome_utente" nome="nome_utente">
+
+                    <label class="label" for="citta">Città</label>
+                    <input class="input" type="text" id="citta" nome="citta">
+                </div>
+                <div class="divisione_dati">
+
+                    <label class="label" for="telefono">Telefono</label>
+                    <input class="input" type="text" id="telefono" nome="telefono">
+
+                    <label class="label" for="email">E-mail</label>
+                    <input class="input" type="text" id="email" nome="email">
+                </div>
+                <div class="divisione_dati">
+                    <label class="label" for="regione">Regione</label>
+                    <select class="select" name="regione">
+                        <option value=""disabled selected>La tua regione</option>
+                            <option value="Abruzzo">Abruzzo</option>
+                            <option value="Basilicata">Basilicata</option>
+                            <option value="Calabria">Calabria</option>
+                            <option value="Campania">Campania</option>
+                            <option value="Emilia Romagna">Emilia Romagna</option>
+                            <option value="Friuli Venezia Giulia">Friuli Venezia Giulia</option>
+                            <option value="Lazio">Lazio</option>
+                            <option value="Liguria">Liguria</option>
+                            <option value="Lombardia">Lombardia</option>
+                            <option value="Marche">Marche</option>
+                            <option value="Molise">Molise</option>
+                            <option value="Piemonte">Piemonte</option>
+                            <option value="Puglia">Puglia</option>
+                            <option value="Sardegna">Sardegna</option>
+                            <option value="Sicilia">Sicilia</option>
+                            <option value="Toscana">Toscana</option>
+                            <option value="Trentino Alto Adige">Trentino Alto Adige</option>
+                            <option value="Umbria">Umbria</option>
+                            <option value="Valle d'Aosta">Valle d'Aosta</option>
+                            <option value="Veneto">Veneto</option>
+                    </select>
+                 </div>
+                <button type="submit">Modifica</button>
+            </form>
 
         </div>
     </div>
