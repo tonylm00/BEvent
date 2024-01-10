@@ -693,7 +693,16 @@
 }
 }
 
-@media(max-width: 2130px){
+@media(min-width: 2100px) {
+
+    .grid-container-servizi {
+        margin-top: 30%;
+
+    }
+}
+
+
+@media(max-width: 2800px){
 
     .container .card .face{
         width: 200px;
@@ -704,6 +713,7 @@
         width: 200px;
         height: 75%;
 }
+
 /*
     .container2 .card2 .face3{
         width: 200px;

@@ -278,11 +278,6 @@
     cursor: pointer;
 }
 
-.modal-container2 button.hidden{
-    background-color: transparent;
-    border-color: #fff;
-}
-
 .modal-container2 form{
     background-color: #fff;
     display: flex;
@@ -300,7 +295,8 @@
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
-    width: 100%;
+    width: 90%;
+    margin-left: 7.5%;
     outline: none;
 }
 .modal-container2 select{
@@ -366,6 +362,11 @@
     transition: all 0.6s ease-in-out;
     border-radius: 150px 0 0 100px;
     z-index: 1000;
+}
+
+.toggle-container2 button{
+    background-color: white;
+    color: #FE8415;
 }
 
 .modal-container2.active .toggle-container2{
@@ -674,7 +675,7 @@
 }
 }
 
-@media(max-width: 2130px){
+@media(max-width: 2800px){
 
     .container .card .face{
         width: 200px;
