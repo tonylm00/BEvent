@@ -1,8 +1,8 @@
 from flask import request, Blueprint, session, redirect, flash
 from flask_login import login_user, logout_user, current_user
 from BEvent_app.Autenticazione import AutenticazioneService
-from BEvent_app.Routes import login_page, home, registrazione_page, admin_page, error_page, fornitore_page, \
-    organizzatore_page
+from BEvent_app.Routes import (home, registrazione_page, admin_page, error_page, organizzatore_page,
+                               area_organizzatore_page)
 
 aut = Blueprint('aut', __name__)
 
@@ -116,3 +116,11 @@ def registrazione_organizzatore():
             return home()
         else:
             return registrazione_page()
+
+
+@aut.route('/area_organizzatore', methods=['POST'])
+def area_organizzatore():
+    id_organizzatore = session['id']
+
+    organizzatore = get_organizzatore_by_id(id_organizzatore)
+    return area_organizzatore_page()

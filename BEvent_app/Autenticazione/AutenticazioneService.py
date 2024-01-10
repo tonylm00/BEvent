@@ -237,3 +237,10 @@ def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telef
             flash("Registrazione avvenuta con successo!", "success")
             return Admin
     return None
+
+
+def get_organizzatore_by_id(id_organizzatore):
+    db = get_db()
+    organizzatore_data = db['Utente'].find_one({'_id': ObjectId(id_organizzatore)})
+    organizzatore = Organizzatore(organizzatore_data, organizzatore_data)
+    return organizzatore
