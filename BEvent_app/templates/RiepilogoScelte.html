@@ -10,8 +10,8 @@
 <header>
 {% include 'Header.html' %}
 </header>
-{% set summ = 0.00 %}
-{% set prezzo = 0.00 %}
+
+
  {% if servizi != None %}
 <p class="projTitle textGradient watch fade-in">Il Tuo Riepilogo!</p>
 
@@ -19,17 +19,17 @@
     <div class="left-column watch fade-in">
     <div class="grid-container watch fade-in">
         <div class="grid watch fade-in">
-
+            {% set sum = namespace(somma=0)%}
             {% for servizio in servizi %}
                 {% set prezzo = servizio.prezzo | float %}
-                {% set summ = summ + prezzo %}
+                {% set sum.somma= sum.somma + prezzo %}
                     <div class="container2 watch fade-in ">
                     <div class="card2">
                         <div class="face3 face4">
                             <div class="content2">
                                 <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
                                 <h3>{{ servizio.tipo }} </h3>
-                                {{ summ }}
+
                             </div>
                         </div>
                         <div class="face3 face5">
@@ -64,10 +64,11 @@
         </div>
         <div style="margin-right: 15%">
         <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
-        <span class="value">{{ summ }} &euro;</span>
+        <span class="value">{{ sum.somma }} &euro;</span>
         <span class="value">5.00 &euro;</span>
          </span><span class="value">22%</span>
-        <span class="value">10 &euro;</span>
+            {% set sum.somma= sum.somma + 5.00 %}
+        <span class="value">{{ sum.somma }} &euro;</span>
         </ul>
         </div>
     </div>
