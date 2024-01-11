@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Consistenza completa delle operazione del lato fornitore">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="area fornitore pronta per essere modificata lato back, modificato evento pubblico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/Routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,6 +125,7 @@
       <workItem from="1704812861441" duration="3043000" />
       <workItem from="1704816591175" duration="2185000" />
       <workItem from="1704829825450" duration="1270000" />
+      <workItem from="1704995371900" duration="394000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -407,7 +407,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704738256439</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="versione quasi finale di area fornitore">
+      <option name="closed" value="true" />
+      <created>1704884820514</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1704884820514</updated>
+    </task>
+    <task id="LOCAL-00037" summary="area fornitore pronta per essere modificata lato back, modificato evento pubblico">
+      <option name="closed" value="true" />
+      <created>1704909355977</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1704909355977</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,8 +441,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modifica package autenticazione" />
-    <MESSAGE value="modifica &#10;EventoPubblico.css e EventoPubblico.html" />
     <MESSAGE value="modifica templates e gestionevento" />
     <MESSAGE value="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori" />
     <MESSAGE value="leggere modifcihe a pagina scelta evento e alla funzione visualizza fornitori per formattare la data" />
@@ -450,15 +464,17 @@
     <MESSAGE value="funzione leimina servizio non funzionante" />
     <MESSAGE value="funzione elimina servizio funzionante" />
     <MESSAGE value="implementazione di elimina evento lato back and" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementazione di elimina evento lato back and" />
+    <MESSAGE value="versione quasi finale di area fornitore" />
+    <MESSAGE value="area fornitore pronta per essere modificata lato back, modificato evento pubblico" />
+    <option name="LAST_COMMIT_MESSAGE" value="area fornitore pronta per essere modificata lato back, modificato evento pubblico" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoService.coverage" NAME="GestioneEventoService Coverage Results" MODIFIED="1704737557888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
     <SUITE FILE_PATH="coverage/BEvent$GestioneEventoController.coverage" NAME="GestioneEventoController Coverage Results" MODIFIED="1704734563125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
-    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
     <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704995451160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoService.coverage" NAME="GestioneEventoService Coverage Results" MODIFIED="1704737557888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
     <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704881642671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
   </component>
 </project>
