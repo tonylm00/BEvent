@@ -144,11 +144,6 @@ img{
 /* Stili per la sezione degli orari di lavoro */
 
 
-
-
-
-
-
 .sezione-tabella {
      grid-column: 1 / -1; /* Estende su tutte le colonne */
     grid-row: 3 / 4; /* Terza riga */
@@ -209,6 +204,11 @@ img{
      background-color: transparent ;
      border-color: transparent;
  }
+
+#sezione-tabella2 th:nth-last-child(-n+3),
+#sezione-tabella2 td:nth-last-child(-n+3) {
+    display: none;
+}
 
 /* modaleeeeee--------------------------*/
 .container-modale{

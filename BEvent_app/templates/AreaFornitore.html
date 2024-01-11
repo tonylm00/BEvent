@@ -198,7 +198,34 @@ function scambiaImmagine(imgCliccata) {
         </tbody>
     </table>
 
+<div class="sezione-tabella2">
+    <table>
+        <thead>
+            <tr>
+                <th>Organizzatore</th>
+                <th>Telefono</th>
+                <th>Data</th>
+                <th>Luogo</th>
+                <th>Descrizione</th>
 
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for servizio in servizi %}
+
+            <tr>
+            <form method="POST" action="/modifica_servizio">
+                <td><input type="text" name="organizzatore" value="{{ servizio.quantita }}"></td>
+                <td><input type="text" name="telefono" value="{{ servizio.telefono }}"></td>
+                <td><input type="text" name="data" value="{{ servizio.tipo }}"></td>
+                <td><input type="text" name="luogo" value="{{ servizio.prezzo }}"></td>
+                <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
+
+
+        {% endfor %}
+        </tbody>
+    </table>
 
 
 
