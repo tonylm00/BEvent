@@ -10,43 +10,41 @@
 </head>
 <body>
 <header>
-{% include 'Header.html' %}
+
 </header>
 
 <div>
-
+    <form action="/crea_evento_pubblico" method="post">
 <div class="container">
     <div class="colonna-sx">
-        <input type="text" id="event-title" placeholder="TITOLO DELL'EVENTO">
-        <input type="text" id="event-date" placeholder="DATA">
-        <input type="text" id="event-time" placeholder="ORA">
-        <input type="text" id="event-location" placeholder="LUOGO">
+        <input type="text" id="event-title" placeholder="TITOLO DELL'EVENTO" name="nome">
+        <input type="date" id="event-date" placeholder="DATA" name="data">
+        <input type="text" id="event-time" placeholder="ORA" name="ora">
+
     </div>
 
     <div class="colonna-cen">
 
-    <div class="sezione-foto">
-        <div class="foto-box">Aggiungi foto</div>
-        <div class="foto-contenitore">
-            <div class="foto-box_2">Aggiungi foto</div>
-            <div class="foto-box_2">Aggiungi foto</div>
-            <div class="foto-box_2">Aggiungi foto</div>
-        </div>
-    </div>
+        <input type="file" id="fileInput" name="photo" ><br>
+            <ul id="selectedFileList"></ul>
 
-        <textarea id="event-description" placeholder="DESCRIZIONE"></textarea>
+        <textarea id="event-description" placeholder="DESCRIZIONE" name="descrizione"></textarea>
 
     </div>
     <div class="colonna-dx">
-        <input type="number" id="tickets-available" placeholder="BIGLIETTI DISPONIBILI">
-        <input type="text" id="supplier" placeholder="Fornitori">
-        <select id="event-type">
+        <input type="number" placeholder="BIGLIETTI DISPONIBILI" name="n_persone">
+        <input type="number"  placeholder="servizi_associati" name="servizi_associati" value="momentaneo">
+        <select id="event-type" name="tipo">
             <option value="">Seleziona tipo di evento</option>
             <option value="Disco Party">DiscoParty</option>
             <option value="Opera Teatrale">Teatro</option>
             <option value="Festival">Concerto</option>
             <option value="Altro">Altro</option>
-
+        </select>
+         <select id="event-type" name="servizi">
+             {% for servizio in servizi %}
+            <option value="{{ servizio._id }}">{{ servizio.descrizione }}</option>
+             {% endfor%}
         </select>
     </div>
 
@@ -54,9 +52,9 @@
 
 </div>
 <div style="display:flex; justify-content:center; justify-items: center;">
-<button class="button" onclick="pubblicaEvento()">Pubblica Evento</button>
+<button class="button" type="submit">Pubblica Evento</button>
 </div>
-
+</form>
 <script>
     function pubblicaEvento() {
 

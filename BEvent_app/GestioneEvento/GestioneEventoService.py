@@ -4,6 +4,7 @@ import mail
 from bson import ObjectId
 from flask import flash
 
+from ..InterfacciaPersistenza import ServizioOfferto
 from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
 from ..db import get_db
 from ..InterfacciaPersistenza.Fornitore import Fornitore
@@ -246,9 +247,8 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
 
 
 def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati, foto_byte_array, ruolo,
-                                   lista_fornitori, lista_servizi, is_pagato):
-    id_fornitori = [fornitore.id for fornitore in lista_fornitori]
-    id_servizi = [servizio._id for servizio in lista_servizi]
+                                   id_fornitori, id_servizi, is_pagato):
+
     documento = {
         '_id': ObjectId(),
         'Data': data_evento,
@@ -268,8 +268,10 @@ def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invi
 def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
                 is_pagato, ruolo, foto_byte_array, prezzo, id_organizzatore):
     db = get_db()
+    id_fornitori = [fornitore.id for fornitore in lista_fornitori]
+    id_servizi = [servizio._id for servizio in lista_servizi]
     documento_evento_generico = crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati,
-                                                               foto_byte_array, ruolo, lista_fornitori, lista_servizi,
+                                                               foto_byte_array, ruolo, id_fornitori, id_servizi,
                                                                is_pagato)
 
     documento_evento_privato = {
@@ -312,4 +314,40 @@ def invia_email_fornitore(destinatario, oggetto, corpo):
     msg = mail(oggetto, sender="tuo@email.com", recipients=["Fornitore"])
     msg.body = corpo
     mail.send(msg)
+
+def crea_evento_pubblico(Data,n_persone,Descrizione,locandina,Ruolo,Tipo,isPagato,fornitori_associati,servizi_associati,prezzo,Ora,Nome,Via,Regione,id_fornitore):
+    db = get_db()
+
+    documento_evento_generico = crea_documento_evento_generico(Data, Descrizione, Tipo, n_persone,
+                                                               locandina, Ruolo, fornitori_associati,servizi_associati,
+                                                          isPagato)
+    location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
+    documento_evento_Pubblico = {
+        'EventoPubblico': {
+            'Prezzo': prezzo,
+             'Nome' : Nome,
+             'Luogo': Via,
+             'Regione' : Regione,
+             'Ora': Ora
+        }
+    }
+    documento_evento = {**documento_evento_generico, **documento_evento_Pubblico}
+    db.Evento.insert_one(documento_evento)
+def get_tutti_servizi_byFornitoreLocation(id_fornitore):
+    db = get_db()
+    servizi_collection = db['Servizio Offerto']
+    servizi_data = list(servizi_collection.find({
+        'fornitore_associato': id_fornitore,
+        'isCurrentVersion': {'$in': [None, '']},
+        'isDeleted': False,
+        'Tipo': 'Location'
+    }))
+
+    lista_servizi = []
+
+    for data in servizi_data:
+        servizio = ServizioOfferto.Servizio_Offerto(data)
+        lista_servizi.append(servizio)
+
+    return lista_servizi
 
