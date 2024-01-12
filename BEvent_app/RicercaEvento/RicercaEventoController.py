@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, request, jsonify
 
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
-    ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo
+    ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id
 from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
 
 re = Blueprint('re', __name__)
@@ -115,6 +115,35 @@ def filtro_prezzo_eventi():
 
         else:
             return jsonify({"errore": "Parametro 'categoria' non presente nei dati JSON"}), 400
+
+    except Exception as e:
+        return jsonify({"errore": str(e)}), 500
+
+
+@re.route('/aggiorna_right_column_eventi', methods=['POST'])
+def aggiorna_right_column_eventi():
+    data = request.get_json()
+    print(data)
+    try:
+        print("prova 1")
+        if 'id_evento' in data:
+            id_evento = data['id_evento']
+            print("prova 2")
+
+            evento_scelto = get_evento_by_id(id_evento)
+            print("prova 3")
+            if evento_scelto:
+                print("prova 4")
+                evento_serializzato = serializza_eventi(evento_scelto)
+                print("prova 5")
+                return jsonify({
+                    "evento_scelto": evento_serializzato
+                }), 200
+            else:
+                return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
+
+        else:
+            return jsonify({"errore": "Parametro 'id_evento' non presente nei dati JSON"}), 400
 
     except Exception as e:
         return jsonify({"errore": str(e)}), 500

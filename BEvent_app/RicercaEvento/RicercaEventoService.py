@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from bson import ObjectId, Int64
+
 from ..db import get_db
 from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
 
@@ -10,7 +12,8 @@ def get_eventi():
     data_odierna = datetime.now().strftime("%d-%m-%Y")
     eventi_data = list(eventi_collection.find({
         "Data": {"$gt": data_odierna},
-        "Ruolo": "1"
+        "Ruolo": "1",
+        "EventoPubblico.BigliettiDisponibili": {"$ne": "0"}
     }))
 
     lista_eventi = []
@@ -24,6 +27,7 @@ def get_eventi():
 
 
 def serializza_eventi(evento):
+    print(evento.biglietti_disponibili)
     evento = {
         'data': evento.data,
         'descrizione': evento.descrizione,
@@ -35,8 +39,12 @@ def serializza_eventi(evento):
         'isPagato': evento.isPagato,
         'prezzo': evento.prezzo,
         'nome': evento.nome,
-        'regione': evento.regione
+        'regione': evento.regione,
+        'luogo': evento.luogo,
+        'ora': evento.ora,
+        'biglietti_disponibili': evento.biglietti_disponibili
     }
+    return evento
 
 
 def ricerca_eventi_per_parola(ricerca):
@@ -85,3 +93,10 @@ def ricerca_eventi_per_prezzo(prezzo_min, prezzo_max):
     eventi_filtrati = [evento for evento in eventi_non_filtrati if prezzo_min <= evento.prezzo <= prezzo_max]
 
     return eventi_filtrati
+
+
+def get_evento_by_id(id_evento):
+    db = get_db()
+    evento_scelto_data = db['Evento'].find_one({'_id': ObjectId(id_evento)})
+    evento = Evento_Pubblico(evento_scelto_data, evento_scelto_data)
+    return evento

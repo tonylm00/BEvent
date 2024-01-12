@@ -91,7 +91,6 @@
 
         {% for evento in eventi %}
 
-
         <div class="container watch fade-in">
         <div class="card">
             <div class="face face1">
@@ -103,7 +102,7 @@
             <div class="face face2">
                 <div class="content">
                     <p> <b> {{ evento.tipo }} <br></b> {{ evento.descrizione }}<br> </p>
-                        <button style="border: none; background: transparent" id="{{ evento.id }}" onclick="aggiornaColonnaDx('{{ evento.id }}')"> <a href="#">Visualizza</a></button>
+                        <button style="border: none; background: transparent" id="{{ evento.id }}" onclick="aggiornaColonnaDxEvento('{{ evento.id }}')">Visualizza</button>
                 </div>
             </div>
         </div>
@@ -142,9 +141,10 @@
                     <div class="face3 face5">
                         <div class="content2">
 
-                            <p>{{ eventi[0].descrizione }},<input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> {{ eventi[0].prezzo }}</span> &euro;</p>
+                            <p>{{ eventi[0].descrizione }},<input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> {{ eventi[0].prezzo }}</span> &euro;<br>
+                            Luogo: {{ eventi[0].luogo }}, {{ eventi[0].regione }} <br> Ora: {{ eventi[0].ora }} <br> Biglietti Disponibli: {{ eventi[0].biglietti_disponibili }}/{{ eventi[0].n_persone }}</p>
                                <p id="prezzoTotale"> </p>
-                                <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
+                                <button style="border: none; background: transparent" id="" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
                         </div>
                     </div>
                 </div>
@@ -161,8 +161,8 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="../static/js/SceltaFornitore.js"></script>
     <script src="../static/js/SceltaFornitore2.js"></script>
-    <script src="../static/js/AjaxRicercaFornitori.js"></script>
-    <script src="../static/js/AjaxSwapCard.js"></script>
+    <script src="../static/js/AjaxRicercaEventi.js"></script>
+    <script src="../static/js/AjaxSwapCardEventi.js"></script>
     <script src="../static/js/RicercaEvento.js"></script>
 
 	</body>

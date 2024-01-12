@@ -34,6 +34,7 @@ function inviaRichiestaGenerica(endpoint, data){
 
     xhr.send(JSON.stringify(data));
 }
+
 function inviaRichiestadiRicercaBarra(data){
     inviaRichiestaGenerica('/filtro_barra_ricerca', data)
 }
