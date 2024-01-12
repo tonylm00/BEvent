@@ -203,7 +203,7 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
                     'Descrizione': descrizione,
                     'EventiMassimiGiornaliero': eventi_max_giorn,
                     'OrarioDiLavoro': "",
-                    'Foto': "",
+                    'Foto': [],
                     'Citta': citta,
                     'Via': via,
                     'Partita_Iva': piva,
