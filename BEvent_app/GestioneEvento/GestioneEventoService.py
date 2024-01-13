@@ -75,22 +75,32 @@ def get_fornitori_disponibli(data_richiesta):
     return lista_fornitori
 
 
-def get_servizi():
+def get_servizi(data_richiesta):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({}))
+    eventi_collection = db['Eventi']
+
+    servizi_data = list(servizi_collection.find({'isCurrentVersion': None}))
 
     lista_servizi = []
 
     for data in servizi_data:
         servizio = Servizio_Offerto(data)
-        lista_servizi.append(servizio)
+
+        evento_associato = eventi_collection.find_one({
+            'servizi_associati': {'$in': [str(servizio._id)]},
+            'Ruolo': '1',
+            'Data': data_richiesta
+        })
+
+        if not evento_associato:
+            lista_servizi.append(servizio)
 
     return lista_servizi
 
 
 def filtro_categoria_liste(categoria, data):
-    servizi = get_servizi()
+    servizi = get_servizi(data)
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
@@ -104,7 +114,7 @@ def filtro_categoria_liste(categoria, data):
 
 
 def filtro_regione_liste(regione, data):
-    servizi = get_servizi()
+    servizi = get_servizi(data)
     fornitori_non_filtrati = get_fornitori_disponibli(data)
 
     fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if fornitore.regione == regione]
@@ -115,7 +125,7 @@ def filtro_regione_liste(regione, data):
 
 
 def filtro_prezzo_liste(prezzo_min, prezzo_max, data):
-    servizi = get_servizi()
+    servizi = get_servizi(data)
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
@@ -135,7 +145,7 @@ def filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati):
 
 
 def filtro_ricerca(ricerca, data):
-    servizi = get_servizi()
+    servizi = get_servizi(data)
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
@@ -176,7 +186,8 @@ def get_fornitore_by_email(email):
 
 def get_servizi_fornitore(fornitore):
     db = get_db()
-    servizi_data = list(db['Servizio Offerto'].find({"fornitore_associato": fornitore.id}))
+    servizi_data = list(db['Servizio Offerto'].find({"fornitore_associato": fornitore.id,
+                                                     'isCurrentVersion': None}))
 
     lista_servizi = []
 
@@ -248,7 +259,6 @@ def ottieni_servizi_e_fornitori_cookie(carrello):
 
 def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati, foto_byte_array, ruolo,
                                    id_fornitori, id_servizi, is_pagato):
-
     documento = {
         '_id': ObjectId(),
         'Data': data_evento,
@@ -315,24 +325,28 @@ def invia_email_fornitore(destinatario, oggetto, corpo):
     msg.body = corpo
     mail.send(msg)
 
-def crea_evento_pubblico(Data,n_persone,Descrizione,locandina,Ruolo,Tipo,isPagato,fornitori_associati,servizi_associati,prezzo,Ora,Nome,Via,Regione,id_fornitore):
+
+def crea_evento_pubblico(Data, n_persone, Descrizione, locandina, Ruolo, Tipo, isPagato, fornitori_associati,
+                         servizi_associati, prezzo, Ora, Nome, Via, Regione, id_fornitore):
     db = get_db()
 
     documento_evento_generico = crea_documento_evento_generico(Data, Descrizione, Tipo, n_persone,
-                                                               locandina, Ruolo, fornitori_associati,servizi_associati,
-                                                          isPagato)
+                                                               locandina, Ruolo, fornitori_associati, servizi_associati,
+                                                               isPagato)
     location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
     documento_evento_Pubblico = {
         'EventoPubblico': {
             'Prezzo': prezzo,
-             'Nome' : Nome,
-             'Luogo': Via,
-             'Regione' : Regione,
-             'Ora': Ora
+            'Nome': Nome,
+            'Luogo': Via,
+            'Regione': Regione,
+            'Ora': Ora
         }
     }
     documento_evento = {**documento_evento_generico, **documento_evento_Pubblico}
     db.Evento.insert_one(documento_evento)
+
+
 def get_tutti_servizi_byFornitoreLocation(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
@@ -350,4 +364,3 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
         lista_servizi.append(servizio)
 
     return lista_servizi
-

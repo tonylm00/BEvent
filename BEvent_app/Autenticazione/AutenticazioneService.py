@@ -290,7 +290,7 @@ def get_dati_home_organizzatore(id_organizzatore):
         "isPagato": True
     }
 
-    evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(2)
+    evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(4)
     if evento_pubblico_data:
         eventi_pubblici = []
         for data in evento_pubblico_data:
