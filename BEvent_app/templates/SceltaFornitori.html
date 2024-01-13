@@ -33,9 +33,9 @@
  <div id="myModal2" class="modal2">
 	<div class="modal-container2 slideDown" id="modal-container2">
         <div class="form-container2 sign-in">
-            <form action="/" method="POST">
+            <form action="" >
                 <h1 style="color: #FE8415;">Filtra per Fornitori!</h1>
-                <select id="tipo" name="tipo">
+                <select id="tipo" name="tipo" onchange="inviaRichiestaCategoria(this.value)">
                         <option value="" disabled selected>Scegli il Fornitore Che Cerchi</option>
                         <option value="Location">Location</option>
                         <option value="Fiorai_e_Decorazioni">Fiorai e Decorazioni</option>
@@ -49,7 +49,7 @@
                         <option value="Gadget">Gadget</option>
                         <option value="Altro">Altro</option>
                     </select>
-                <select name="regione">
+                <select name="regione" onchange="inviaRichiestaRegione(this.value)">
                         <option value="" disabled selected>Scegli La Tua Regione</option>
                         <option value="Abruzzo">Abruzzo</option>
                         <option value="Basilicata">Basilicata</option>
@@ -71,16 +71,16 @@
                         <option value="Umbria">Umbria</option>
                         <option value="Valle d'Aosta">Valle d'Aosta</option>
                         <option value="Veneto">Veneto</option>
-                    </select><button>Applica</button>
+                    </select>
             </form>
         </div>
         <div class="toggle-container2">
             <div class="toggle2">
                 <div class="toggle-panel2 toggle-right2">
                     <h1>Filtra il Prezzo!</h1>
-                        <input type="number" name="prezzo_min" placeholder="Prezzo Min">
-                        <input type="number" name="prezzo_max" placeholder="Prezzo Max">
-                        <button>Applica</button>
+                        <input type="number" name="prezzo_min" id="prezzo_min" placeholder="Prezzo Min">
+                        <input type="number" name="prezzo_max" id="prezzo_max" placeholder="Prezzo Max">
+                        <button onclick="inviaRichiestaPrezzo()">Applica</button>
                 </div>
             </div>
         </div>
@@ -112,7 +112,6 @@
                                 {% if servizio.fornitore_associato == fornitore.id and servizio.tipo not in types_seen %}
                                     {% set _ = types_seen.append(servizio.tipo) %}
                                     {{ servizio.tipo }}
-
                                 {% endif %}
                             {% endfor %}
                             <br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }}</p>

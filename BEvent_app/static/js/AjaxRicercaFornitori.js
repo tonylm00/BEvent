@@ -41,22 +41,25 @@ function inviaRichiestadiRicercaBarra(data){
 
 function inviaRichiestaCategoria(categoria){
     let data= {
-        ricerca: categoria
+        categoria: categoria
     }
     inviaRichiestaGenerica('/filtro_categoria', data)
 }
 
 function inviaRichiestaRegione(regione){
     let data ={
-        ricerca: regione
+        regione: regione
     }
     inviaRichiestaGenerica('/filtro_regione', data)
 }
 
 
-function inviaRichiestaPrezzo(prezzo){
+function inviaRichiestaPrezzo(){
+    let prezzo_min = document.getElementById("prezzo_min").value;
+    let prezzo_max = document.getElementById("prezzo_max").value;
     let data ={
-        ricerca: prezzo
+        prezzo_min: prezzo_min,
+        prezzo_max: prezzo_max
     }
     inviaRichiestaGenerica('/filtro_prezzo', data)
 }
