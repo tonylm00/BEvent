@@ -102,26 +102,31 @@ function scambiaImmagine(imgCliccata) {
     <p class="projTitle textGradient ">Eventi in Programma</p>
 <div class="grid">
 
+  {% for eventoPrivato in eventiPrivati   %}
+
+
 
         <div class="container watch fade-in">
         <div class="card">
             <div class="face face1">
                 <div class="content">
                     <img src="../static/images/Altro.jpg">
-                    <h3>Nome Evento </h3>
+                    <h3> {{ eventoPrivato.descrizione }} </h3>
                 </div>
             </div>
             <div class="face face2">
                 <div class="content">
                     <p> <b> Tipo Evento
-                            <br></b> <br> Dati, Altri Dati<br> </p>
+                            <br></b> <br> <br> </p>
 
-                        <button style="border: none; background: transparent" id="DA CAMBIARE"> <a href="#">Visualizza</a></button>
+                    <form action="/Visuallizza_evento_dettagli" method="post"><button type="submit" name="id" value="{{ eventoPrivato.id }}">  Visualizza </button></form>>
                 </div>
             </div>
         </div>
         </div>
+      {% endfor %}
         </div>
+
     </div>
     </div>
 
@@ -223,9 +228,62 @@ function scambiaImmagine(imgCliccata) {
 
         {% endfor %}
         </tbody>
+
     </table>
 
 
+
+
+
+</div>
+
+
+
+<div class="sezione-tabella">
+   <p class="projTitle textGradient ">Eventi creati</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Descrizione</th>
+                <th>Tipo</th>
+                <th>Biglietti Disponibili</th>
+                <th>Ora</th>
+                <th>elimina</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for eventoPubblico in eventiPubblici %}
+
+            <tr>
+            <form method="POST" action="/elimina_evento">
+                <td><input type="text" name="descrizione" value="{{ eventoPubblico.descrizione }}"></td>
+                <td><input type="text" name="tipo" value="{{ eventoPubblico.tipo }}"></td>
+                <td><input type="text" name="prezzo" value="{{ eventoPubblico.biglietti_disponibili }}"></td>
+                <td><input type="text" name="prezzo" value="{{ eventoPubblico.ora }}"></td>
+                <td><button type="submit" name="id" value="{{ eventoPubblico.id }}">emlina</button></td>
+
+            </form>>
+
+
+
+
+            <td>
+
+            </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+
+
+
+</div>
 </div>
 </div>
 <script src="https://cdn.lordicon.com/lordicon.js"></script>

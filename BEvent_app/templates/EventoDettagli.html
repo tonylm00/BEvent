@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualizza Recensioni</title>
+<link rel="stylesheet"  type="text/css" href="../static/style/VisualizzazioneRecensione.css">
+</head>
+<body>
+
+<div class="reviews-container">
+   descrizione evento : {{ evento.descrizione }}<br>
+   nome organizzatore : {{ organizzatore.nome }}<br>
+   cognome organizzatore: {{ organizzatore.cognome }}<br>
+   email :  {{ organizzatore.email }}<br>
+   telefono: {{ organizzatore.telefono }}<br>
+   data:     {{ evento.data }}<br>
+    {% for fornitore in fornitori %}
+        {{  fornitore.nome}} <br>
+
+    {% endfor %}
+
+
+</div>
+
+
+</body>
+</html>

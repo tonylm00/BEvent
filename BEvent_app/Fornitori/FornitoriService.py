@@ -4,7 +4,10 @@ from pymongo import MongoClient
 from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
-
+from ..InterfacciaPersistenza import Evento
+from ..InterfacciaPersistenza import Organizzatore
+from ..InterfacciaPersistenza import EventoPubblico
+from ..InterfacciaPersistenza import EventoPrivato
 
 def get_tutti_servizi_byFornitore(id_fornitore):
     db = get_db()
@@ -131,5 +134,68 @@ def aggiungi_servizio(nuovi_dati):
     db = get_db()
     db['Servizio Offerto'].insert_one(nuovi_dati)
 
+def Get_eventi_ByFornitorePrivato(id):
+    print(id)
+    db = get_db()
+    eventi = db['Evento']
+    eventi_fornitore_Privati = eventi.find({"fornitori_associati": id, "Ruolo": "2"})
 
+    lista_eventi_fornitore= []
+    for evento_fornitore in eventi_fornitore_Privati:
+        eventoPrivato = EventoPrivato.Evento_Privato(evento_fornitore,evento_fornitore)
+        lista_eventi_fornitore.append(eventoPrivato)
+
+    return lista_eventi_fornitore
+
+def GetEventi_FornitorePubblico(id):
+    print(id)
+    db = get_db()
+    eventi = db['Evento']
+    eventi_fornitore_Pubblico = eventi.find({"fornitori_associati": id, "Ruolo": "1"})
+
+    lista_eventi_fornitore= []
+    for evento_fornitore in eventi_fornitore_Pubblico:
+        eventoPubblico = EventoPubblico.Evento_Pubblico(evento_fornitore,evento_fornitore)
+        lista_eventi_fornitore.append(eventoPubblico)
+
+    return lista_eventi_fornitore
+def Cancella_evento(id):
+    db= get_db()
+    eventi = db['Evento']
+    eventi.delete_one({"_id": ObjectId(id)})
+
+def Get_dettagli_evento(id):
+    db = get_db()
+    eventi = db['Evento']
+    evento_data = eventi.find_one({"_id": ObjectId(id)})
+    evento = EventoPrivato.Evento_Privato(evento_data,evento_data)
+    return evento
+
+def Get_dati_organizzatore(id):
+    db = get_db()
+    eventi = db['Evento']
+    evento_data = eventi.find_one({"_id": ObjectId(id)})
+    evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
+    utenti = db['Utente']
+    utenti_data = utenti.find_one({"_id": ObjectId(evento.organizzatore)})
+    organizzatore = Organizzatore.Organizzatore(utenti_data, utenti_data)
+    return organizzatore
+
+def get_dati_fornitori(id,id_fornitore):
+    db = get_db()
+    eventi = db['Evento']
+    fornitori_db = db['Utente']
+    evento_data = eventi.find_one({"_id": ObjectId(id)})
+    evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
+    fornitori_lista = []
+    for fornitori in evento.fornitori_associati:
+        user_data = db['Utente'].find_one({"_id": ObjectId(fornitori)})
+        if user_data and ObjectId(user_data["_id"]) == ObjectId(id_fornitore):
+            print(user_data["_id"])
+            print(id_fornitore)
+        else:
+            fornitore = Fornitore(user_data, user_data)
+            fornitori_lista.append(fornitore)
+
+    return fornitori_lista
 

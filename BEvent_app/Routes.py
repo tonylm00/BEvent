@@ -9,8 +9,8 @@ views = Blueprint('views', __name__)
 
 @views.route('/fornitore_page')
 # @login_required
-def fornitore_page(servizi=None, dati=None):
-    return render_template('AreaFornitore.html', servizi=servizi, dati=dati)
+def fornitore_page(servizi=None, dati=None, eventiPubblici=None,eventiPrivati=None):
+    return render_template('AreaFornitore.html', servizi=servizi, dati=dati,eventiPrivati=eventiPrivati,eventiPubblici=eventiPubblici)
 
 
 @views.route('/organizzatore_page')
@@ -88,3 +88,7 @@ def riepilogo_scelte_page(fornitori=None, servizi=None):
 @views.route('/EventoPublico_page')
 def crea_evento_pubblico_page(servizi=None):
     return render_template('EventoPubblico.html', servizi=servizi)
+
+@views.route('/Visualizza_evento_dettagli_page')
+def visualizza_evento_dettagli_page(evento=None,organizzatore=None,fornitori=None):
+    return render_template('EventoDettagli.html', evento=evento, organizzatore=organizzatore,fornitori=fornitori)
