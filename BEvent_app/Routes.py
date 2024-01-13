@@ -90,5 +90,5 @@ def crea_evento_pubblico_page(servizi=None):
     return render_template('EventoPubblico.html', servizi=servizi)
 
 @views.route('/Visualizza_evento_dettagli_page')
-def visualizza_evento_dettagli_page(evento=None,organizzatore=None,fornitori=None):
-    return render_template('EventoDettagli.html', evento=evento, organizzatore=organizzatore,fornitori=fornitori)
+def visualizza_evento_dettagli_page(evento=None,organizzatore=None,servizi=None):
+    return render_template('EventoDettagli.html', evento=evento, organizzatore=organizzatore,servizi=servizi)

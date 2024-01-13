@@ -181,21 +181,30 @@ def Get_dati_organizzatore(id):
     organizzatore = Organizzatore.Organizzatore(utenti_data, utenti_data)
     return organizzatore
 
-def get_dati_fornitori(id,id_fornitore):
+def get_dati_servizi(id,id_fornitore):
     db = get_db()
     eventi = db['Evento']
-    fornitori_db = db['Utente']
+    fornitori_db = db['Servizio Offerto']
     evento_data = eventi.find_one({"_id": ObjectId(id)})
     evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
-    fornitori_lista = []
-    for fornitori in evento.fornitori_associati:
-        user_data = db['Utente'].find_one({"_id": ObjectId(fornitori)})
-        if user_data and ObjectId(user_data["_id"]) == ObjectId(id_fornitore):
-            print(user_data["_id"])
-            print(id_fornitore)
+    servizi_lista = []
+    for servizi in evento.servizi_associati:
+        servizio_data = db['Servizio Offerto'].find_one({"_id": ObjectId(servizi)})
+        print(servizio_data["Descrizione"])
+
+        if servizio_data and ObjectId(servizio_data["fornitore_associato"]) == ObjectId(id_fornitore):
+         print("rapa")
         else:
-            fornitore = Fornitore(user_data, user_data)
-            fornitori_lista.append(fornitore)
+            servizi_lista.append(servizio_data)
 
-    return fornitori_lista
 
+    return servizi_lista
+
+def invio_feedBack(id_valutato,id_valutante,valutazione):
+    db = get_db()
+    dati = {
+        "id_valutato": id_valutato,
+        "id_valutante": id_valutante,
+        "valutazione": valutazione
+    }
+    db['FeedBack'].insert_one(dati)

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Blueprint, request, session
 from flask_login import current_user
 from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
-from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byFornitore,aggiorna_foto_fornitore,aggiungi_servizio,modifica_servizio,elimina_servizio,Get_eventi_ByFornitorePrivato,GetEventi_FornitorePubblico,Cancella_evento,Get_dettagli_evento,Get_dati_organizzatore,get_dati_fornitori
+from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byFornitore,aggiorna_foto_fornitore,aggiungi_servizio,modifica_servizio,elimina_servizio,Get_eventi_ByFornitorePrivato,GetEventi_FornitorePubblico,Cancella_evento,Get_dettagli_evento,Get_dati_organizzatore,get_dati_servizi,invio_feedBack
 from BEvent_app import Routes
 from flask import redirect, url_for
 from ..Utils import Image
@@ -136,10 +136,16 @@ def elimina_evento_controller():
     return redirect('/fornitori')
 
 
-@Fornitori.route('/Visuallizza_evento_dettagli', methods=['POST'])
+@Fornitori.route('/Visuallizza_Dettagli_evento_Fornitore',  methods=['GET', 'POST'])
 def visualizza_evento_dettagli_controller():
     id = request.form.get("id")
     evento = Get_dettagli_evento(id)
     organizzatore = Get_dati_organizzatore(id)
-    fornitori = get_dati_fornitori(id,session["id"])
-    return visualizza_evento_dettagli_page(evento,organizzatore,fornitori)
+    servizi = get_dati_servizi(id,session["id"])
+    return visualizza_evento_dettagli_page(evento = evento, organizzatore =organizzatore, servizi=servizi)
+@Fornitori.route('/invio_Feedback', methods=['POST'])
+def invio_FeedBack_controller():
+    id = request.form.get("valutato")
+    valutazione = request.form.get("valutazione")
+    invio_feedBack(id, session["id"], valutazione)
+    return redirect("/fornitori")

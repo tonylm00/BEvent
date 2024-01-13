@@ -15,9 +15,12 @@
    email :  {{ organizzatore.email }}<br>
    telefono: {{ organizzatore.telefono }}<br>
    data:     {{ evento.data }}<br>
-    {% for fornitore in fornitori %}
-        {{  fornitore.nome}} <br>
-
+    {% for servizio in servizi %}
+        {{  servizio.Descrizione}} <br>
+        <form action="/invio_Feedback" method="post">
+            <input type="number" name="valutazione" placeholder="voto">
+        <button type="submit" name="valutato" value="{{ servizio._id }}">Invio</button>
+        </form>
     {% endfor %}
 
 
