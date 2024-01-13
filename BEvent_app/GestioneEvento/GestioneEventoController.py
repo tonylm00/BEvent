@@ -30,7 +30,7 @@ def visualizza_fornitori():
 
     if GestioneEventoService.is_valid_data(data):
         fornitori = GestioneEventoService.get_fornitori_disponibli(data_formattata)
-        servizi_non_filtrati = GestioneEventoService.get_servizi()
+        servizi_non_filtrati = GestioneEventoService.get_servizi(data_formattata)
         servizi_offerti = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori)
 
         return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti)
@@ -50,9 +50,12 @@ def filtro_categoria():
             servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_categoria_liste(categoria, data_evento)
 
             if servizi_filtrati and fornitori_filtrati:
+                fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
+                servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in servizi_filtrati]
+
                 return jsonify({
-                    "servizi_filtrati": servizi_filtrati,
-                    "fornitori_filtrati": fornitori_filtrati
+                    "servizi_filtrati": servizi_serializzati,
+                    "fornitori_filtrati": fornitori_serializzati
                 }), 200
             else:
                 return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
@@ -75,9 +78,12 @@ def filtro_regione():
             servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_regione_liste(regione, data_evento)
 
             if servizi_filtrati and fornitori_filtrati:
+                fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
+                servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in servizi_filtrati]
+
                 return jsonify({
-                    "servizi_filtrati": servizi_filtrati,
-                    "fornitori_filtrati": fornitori_filtrati
+                    "servizi_filtrati": servizi_serializzati,
+                    "fornitori_filtrati": fornitori_serializzati
                 }), 200
             else:
                 return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
