@@ -1,10 +1,17 @@
+import smtplib
+from ..Utils.Observer import Observer
+from . import Evento
 from .Utente import Utente
-from ..db import get_db
 from ..Utils import Image
 
-class Fornitore(Utente):
+
+
+
+class Fornitore(Utente,Observer):
+
     def __init__(self, user_data, fornitore_data):
-        super().__init__(user_data)
+        Utente.__init__(self, user_data)
+        Observer.__init__(self)
         fornitore_info = fornitore_data['Fornitore']
         self.descrizione = fornitore_info['Descrizione']
         self.eventi_max_giornalieri = fornitore_info['EventiMassimiGiornaliero']
@@ -24,3 +31,12 @@ class Fornitore(Utente):
         self.p_Iva = fornitore_info['Partita_Iva']
         self.isLocation = fornitore_info['isLocation']
 
+    def update(self, observable):
+        if isinstance(observable, Evento):
+            messaggio = "L'evento in data " + observable.data + " è stato annullato!"
+            email = smtplib.SMTP("smtp.gmail.com", 587)
+            email.ehlo()
+            email.starttls()
+            email.login("beventc13@gmail.com", "Bevent1234.")
+            email.sendmail("beventc13@gmail.com", self.email, messaggio)
+            email.quit()

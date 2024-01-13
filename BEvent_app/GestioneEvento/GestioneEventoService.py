@@ -306,13 +306,14 @@ def elimina_evento(id_evento):
         return False, "Evento non trovato"
 
     if evento:
-        fornitori_associati = evento.get("fornitori_associati", [])
+        evento.notify_observers()
+       #fornitori_associati = evento.get("fornitori_associati", [])
 
-        for id_fornitore in fornitori_associati:
-            fornitore = db.utenti.find_one({"_id": ObjectId(id_fornitore)})
+        #for id_fornitore in fornitori_associati:
+           # fornitore = db.utenti.find_one({"_id": ObjectId(id_fornitore)})
 
-            if fornitore:
-                invia_email_fornitore(fornitore["email"], "Annullamento Evento", "L'evento è stato annullato.")
+            #if fornitore:
+               # invia_email_fornitore(fornitore["email"], "Annullamento Evento", "L'evento è stato annullato.")
 
         # Eliminazione dell'evento
     db.eventi.delete_one({"_id": ObjectId(id_evento)})

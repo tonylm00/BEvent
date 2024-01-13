@@ -21,4 +21,5 @@ class Evento:
         self.tipo = evento_data['Tipo']
         self.isPagato = bool(evento_data['isPagato'])
         self.fornitori_associati = evento_data.get('fornitori_associati', [])
+        self.observers=self.fornitori_associati
         self.servizi_associati = evento_data.get('servizi_associati', [])
