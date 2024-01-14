@@ -1,7 +1,7 @@
 from ..Utils import Image
+from ..Utils.Observable import Observable
 
-
-class Evento:
+class Evento(Observable):
     def __init__(self, evento_data):
         self.id = str(evento_data['_id'])
         self.data = evento_data['Data']
@@ -21,5 +21,5 @@ class Evento:
         self.tipo = evento_data['Tipo']
         self.isPagato = bool(evento_data['isPagato'])
         self.fornitori_associati = evento_data.get('fornitori_associati', [])
-        self.observers=self.fornitori_associati
+        self.observers = self.fornitori_associati
         self.servizi_associati = evento_data.get('servizi_associati', [])
