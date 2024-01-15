@@ -12,7 +12,7 @@
 
         <div class="container">
           <div class="title">BEVENT</div>
-            <form action="/registrazione" method="post">
+            <form action="/registrazione" method="post" onsubmit="return validaConfermaPassword()">
                 <div class="field-container">
                   <input type="text" name="nome" placeholder="Nome*" required>
                   <input type="text" name="cognome" placeholder="Cognome*" required>
@@ -27,7 +27,7 @@
                    <input type="password" name="cpassword" placeholder="Conferma Password*" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, una lettera minuscola e un numero">
                 </div>
                 <div class="field-container">
-                   <input type="text" name="telefono" placeholder="Telefono" required>
+                   <input type="tel" name="telefono" placeholder="Telefono" required>
                    <input type="text" name="citta" placeholder="Città" required>
                 </div>
                 <div class="field-container">
@@ -82,7 +82,23 @@
 
           <div class="decorative-circle circle-large"></div>
           <div class="decorative-circle circle-small"></div>
-        </div>
+
+<script>
+  function validaConfermaPassword() {
+    var password = document.getElementsByName("password")[0].value;
+    var cpassword = document.getElementsByName("cpassword")[0].value;
+
+    if (password !== cpassword) {
+      alert("Le password non corrispondono.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+
+</div>
 
 
 </body>

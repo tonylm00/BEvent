@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Aggiunta di validazione dei form ai vari campi">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Aggiunta di validazione dei form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/Registrazione.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/Registrazione.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,24 +56,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flask server.BEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.Login.html.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flask server.BEvent.executor": "Run",
+    "JavaScript Debug.Login.html.executor": "Run",
+    "JavaScript Debug.Registrazione.html.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "develop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Flask server.BEvent">
+}]]></component>
+  <component name="RunManager" selected="JavaScript Debug.Registrazione.html">
     <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/Login.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Registrazione.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BEvent/BEvent_app/templates/Registrazione.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="BEvent" type="Python.FlaskServer">
@@ -93,6 +98,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.Registrazione.html" />
         <item itemvalue="JavaScript Debug.Login.html" />
       </list>
     </recent_temporary>
@@ -132,7 +138,7 @@
       <workItem from="1704812861441" duration="3043000" />
       <workItem from="1704816591175" duration="2185000" />
       <workItem from="1704829825450" duration="1270000" />
-      <workItem from="1705306870727" duration="4159000" />
+      <workItem from="1705306870727" duration="5270000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -422,7 +428,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705311229017</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Aggiunta di validazione dei form ai vari campi">
+      <option name="closed" value="true" />
+      <created>1705311271084</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1705311271084</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modifica &#10;EventoPubblico.css e EventoPubblico.html" />
     <MESSAGE value="modifica templates e gestionevento" />
     <MESSAGE value="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori" />
     <MESSAGE value="leggere modifcihe a pagina scelta evento e alla funzione visualizza fornitori per formattare la data" />
@@ -465,7 +478,8 @@
     <MESSAGE value="funzione elimina servizio funzionante" />
     <MESSAGE value="implementazione di elimina evento lato back and" />
     <MESSAGE value="Aggiunta di validazione dei form ai vari campi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta di validazione dei form ai vari campi" />
+    <MESSAGE value="Aggiunta di validazione dei form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta di validazione dei form" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
