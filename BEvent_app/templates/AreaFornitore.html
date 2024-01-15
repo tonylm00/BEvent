@@ -70,7 +70,7 @@ function scambiaImmagine(imgCliccata) {
                 <div class="colonna">
                     <div class="campo">
                         <label for="data_nascita">Data di nascita</label>
-                        <input type="date" id="data_nascita" name="dataNascita" value="{{dati.data_nascita}}">
+                        <input type="date" id="data_nascita" name="dataNascita" value="{{dati.data_nascita}}" pattern="\d{2}-\d{2}-\d{4}" placeholder="DD-MM-YYYY">
                     </div>
                     <div class="campo">
                         <label for="citta">Città</label>
@@ -209,10 +209,10 @@ function scambiaImmagine(imgCliccata) {
 
             <tr>
             <form method="POST" action="/modifica_servizio">
-                <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}"></td>
+                <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}" minlength="3" maxlength="500"></td>
                 <td><input type="text" name="tipo" value="{{ servizio.tipo }}"></td>
-                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }}"></td>
-                <td><input type="text" name="quantità" value="{{ servizio.quantita }}"></td>
+                <td><input type="text" name="prezzo" value="{{ servizio.prezzo }}" required></td>
+                <td><input type="text" name="quantità" value="{{ servizio.quantita }}"required></td>
 
                 <td>{% for immagine in servizio.foto_servizio %}
                         <img src="data:image/jpeg;base64,{{ immagine }}" alt="Foto del Servizio">
@@ -258,10 +258,10 @@ function scambiaImmagine(imgCliccata) {
 
             <tr>
             <form method="POST" action="/elimina_evento">
-                <td><input type="text" name="descrizione" value="{{ eventoPubblico.descrizione }}"></td>
+                <td><input type="text" name="descrizione" value="{{ eventoPubblico.descrizione }}" minlength="3" maxlength="500"></td>
                 <td><input type="text" name="tipo" value="{{ eventoPubblico.tipo }}"></td>
-                <td><input type="text" name="prezzo" value="{{ eventoPubblico.biglietti_disponibili }}"></td>
-                <td><input type="text" name="prezzo" value="{{ eventoPubblico.ora }}"></td>
+                <td><input type="text" name="prezzo" value="{{ eventoPubblico.biglietti_disponibili }}" required></td>
+                <td><input type="text" name="prezzo" value="{{ eventoPubblico.ora }}"required></td>
                 <td><button type="submit" name="id" value="{{ eventoPubblico.id }}">emlina</button></td>
 
             </form>>

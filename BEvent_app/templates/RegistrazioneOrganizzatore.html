@@ -17,17 +17,17 @@
                 <input type="text" name="cognome" placeholder="Cognome*" required>
           </div>
             <div class="field-container">
-            <input type="date" name="data_di_nascita" placeholder="Data di nascita">
+            <input type="date" name="data_di_nascita" placeholder="Data di nascita" pattern="\d{2}-\d{2}-\d{4}" placeholder="DD-MM-YYYY">
                 <input type="text" name="nome_utente" placeholder="Nome Utente*" required>
           </div>
           <div class="field-container">
-           <input type="text" name="telefono" placeholder="Telefono">
+           <input type="text" name="telefono" placeholder="Telefono" required>
                 <input type="text" name="citta" placeholder="Città">
           </div>
           <div class="field-container">
                <input type="email" name="email" placeholder="Email*" required>
-                <input type="password" name="password" placeholder="Password*" required>
-                <input type="password" name="cpassword" placeholder="Conferma Password*" required>
+                <input type="password" name="password" placeholder="Password*" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, una lettera minuscola e un numero">
+                <input type="password" name="cpassword" placeholder="Conferma Password*" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, una lettera minuscola e un numero">
           </div>
             <div class="field-container">
                     <select name="regione" style="width: 100%">

@@ -17,9 +17,9 @@
     <form action="/crea_evento_pubblico" method="post">
 <div class="container">
     <div class="colonna-sx">
-        <input type="text" id="event-title" placeholder="TITOLO DELL'EVENTO" name="nome">
-        <input type="date" id="event-date" placeholder="DATA" name="data">
-        <input type="text" id="event-time" placeholder="ORA" name="ora">
+        <input type="text" id="event-title" placeholder="TITOLO DELL'EVENTO" name="nome" required>
+        <input type="date" id="event-date" placeholder="DATA" name="data" pattern="\d{2}-\d{2}-\d{4}" placeholder="DD-MM-YYYY">
+        <input type="text" id="event-time" placeholder="ORA" name="ora" pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm">
 
     </div>
 
@@ -32,8 +32,8 @@
 
     </div>
     <div class="colonna-dx">
-        <input type="number" placeholder="BIGLIETTI DISPONIBILI" name="n_persone">
-        <input type="number"  placeholder="servizi_associati" name="servizi_associati" value="momentaneo">
+        <input type="number" placeholder="BIGLIETTI DISPONIBILI" name="n_persone" min="1" max="1000">
+        <input type="number"  placeholder="servizi_associati" name="servizi_associati" value="momentaneo" required>
         <select id="event-type" name="tipo">
             <option value="">Seleziona tipo di evento</option>
             <option value="Disco Party">DiscoParty</option>

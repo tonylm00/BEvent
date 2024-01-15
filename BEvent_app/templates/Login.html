@@ -10,7 +10,7 @@
         <h2>Login</h2>
         <form action="/login" method="post">
             <input type="email" name="email" placeholder="Email" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="password" name="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, una lettera minuscola e un numero"><br>
             <input type="submit" value="Login">
         </form>
     </div>
