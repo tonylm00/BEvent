@@ -80,7 +80,7 @@ def get_servizi(data_richiesta):
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Eventi']
 
-    servizi_data = list(servizi_collection.find({'isCurrentVersion': None}))
+    servizi_data = list(servizi_collection.find({'$or': [{'isCurrentVersion': None}, {'isCurrentVersion': {'$exists': False}}]}))
 
     lista_servizi = []
 
