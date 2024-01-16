@@ -12,6 +12,7 @@ function aggiornaPrezzoTotale() {
     }
 }
 
+
 inputQuantita.addEventListener('input', aggiornaPrezzoTotale);
 
 aggiornaPrezzoTotale();

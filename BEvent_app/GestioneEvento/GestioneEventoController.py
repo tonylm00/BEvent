@@ -39,6 +39,7 @@ def visualizza_fornitori():
         return scelta_evento_da_creare_page()
 
 
+
 @ge.route('/filtro_categoria', methods=['POST'])
 def filtro_categoria():
     try:

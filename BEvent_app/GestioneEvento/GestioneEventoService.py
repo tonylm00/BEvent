@@ -86,7 +86,6 @@ def get_servizi(data_richiesta):
 
     for data in servizi_data:
         servizio = Servizio_Offerto(data)
-
         evento_associato = eventi_collection.find_one({
             'servizi_associati': {'$in': [str(servizio._id)]},
             'Ruolo': '1',

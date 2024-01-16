@@ -2,6 +2,7 @@ document.getElementById('tipo_evento').addEventListener('change', function() {
     var tipoEvento = this.value;
     var backgroundImage = '';
 
+
     switch(tipoEvento) {
         case 'Cerimonia_di_Laurea':
             backgroundImage = 'url(../static/images/Cerimonia_di_Laurea.jpg)';

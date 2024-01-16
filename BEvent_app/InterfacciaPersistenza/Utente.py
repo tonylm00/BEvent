@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import check_password_hash
 
 
+
 class Utente(UserMixin):
     def __init__(self, user_data):
         # self.id = ObjectId(user_data['_id'])

@@ -13,6 +13,7 @@
      });
    }
 
+
    // observer
    let observer = new IntersectionObserver(callback, { threshold: 0.3 } );
 

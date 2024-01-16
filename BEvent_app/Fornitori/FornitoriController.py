@@ -35,6 +35,7 @@ def validate_servizio_data(descrizione, tipo, prezzo, quantita):
 
     return True, None
 
+
 @Fornitori.route('/fornitori', methods=['GET', 'POST'])
 def visualizza_controller():  # put application's code here
     id_fornitore = session["id"]

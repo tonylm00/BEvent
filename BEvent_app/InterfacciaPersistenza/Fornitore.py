@@ -6,7 +6,6 @@ from ..Utils import Image
 
 
 
-
 class Fornitore(Utente,Observer):
 
     def __init__(self, user_data, fornitore_data):

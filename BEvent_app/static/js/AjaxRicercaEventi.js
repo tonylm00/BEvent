@@ -18,6 +18,7 @@ document.querySelector('.search-bar').addEventListener('submit', function(event)
 });
 
 
+
 function inviaRichiestaGenerica(endpoint, data){
     let xhr = new XMLHttpRequest();
     xhr.open('POST', endpoint, true);

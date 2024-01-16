@@ -19,6 +19,7 @@ function salvaServizio(id_servizio){
         }
     };
 
+
     xhr.send(JSON.stringify(data));
 
 }

@@ -8,3 +8,4 @@ class Biglietto:
         self.nome_evento = biglietto_data['NomeEvento']
         self.dove = biglietto_data['Dove']
         self.ora = biglietto_data['Ora']
+

@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('uploadForm');
 

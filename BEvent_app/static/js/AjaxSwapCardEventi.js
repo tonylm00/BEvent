@@ -23,6 +23,7 @@ function aggiornaColonnaDxEvento(id_evento){
 
 }
 
+
 function aggiornaDOM(data) {
     if (data.evento_scelto) {
 

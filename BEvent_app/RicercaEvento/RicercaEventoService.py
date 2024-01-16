@@ -6,6 +6,7 @@ from ..db import get_db
 from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
 
 
+
 def get_eventi():
     db = get_db()
     eventi_collection = db['Evento']

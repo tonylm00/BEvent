@@ -8,6 +8,7 @@ from BEvent_app.Routes import (home, registrazione_page, admin_page, error_page,
 aut = Blueprint('aut', __name__)
 
 
+
 @aut.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':

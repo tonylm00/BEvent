@@ -268,6 +268,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     return organizzatore, eventi_privati, biglietti_comprati
 
 
+
 def get_dati_home_organizzatore(id_organizzatore):
     db = get_db()
     data_odierna = datetime.now().strftime("%d-%m-%Y")

@@ -1,6 +1,7 @@
 from ..Utils import Image
 from ..Utils.Observable import Observable
 
+
 class Evento(Observable):
     def __init__(self, evento_data):
         self.id = str(evento_data['_id'])

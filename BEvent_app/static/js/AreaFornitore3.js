@@ -10,7 +10,6 @@
     }
 });
 
-
 document.getElementById('customButton').addEventListener('click', function() {
     document.getElementById('fileInput2').click();
 });

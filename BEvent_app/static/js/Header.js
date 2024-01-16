@@ -21,6 +21,7 @@ if (close) {
     close.addEventListener('click', closeModal, false);
 }
 
+
 // Chiude la modale quando si clicca al di fuori di essa
 window.onclick = function(event) {
     if (event.target == modal) {

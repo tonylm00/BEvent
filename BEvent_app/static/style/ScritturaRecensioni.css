@@ -19,6 +19,7 @@ h2 {
     margin: 0 auto;
 }
 
+
 .star-rating:not(:checked) > input {
     display: none;
 }

@@ -1,4 +1,3 @@
-
 // Questo codice dovrebbe essere modificato per recuperare i dati delle recensioni effettive.
 document.addEventListener('DOMContentLoaded', function() {
   // Qui dovremmo mettere il codice per caricare le recensioni dal server o da un database

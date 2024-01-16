@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     createStarRating('accoglienza-rating');
     createStarRating('professionalita-rating');
 
+
    function createStarRating(ratingId) {
     const container = document.getElementById(ratingId);
     for (let i = 5; i >= 1; i--) {

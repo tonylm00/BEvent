@@ -14,6 +14,7 @@
             return;
         }
 
+
         // Invia il form
         formDati.submit();
     }

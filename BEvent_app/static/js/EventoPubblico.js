@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fileInput.click();
     });
 
-
-    var ticketsAvailable = document.getElementById('tickets-available');
+    let ticketsAvailable = document.getElementById('tickets-available');
     ticketsAvailable.addEventListener('change', function() {
         console.log('Tickets available:', ticketsAvailable.value);
 

@@ -7,3 +7,4 @@
             form.action = "/registrazione_page";
         }
     });
+

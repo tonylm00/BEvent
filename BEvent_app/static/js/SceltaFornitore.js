@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('myModal2');
     const button = document.getElementById("modal-button2");
 
-
     const openModal = function() {
         modal.style.display = "block";
         document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";

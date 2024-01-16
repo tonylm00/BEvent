@@ -29,6 +29,7 @@ def get_dati_fornitore(id_fornitore):
     return fornitore
 
 
+
 def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
     db = get_db()
     collection = db['Utente']

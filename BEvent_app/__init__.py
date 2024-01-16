@@ -11,6 +11,7 @@ from .Fornitori.FornitoriController import Fornitori
 from .RicercaEvento.RicercaEventoController import re
 
 
+
 def create_app():
     app = Flask(__name__)
 

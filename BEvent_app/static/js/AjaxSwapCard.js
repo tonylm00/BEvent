@@ -22,6 +22,7 @@ function aggiornaColonnaDx(email){
     xhr.send(JSON.stringify(data));
 
 }
+
 function aggiornaDOM(data) {
     if (data.fornitore_scelto) {
 
