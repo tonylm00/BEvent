@@ -56,18 +56,21 @@
         <div>
         <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
         <span class="label">Subtotale:</span>
-        <span class="label">Spedizione:</span>
-        <span class="label">Di cui Iva:</span>
+        <span class="label">Iva:</span>
+        <span class="label">BEvent:</span>
         <span class="label">Totale:</span>
         </ul>
         </div>
         <div style="margin-right: 15%">
         <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
         <span class="value">{{ sum.somma }} &euro;</span>
-        <span class="value">5.00 &euro;</span>
-         </span><span class="value">22%</span>
-            {% set sum.somma= sum.somma + 5.00 %}
-        <span class="value">{{ sum.somma }} &euro;</span>
+        <span class="value">22%</span>
+         </span><span class="value">9%</span>
+
+            {% set sum.somma= ((sum.somma * 22.00) / 100.00) + sum.somma %}
+            {% set sum.somma= ((sum.somma * 9.00) / 100.00) + sum.somma %}
+
+        <span class="value">{{ '%.2f' | format(sum.somma) }} &euro;</span>
         </ul>
         </div>
     </div>

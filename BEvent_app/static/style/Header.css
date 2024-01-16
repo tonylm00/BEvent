@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap');
 
 
 .header__titolo{
     color: #FE8415;
     margin-left:280px;
     text-align: center;
-    font-family: 'Pacifico', cursive;
-    font-size: 38px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 50px;
     font-style: normal;
-    font-weight: 400;
     line-height: normal;
+    margin-top: 5px;
+    /* font weight: 600; */
 }
-
 
 
 /* Reset */
@@ -73,12 +75,12 @@
 
 .modal-container h1{
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Pacifico;
+    font-family: 'Times New Roman';
     font-size: 48px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-shadow: 0 0 0;
 
 }
 .modal-container p{
@@ -349,11 +351,9 @@
 
     @media (max-height: 2000px){
   	.header__logo{padding-top: 2px;padding-left:0px; height: 80%; width: 70px;}
-    .header__titolo{font-size: 38px;}
 
     }
 
     @media (max-height: 900px){
   	.header__logo{padding-top: 2px;padding-left:0px; height: 70%; width: 70px;}
-    .header__titolo{font-size: 32px;}
     }
