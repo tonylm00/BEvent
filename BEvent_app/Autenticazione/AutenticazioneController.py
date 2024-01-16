@@ -126,7 +126,7 @@ def registrazione_organizzatore():
             return registrazione_page()
 
 
-@aut.route('/area_organizzatore', methods=['POST'])
+@aut.route('/area_organizzatore', methods=['GET', 'POST'])
 def area_organizzatore():
     id_organizzatore = session['id']
     print('prova')

@@ -1,18 +1,20 @@
 from bson import ObjectId
 from pymongo import MongoClient
 
-from ..InterfacciaPersistenza.Fornitore import Fornitore
+
 from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
 from ..InterfacciaPersistenza import Evento
 from ..InterfacciaPersistenza import Organizzatore
-from ..InterfacciaPersistenza import EventoPubblico
-from ..InterfacciaPersistenza import EventoPrivato
+
+
+
 
 def get_tutti_servizi_byFornitore(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({'fornitore_associato': id_fornitore,'isCurrentVersion': { '$in': [None, ''] }, 'isDeleted': False}))
+    servizi_data = list(servizi_collection.find(
+        {'fornitore_associato': id_fornitore, 'isCurrentVersion': {'$in': [None, '']}, 'isDeleted': False}))
 
     lista_servizi = []
 
@@ -22,12 +24,13 @@ def get_tutti_servizi_byFornitore(id_fornitore):
 
     return lista_servizi
 
-def get_dati_fornitore(id_fornitore):
-    db = get_db()
-    user_data = db['Utente'].find_one({"_id":ObjectId(id_fornitore)})
-    fornitore = Fornitore(user_data,user_data)
-    return fornitore
 
+def get_dati_fornitore(id_fornitore):
+    from ..InterfacciaPersistenza.Fornitore import Fornitore
+    db = get_db()
+    user_data = db['Utente'].find_one({"_id": ObjectId(id_fornitore)})
+    fornitore = Fornitore(user_data, user_data)
+    return fornitore
 
 
 def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
@@ -71,7 +74,6 @@ def elimina_servizio(servizio_id):
         servizi_collection.delete_one({"_id": ObjectId(servizio_id)})
 
 
-
 def modifica_servizio(nuovi_dati, servizio_id):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
@@ -80,7 +82,7 @@ def modifica_servizio(nuovi_dati, servizio_id):
     # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
     evento_associato = eventi_collection.find_one({
         "servizi_associati": servizio_id,
-        "isPagato" : True
+        "isPagato": True
     })
 
     if evento_associato:
@@ -131,48 +133,59 @@ def modifica_servizio(nuovi_dati, servizio_id):
 
     return None  # Ritorna None se il servizio corrente non esiste
 
+
 def aggiungi_servizio(nuovi_dati):
     db = get_db()
     db['Servizio Offerto'].insert_one(nuovi_dati)
 
+
 def Get_eventi_ByFornitorePrivato(id):
+    from ..InterfacciaPersistenza import EventoPrivato
     print(id)
     db = get_db()
     eventi = db['Evento']
     eventi_fornitore_Privati = eventi.find({"fornitori_associati": id, "Ruolo": "2"})
 
-    lista_eventi_fornitore= []
+    lista_eventi_fornitore = []
     for evento_fornitore in eventi_fornitore_Privati:
-        eventoPrivato = EventoPrivato.Evento_Privato(evento_fornitore,evento_fornitore)
+        eventoPrivato = EventoPrivato.Evento_Privato(evento_fornitore, evento_fornitore)
         lista_eventi_fornitore.append(eventoPrivato)
 
     return lista_eventi_fornitore
 
+
 def GetEventi_FornitorePubblico(id):
+    from ..InterfacciaPersistenza import EventoPubblico
     print(id)
     db = get_db()
     eventi = db['Evento']
     eventi_fornitore_Pubblico = eventi.find({"fornitori_associati": id, "Ruolo": "1"})
 
-    lista_eventi_fornitore= []
+    lista_eventi_fornitore = []
     for evento_fornitore in eventi_fornitore_Pubblico:
-        eventoPubblico = EventoPubblico.Evento_Pubblico(evento_fornitore,evento_fornitore)
+        eventoPubblico = EventoPubblico.Evento_Pubblico(evento_fornitore, evento_fornitore)
         lista_eventi_fornitore.append(eventoPubblico)
 
     return lista_eventi_fornitore
+
+
 def Cancella_evento(id):
-    db= get_db()
+    db = get_db()
     eventi = db['Evento']
     eventi.delete_one({"_id": ObjectId(id)})
 
+
 def Get_dettagli_evento(id):
+    from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
     evento_data = eventi.find_one({"_id": ObjectId(id)})
-    evento = EventoPrivato.Evento_Privato(evento_data,evento_data)
+    evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
     return evento
 
+
 def Get_dati_organizzatore(id):
+    from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
     evento_data = eventi.find_one({"_id": ObjectId(id)})
@@ -182,7 +195,9 @@ def Get_dati_organizzatore(id):
     organizzatore = Organizzatore.Organizzatore(utenti_data, utenti_data)
     return organizzatore
 
-def get_dati_servizi(id,id_fornitore):
+
+def get_dati_servizi(id, id_fornitore):
+    from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
     fornitori_db = db['Servizio Offerto']
@@ -194,14 +209,14 @@ def get_dati_servizi(id,id_fornitore):
         print(servizio_data["Descrizione"])
 
         if servizio_data and ObjectId(servizio_data["fornitore_associato"]) == ObjectId(id_fornitore):
-         print("rapa")
+            print("rapa")
         else:
             servizi_lista.append(servizio_data)
 
-
     return servizi_lista
 
-def invio_feedBack(id_valutato,id_valutante,valutazione):
+
+def invio_feedBack(id_valutato, id_valutante, valutazione):
     db = get_db()
     dati = {
         "id_valutato": id_valutato,
@@ -209,3 +224,17 @@ def invio_feedBack(id_valutato,id_valutante,valutazione):
         "valutazione": valutazione
     }
     db['FeedBack'].insert_one(dati)
+
+
+def get_fornitori(id_fornitori):
+    from ..InterfacciaPersistenza.Fornitore import Fornitore
+    db = get_db()
+    lista_id = [ObjectId(id_str) for id_str in id_fornitori]
+    risultati = db['Utente'].find({'_id': {'$in': lista_id}})
+
+    lista_fornitori = []
+    # Iterazione sui risultati per aggiungere i fornitori alla lista
+    for user_data in risultati:
+        lista_fornitori.append(Fornitore(user_data, user_data))
+
+    return lista_fornitori

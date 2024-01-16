@@ -5,7 +5,7 @@ document.getElementById('tipo_evento').addEventListener('change', function() {
 
     switch(tipoEvento) {
         case 'Cerimonia_di_Laurea':
-            backgroundImage = 'url(../static/images/Cerimonia_di_Laurea.jpg)';
+            backgroundImage = 'url(../static/images/Cerimonia di Laurea.jpg)';
             break;
         case 'Compleanno':
             backgroundImage = 'url(../static/images/Compleanno.jpg)';
@@ -17,10 +17,10 @@ document.getElementById('tipo_evento').addEventListener('change', function() {
             backgroundImage = 'url(../static/images/Matrimonio.jpg)';
             break;
         case 'Evento_Religioso':
-            backgroundImage = 'url(../static/images/Evento_Religioso.jpg)';
+            backgroundImage = 'url(../static/images/Evento Religioso.jpg)';
             break;
         case 'Meeting_Aziendale':
-            backgroundImage = 'url(../static/images/Meeting_Aziendale.jpg)';
+            backgroundImage = 'url(../static/images/Meeting Aziendale.jpg)';
             break;
         case 'Altro':
             backgroundImage = 'url(../static/images/Altro.jpg)';

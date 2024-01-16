@@ -1,12 +1,13 @@
 import smtplib
+from email.mime.text import MIMEText
+
 from ..Utils.Observer import Observer
 from . import Evento
 from .Utente import Utente
 from ..Utils import Image
 
 
-
-class Fornitore(Utente,Observer):
+class Fornitore(Utente, Observer):
 
     def __init__(self, user_data, fornitore_data):
         Utente.__init__(self, user_data)
@@ -31,11 +32,22 @@ class Fornitore(Utente,Observer):
         self.isLocation = fornitore_info['isLocation']
 
     def update(self, observable):
-        if isinstance(observable, Evento):
-            messaggio = "L'evento in data " + observable.data + " è stato annullato!"
-            email = smtplib.SMTP("smtp.gmail.com", 587)
-            email.ehlo()
-            email.starttls()
-            email.login("beventc13@gmail.com", "Bevent1234.")
-            email.sendmail("beventc13@gmail.com", self.email, messaggio)
-            email.quit()
+
+        oggetto = "Annullamento dell'evento"
+        messaggio_corpo = "L'evento in data " + observable.data + ("è stato annullato! Controlla la tua area fornitore "
+                                                                   "per saperne di più! Stiamo avviando le pratiche "
+                                                                   "per il rimborso dell'utente :)")
+        messaggio = MIMEText(messaggio_corpo, 'plain', 'utf-8')
+        messaggio["Subject"] = oggetto
+
+        # Configura la connessione SMTP
+        email = smtplib.SMTP("smtp.gmail.com", 587)
+        email.ehlo()
+        email.starttls()
+        email.login("beventc13@gmail.com", "hmbq mcps rmom oiou")
+
+        # Invia l'email
+        email.sendmail("beventc13@gmail.com", "simonettidaria@gmail.com", messaggio.as_string())
+
+        # Chiudi la connessione SMTP
+        email.quit()

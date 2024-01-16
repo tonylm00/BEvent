@@ -258,7 +258,7 @@ function scambiaImmagine(imgCliccata) {
         {% for eventoPubblico in eventiPubblici %}
 
             <tr>
-            <form method="POST" action="/elimina_evento">
+            <form method="POST" action="/elimina_evento_pubblico">
                 <td><input type="text" name="descrizione" value="{{ eventoPubblico.descrizione }}" minlength="3" maxlength="500"></td>
                 <td><input type="text" name="tipo" value="{{ eventoPubblico.tipo }}"></td>
                 <td><input type="text" name="prezzo" value="{{ eventoPubblico.biglietti_disponibili }}" required></td>

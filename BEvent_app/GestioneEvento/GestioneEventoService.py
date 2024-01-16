@@ -300,22 +300,17 @@ def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invi
 
 def elimina_evento(id_evento):
     db = get_db()
-    evento = db.eventi.find_one({"_id": ObjectId(id_evento)})
-    if evento is None:
+    evento = db.Evento.find_one({"_id": ObjectId(id_evento)})
+
+    evento_privato = Evento_Privato(evento, evento)
+    if evento_privato is None:
         return False, "Evento non trovato"
 
-    if evento:
-        evento.notify_observers()
-       #fornitori_associati = evento.get("fornitori_associati", [])
-
-        #for id_fornitore in fornitori_associati:
-           # fornitore = db.utenti.find_one({"_id": ObjectId(id_fornitore)})
-
-            #if fornitore:
-               # invia_email_fornitore(fornitore["email"], "Annullamento Evento", "L'evento è stato annullato.")
+    if evento_privato:
+        evento_privato.notify_observers()
 
         # Eliminazione dell'evento
-    db.eventi.delete_one({"_id": ObjectId(id_evento)})
+    db.Evento.delete_one({"_id": ObjectId(id_evento)})
 
     return True, "Evento eliminato e fornitori notificati"
 

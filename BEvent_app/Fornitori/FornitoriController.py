@@ -130,7 +130,7 @@ def aggiungi_servizio_controller():
     aggiungi_servizio(nuovi_dati)
     return redirect('/fornitori')
 
-@Fornitori.route('/elimina_evento', methods=['POST'])
+@Fornitori.route('/elimina_evento_pubblico', methods=['POST'])
 def elimina_evento_controller():
     id = request.form.get("id")
     Cancella_evento(id)

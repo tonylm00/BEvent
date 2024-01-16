@@ -7,8 +7,8 @@ from flask import request, Blueprint, session, flash, jsonify, make_response, re
 from BEvent_app.Fornitori import FornitoriService
 from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page,  \
-    organizzatore_page ,crea_evento_pubblico_page
+from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
+    organizzatore_page, crea_evento_pubblico_page
 from BEvent_app.Utils import Image
 from PIL import Image
 
@@ -37,7 +37,6 @@ def visualizza_fornitori():
     else:
         flash("Errore nella data inserita")
         return scelta_evento_da_creare_page()
-
 
 
 @ge.route('/filtro_categoria', methods=['POST'])
@@ -325,22 +324,25 @@ def salva_evento(is_pagato):
     return evento
 
 
-@ge.route('/elimina_evento/<id_evento>', methods=['POST'])
+@ge.route('/elimina_evento_privato', methods=['POST'])
 def elimina_evento_route():
     id_evento = request.form.get('id_evento')
     successo, mail = GestioneEventoService.elimina_evento(id_evento)
 
     flash(mail, 'success' if successo else 'error')
-    return redirect(url_for('funzione_di_redirect'))
+    return redirect(url_for('aut.area_organizzatore'))
+
 
 @ge.route('/Crea_evento_pubblico_page')
 def creazione_evento_pubblico():
     servizi = GestioneEventoService.get_tutti_servizi_byFornitoreLocation(session["id"])
     return crea_evento_pubblico_page(servizi=servizi)
-@ge.route('/crea_evento_pubblico',methods=['POST'])
+
+
+@ge.route('/crea_evento_pubblico', methods=['POST'])
 def crea_event_publico():
-    #file = request.files.get('photo')
-    #foto_byte_array = Image.Image.convert_image_to_byte_array(file.read())
+    # file = request.files.get('photo')
+    # foto_byte_array = Image.Image.convert_image_to_byte_array(file.read())
     fornitore = FornitoriService.get_dati_fornitore(session["id"])
     Data = request.form.get('data')
     n_persone = request.form.get('n_persone')
@@ -356,17 +358,7 @@ def crea_event_publico():
     Nome = request.form.get('nome')
     via = fornitore.via
     Regione = fornitore.regione
-    GestioneEventoService.crea_evento_pubblico(Data,n_persone,Descrizione,Locandina,Ruolo,Tipo,isPagato,fornitori_associati,servizi_associati,Prezzo,Ora,Nome,via,Regione,session["id"])
+    GestioneEventoService.crea_evento_pubblico(Data, n_persone, Descrizione, Locandina, Ruolo, Tipo, isPagato,
+                                               fornitori_associati, servizi_associati, Prezzo, Ora, Nome, via, Regione,
+                                               session["id"])
     return "fatto"
-
-
-
-
-
-
-
-
-
-
-
-
