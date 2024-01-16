@@ -3,12 +3,13 @@
 <head>
         <title>Fornitori</title>
         <link rel="stylesheet" href="../static/style/SceltaFornitore.css">
+        <link rel="stylesheet" href="../static/style/VisualizzazioneRecensione.css">
 
 </head>
 
 
 
-<body  style="height: 100%; overflow: hidden">
+<body style="height: 100%; overflow: hidden">
 <header>
 {% include 'Header.html' %}
 </header>
@@ -33,7 +34,7 @@
  <div id="myModal2" class="modal2">
 	<div class="modal-container2 slideDown" id="modal-container2">
         <div class="form-container2 sign-in">
-            <form action="" >
+            <form>
                 <h1 style="color: #FE8415;">Filtra per Fornitori!</h1>
                 <select id="tipo" name="tipo" onchange="inviaRichiestaCategoria(this.value)">
                         <option value="" disabled selected>Scegli il Fornitore Che Cerchi</option>
@@ -200,7 +201,7 @@
                     <div class="face3 face5">
                         <div class="content2">
                             <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
-                                <button style="border: none; background: transparent" id="{{ servizio._id }}" onclick="salvaServizio('{{ servizio._id }}')">Prenota</button>
+                                <button style="border: none; background: transparent" id="{{ servizio._id }}" onclick="salvaServizio('{{ servizio._id }}')"> <a>Prenota</a></button>
                         </div>
                     </div>
                 </div>
@@ -209,6 +210,9 @@
                 {% endfor %}
                 </div>
                 </div>
+                    <div class="reviews-container">
+                        <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Recensioni degli Utenti: </p>
+                    </div>
         </div>
 
 
@@ -221,7 +225,7 @@
     <script src="../static/js/AjaxRicercaFornitori.js"></script>
     <script src="../static/js/AjaxSwapCard.js"></script>
     <script src="../static/js/SalvaServizio.js"></script>
-
+    <script src="../static/js/VisualizzaRecensioni.js"></script>
 
 	</body>
 </html>

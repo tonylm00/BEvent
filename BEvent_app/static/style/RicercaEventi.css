@@ -16,7 +16,6 @@
 }
 
 
-
 /* Barra di ricerca */
 .search-container {
 
@@ -446,17 +445,6 @@
     height: calc(100% - 240px);
 }
 
-.riepilogo-container{
-    margin-left: 0%;
-    padding-bottom: 5%;
-    width: 90%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-
-}
 .bookmarkBtn {
     width: 70%;
     margin-left: 15%;
