@@ -129,6 +129,7 @@ def registrazione_organizzatore():
 @aut.route('/area_organizzatore', methods=['POST'])
 def area_organizzatore():
     id_organizzatore = session['id']
+    print('prova')
 
     organizzatore, eventi_privati, biglietti_comprati = get_dati_area_organizzatore(id_organizzatore)
 

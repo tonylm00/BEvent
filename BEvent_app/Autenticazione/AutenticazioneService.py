@@ -249,7 +249,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     organizzatore = Organizzatore(organizzatore_data, organizzatore_data)
 
     eventi_privati_data = list(db['Evento'].find({
-        'Organizzatore': id_organizzatore,
+        'EventoPrivato.Organizzatore': id_organizzatore,
         'Ruolo': "2"
     }))
     eventi_privati = []
