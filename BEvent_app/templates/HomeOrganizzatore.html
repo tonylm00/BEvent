@@ -6,9 +6,9 @@
 <title>La tua Pagina Evento</title>
 <link rel="stylesheet" href="../static/style/HomeOrganizzatore.css">
 </head>
-<body>
 
 
+<body style="height: 100%; overflow: hidden">
 
 <header>
 {% include 'Header.html' %}
@@ -45,93 +45,11 @@
       </div>
     </div>
 </div>
-<div class="lower-division">
-        <div class="divisione_destra">
-            <h2 class="h2">Fornitori del tuo evento</h2>
-                <div class="grind-container">
-                    <div class="grind-item">
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button">
-                                <div class="icon">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/laqlvddb.json"
-                            trigger="hover"
-                            state="hover-partial-roll"
-                            colors="primary:#121331,secondary:#e88c30"
-                            style="width:50px;height:50px">
-                        </lord-icon>
-                        </div>
-
-                                </button>
-                        </form>
-                            <div class="service-title">Location</div>
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button"></button>
-                        </form>
-
-                    </div>
-                    <div class="grind-item">
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button">
-                        <div class="icon">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/nsgykrsg.json"
-                            trigger="hover"
-                            colors="primary:#121331,secondary:#e88c30"
-                            style="width:50px;height:50px">
-                        </lord-icon></div>
-                                </button>
-                        </form>
-                        <div class="service-title">Musica e Luci</div>
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button"></button>
-                        </form>
-                    </div>
-                </div>
-                <div class="grind-container">
-                    <div class="grind-item">
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button">
-                        <div class="icon">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/ppwsfvnn.json"
-                            trigger="hover"
-                            colors="primary:#121331,secondary:#e88c30"
-                            style="width:50px;height:50px">
-                        </lord-icon></div>
-                                </button>
-                        </form>
-                        <div class="service-title">Fotografo</div>
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button"></button>
-                        </form>
-                    </div>
-                    <div class="grind-item">
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button">
-                        <div class="icon">
-                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                        <lord-icon
-                            src="https://cdn.lordicon.com/lmpjunbf.json"
-                            trigger="hover"
-                            colors="primary:#121331,secondary:#e88c30"
-                            style="width:50px;height:50px">
-                        </lord-icon></div>
-                                </button>
-                        </form>
-
-                        <div class="service-title">Fiorario e Decorazioni</div>
-                        <form action="AreaOrganizzatore.html">
-                            <button class="button"></button>
-                        </form>
-                    </div>
-                </div>
 
 
+<div class="container-principale">
 
-
-        </div>
-        <div class="divisione_sinistra">
+        <div class="left-column">
             <div class="superiore">
                 <h2 class="h2">Tutto sul tuo evento</h2>
                         <div class="card-container">
@@ -199,29 +117,53 @@
             </div>
 
             </div>
-            <div class="inferiore">
-                <h2 class="h2">Prossimi eventi</h2>
-                <div class="event-card-container">
-                    <!-- Card Evento 1 -->
-                    <button class="event-card" onclick="location.href='url_evento_1';">
-                        <img src="../static/images/Cerca.jpg" alt="DJ Lorem">
-                    </button>
 
-                    <!-- Card Evento 2 -->
-                    <button class="event-card" onclick="location.href='url_evento_2';">
-                        <img src="../static/images/Musica.jpg" alt="Orchestra Sinfonica">
-                    </button>
-                    <div class="card button-card">
-                        <form action="/visualizza_eventi" method="post">
-                <button class="orange-button">Tutti gli eventi>></button>
-                            </form>
-                </div>
-                    <!-- Aggiungi altre card come necessario... -->
-                </div>
-
-
-            </div>
         </div>
+
+
+    <div class="right-column">
+            <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">Eventi in Evidenza </p>
+
+        <div class="overflow-container">
+
+            {% for evento in eventi_pubblici  %}
+                <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
+                <img class="img" src="../static/images/Fioraio.jpg" alt="Immagine">
+                </div>
+                <h1 class="watch fade-in" style="text-align: center">{{ evento.tipo}}</h1>
+                <p class="watch fade-in" style="text-align: center">{{ evento.descrizione }}</p>
+                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Biglietto </p>
+
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                <div class="container2 ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="../static/images/BigliettoEvento.jpeg">
+                            <h3>Biglietto </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+                        <div class="content2">
+
+                            <p><input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> {{ evento.prezzo }}</span> &euro;<br>
+                            Luogo: {{ evento.luogo }}, {{ evento.regione }} <br> Ora: {{ evento.ora }} <br> Biglietti Disponibli: {{ evento.biglietti_disponibili }}/{{ evento.n_persone }}</p>
+                               <p id="prezzoTotale"> </p>
+                                <button style="border: none; background: transparent" id="" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+
+
 </div>
 
 
