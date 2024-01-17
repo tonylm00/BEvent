@@ -15,6 +15,13 @@ from werkzeug.security import generate_password_hash
 
 
 def verify_user(email, password):
+    """verifica l'email e la password forniti dall'utente nel sistema
+    Parameters:
+        email(str):email da verificare.
+        password(str):password da verificare
+    Return:
+        restituisce un'istanza dell'utente se la verifica ha successo, altrimenti None
+        """
     db = get_db()
     user_data = db.Utente.find_one({'email': email})
 
@@ -44,6 +51,16 @@ spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
 
 
 def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
+    """
+    controlla la validità dei campi utente e segna eventuali errori utilizzando flash
+    :param nome: (str) Nome dell'utente
+    :param cognome: (str) Cognome dell'utente
+    :param telefono:(str) Numero di telefono dell'utente
+    :param nome_utente: (str) Nome utente dell'utente
+    :param email: (str) indirizzo email dell'utente
+    :param data_di_nascita: (str) data di nascita dell'utente con il formato anno-mese-giorno
+    :return:True se tuttii i campi sono validi, altrimenti restituisce None
+    """
     if not isinstance(nome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
         flash("Nome non valido", category="error")
 
@@ -67,11 +84,21 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
 
 
 def is_valid_email(email):
+    """
+    verifica se un indirizzo email è valido o no
+    :param email: (str) indirizzo email da verificare
+    :return: restituisce True se l'indirizzo email è valido, altrimenti restituisce False
+    """
     email_pattern = re.compile(r'''^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$''', re.VERBOSE)
     return bool(re.match(email_pattern, email))
 
 
 def is_valid_data_di_nascita(data):
+    """
+    verifica se la data di nascita inserita dall'utente è valida o no
+    :param data: (str) data di nascita nel normato anno-mese-giorno
+    :return: restituisce True se la data di nascita è valida e precede la data odierna, altrimenti restituisce False
+    """
     try:
         datetime_data = datetime.strptime(data, '%Y-%m-%d')
         data_odierna = datetime.now()
@@ -85,6 +112,17 @@ def is_valid_data_di_nascita(data):
 
 
 def controlla_password(password):
+    """
+    Verifica la validità di una password
+    la password deve soddisfarre i seguenti requisiti:
+    - lunghezza di 8caratteri minimo
+    - contenere almeno una lettera minuscola
+    - contenere almeno una lettera maiuscola
+    - contenere almeno un numero
+    - contenere almeno un carattere speciale tra '@','$','!','%','*','?','&','.'
+    :param password: (str) password da verificare
+    :return: restituisce true se la password è valida, altrimenti c'è un messaggio di errore e restituisce False
+    """
     if not isinstance(password, str) or len(password) < 8:
 
         flash("Lunghezza non valida", "error")
@@ -101,12 +139,31 @@ def controlla_password(password):
 
 
 def conferma_password(password, cpassword):
+    """
+    Conferma se la conferma password corrisponde alla password precedentemente inserita
+    :param password: (str) prima password da confrontare
+    :param cpassword: (str) seconda password da confrontare
+    :return: Restituisce true se le due password corrispondono, altrimenti restituisce False
+    """
     if password == cpassword:
         return True
     return False
 
 
 def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita, regione):
+    """
+    Crea un documento utente con i dati dell'utente
+    :param password: (str) password dell'utente
+    :param ruolo: (str) il ruolo dell'utente (1 per Admin,2 Organizzatore, 3 Fornitore)
+    :param nome: (str) nome dell'utente
+    :param cognome: (str) cognome dell'utente
+    :param nome_utente: (str) nome utente dell'utente
+    :param email: (str) email dell'utente
+    :param telefono: (str) telefono dell'utente
+    :param data_di_nascita: (str) data di nascita dell'utente
+    :param regione:(str or None) regione dell'utente
+    :return: Restituisce un documento dei dati dell'utente
+    """
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
     data_formattata = datetime.strptime(data_di_nascita, "%Y-%m-%d").strftime("%d-%m-%Y")
     user_data = None
@@ -145,46 +202,28 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
     return user_data
 
 
-def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
-                 regione):
-    db = get_db()
-
-    if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
-
-        if not is_valid_email(email):
-
-            flash("Email esistente", "error")
-        elif not controlla_password(password):
-
-            flash("Password non valida", "error")
-        elif not conferma_password(password, cpassword):
-
-            flash("Le password non corrispondono", "error")
-        else:
-
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
-                                        regione)
-
-            organizzatore_data = {
-                'Organizzatore': {
-                    'FotoOrganizzatore': "",
-                    'Citta': citta
-                }
-            }
-
-            documento_organizzatore = {**user_data, **organizzatore_data}
-            organizzatore = Organizzatore(user_data, organizzatore_data)
-
-            db.Utente.insert_one(documento_organizzatore)
-
-            flash("Registrazione avvenuta con successo!", "success")
-
-            return organizzatore
-    return None
-
-
 def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
                   descrizione, islocation, eventi_max_giorn, via, piva, regione):
+    """
+    Registra un fornitore nel sistema
+    :param nome: (str) nome del fornitore
+    :param cognome: (str) cognome del fornitore
+    :param nome_utente: (str) nome utente del fornitore
+    :param email: (str) email del fornitore
+    :param password: (str) password del fornitore
+    :param cpassword: (str) conferma password del fornitore
+    :param telefono: (str) numero di telefono del fornitore
+    :param data_di_nascita: (str) data di nascita del fornitore nel formato 'YYYY-MM-DD'
+    :param citta: (str) città del fornitore
+    :param ruolo: (int) il ruolo per confermare che è un fornitore
+    :param descrizione:(str) descrizione del fornitore
+    :param islocation: (bool) indica se il fornitore è una location o no
+    :param eventi_max_giorn: (int) numero massimo di eventi che un fornitore può gestire al giorno
+    :param via: (str) via del fornitore
+    :param piva: (str) partita IVA del fornitore
+    :param regione: (str) regione del fornitore
+    :return: restituisce un'istanza del Fornitore se la registrazione ha successo, altrimenti restituisce None
+    """
     db = get_db()
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
@@ -222,6 +261,20 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
 
 
 def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo, regione):
+    """
+    Registra un amministratore nel sistema
+    :param nome:(str) nome dell'amministratore
+    :param cognome:(str) cognome dell'amministratore
+    :param nome_utente:(str) nome utente dell'amministratore
+    :param email:(str) email dell'amministratore
+    :param password:(str) password dell'amministratore
+    :param cpassword:(str) conferma della password
+    :param telefono:(str) numero di telefono dell'amministratore
+    :param data_di_nascita: data di nascita dell'amministratore nel formato 'YYYY-MM-DD'
+    :param ruolo: (int) ruolo 1 poichè è amministratore
+    :param regione: (str) regione dell'amministratore
+    :return: Restituisce un'istanza Admin se la registrazione ha successo, altrimenti restituisce None
+    """
     db = get_db()
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
@@ -243,7 +296,65 @@ def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telef
     return None
 
 
+def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, citta, ruolo,
+                 regione):
+    """
+    Registra un organizzatore nel sistema
+    :param nome: (str) nome dell'organizzatore
+    :param cognome:(str) cognome dell'organizzatore
+    :param nome_utente: (str) nome utente dell'organizzatore
+    :param email: (str) email dell'organizzatore
+    :param password: (str) password dell'organizzatore
+    :param cpassword: (str) conferma della password
+    :param telefono:(str) telefono dell'organizzatore
+    :param data_di_nascita: (str) data di nascita dell'organizzatore nel formato 'anno-mese-giorno'
+    :param citta:(str) città dell'organizzatore
+    :param ruolo: (int) ruolo 2 per l'organizzatore
+    :param regione:(str) regione dell'organizzatore
+    :return:Restituisce un'istanza di Organizzatore se la registrazione ha successo, altrimenti restituisce None
+    """
+    db = get_db()
+
+    if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
+
+        if not is_valid_email(email):
+
+            flash("Email esistente", "error")
+        elif not controlla_password(password):
+
+            flash("Password non valida", "error")
+        elif not conferma_password(password, cpassword):
+
+            flash("Le password non corrispondono", "error")
+        else:
+
+            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                                        regione)
+
+            organizzatore_data = {
+                'Organizzatore': {
+                    'FotoOrganizzatore': "",
+                    'Citta': citta
+                }
+            }
+
+            documento_organizzatore = {**user_data, **organizzatore_data}
+            organizzatore = Organizzatore(user_data, organizzatore_data)
+
+            db.Utente.insert_one(documento_organizzatore)
+
+            flash("Registrazione avvenuta con successo!", "success")
+
+            return organizzatore
+    return None
+
+
 def get_dati_area_organizzatore(id_organizzatore):
+    """
+    Ottiene i dati relativi all'area organizzatore
+    :param id_organizzatore: (str) l'id dell'organizzatore di cui si vogliono ottenere i dati
+    :return: Una tupla contentente un'itanza di Organizzatore, una lista di Evento_Privato e una lista di Biglietto
+    """
     db = get_db()
     organizzatore_data = db['Utente'].find_one({'_id': ObjectId(id_organizzatore)})
     organizzatore = Organizzatore(organizzatore_data, organizzatore_data)
@@ -270,6 +381,11 @@ def get_dati_area_organizzatore(id_organizzatore):
 
 
 def get_dati_home_organizzatore(id_organizzatore):
+    """
+    Ottiene i dati per la home page di un organizatore
+    :param id_organizzatore: (str) id dell'organizzatore di cui si vogliono ottenere i dati
+    :return: Una tupla contenente un'istanza di Evento_privato e una lista di Evento_Pubblico
+    """
     db = get_db()
     data_odierna = datetime.now().strftime("%d-%m-%Y")
 
