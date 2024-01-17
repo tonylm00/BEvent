@@ -151,6 +151,11 @@ img{
 
 
 }
+
+.bottoni_table{
+    background-color: transparent;
+    border-color: transparent;
+}
 /* Griglia della Visualizzazione Fornitori */
 .grid-container{
 
@@ -367,6 +372,13 @@ img{
 }
 
 
+.elenco_tabella{
+     font-size: 16px;
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #ff8800;
+    border-radius: 4px;
+}
 
 .sezione-tabella input[type="text"] {
     font-size: 16px;

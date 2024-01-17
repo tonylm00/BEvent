@@ -211,8 +211,8 @@ function scambiaImmagine(imgCliccata) {
             <tr>
             <form method="POST" action="/modifica_servizio">
                 <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}" minlength="3" maxlength="500"></td>
-                <td><select id="tipo" name="tipo" >
-                        <option value="{{ servio.tipo }}" disabled selected>{{ servio.tipo }}</option>
+                <td><select class="elenco_tabella" id="tipo" name="tipo" >
+                        <option value="{{ servizio.tipo }}" disabled selected>{{ servizio.tipo }}</option>
                         <option value="Location">Location</option>
                         <option value="Fiorai e Decorazioni">Fiorai e Decorazioni</option>
                         <option value="Catering">Catering</option>
@@ -233,11 +233,11 @@ function scambiaImmagine(imgCliccata) {
                     {% endfor %}
                 </td>
 
-                <td>   <button type="submit" value="{{ servizio._id }}" name="servizio_id"> modifica
+                <td>   <button class="bottoni_table" type="submit" value="{{ servizio._id }}" name="servizio_id">
                     <lord-icon src="https://cdn.lordicon.com/pflszboa.json" trigger="hover" style="width:50px;height:50px"></lord-icon></button></td>
             </form>
             <td>
-                <form method="POST" action="elimina_servizio_areaFornitore"><button type="submit" value="{{ servizio._id }}" name="servizio_id"> elimina
+                <form method="POST" action="elimina_servizio_areaFornitore"><button class="bottoni_table" type="submit" value="{{ servizio._id }}" name="servizio_id">
                     <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" style="width:50px;height:50px"></lord-icon> </button></form>
             </td>
             </tr>
