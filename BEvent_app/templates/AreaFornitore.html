@@ -107,7 +107,7 @@ function scambiaImmagine(imgCliccata) {
 
 
 
-        <div class="container watch fade-in">
+        <div class="container ">
         <div class="card">
             <div class="face face1">
                 <div class="content">
@@ -220,10 +220,12 @@ function scambiaImmagine(imgCliccata) {
                     {% endfor %}
                 </td>
 
-                <td>   <button type="submit" value="{{ servizio._id }}" name="servizio_id"> modifica </button></td>
+                <td>   <button type="submit" value="{{ servizio._id }}" name="servizio_id"> modifica
+                    <lord-icon src="https://cdn.lordicon.com/pflszboa.json" trigger="hover" style="width:50px;height:50px"></lord-icon></button></td>
             </form>
             <td>
-                <form method="POST" action="elimina_servizio_areaFornitore"><button type="submit" value="{{ servizio._id }}" name="servizio_id"> elimina </button></form>
+                <form method="POST" action="elimina_servizio_areaFornitore"><button type="submit" value="{{ servizio._id }}" name="servizio_id"> elimina
+                    <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" style="width:50px;height:50px"></lord-icon> </button></form>
             </td>
             </tr>
 
