@@ -123,19 +123,17 @@ def filtro_prezzo_eventi():
 @re.route('/aggiorna_right_column_eventi', methods=['POST'])
 def aggiorna_right_column_eventi():
     data = request.get_json()
-    print(data)
     try:
-        print("prova 1")
+
         if 'id_evento' in data:
             id_evento = data['id_evento']
-            print("prova 2")
 
             evento_scelto = get_evento_by_id(id_evento)
-            print("prova 3")
+
             if evento_scelto:
-                print("prova 4")
+
                 evento_serializzato = serializza_eventi(evento_scelto)
-                print("prova 5")
+
                 return jsonify({
                     "evento_scelto": evento_serializzato
                 }), 200

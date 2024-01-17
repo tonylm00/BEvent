@@ -183,16 +183,11 @@ def get_fornitore_by_email(email):
     return fornitore
 
 
-def get_servizi_fornitore(fornitore):
-    db = get_db()
-    servizi_data = list(db['Servizio Offerto'].find({"fornitore_associato": fornitore.id,
-                                                     'isCurrentVersion': None}))
+def get_servizi_fornitore(fornitore, datarichiesta):
 
-    lista_servizi = []
+    servizi_non_filtrati = get_servizi(datarichiesta)
 
-    for data in servizi_data:
-        servizio = Servizio_Offerto(data)
-        lista_servizi.append(servizio)
+    lista_servizi = [servizio for servizio in servizi_non_filtrati if servizio.fornitore_associato == fornitore.id]
 
     return lista_servizi
 

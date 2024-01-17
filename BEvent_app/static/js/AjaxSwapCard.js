@@ -51,7 +51,7 @@ function aggiornaDOM(data) {
                             <div class="content2">
                                 <p>${servizio.descrizione}, ${servizio.prezzo}&euro;</p>
                                 <button style="border: none; background: transparent" id="${servizio.id}" onclick="salvaServizio('${servizio.id}')"> 
-                                    <a href="#">Prenota</a>
+                                    <a>Prenota</a>
                                 </button>
                             </div>
                         </div>
@@ -60,7 +60,32 @@ function aggiornaDOM(data) {
             `;
         });
 
-        nuovoContenuto += `</div></div>`;
+        nuovoContenuto += `</div></div>
+                            <div class="reviews-container">`;
+
+        if (data.recensioni && data.recensioni.length > 0) {
+                nuovoContenuto += `<p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Recensioni degli Utenti: </p>`;
+                data.recensioni.forEach(recensione => {
+                    const servizioCorrispondente = data.lista_servizi.find(servizio =>
+                        servizio.fornitore_associato === data.fornitore_scelto.id && recensione.valutato === servizio._id
+                    );
+
+                    if (servizioCorrispondente) {
+                        nuovoContenuto += `
+                            <div class="review">
+                                <div class="review-title">Autore: ${recensione.nome_utente_valutante}</div>
+                                <div class="review-subtitle">Recensione lasciata per un servizio di tipo: ${recensione.servizio}</div>
+                                <div class="review-rating"> ${'★'.repeat(parseInt(recensione.voto) || 0)}${'☆'.repeat(Math.max(0, 5 - parseInt(recensione.voto) || 0))}</div>
+                                <p class="review-body">${recensione.descrizione}</p>
+                            </div>
+                        `;
+                    }
+                });
+        } else {
+            nuovoContenuto += `<p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Al momento non ci sono recensioni per questo fornitore </p>`;
+        }
+
+         nuovoContenuto += `</div>`;
 
 
         document.querySelector('.overflow-container').innerHTML = nuovoContenuto;

@@ -9,8 +9,9 @@ views = Blueprint('views', __name__)
 
 @views.route('/fornitore_page')
 # @login_required
-def fornitore_page(servizi=None, dati=None, eventiPubblici=None,eventiPrivati=None):
-    return render_template('AreaFornitore.html', servizi=servizi, dati=dati,eventiPrivati=eventiPrivati,eventiPubblici=eventiPubblici)
+def fornitore_page(servizi=None, dati=None, eventiPubblici=None, eventiPrivati=None):
+    return render_template('AreaFornitore.html', servizi=servizi, dati=dati, eventiPrivati=eventiPrivati,
+                           eventiPubblici=eventiPubblici)
 
 
 @views.route('/organizzatore_page')
@@ -71,8 +72,8 @@ def scelta_evento_da_creare_page():
 
 @views.route('/SceltaFornitori_page')
 # @login_required
-def sceltafornitori_page(fornitori=None, servizi=None):
-    return render_template('SceltaFornitori.html', fornitori=fornitori, servizi=servizi)
+def sceltafornitori_page(fornitori=None, servizi=None, recensioni=None):
+    return render_template('SceltaFornitori.html', fornitori=fornitori, servizi=servizi, recensioni=recensioni)
 
 
 @views.route('/RicercaEventi_page')
@@ -85,10 +86,13 @@ def ricerca_eventi_page(eventi=None):
 # @login_required
 def riepilogo_scelte_page(fornitori=None, servizi=None):
     return render_template('RiepilogoScelte.html', fornitori=fornitori, servizi=servizi)
+
+
 @views.route('/EventoPublico_page')
 def crea_evento_pubblico_page(servizi=None):
     return render_template('EventoPubblico.html', servizi=servizi)
 
+
 @views.route('/Visualizza_evento_dettagli_page')
-def visualizza_evento_dettagli_page(evento=None,organizzatore=None,servizi=None):
-    return render_template('EventoDettagli.html', evento=evento, organizzatore=organizzatore,servizi=servizi)
+def visualizza_evento_dettagli_page(evento=None, organizzatore=None, servizi=None):
+    return render_template('EventoDettagli.html', evento=evento, organizzatore=organizzatore, servizi=servizi)

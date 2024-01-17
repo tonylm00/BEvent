@@ -4,6 +4,8 @@ from datetime import datetime
 from importlib.metadata import files
 
 from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
+
+from BEvent_app.FeedBack import FeedBackService
 from BEvent_app.Fornitori import FornitoriService
 from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
@@ -32,9 +34,9 @@ def visualizza_fornitori():
         fornitori = GestioneEventoService.get_fornitori_disponibli(data_formattata)
         servizi_non_filtrati = GestioneEventoService.get_servizi(data_formattata)
         servizi_offerti = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori)
-        #recensioni = GestioneEventoService.get_recensioni(servizi_offerti)
+        recensioni = FeedBackService.get_recensioni_associate_a_servizi(servizi_offerti)
 
-        return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti)
+        return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti, recensioni=recensioni)
     else:
         flash("Errore nella data inserita")
         return scelta_evento_da_creare_page()
@@ -160,17 +162,20 @@ def aggiorna_right_column():
 
         if 'email' in data:
             email = data['email']
-
+            data_evento = session['data_evento']
             fornitore_scelto = GestioneEventoService.get_fornitore_by_email(email)
 
             if fornitore_scelto:
-                lista_servizi = GestioneEventoService.get_servizi_fornitore(fornitore_scelto)
+                lista_servizi = GestioneEventoService.get_servizi_fornitore(fornitore_scelto, data_evento)
+                recensioni = FeedBackService.get_recensioni_associate_a_servizi(lista_servizi)
+                recensioni_serializzate = [FeedBackService.recensione_serializer(r) for r in recensioni]
                 servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in lista_servizi]
                 fornitore_serializzato = GestioneEventoService.fornitore_serializer(fornitore_scelto)
 
                 return jsonify({
                     "lista_servizi": servizi_serializzati,
-                    "fornitore_scelto": fornitore_serializzato
+                    "fornitore_scelto": fornitore_serializzato,
+                    "recensioni": recensioni_serializzate
                 }), 200
             else:
                 return jsonify({"errore": "nessuna corrispondenza nel db"}), 200

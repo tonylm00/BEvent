@@ -23,6 +23,12 @@
   color: #333;
 }
 
+
+.review-subtitle {
+  font-size: 1em;
+  color: grey;
+}
+
 .review-rating {
   color: #ffc107;
   font-size: 1.5em;
