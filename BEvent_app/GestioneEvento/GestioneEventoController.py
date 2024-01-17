@@ -32,6 +32,7 @@ def visualizza_fornitori():
         fornitori = GestioneEventoService.get_fornitori_disponibli(data_formattata)
         servizi_non_filtrati = GestioneEventoService.get_servizi(data_formattata)
         servizi_offerti = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori)
+        #recensioni = GestioneEventoService.get_recensioni(servizi_offerti)
 
         return sceltafornitori_page(fornitori=fornitori, servizi=servizi_offerti)
     else:
@@ -134,7 +135,6 @@ def filtro_prezzo():
 
             servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_prezzo_liste(prezzo_min, prezzo_max,
                                                                                              data_evento)
-
             if servizi_filtrati and fornitori_filtrati:
                 fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
                 servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in servizi_filtrati]
@@ -272,7 +272,7 @@ def salva_evento_come_bozza():
         response = make_response(redirect(url_for('views.organizzatore_page')))
         response.set_cookie('carrello', '', expires=0, httponly=True)
         flash("Evento salvato con successo!", "success")
-        return response
+        return redirect(url_for('aut.home_organizzatore'))
     else:
         flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
         return redirect('/visualizza_riepilogo')
@@ -288,7 +288,7 @@ def salva_evento_pagato():
         response = make_response(redirect(url_for('views.organizzatore_page')))
         response.set_cookie('carrello', '', expires=0, httponly=True)
         flash("Evento salvato con successo!", "success")
-        return response
+        return redirect(url_for('aut.home_organizzatore'))
     else:
         flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
         return redirect('/visualizza_riepilogo')

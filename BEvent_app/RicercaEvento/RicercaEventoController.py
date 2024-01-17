@@ -17,7 +17,6 @@ def visualizza_eventi():
         return organizzatore_page()
 
 
-
 @re.route('/filtro_barra_ricerca_eventi', methods=['POST'])
 def filtro_barra_ricerca():
     try:
