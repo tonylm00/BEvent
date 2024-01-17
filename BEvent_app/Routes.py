@@ -7,7 +7,6 @@ from flask_login import login_required, current_user
 views = Blueprint('views', __name__)
 
 
-
 @views.route('/fornitore_page')
 # @login_required
 def fornitore_page(servizi=None, dati=None, eventiPubblici=None,eventiPrivati=None):

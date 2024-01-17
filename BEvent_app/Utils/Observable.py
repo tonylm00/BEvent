@@ -15,7 +15,5 @@ class Observable:
         self.observers.remove(observer)
 
     def notify_observers(self):
-        print("1")
         for observer in self.observers:
-            print("2")
             observer.update(self)

@@ -11,7 +11,7 @@
 
     {% if session.get('nome_utente') %}
         {% if session.get('ruolo') == "2" %}
-            <form action="{{ url_for('views.organizzatore_page') }}"><button style="border: none; background: transparent; cursor: pointer;"><img class="header__logo" src="../static/images/Logo.jpg" alt="Logo BEvent" width="1000" height="1000"></button></form>
+            <form action="{{ url_for('aut.home_organizzatore') }}"><button style="border: none; background: transparent; cursor: pointer;"><img class="header__logo" src="../static/images/Logo.jpg" alt="Logo BEvent" width="1000" height="1000"></button></form>
         {% else %}
             <form action="{{ url_for('views.home') }}"><button style="border: none; background: transparent; cursor: pointer;"><img class="header__logo" src="../static/images/Logo.jpg" alt="Logo BEvent" width="1000" height="1000"></button></form>
         {% endif %}
