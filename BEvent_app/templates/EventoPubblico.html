@@ -12,68 +12,19 @@
 <header>
 {% include 'Header.html' %}
 </header>
-
+<p class="projTitle textGradient "> Pubblica il tuo Evento</p>
 <div class="container-principale">
 
     <div class="left-column">
-    <p class="projTitle textGradient ">Eventi in Programma</p>
-
-        <div class="grid-container">
-
-	<div class="grid">
-
-
-        <div class="container">
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <img src="../static/images/Altro.jpg">
-                    <h3>Nome Evento </h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p> <b> Tipo Evento
-                            <br></b> <br> Dati, Altri Dati<br> </p>
-
-                        <button style="border: none; background: transparent" id="DA CAMBIARE"> <a href="#">Visualizza</a></button>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
+<p> left</p>
     </div>
-
-    </div>
-
 
     <div class="right-column">
-        <p class="projTitle textGradient "> Pubblica il tuo Evento</p>
-        <div class="sezione-foto">
-        <form action="/aggiungi_foto_fornitore" method="post" enctype="multipart/form-data">
-        <div class="foto-box"><img src="data:image/jpeg;base64,{{ dati.foto[0] }}" alt="Immagine" id="immagine_sopra"></div>
-        <div class="foto-contenitore">
-            <input type="file" id="fileInput2" name="foto" multiple="multiple" ><br>
-            <button type="submit">Conferma</button>
-        </div>
-        </form>
-        </div>
-    <script >
-   $(function() {
-       const $gallery = $('.gallery a').simpleLightbox();
-     });
-function scambiaImmagine(imgCliccata) {
-	  const immagineSopra = document.getElementById('immagine_sopra');
-	  const srcCliccata = imgCliccata.src;
-	  imgCliccata.src = immagineSopra.src;
-	  immagineSopra.src = srcCliccata;
-	}
-	</script>
-
-
+<p> right</p>
     </div>
 
-
 </div>
+
+
 </body>
 </html>
