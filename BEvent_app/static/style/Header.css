@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
 
 .header__titolo{
     color: #FE8415;
     margin-left:280px;
     text-align: center;
-    font-family: 'Cinzel Decorative', serif;
+    /*font-family: 'Cinzel Decorative', serif;*/
+    font-family: 'Grandiflora One', cursive;
     font-size: 50px;
+    font-weight: 700;
     font-style: normal;
     line-height: normal;
-    margin-top: 5px;
+    margin-top: 0;
     /* font weight: 600; */
 }
 
@@ -75,10 +77,10 @@
 
 .modal-container h1{
     text-align: center;
-    font-family: 'Times New Roman';
-    font-size: 48px;
+    font-family: 'Grandiflora One', cursive;
+    font-size: 36px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
     text-shadow: 0 0 0;
 
