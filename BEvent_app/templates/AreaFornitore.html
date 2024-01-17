@@ -211,7 +211,20 @@ function scambiaImmagine(imgCliccata) {
             <tr>
             <form method="POST" action="/modifica_servizio">
                 <td><input type="text" name="descrizione" value="{{ servizio.descrizione }}" minlength="3" maxlength="500"></td>
-                <td><input type="text" name="tipo" value="{{ servizio.tipo }}"></td>
+                <td><select id="tipo" name="tipo" >
+                        <option value="{{ servio.tipo }}" disabled selected>{{ servio.tipo }}</option>
+                        <option value="Location">Location</option>
+                        <option value="Fiorai e Decorazioni">Fiorai e Decorazioni</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Pasticceria">Pasticceria</option>
+                        <option value="Musica">Musica e Servizi Audio</option>
+                        <option value="Intrattenimento">Intrattenimento</option>
+                        <option value="Animazione per bambini">Animazione per bambini</option>
+                        <option value="Fotografo">Fotografo</option>
+                        <option value="Servizi di Trasporto">Servizi di Trasporto</option>
+                        <option value="Gadget">Gadget</option>
+                        <option value="Altro">Altro</option>
+                    </select></td>
                 <td><input type="text" name="prezzo" value="{{ servizio.prezzo }}" required></td>
                 <td><input type="text" name="quantità" value="{{ servizio.quantita }}"required></td>
 
