@@ -612,6 +612,7 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    flex-direction: column;
 }
 
 .container2 .card2 .face3.face5 .content2 p{
@@ -637,7 +638,7 @@
 }
 
 .input-scelta{
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
     display: inline-block;
@@ -645,6 +646,7 @@
     border-radius: 4px;
     box-sizing: border-box;
     color: black;
+    text-align: center;
 }
 .input-scelta::-webkit-inner-spin-button,
 .input-scelta::-webkit-outer-spin-button,
