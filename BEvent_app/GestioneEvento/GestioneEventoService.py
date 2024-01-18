@@ -4,11 +4,15 @@ import mail
 from bson import ObjectId
 from flask import flash
 
+import re
 from ..InterfacciaPersistenza import ServizioOfferto
 from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
 from ..db import get_db
 from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
+
+USING_TEST_DB = False
+db = get_db()
 
 
 def is_valid_data(data):
@@ -19,16 +23,24 @@ def is_valid_data(data):
 
     :return: True se la data è corretta, False altrimenti
     """
+    date_format_regex = re.compile(r'^\d{2}-\d{2}-\d{4}$')
+
+    if not date_format_regex.match(data):
+
+        return False, "Formato data non corretto. Utilizzare il formato dd-mm-yyyy."
+
     try:
-        datetime_data = datetime.strptime(data, '%Y-%m-%d')
+        datetime_data = datetime.strptime(data, '%d-%m-%Y')
+
         data_odierna = datetime.now()
+
         if datetime_data > data_odierna:
-            return True
+            return True, "La data è corretta nel formato ed è anche valida."
         else:
-            return False
+            return False, "La data non è valida poichè è precedente alla data odierna."
 
     except ValueError:
-        return False
+        return False, "Errore nella conversione della data."
 
 
 def get_fornitori_disponibli(data_richiesta):
@@ -39,7 +51,6 @@ def get_fornitori_disponibli(data_richiesta):
     :param data_richiesta: (str) stringa che indica la data in cui si vuole creare un evento
     :return: lista di oggetti di tipo Fornitore, ovvero i fornitori disponibli
     """
-    db = get_db()
 
     pipeline = [
         {"$match": {"Ruolo": "3"}},
@@ -104,11 +115,11 @@ def get_servizi(data_richiesta):
     :return: lista di oggetti di tipo Servizio Offerto, ovvero i servizi disponibli
     """
 
-    db = get_db()
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
 
-    servizi_data = list(servizi_collection.find({'$or': [{'isCurrentVersion': None}, {'isCurrentVersion': {'$exists': False}}]}))
+    servizi_data = list(
+        servizi_collection.find({'$or': [{'isCurrentVersion': None}, {'isCurrentVersion': {'$exists': False}}]}))
 
     lista_servizi = []
 
@@ -285,7 +296,7 @@ def get_fornitore_by_email(email):
     :return: oggetto Fornitore, che rappresenta il fornitore trovato nel database
 
     """
-    db = get_db()
+
     fornitore_data = db['Utente'].find_one({"email": email})
     fornitore = Fornitore(fornitore_data, fornitore_data)
     return fornitore
@@ -356,7 +367,7 @@ def get_servizio_by_id(id_servizio):
 
     :return: oggetto di tipo servizio Offerto
     """
-    db = get_db()
+
     id_servizio_obj = ObjectId(id_servizio)
     servizio_data = db["Servizio Offerto"].find_one({"_id": id_servizio_obj})
     servizio = Servizio_Offerto(servizio_data)
@@ -371,7 +382,6 @@ def get_fornitore_by_id(id_fornitore):
 
     :return: oggetto di tipo fornitore
     """
-    db = get_db()
     id_fornitore_obj = ObjectId(id_fornitore)
     fornitore_data = db['Utente'].find_one({"_id": id_fornitore_obj})
     fornitore = Fornitore(fornitore_data, fornitore_data)
@@ -441,7 +451,6 @@ def crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invi
 
 def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati, nome_festeggiato, descrizione,
                 is_pagato, ruolo, foto_byte_array, prezzo, id_organizzatore):
-
     """
     Funzione per salvare l'evento privato nel database che crea il documento da inserire mettendo come valore dei campi
     i dati passati come parametri.
@@ -461,27 +470,36 @@ def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invi
 
     :return: l'evento privato inserito nel database
     """
+    if not isinstance(tipo_evento, str) or not re.match(r'^[^0-9]*$', tipo_evento):
+        flash("Il tipo di evento non rispetta il formato previsto", "error")
+        return False
+    else:
+        result, result_message = is_valid_data(data_evento)
+        if not result:
+            flash(result_message, "error")
+            return False
+        elif not isinstance(n_invitati, str) or not re.match(r'^(?!0$)[0-9]+$', n_invitati):
+            flash("Il numero di invitati non rispetta il formato previsto", "error")
+            return False
+        else:
+            id_fornitori = [fornitore.id for fornitore in lista_fornitori]
+            id_servizi = [servizio._id for servizio in lista_servizi]
+            documento_evento_generico = crea_documento_evento_generico(data_evento, descrizione, tipo_evento,
+                                                                       n_invitati,
+                                                                       foto_byte_array, ruolo, id_fornitori, id_servizi,
+                                                                       is_pagato)
+            documento_evento_privato = {
+                'EventoPrivato': {
+                    'Prezzo': prezzo,
+                    'Festeggiato/i': nome_festeggiato,
+                    'Organizzatore': id_organizzatore
+                }
+            }
 
-    db = get_db()
-    id_fornitori = [fornitore.id for fornitore in lista_fornitori]
-    id_servizi = [servizio._id for servizio in lista_servizi]
-    documento_evento_generico = crea_documento_evento_generico(data_evento, descrizione, tipo_evento, n_invitati,
-                                                               foto_byte_array, ruolo, id_fornitori, id_servizi,
-                                                               is_pagato)
-
-    documento_evento_privato = {
-        'EventoPrivato': {
-            'Prezzo': prezzo,
-            'Festeggiato/i': nome_festeggiato,
-            'Organizzatore': id_organizzatore
-        }
-    }
-
-    documento_evento = {**documento_evento_generico, **documento_evento_privato}
-    db.Evento.insert_one(documento_evento)
-    evento_privato = Evento_Privato(documento_evento_generico, documento_evento_privato)
-
-    return evento_privato
+            documento_evento = {**documento_evento_generico, **documento_evento_privato}
+            db.Evento.insert_one(documento_evento)
+            flash("L'evento è stato creato correttamente", "success")
+            return True
 
 
 def elimina_evento(id_evento):
@@ -492,7 +510,6 @@ def elimina_evento(id_evento):
 
     :return: true per indicare che l'evento è stato cancellato
     """
-    db = get_db()
     evento = db.Evento.find_one({"_id": ObjectId(id_evento)})
 
     evento_privato = Evento_Privato(evento, evento)
@@ -532,12 +549,12 @@ def crea_evento_pubblico(Data, n_persone, Descrizione, locandina, Ruolo, Tipo, i
 
     :return: nulla
     """
-    db = get_db()
 
     documento_evento_generico = crea_documento_evento_generico(Data, Descrizione, Tipo, n_persone,
                                                                locandina, Ruolo, fornitori_associati, servizi_associati,
                                                                isPagato)
     location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
+
     documento_evento_Pubblico = {
         'EventoPubblico': {
             'Prezzo': prezzo,
@@ -561,7 +578,6 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
     :return : lista_servizi, ovvero una lista di oggetti di tipo servizio offerto
 
     """
-    db = get_db()
     servizi_collection = db['Servizio Offerto']
     servizi_data = list(servizi_collection.find({
         'fornitore_associato': id_fornitore,
@@ -578,6 +594,7 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
 
     return lista_servizi
 
+
 def acquista_biglietto(id_evento, id_organizzatore):
     """
     Funzione per acquistare un biglietto e salvarlo nel database. Per salvarlo recupera delle informazioni utili dalla
@@ -591,7 +608,6 @@ def acquista_biglietto(id_evento, id_organizzatore):
 
     """
     from ..InterfacciaPersistenza import EventoPubblico
-    db = get_db()
     eventi = db['Evento']
     biglietti = db["Biglietto"]
     evento_data = eventi.find_one({"_id": ObjectId(id_evento)})
@@ -625,7 +641,6 @@ def get_dati_servizi_organizzatore(id):
     :return: servizi_lista (lista di oggetti di tipo Servizio Offerto)
     """
     from ..InterfacciaPersistenza import EventoPrivato
-    db = get_db()
     eventi = db['Evento']
     evento_data = eventi.find_one({"_id": ObjectId(id)})
     evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
@@ -634,5 +649,3 @@ def get_dati_servizi_organizzatore(id):
         servizio_data = db['Servizio Offerto'].find_one({"_id": ObjectId(servizi)})
         servizi_lista.append(servizio_data)
     return servizi_lista
-
-

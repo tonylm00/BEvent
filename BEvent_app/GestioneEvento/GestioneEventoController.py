@@ -346,9 +346,9 @@ def salva_evento_come_bozza():
     :return: redirect all'home organizzatore nel caso il salvataggio nel db vada a buon fine, altrimenti ritorna il
     redirect a visualizza riepilogo
     """
-    evento = salva_evento(is_pagato=False)
+    result = salva_evento(is_pagato=False)
 
-    if evento is not None:
+    if result:
         session.pop('data_evento', None)
         session.pop('tipo_evento', None)
         session.pop('n_invitati', None)
@@ -370,8 +370,9 @@ def salva_evento_pagato():
     :return: redirect all'home organizzatore nel caso il salvataggio nel db vada a buon fine, altrimenti ritorna il
     redirect a visualizza riepilogo
     """
-    evento = salva_evento(is_pagato=True)
-    if evento is not None:
+    result = salva_evento(is_pagato=True)
+
+    if result:
         session.pop('data_evento', None)
         session.pop('tipo_evento', None)
         session.pop('n_invitati', None)
@@ -408,16 +409,16 @@ def salva_evento(is_pagato):
         path_img = os.path.join(app.root_path, 'static', 'images', tipo_evento + '.jpg')
         with open(path_img, 'rb') as img_file:
             image_content = img_file.read()
-        foto_byte_array = Utils.Image.convert_image_to_byte_array(image_content)
+        foto_byte_array = Image.convert_image_to_byte_array(image_content)
 
     carrello = json.loads(cookie_carrello)
     lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
 
-    evento = GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
+    result = GestioneEventoService.save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invitati,
                                                nome_festeggiato, descrizione, is_pagato, ruolo, foto_byte_array, prezzo,
                                                id_organizzatore)
 
-    return evento
+    return result
 
 
 @ge.route('/elimina_evento_privato', methods=['POST'])
