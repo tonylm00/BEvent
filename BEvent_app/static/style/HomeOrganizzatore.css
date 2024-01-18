@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+
+
 .flash.success {
     color: green;
 }
@@ -12,8 +15,8 @@
 
   .left {
 
-      text-align: center;
-     height: 35%;
+    text-align: center;
+    height: 35%;
     width: 50%;
     float: left;
     background-color: white;
@@ -77,7 +80,7 @@ h1{
 }
 
 
-/* ---------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
 .textGradient{
 	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
 	-webkit-background-clip: text;
@@ -85,18 +88,18 @@ h1{
 
 }
 .projTitle {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  text-align: center;
-  font-size: 32px;
-  border-bottom: 3px solid #FE8415;
-  letter-spacing: 3px;
-  margin-top: 100px;
+    font-family: 'Grandiflora One', cursive;
+    font-weight: 700;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 3px solid #FE8415;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .overflow-container{
     overflow: auto;
-    height: calc(100% - 310px);
+    height: calc(100% - 350px);
 }
 
 .container-principale {
@@ -106,25 +109,38 @@ h1{
 }
 
 .left-column {
-  flex: 65%;
+  flex: 50%;
   margin-left: 0;
 
 }
 .right-column {
 
-    flex: 30%;
+    flex: 45%;
     margin-right: 2.5%;
     height: 100vh;
 }
 
-.superiore{
-    height: 45%;
-    background-color: white;
+/* Gestione della Sezione Tutto sul Tuo Evento */
+.grid-container{
+
+    overflow: auto;
+	height: calc(100% - 300px);
+	justify-items: center;
+	align-items: center;
+	margin-left:7.5%;
+  	width:85%;
+  	margin-bottom: 5%;
+
+
 }
 
-.inferiore{
-    height: 45%;
-    background-color: white;
+.grid{
+
+    display: grid;
+    justify-items: center;
+     grid-gap:0px;
+    row-gap:0px;
+    grid-template-columns: repeat(2,1fr);
 
 }
 
@@ -258,11 +274,6 @@ h1{
 		transform: translateY(0%);
 	}
 }
-.h2{
-    color:darkorange;
-    font-weight: normal;
-    padding-left: 2%;
-}
 
 .grind-container{
     display: flex;
@@ -299,27 +310,9 @@ h1{
     width: 100%;  /* Assicurati che copra l'intera area della card */
     height: 40px;
 }
-.service-title{
-    font-size: 15px;
-    font-weight: bold;
-}
 
-@media (max-width: 800px) {
-   .upper-division, .lower-division, .divisione_sinistra, .divisione_destra {
-    width: 100%;
-    /* altri stili per il layout a schermo intero */
-  }
+/*------------------------------- Gestione delle Card degli eventi nella parte di destra -------------------------------*/
 
-  h1, .service-title {
-    font-size: 18px; /* ridimensiona il font per dispositivi più piccoli */
-  }
-
-  /* Altri adattamenti specifici per elementi come .card, .event-card, etc. */
-}
-
-
-
-/* Gestione delle Card degli eventi nella parte di destra */
 
 .grid-container-servizi{
 
@@ -328,7 +321,7 @@ h1{
 	align-items: center;
 	margin-left:7.5%;
   	width:85%;
-    margin-top: 20%;
+    margin-top: 27%;
 
 
 }
@@ -351,7 +344,7 @@ h1{
     position: relative;
     display: flex;
     justify-content: space-between;
-
+    margin-bottom: 10px;
 }
 
 .container2 .card2{
@@ -417,6 +410,7 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    flex-direction: column;
 }
 
 .container2 .card2 .face3.face5 .content2 p{
@@ -442,7 +436,7 @@ h1{
 }
 
 .input-scelta{
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
     display: inline-block;
@@ -450,9 +444,66 @@ h1{
     border-radius: 4px;
     box-sizing: border-box;
     color: black;
+    text-align: center;
 }
 .input-scelta::-webkit-inner-spin-button,
 .input-scelta::-webkit-outer-spin-button,
 .input-scelta {
     -webkit-appearance: none;
+}
+
+/* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+@media (max-height:900px ) {
+    .img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 150px;
+    width: 225px;
+}
+}
+
+@media(min-width: 2100px) {
+
+    .grid-container-servizi {
+        margin-top: 30%;
+
+    }
+}
+
+
+@media(max-width: 2800px){
+
+    .container .card .face{
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+}
+    .container .card .face.face1 .content img{
+        width: 200px;
+        height: 75%;
+}
+}
+
+@media(max-width: 1410px){
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+
+    }
+    .grid-servizi {
+            grid-template-columns: repeat(1, 1fr);
+
+    }
+}
+@media (max-width: 1030px) {
+    .grid{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+@media (max-width: 895px) {
+
+  h1{
+    font-size: 28px;
+  }
 }
