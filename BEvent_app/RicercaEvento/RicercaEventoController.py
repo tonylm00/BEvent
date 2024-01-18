@@ -9,6 +9,12 @@ re = Blueprint('re', __name__)
 
 @re.route('/visualizza_eventi', methods=['POST'])
 def visualizza_eventi():
+    """
+    Serve a visualizzare la pagina di ricerca degli eventi pubblici. Prende gli eventi pubblici e li restituisce come
+    risposa nella pagina
+
+    :return: ricercaeventi.html, con la lista di oggetti di tipo evento pubblico passata come parametro
+    """
     eventi = get_eventi()
     if eventi:
         return ricerca_eventi_page(eventi=eventi)
@@ -19,6 +25,12 @@ def visualizza_eventi():
 
 @re.route('/filtro_barra_ricerca_eventi', methods=['POST'])
 def filtro_barra_ricerca():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base ad una parola passata come parametro restituisce la lista degli
+    eventi che contengono tale parola.
+
+    :return:  Risposta in formato JSON che contiene una lista di oggetti: eventi_filtrati(di tipo Evento Pubblico)
+    """
     try:
         data = request.get_json()
         if 'ricerca' in data:
@@ -43,6 +55,13 @@ def filtro_barra_ricerca():
 
 @re.route('/filtro_categorie_eventi', methods=['POST'])
 def filtro_categorie_eventi():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base alla categoria passata come parametro restituisce la lista degli
+    eventi che appartengono a quel tipo
+
+    :return: risposta in formato JSON che continene una lista di eventi filtrati: eventi_filtrati(lista di oggetti di
+    tipo evento Pubblico)
+    """
     try:
         data = request.get_json()
         if 'categoria' in data:
@@ -69,6 +88,12 @@ def filtro_categorie_eventi():
 
 @re.route('/filtro_regione_eventi', methods=['POST'])
 def filtro_regione_eventi():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base alla regione passata come parametro restituisce la lista degli
+    eventi che si trovano in quella regione
+
+    :return: Risposta in formato JSON che continene una lista di oggetti: eventi_filtrati (di tipo Evento Pubblico)
+    """
     try:
         data = request.get_json()
         if 'regione' in data:
@@ -95,6 +120,12 @@ def filtro_regione_eventi():
 
 @re.route('/filtro_prezzo_eventi', methods=['POST'])
 def filtro_prezzo_eventi():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base a un prezzo minimo e un prezzo massimo passati come parametri
+    restituisce la lista dei eventi che hanno un prezzo compreso nel range
+
+    :return: Risposta in formato JSON che continene una lista di oggetti: eventi_filtrati(di tipo Evento Pubblico)
+    """
     try:
         data = request.get_json()
         if 'prezzo_min' in data and 'prezzo_max' in data:
@@ -122,6 +153,12 @@ def filtro_prezzo_eventi():
 
 @re.route('/aggiorna_right_column_eventi', methods=['POST'])
 def aggiorna_right_column_eventi():
+    """
+    Serve a elaborare una richiesta Ajax e in base all'id dell'evento passato come parametro restituisce il singolo
+    evento che corrisponde all'id
+
+    :return: Risposta in formato JSON che continene un oggetto: evento (oggetto di tipo Evento Pubblico)
+    """
     data = request.get_json()
     try:
 
