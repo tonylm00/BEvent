@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-        <title>Area Utente</title>
+        <title>Area Organizzatore</title>
         <link rel="stylesheet" href="../static/style/AreaOrganizzatore.css">
 
 </head>
@@ -23,10 +23,9 @@
 
 	        <div class="grid">
 
-
-                <div class="container watch fade-in">
                 {% if eventi_privati %}
                     {% for evento in eventi_privati %}
+                <div class="container watch fade-in">
                     <div class="card">
                         <div class="face face1">
                             <div class="content">
@@ -50,11 +49,11 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+                </div>
+                {% endfor %}
                 {% else %}
 
                 {% endif %}
-                </div>
             </div>
         </div>
     </div>
@@ -116,6 +115,38 @@
                  </div>
                 <button type="submit">Modifica</button>
             </form>
+
+
+            <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;"> Biglietti Comprati: </p>
+            <div class="overflow-container">
+
+            {% for biglietto in biglietti_comprati  %}
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                <div class="container2 ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="../static/images/BigliettoEvento.jpeg">
+                            <h3>{{ biglietto.nome_evento}} </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+                        <div class="content2">
+
+                            <p>Data Evento: {{ biglietto.data_evento }}<br>
+                            Luogo: {{ biglietto.dove }} <br> Ora: {{ biglietto.ora }} <br></p>
+                               <p id="prezzoTotale"> </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+
 
         </div>
     </div>

@@ -369,8 +369,9 @@ def get_dati_area_organizzatore(id_organizzatore):
         eventi_privati.append(evento_privato)
 
     biglietti_comprati_data = list(db['Biglietto'].find({
-        'Comprato_da': id_organizzatore
+        'CompratoDa': id_organizzatore
     }))
+
     biglietti_comprati = []
     for data in biglietti_comprati_data:
         biglietto = Biglietto(data)

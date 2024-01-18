@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+
+
 .flash.success {
     color: green;
 }
@@ -12,8 +15,8 @@
 
   .left {
 
-      text-align: center;
-     height: 35%;
+    text-align: center;
+    height: 35%;
     width: 50%;
     float: left;
     background-color: white;
@@ -77,7 +80,7 @@ h1{
 }
 
 
-/* ---------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
 .textGradient{
 	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
 	-webkit-background-clip: text;
@@ -85,18 +88,18 @@ h1{
 
 }
 .projTitle {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  text-align: center;
-  font-size: 32px;
-  border-bottom: 3px solid #FE8415;
-  letter-spacing: 3px;
-  margin-top: 100px;
+    font-family: 'Grandiflora One', cursive;
+    font-weight: 700;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 3px solid #FE8415;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .overflow-container{
     overflow: auto;
-    height: calc(100% - 310px);
+    height: calc(100% - 350px);
 }
 
 .container-principale {
@@ -106,25 +109,38 @@ h1{
 }
 
 .left-column {
-  flex: 65%;
+  flex: 50%;
   margin-left: 0;
 
 }
 .right-column {
 
-    flex: 30%;
+    flex: 45%;
     margin-right: 2.5%;
     height: 100vh;
 }
 
-.superiore{
-    height: 45%;
-    background-color: white;
-}
+/* Griglia della Visualizzazione Fornitori */
+.grid-container{
 
-.inferiore{
-    height: 45%;
-    background-color: white;
+    overflow: auto;
+	height: calc(100% - 300px);
+	justify-items: center;
+	align-items: center;
+	margin-left:7.5%;
+  	width:85%;
+  	margin-bottom: 5%;
+
+
+}
+/* Gestione della Sezione Tutto sul Tuo Evento */
+.grid{
+
+    display: grid;
+    justify-items: center;
+     grid-gap:0px;
+    row-gap:0px;
+    grid-template-columns: repeat(2,1fr);
 
 }
 
@@ -258,11 +274,6 @@ h1{
 		transform: translateY(0%);
 	}
 }
-.h2{
-    color:darkorange;
-    font-weight: normal;
-    padding-left: 2%;
-}
 
 .grind-container{
     display: flex;
@@ -319,7 +330,7 @@ h1{
 
 
 
-/* Gestione delle Card degli eventi nella parte di destra */
+/*------------------------------- Gestione delle Card degli eventi nella parte di destra -------------------------------*/
 
 .grid-container-servizi{
 
@@ -345,12 +356,20 @@ h1{
 
 }
 
+.titolo-tipo{
+    font-family: 'Grandiflora One', cursive;
+    font-size: 30px;
+    color : black;
+    font-weight: 700;
+    text-transform: uppercase;
+}
 
 .container2{
     width: 80%;
     position: relative;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 
 }
 

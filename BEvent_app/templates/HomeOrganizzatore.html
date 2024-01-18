@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La tua Pagina Evento</title>
+<title>Home Organizzatore</title>
 <link rel="stylesheet" href="../static/style/HomeOrganizzatore.css">
 </head>
 
@@ -52,9 +52,11 @@
 <div class="container-principale">
 
         <div class="left-column">
-            <div class="superiore">
-                <h2 class="h2">Tutto sul tuo evento</h2>
-                        <div class="card-container">
+
+            <p class="projTitle textGradient watch fade-in" style="margin-top: 10px;">Tutto sul tuo evento</p>
+            <div class="grid-container">
+                <div class="grid">
+
 
                         <div class="card">
                             <span style="font-size: 30px; font-weight: bold">Antonio & Daria</span>
@@ -116,15 +118,16 @@
                 <button class="orange-button">Scheda Completa>></button>
                         </form>
                 </div>
-            </div>
+
 
             </div>
 
         </div>
+        </div>
 
 
     <div class="right-column">
-            <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">Eventi in Evidenza </p>
+            <p class="projTitle textGradient watch fade-in" style="margin-top: 10px;">Eventi in Evidenza </p>
 
         <div class="overflow-container">
 
@@ -132,9 +135,9 @@
                 <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
                 <img class="img" src="../static/images/Fioraio.jpg" alt="Immagine">
                 </div>
-                <h1 class="watch fade-in" style="text-align: center">{{ evento.tipo}}</h1>
+                <p class="watch fade-in titolo-tipo" style="text-align: center">{{ evento.tipo}}</p>
                 <p class="watch fade-in" style="text-align: center">{{ evento.descrizione }}</p>
-                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Biglietto </p>
+                <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;"> Biglietto </p>
 
 
                 <div class="grid-container-servizi">
