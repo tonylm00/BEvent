@@ -12,6 +12,12 @@ from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
 
 
 def is_valid_data(data):
+    """
+    Funzione per verificare che la data inserita sia valida.
+
+    :param data: (str) data inserita dall'utente nella pagina SceltaEventoDaCreare.html
+    :return: True se la data è corretta, False altrimenti
+    """
     try:
         datetime_data = datetime.strptime(data, '%Y-%m-%d')
         data_odierna = datetime.now()
@@ -25,6 +31,13 @@ def is_valid_data(data):
 
 
 def get_fornitori_disponibli(data_richiesta):
+    """
+    Funzione che ottiene tutti i fornitori che sono disponibili in una determinata data, prendendola dal database.
+    Usa una pipeline per verificare quali sono disponibili.
+
+    :param data_richiesta: (str) stringa che indica la data in cui si vuole creare un evento
+    :return: lista di oggetti di tipo Fornitore, ovvero i fornitori disponibli
+    """
     db = get_db()
 
     pipeline = [
@@ -76,6 +89,14 @@ def get_fornitori_disponibli(data_richiesta):
 
 
 def get_servizi(data_richiesta):
+    """
+    Funzione che ottiene dal database tutti i servizi che si possono prenotare in una determinata data, poichè alcuni
+    potrebbero essere impegnati in un evento.
+
+    :param data_richiesta: (str) stringa che indica la data in cui si vuole creare un evento
+    :return: lista di oggetti di tipo Servizio Offerto, ovvero i servizi disponibli
+    """
+
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Eventi']
@@ -88,7 +109,6 @@ def get_servizi(data_richiesta):
         servizio = Servizio_Offerto(data)
         evento_associato = eventi_collection.find_one({
             'servizi_associati': {'$in': [str(servizio._id)]},
-            'Ruolo': '1',
             'Data': data_richiesta
         })
 
@@ -99,6 +119,15 @@ def get_servizi(data_richiesta):
 
 
 def filtro_categoria_liste(categoria, data):
+    """
+    Funzione per ottenere dal database la lista dei servizi che appartengono alla categiria specificata e la lista di
+    fornitori che sono associati a quei servizi.
+
+    :param categoria: (str) stringa che indica la categoria di servizio che si vuole filtrare
+    :param data: (str) stringa che indica la data nel quale si vuole fare l'evento
+    :return: due liste filtrate di oggetti: servizi filtrati (lista di oggetti di tipo Servizio Offerto) e fornitori
+    filtrati (lista di oggetti di tipo Fornitore)
+    """
     servizi = get_servizi(data)
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
