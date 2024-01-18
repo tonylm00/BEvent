@@ -11,6 +11,13 @@ aut = Blueprint('aut', __name__)
 
 @aut.route('/login', methods=['POST'])
 def login():
+    """
+    Gestice il processo di login
+    - verifica le credenziali dell'utente
+    - se le credenziali sono valide, effettua il login e reindirizza l'utente alla pagina appropriata in base al ruolo
+    - se le credenziali non sono valide, reindirizza l'utente alla home page
+    Returns: una risposta appropriata in base al risultato del login
+    """
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -43,6 +50,13 @@ def login():
 
 @aut.route('/logout')
 def logout():
+    """
+    Gestisce il proceso di logout
+    - rimuove le informazioni di sessione relative al nome utente, ruolo e regione
+    - effettua il logout dell'utente
+    - reindirizza l'utente alla home page
+    Returns: reindirizza l'utente alla home page dopo il logout
+    """
     session.pop('nome_utente', None)
     session.pop('ruolo', None)
     session.pop('regione', None)
@@ -52,6 +66,14 @@ def logout():
 
 @aut.route('/registrazione', methods=['POST'])
 def registrazione_organizzatore():
+    """
+    Gestice il processo di registrazione di un utente nel sistema
+    - ottiene i dati dal form di registrazione
+    - in base al ruolo specificato nel form, chiama il servizio di autenticazione per registrare l'utente
+    - se la registrazione ha successo, effettua il login dell'utente e reindirizza alla pagina appropriata
+    - se la registrazione fallisce, mostra un messaggio di errore
+    Returns: reindirizza l'utente alla pagina appropriata dopo la registrazione
+    """
     if request.method == 'POST':
 
         nome = request.form.get('nome')
@@ -128,6 +150,13 @@ def registrazione_organizzatore():
 
 @aut.route('/area_organizzatore', methods=['GET', 'POST'])
 def area_organizzatore():
+    """
+    Restituisce la pagina dell'area dell'organizzatore con i dati relativi, agli eventi privati e ai biglietti comprati
+    - ottiene l'id dell'organizzatore della sessione
+    - richiama la funzione 'get_dati_area_organizzatore' per ottenere i dati necessari
+    - restituisce la pagina dell'area dell'organizzatore con i dati ottenuti
+    Returns: pagina dell'area dell'organizzatore con i deti relativi
+    """
     id_organizzatore = session['id']
     print('prova')
 
@@ -139,6 +168,13 @@ def area_organizzatore():
 
 @aut.route('/home_organizzatore', methods=['GET', 'POST'])
 def home_organizzatore():
+    """
+    Restituisce la pagina home dell'organizzatore con i dati relativi all'evento privato e agli eventi pubblici futuri
+    - ottiene l'id dell'organizzatore della sessione
+    - richiama la funzione 'get_dati_home_organizzatore' per ottenere i dati necessari
+    - restituisce la pagina home dell'organizzatore con i relativi dati
+    Returns: pagina home dell'organizzatore con i dati relativi
+    """
     id_organizzatore = session['id']
 
     evento_privato, eventi_pubblici = get_dati_home_organizzatore(id_organizzatore)
