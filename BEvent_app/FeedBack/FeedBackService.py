@@ -1,6 +1,7 @@
 from .. import get_db
 from ..InterfacciaPersistenza.Recensione import Recensione
 
+from bson import ObjectId
 
 def get_recensioni_associate_a_servizi(servizi):
     """
@@ -37,3 +38,24 @@ def recensione_serializer(recensione):
         "descrizione": recensione.descrizione,
         "servizio": recensione.servizio
     }
+
+def inserisci_recensione(id_valutato,id_valutante,voto,titolo,descrizione):
+
+    db =get_db()
+    recensioni = db["Recensione"]
+    utenti  =db["Utente"]
+    servizi = db["Servizio Offerto"]
+    print(id_valutato,id_valutante,voto,titolo,descrizione)
+    utente_data = utenti.find_one({"_id": ObjectId(id_valutante)})
+    servizio_data = servizi.find_one({"_id": ObjectId(id_valutato)})
+    recensioni_data ={
+        "id_valutato": id_valutato,
+        "id_valutante": id_valutante,
+        "Voto" : voto,
+        "Titolo" : titolo,
+        "Descrizione" : descrizione,
+        "Tipo_servizio_valutato" : servizio_data["Tipo"],
+        "Nome_utente_valutante" : utente_data["nome"],
+    }
+
+    recensioni.insert_one(recensioni_data)

@@ -18,9 +18,11 @@
    data:     {{ evento.data }}<br>
     {% for servizio in servizi %}
         {{  servizio.Descrizione}} <br>
-        <form action="/invio_Feedback" method="post">
-            <input type="number" name="valutazione" placeholder="voto">
-        <button type="submit" name="valutato" value="{{ servizio._id }}">Invio</button>
+        <form action="/invio_recensione" method="post">
+            <input type="number" name="voto" placeholder="voto">
+            <input type="Text" name="titolo" placeholder="titolo">
+            <input type="Text" name="descrizione" placeholder="recensione">
+        <button type="submit" name="id" value="{{ servizio._id }}">Invio</button>
         </form>
     {% endfor %}
 

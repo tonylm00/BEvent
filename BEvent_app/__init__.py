@@ -9,6 +9,7 @@ from .Autenticazione.AutenticazioneController import aut
 from .GestioneEvento.GestioneEventoController import ge
 from .Fornitori.FornitoriController import Fornitori
 from .RicercaEvento.RicercaEventoController import re
+from .FeedBack.FeedBackController import fb
 
 
 
@@ -22,6 +23,7 @@ def create_app():
     login_manager = LoginManager(app)
 
     app.register_blueprint(Fornitori, url_prefix="/")
+    app.register_blueprint(fb, url_prefix="/")
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(aut, url_prefix='/')
     app.register_blueprint(ge, url_prefix='/')
