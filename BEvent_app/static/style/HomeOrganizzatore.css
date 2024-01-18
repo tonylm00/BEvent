@@ -120,7 +120,7 @@ h1{
     height: 100vh;
 }
 
-/* Griglia della Visualizzazione Fornitori */
+/* Gestione della Sezione Tutto sul Tuo Evento */
 .grid-container{
 
     overflow: auto;
@@ -133,7 +133,7 @@ h1{
 
 
 }
-/* Gestione della Sezione Tutto sul Tuo Evento */
+
 .grid{
 
     display: grid;
@@ -310,27 +310,9 @@ h1{
     width: 100%;  /* Assicurati che copra l'intera area della card */
     height: 40px;
 }
-.service-title{
-    font-size: 15px;
-    font-weight: bold;
-}
-
-@media (max-width: 800px) {
-   .upper-division, .lower-division, .divisione_sinistra, .divisione_destra {
-    width: 100%;
-    /* altri stili per il layout a schermo intero */
-  }
-
-  h1, .service-title {
-    font-size: 18px; /* ridimensiona il font per dispositivi più piccoli */
-  }
-
-  /* Altri adattamenti specifici per elementi come .card, .event-card, etc. */
-}
-
-
 
 /*------------------------------- Gestione delle Card degli eventi nella parte di destra -------------------------------*/
+
 
 .grid-container-servizi{
 
@@ -339,7 +321,7 @@ h1{
 	align-items: center;
 	margin-left:7.5%;
   	width:85%;
-    margin-top: 20%;
+    margin-top: 27%;
 
 
 }
@@ -356,13 +338,6 @@ h1{
 
 }
 
-.titolo-tipo{
-    font-family: 'Grandiflora One', cursive;
-    font-size: 30px;
-    color : black;
-    font-weight: 700;
-    text-transform: uppercase;
-}
 
 .container2{
     width: 80%;
@@ -370,7 +345,6 @@ h1{
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-
 }
 
 .container2 .card2{
@@ -436,6 +410,7 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    flex-direction: column;
 }
 
 .container2 .card2 .face3.face5 .content2 p{
@@ -461,7 +436,7 @@ h1{
 }
 
 .input-scelta{
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
     display: inline-block;
@@ -469,9 +444,66 @@ h1{
     border-radius: 4px;
     box-sizing: border-box;
     color: black;
+    text-align: center;
 }
 .input-scelta::-webkit-inner-spin-button,
 .input-scelta::-webkit-outer-spin-button,
 .input-scelta {
     -webkit-appearance: none;
+}
+
+/* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+@media (max-height:900px ) {
+    .img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 150px;
+    width: 225px;
+}
+}
+
+@media(min-width: 2100px) {
+
+    .grid-container-servizi {
+        margin-top: 30%;
+
+    }
+}
+
+
+@media(max-width: 2800px){
+
+    .container .card .face{
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+}
+    .container .card .face.face1 .content img{
+        width: 200px;
+        height: 75%;
+}
+}
+
+@media(max-width: 1410px){
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+
+    }
+    .grid-servizi {
+            grid-template-columns: repeat(1, 1fr);
+
+    }
+}
+@media (max-width: 1030px) {
+    .grid{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+@media (max-width: 895px) {
+
+  h1{
+    font-size: 28px;
+  }
 }
