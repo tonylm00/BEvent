@@ -579,6 +579,17 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
     return lista_servizi
 
 def acquista_biglietto(id_evento, id_organizzatore):
+    """
+    Funzione per acquistare un biglietto e salvarlo nel database. Per salvarlo recupera delle informazioni utili dalla
+    collezione evento. Inoltre modifica la variabile biglietti disponibili nel documento dell'evento a cui
+    corrispondono i biglietti
+
+    :param id_evento: (str) stringa che rappresenta l'id dell'evento
+    :param id_organizzatore: (str) stringa che reppresenta l'id dell'organizzatore
+
+    :return: nulla
+
+    """
     from ..InterfacciaPersistenza import EventoPubblico
     db = get_db()
     eventi = db['Evento']
@@ -587,10 +598,10 @@ def acquista_biglietto(id_evento, id_organizzatore):
     evento = EventoPubblico.Evento_Pubblico(evento_data, evento_data)
 
     biglietto_data = {
-        "Evento_associato" :id_evento,
-        "CompratoDa" : id_organizzatore,
-        "DataEvento" : evento.data,
-        "Dove" : evento.luogo,
+        "Evento_associato": id_evento,
+        "CompratoDa": id_organizzatore,
+        "DataEvento": evento.data,
+        "Dove": evento.luogo,
         "Ora": evento.ora
     }
     biglietto = int(evento.biglietti_disponibili)
@@ -600,12 +611,19 @@ def acquista_biglietto(id_evento, id_organizzatore):
     biglietti.insert_one(biglietto_data)
 
     eventi.update_one(
-    {"_id": ObjectId(id_evento)},
-    {"$set": {"BigliettiDisponibili": nuovo_num_biglietti }}
+        {"_id": ObjectId(id_evento)},
+        {"$set": {"BigliettiDisponibili": nuovo_num_biglietti}}
     )
 
 
 def get_dati_servizi_organizzatore(id):
+    """
+    Funzione che prende dal database i servizi coinvolti nell'evento dell'organizzatore
+
+    :param id: (str) stringa che rappresenta l'id dell'evento
+
+    :return: servizi_lista (lista di oggetti di tipo Servizio Offerto)
+    """
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']

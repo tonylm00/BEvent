@@ -9,7 +9,8 @@ from BEvent_app.FeedBack import FeedBackService
 from BEvent_app.Fornitori import FornitoriService
 from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page,visualizza_evento_dettagli_organizzatore_page, \
+from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
+    visualizza_evento_dettagli_organizzatore_page, \
     organizzatore_page, crea_evento_pubblico_page
 from BEvent_app.Utils import Image
 from PIL import Image
@@ -476,17 +477,28 @@ def crea_event_publico():
 
 @ge.route('/acquista_biglietto', methods=['POST'])
 def acquista_biglietto_controller():
+    """
+    Serve ad effettuare l'acquisto di un biglietto
+
+    :return: redirect all'area organizzatore
+    """
     id_evento = request.form.get('id')
     id_organizzatore = session["id"]
     GestioneEventoService.acquista_biglietto(id_evento, id_organizzatore)
     return redirect(url_for('aut.area_organizzatore'))
 
 
-@ge.route('/Visuallizza_Dettagli_evento_Organizzatore',  methods=['GET', 'POST'])
+@ge.route('/Visuallizza_Dettagli_evento_Organizzatore', methods=['GET', 'POST'])
 def visualizza_evento_dettagli_controller():
-    from ..Fornitori.FornitoriService import get_dettagli_evento,get_dati_organizzatore
+    """
+    Serve a visualizzare i dettagli di un evento creato da un organizzatore
+
+    :return: dettagliEventoPrivato.html con i parametri evento (oggetto di tipo evento priavto), organizzatore(oggetto
+    di tipo Organizzatore) e servizi (lista di oggetti di tipo servizio offerto)
+    """
+    from ..Fornitori.FornitoriService import get_dettagli_evento, get_dati_organizzatore
     id = request.form.get("id")
     evento = get_dettagli_evento(id)
     organizzatore = get_dati_organizzatore(id)
     servizi = GestioneEventoService.get_dati_servizi_organizzatore(id)
-    return visualizza_evento_dettagli_organizzatore_page(evento = evento, organizzatore =organizzatore, servizi=servizi)
+    return visualizza_evento_dettagli_organizzatore_page(evento=evento, organizzatore=organizzatore, servizi=servizi)
