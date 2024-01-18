@@ -330,7 +330,8 @@ def crea_evento_pubblico(Data, n_persone, Descrizione, locandina, Ruolo, Tipo, i
             'Nome': Nome,
             'Luogo': Via,
             'Regione': Regione,
-            'Ora': Ora
+            'Ora': Ora,
+            'BigliettiDisponibili' :n_persone
         }
     }
     documento_evento = {**documento_evento_generico, **documento_evento_Pubblico}
@@ -354,3 +355,44 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
         lista_servizi.append(servizio)
 
     return lista_servizi
+
+def acquista_biglietto(id_evento, id_organizzatore):
+    from ..InterfacciaPersistenza import EventoPubblico
+    db = get_db()
+    eventi = db['Evento']
+    biglietti = db["Biglietto"]
+    evento_data = eventi.find_one({"_id": ObjectId(id_evento)})
+    evento = EventoPubblico.Evento_Pubblico(evento_data, evento_data)
+
+    biglietto_data = {
+        "Evento_associato" :id_evento,
+        "CompratoDa" : id_organizzatore,
+        "DataEvento" : evento.data,
+        "Dove" : evento.luogo,
+        "Ora": evento.ora
+    }
+    biglietto = int(evento.biglietti_disponibili)
+    nuovo_num_biglietti = biglietto - 1
+    nuovo_num_biglietti = str(nuovo_num_biglietti)
+
+    biglietti.insert_one(biglietto_data)
+
+    eventi.update_one(
+    {"_id": ObjectId(id_evento)},
+    {"$set": {"BigliettiDisponibili": nuovo_num_biglietti }}
+    )
+
+
+def get_dati_servizi_organizzatore(id):
+    from ..InterfacciaPersistenza import EventoPrivato
+    db = get_db()
+    eventi = db['Evento']
+    evento_data = eventi.find_one({"_id": ObjectId(id)})
+    evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
+    servizi_lista = []
+    for servizi in evento.servizi_associati:
+        servizio_data = db['Servizio Offerto'].find_one({"_id": ObjectId(servizi)})
+        servizi_lista.append(servizio_data)
+    return servizi_lista
+
+

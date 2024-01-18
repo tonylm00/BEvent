@@ -9,7 +9,7 @@ from BEvent_app.FeedBack import FeedBackService
 from BEvent_app.Fornitori import FornitoriService
 from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
-from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
+from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page,visualizza_evento_dettagli_organizzatore_page, \
     organizzatore_page, crea_evento_pubblico_page
 from BEvent_app.Utils import Image
 from PIL import Image
@@ -461,8 +461,8 @@ def crea_event_publico():
     Ruolo = '1'
     Tipo = request.form.get('tipo')
     isPagato = True
-    fornitori_associati = session['id']
-    servizi_associati = request.form.get('servizi')
+    fornitori_associati = [session['id']]
+    servizi_associati = [request.form.get('servizi')]
     Prezzo = request.form.get('prezzo')
     Ora = request.form.get('ora')
     Nome = request.form.get('nome')
@@ -472,3 +472,21 @@ def crea_event_publico():
                                                fornitori_associati, servizi_associati, Prezzo, Ora, Nome, via, Regione,
                                                session["id"])
     return "fatto"
+
+
+@ge.route('/acquista_biglietto', methods=['POST'])
+def acquista_biglietto_controller():
+    id_evento = request.form.get('id')
+    id_organizzatore = session["id"]
+    GestioneEventoService.acquista_biglietto(id_evento, id_organizzatore)
+    return redirect(url_for('aut.area_organizzatore'))
+
+
+@ge.route('/Visuallizza_Dettagli_evento_Organizzatore',  methods=['GET', 'POST'])
+def visualizza_evento_dettagli_controller():
+    from ..Fornitori.FornitoriService import get_dettagli_evento,get_dati_organizzatore
+    id = request.form.get("id")
+    evento = get_dettagli_evento(id)
+    organizzatore = get_dati_organizzatore(id)
+    servizi = GestioneEventoService.get_dati_servizi_organizzatore(id)
+    return visualizza_evento_dettagli_organizzatore_page(evento = evento, organizzatore =organizzatore, servizi=servizi)

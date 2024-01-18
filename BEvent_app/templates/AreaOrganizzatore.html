@@ -42,7 +42,7 @@
                                     {%  if evento.isPagato == false %}
                                         <button style="border: none; background: transparent"><a>Paga Evento</a></button>
                                     {% else %}
-                                        <form action="" method="post" ><button style="border: none; background: transparent" name="id_evento" value="{{ evento.id }}"><a>Dettagli Evento</a></button></form>
+                                        <form action="/Visuallizza_Dettagli_evento_Organizzatore" method="post" ><button style="border: none; background: transparent" name="id" value="{{ evento.id }}"><a>Dettagli Evento</a></button></form>
                                 </p>
                                     <form action="/elimina_evento_privato" method="post" ><button style="border: none; background: transparent" name="id_evento" value="{{ evento.id }}"><a>Cancella Evento</a></button></form>
                                     {% endif %}

@@ -163,15 +163,30 @@
                         </div>
                     </div>
                     <div class="face3 face5">
-                        <div class="content2">
+    <div class="content2">
+        <p>
+            <input type="number" name="quantita" class="input-scelta" value="1" min="1" max="{{ eventi[0].biglietti_disponibili }}" oninput="validaQuantita(this)">
+            <span>Prezzo Biglietto:</span><span id="prezzo">{{ eventi[0].prezzo }}</span> &euro;<br>
+            Luogo: {{ eventi[0].luogo }}, {{ eventi[0].regione }} <br>
+            Ora: {{ eventi[0].ora }} <br>
+            Biglietti Disponibili: {{ eventi[0].biglietti_disponibili }}/{{ eventi[0].n_persone }}
+        </p>
+        <p id="prezzoTotale"> </p>
+        <form action="/acquista_biglietto" method="post">
+            <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ eventi[0].id }}"> <a>Prenota</a></button>
+        </form>
+    </div>
+</div>
 
-                            <p><input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> {{ eventi[0].prezzo }}</span> &euro;<br>
-                            Luogo: {{ eventi[0].luogo }}, {{ eventi[0].regione }} <br> Ora: {{ eventi[0].ora }} <br> Biglietti Disponibli: {{ eventi[0].biglietti_disponibili }}/{{ eventi[0].n_persone }}</p>
-                               <p id="prezzoTotale"> </p>
-                                <button style="border: none; background: transparent" id="" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
-                        </div>
-                    </div>
-                </div>
+<script>
+function validaQuantita(input) {
+    if (input.value > input.max) {
+        input.value = input.max;
+    }
+
+}
+</script>
+
                 </div>
 
                 </div>

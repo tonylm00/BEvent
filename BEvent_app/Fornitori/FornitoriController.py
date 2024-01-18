@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Blueprint, request, session
 from flask_login import current_user
 from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
-from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byFornitore,aggiorna_foto_fornitore,aggiungi_servizio,modifica_servizio,elimina_servizio,Get_eventi_ByFornitorePrivato,GetEventi_FornitorePubblico,Cancella_evento,Get_dettagli_evento,Get_dati_organizzatore,get_dati_servizi,invio_feedBack
+from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byFornitore,aggiorna_foto_fornitore,aggiungi_servizio,modifica_servizio,elimina_servizio,get_eventi_ByFornitorePrivato,getEventi_FornitorePubblico,cancella_evento,get_dettagli_evento,get_dati_organizzatore,get_dati_servizi,invio_feedBack
 from BEvent_app import Routes
 from flask import redirect, url_for
 from ..Utils import Image
@@ -17,6 +17,18 @@ def is_valid_number(value):
         return False
 
 def validate_servizio_data(descrizione, tipo, prezzo, quantita):
+    '''
+    serve un validare i dati di servizio
+
+    :param descrizione: str
+    :param tipo: str
+    :param prezzo: float
+    :param quantita: int
+
+    :return: messaggi di errore nel caso in cui uno dei campi non è valido ( con annessa descrizione del problema ),
+    True se invece i campi sono validi
+
+    '''
     # Verifica se la descrizione supera i 500 caratteri
     if len(descrizione) > 500:
         return False, "La descrizione non deve superare i 500 caratteri."
@@ -37,17 +49,27 @@ def validate_servizio_data(descrizione, tipo, prezzo, quantita):
 
 
 @Fornitori.route('/fornitori', methods=['GET', 'POST'])
-def visualizza_controller():  # put application's code here
+def visualizza_controller():
+    '''
+    serve a visualizzare tutti i dati relativi agli eventi( sia pubblici che privati ),servizi offerti, generalità  del fornitore
+
+    :return: Pagina del fornitore AreaFornitore.Html
+    '''
     id_fornitore = session["id"]
     dati = get_dati_fornitore(id_fornitore)
     servizi = get_tutti_servizi_byFornitore(id_fornitore)
-    eventiPrivati = Get_eventi_ByFornitorePrivato(id_fornitore)
-    eventiPubblici = GetEventi_FornitorePubblico(id_fornitore)
+    eventiPrivati = get_eventi_ByFornitorePrivato(id_fornitore)
+    eventiPubblici = getEventi_FornitorePubblico(id_fornitore)
 
     return fornitore_page(servizi=servizi, dati=dati, eventiPrivati=eventiPrivati,eventiPubblici=eventiPubblici)
 
 @Fornitori.route('/aggiungi_foto_fornitore', methods=['POST'])
+
 def aggiungi_foto_fornitore_controller():
+    '''
+
+    :return:
+    '''
     files = request.files.getlist('foto')
     id_fornitore = session['id']
 
@@ -70,6 +92,10 @@ def aggiungi_foto_fornitore_controller():
 
 @Fornitori.route('/elimina_servizio_areaFornitore/', methods=['POST'])
 def elimina_servizio_controller():
+    '''
+
+    :return:
+    '''
     servizio_id = request.form.get('servizio_id')
     elimina_servizio(servizio_id)
     return redirect('/fornitori')
@@ -77,6 +103,10 @@ def elimina_servizio_controller():
 
 @Fornitori.route('/modifica_servizio/', methods=['POST'])
 def modifica_servizio_controller():
+    '''
+
+    :return:
+    '''
     descrizione = request.form.get("descrizione")
     tipo = request.form.get("tipo")
     prezzo = request.form.get("prezzo")
@@ -98,6 +128,10 @@ def modifica_servizio_controller():
 
 @Fornitori.route('/aggiungi_servizio', methods=['POST'])
 def aggiungi_servizio_controller():
+    '''
+
+    :return:
+    '''
     files = request.files.getlist('photos')
     fornitore_associato = session['id']
     byte_arrays = []
@@ -132,16 +166,20 @@ def aggiungi_servizio_controller():
 
 @Fornitori.route('/elimina_evento_pubblico', methods=['POST'])
 def elimina_evento_controller():
+    '''
+
+    :return:
+    '''
     id = request.form.get("id")
-    Cancella_evento(id)
+    cancella_evento(id)
     return redirect('/fornitori')
 
 
 @Fornitori.route('/Visuallizza_Dettagli_evento_Fornitore',  methods=['GET', 'POST'])
 def visualizza_evento_dettagli_controller():
     id = request.form.get("id")
-    evento = Get_dettagli_evento(id)
-    organizzatore = Get_dati_organizzatore(id)
+    evento = get_dettagli_evento(id)
+    organizzatore = get_dati_organizzatore(id)
     servizi = get_dati_servizi(id,session["id"])
     return visualizza_evento_dettagli_page(evento = evento, organizzatore =organizzatore, servizi=servizi)
 @Fornitori.route('/invio_Feedback', methods=['POST'])

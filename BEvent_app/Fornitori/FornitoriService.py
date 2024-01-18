@@ -4,7 +4,6 @@ from pymongo import MongoClient
 
 from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
-from ..InterfacciaPersistenza import Evento
 from ..InterfacciaPersistenza import Organizzatore
 
 
@@ -139,7 +138,7 @@ def aggiungi_servizio(nuovi_dati):
     db['Servizio Offerto'].insert_one(nuovi_dati)
 
 
-def Get_eventi_ByFornitorePrivato(id):
+def get_eventi_ByFornitorePrivato(id):
     from ..InterfacciaPersistenza import EventoPrivato
     print(id)
     db = get_db()
@@ -154,7 +153,7 @@ def Get_eventi_ByFornitorePrivato(id):
     return lista_eventi_fornitore
 
 
-def GetEventi_FornitorePubblico(id):
+def getEventi_FornitorePubblico(id):
     from ..InterfacciaPersistenza import EventoPubblico
     print(id)
     db = get_db()
@@ -169,13 +168,13 @@ def GetEventi_FornitorePubblico(id):
     return lista_eventi_fornitore
 
 
-def Cancella_evento(id):
+def cancella_evento(id):
     db = get_db()
     eventi = db['Evento']
     eventi.delete_one({"_id": ObjectId(id)})
 
 
-def Get_dettagli_evento(id):
+def get_dettagli_evento(id):
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
@@ -184,7 +183,7 @@ def Get_dettagli_evento(id):
     return evento
 
 
-def Get_dati_organizzatore(id):
+def get_dati_organizzatore(id):
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
@@ -200,7 +199,7 @@ def get_dati_servizi(id, id_fornitore):
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
-    fornitori_db = db['Servizio Offerto']
+
     evento_data = eventi.find_one({"_id": ObjectId(id)})
     evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
     servizi_lista = []
