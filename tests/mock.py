@@ -18,9 +18,7 @@ db = get_db()
 @views.route('/mock_login_organizzatore')
 def mock_login_organizzatore():
     user_data = {
-        "_id": {
-            "$oid": "65a958fc1423cc09d49a4c75"
-        },
+        "_id": "65a958fc1423cc09d49a4c75",
         "nome": "Angelo",
         "cognome": "De Luca",
         "data_di_nascita": "23-05-2002",
