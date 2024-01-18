@@ -34,22 +34,22 @@
         <div style="display: flex; justify-content: flex-end">
         {% if session.get('ruolo') == "3" %}
             <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
-            <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
+            <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon style="font-size: 30px;" name="exit-outline"></ion-icon></button></form>
             <form style="padding-top: 16px;" action="/fornitori" method="post"><button class="button-header">{{ session['nome_utente'] }} </button></form>
         {% elif session.get('ruolo')== "2" %}
             <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
-            <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
+            <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon style="font-size: 30px;" name="exit-outline"></ion-icon></button></form>
             <form style="padding-top: 16px;" action="/area_organizzatore" method="post"><button class="button-header">{{ session['nome_utente'] }}</button></form>
         {% elif session.get('ruolo')== "1" %}
             <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
-            <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button></form>
+            <form style="padding-top: 11px" action="/logout"> <button class="button-header" ><ion-icon style="font-size: 30px;" name="exit-outline"></ion-icon></button></form>
             <form style="padding-top: 16px;;" action="{{ url_for('views.admin_page') }}"><button class="button-header">{{ session['nome_utente'] }} </button></form>
         {% endif %}
         </div>
     {% else %}
         <div style="display: flex; justify-content: flex-end">
         <button class="button-header" ><ion-icon name="chatbubbles-outline" style="font-size: 30px;"></ion-icon></button>
-        <button class="button-header" ><ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px;"></ion-icon></button>
+        <button class="button-header" ><ion-icon style="font-size: 30px;" name="exit-outline"></ion-icon></button>
         <button class="button-header" id="modal-button"><lord-icon src="https://cdn.lordicon.com/bgebyztw.json" trigger="hover" colors="primary:#000000,secondary:#fe8415" style="width:50px;height:50px"></lord-icon></button>
         </div>
 

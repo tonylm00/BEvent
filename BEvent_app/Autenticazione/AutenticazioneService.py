@@ -333,7 +333,6 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
 
             organizzatore_data = {
                 'Organizzatore': {
-                    'FotoOrganizzatore': "",
                     'Citta': citta
                 }
             }

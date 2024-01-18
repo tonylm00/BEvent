@@ -53,7 +53,9 @@ function aggiornaDOM(data) {
                                 <p>${ data.evento_scelto.descrizione },<input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> ${ data.evento_scelto.prezzo }</span> &euro;<br>
                             Luogo: ${ data.evento_scelto.luogo }, ${ data.evento_scelto.regione } <br> Ora: ${ data.evento_scelto.ora }<br> Biglietti Disponibli: ${ data.evento_scelto.biglietti_disponibili }/${ data.evento_scelto.n_persone }</p>
                                <p id="prezzoTotale"> </p>
-                                <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
+                                <form action="/acquista_biglietto" method="post">
+                                <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')" name="id" value="${data.evento_scelto.id}"> <a>Prenota</a></button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -42,6 +42,7 @@ def serializza_eventi(evento):
     :return: dizionario che rappresenta i dati dell'oggetto evento pubblico
     """
     evento = {
+        'id': evento.id,
         'data': evento.data,
         'descrizione': evento.descrizione,
         'n_persone': evento.n_persone,

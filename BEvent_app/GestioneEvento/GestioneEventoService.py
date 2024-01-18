@@ -460,8 +460,8 @@ def save_evento(lista_servizi, lista_fornitori, tipo_evento, data_evento, n_invi
     :param    id_organizzatore: (str) stringa che rappresenta l'id dell'organizzatore
 
     :return: l'evento privato inserito nel database
-
     """
+
     db = get_db()
     id_fornitori = [fornitore.id for fornitore in lista_fornitori]
     id_servizi = [servizio._id for servizio in lista_servizi]
@@ -612,7 +612,7 @@ def acquista_biglietto(id_evento, id_organizzatore):
 
     eventi.update_one(
         {"_id": ObjectId(id_evento)},
-        {"$set": {"BigliettiDisponibili": nuovo_num_biglietti}}
+        {"$set": {"EventoPubblico.BigliettiDisponibili": nuovo_num_biglietti}}
     )
 
 
