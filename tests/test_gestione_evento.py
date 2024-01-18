@@ -1,5 +1,4 @@
 from flask import get_flashed_messages
-
 from BEvent_app.GestioneEvento.GestioneEventoService import save_evento
 from mock import mock_app, mock_lista_fornitori, mock_lista_servizi
 
