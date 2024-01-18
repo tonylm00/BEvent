@@ -12,7 +12,6 @@ from .RicercaEvento.RicercaEventoController import re
 from .FeedBack.FeedBackController import fb
 
 
-
 def create_app():
     app = Flask(__name__)
 

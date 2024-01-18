@@ -1,0 +1,102 @@
+import pytest
+from bson import ObjectId
+from flask import session
+from flask_login import login_user, current_user
+
+from BEvent_app import create_app
+from BEvent_app.Routes import views
+from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
+from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
+from db import get_db
+
+db = get_db()
+
+
+@views.route('/mock_login_organizzatore')
+def mock_login_organizzatore():
+    user_data = {
+        "_id": {
+            "$oid": "65a958fc1423cc09d49a4c75"
+        },
+        "nome": "Angelo",
+        "cognome": "De Luca",
+        "data_di_nascita": "23-05-2002",
+        "email": "adl@gmail.com",
+        "telefono": "0123456789",
+        "nome_utente": "hanstarz",
+        "password": "pbkdf2:sha256:600000$KUILXMDssMxmvug8$6530c694d0a82d56b896c721bd56ca929a0343d18fb127f830a0c86de2a5fd60",
+        "Admin": {
+            "isAdmin": False
+        },
+        "Ruolo": "2",
+        "regione": "Campania",
+        "Organizzatore": {
+            "Citta": "Caserta"
+        }
+    }
+
+    organizzatore = Organizzatore(user_data, user_data)
+
+    if not db.Utente.find_one({"email": user_data["email"]}):
+        db.Utente.insert_one(user_data)
+
+    login_user(organizzatore)
+    session['id'] = current_user.get_id()
+    session['ruolo'] = organizzatore.ruolo
+    session['nome_utente'] = organizzatore.nome_utente
+    session['regione'] = organizzatore.regione
+
+    return "organizzatore loggato"
+
+
+@views.route('/mock_login_fornitore')
+def mock_login_fornitore():
+    user_data = {
+      "_id": {
+        "$oid": "65a956b7c4e2c6f986e1e54f"
+      },
+      "nome": "Teresa",
+      "cognome": "Rossi",
+      "data_di_nascita": "12-12-1984",
+      "email": "trossi@gmail.com",
+      "telefono": "0123456789",
+      "nome_utente": "Trattoria Da Teresa",
+      "password": "pbkdf2:sha256:600000$L7CnBoPe9odp356G$2926549e372d6263a32077be925398b59ca8ac107582cda51bfdb0564f3b4959",
+      "Admin": {
+        "isAdmin": False
+      },
+      "Ruolo": "3",
+      "regione": "Campania",
+      "Fornitore": {
+        "Descrizione": "Trattoria elegante con spazio all'aperto e piscina",
+        "EventiMassimiGiornaliero": "2",
+        "OrarioDiLavoro": "",
+        "Foto": [],
+        "Citta": "Caserta",
+        "Via": "Via Vigna Brigida",
+        "Partita_Iva": "01234567890",
+        "isLocation": True
+      }
+    }
+
+    fornitore = Fornitore(user_data, user_data)
+
+    if not db.Utente.find_one({"email": user_data["email"]}):
+        db.Utente.insert_one(user_data)
+
+    login_user(fornitore)
+    session['id'] = current_user.get_id()
+    session['ruolo'] = fornitore.ruolo
+    session['nome_utente'] = fornitore.nome_utente
+    session['regione'] = fornitore.regione
+    session['is_location'] = fornitore.isLocation
+
+    return "Fornitore loggato"
+
+
+@pytest.fixture
+def mock_app():
+    app = create_app()
+    app.testing = True
+
+    return app
