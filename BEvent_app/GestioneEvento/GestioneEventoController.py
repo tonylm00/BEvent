@@ -21,6 +21,14 @@ ge = Blueprint('ge', __name__)
 
 @ge.route('/visualizza_fornitori', methods=['POST'])
 def visualizza_fornitori():
+    """
+    Serve ad accedere alla pagina sceltafornitori.html passando in risposta i fornitori disponibili, i servizi e le
+    recensioni relative a quei fornitori
+
+
+    :return: Pagina 'sceltafornitori.html con tre liste di oggetti: fornitori(di tipo Fornitore), servizi( di tipo
+    Servizio Offerto) e recensioni (di tipo Recensione)
+    """
     tipo_evento = request.form.get('tipo_evento')
     data = request.form.get('data_evento')
     data_formattata = datetime.strptime(data, "%Y-%m-%d").strftime("%d-%m-%Y")
@@ -44,6 +52,13 @@ def visualizza_fornitori():
 
 @ge.route('/filtro_categoria', methods=['POST'])
 def filtro_categoria():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base alla categoria passata come parametro restituisce la lista dei
+    servizi che appartengono a quel tipo e dei relativi fornitori
+
+    :return: Risposta in formato JSON che continene due liste di oggetti: fornitori_filtrati(di tipo Fornitore) e
+    servizi_filtrati( di tipo Servizio Offerto)
+    """
     try:
         data = request.get_json()
         data_evento = session['data_evento']
@@ -72,6 +87,13 @@ def filtro_categoria():
 
 @ge.route('/filtro_regione', methods=['POST'])
 def filtro_regione():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base alla regione passata come parametro restituisce la lista dei
+    fornitori locati in quella regione e dei relativi servizi
+
+    :return: Risposta in formato JSON che continene due liste di oggetti: fornitori_filtrati (di tipo Fornitore) e
+    servizi_filtrati ( di tipo Servizio Offerto)
+    """
     try:
         data = request.get_json()
         data_evento = session['data_evento']
@@ -100,6 +122,13 @@ def filtro_regione():
 
 @ge.route('/filtro_barra_ricerca', methods=['GET', 'POST'])
 def filtro_barra_ricerca():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base ad una parola passata come parametro restituisce la lista dei
+    fornitori e dei servizi che contengono tale parola
+
+    :return: Risposta in formato JSON che continene due liste di oggetti: fornitori(di tipo Fornitore) e servizi( di
+    tipo Servizio Offerto)
+    """
     try:
         data = request.get_json()
         data_evento = session['data_evento']
@@ -107,13 +136,14 @@ def filtro_barra_ricerca():
             ricerca = data['ricerca']
 
             servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_ricerca(ricerca, data_evento)
+
             if servizi_filtrati or fornitori_filtrati:
                 fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
                 servizi_serializzati = [GestioneEventoService.servizio_serializer(s) for s in servizi_filtrati]
 
                 return jsonify({
                     "servizi_filtrati": servizi_serializzati,
-                    "fornitori_filtrati": fornitori_serializzati
+                    "fornitori_filtrati": fornitori_serializzati,
                 }), 200
             else:
                 return jsonify({"errore": "nessuna corrispondenza nel db"}), 200
@@ -127,6 +157,13 @@ def filtro_barra_ricerca():
 
 @ge.route('/filtro_prezzo', methods=['POST'])
 def filtro_prezzo():
+    """
+    Serve  a elaborare una richiesta in Ajax e in base a un prezzo minimo e un prezzo massimo passati come parametri
+    restituisce la lista dei servizi che hanno un prezzo compreso nel range e la lista dei relativi fornitori
+
+    :return: Risposta in formato JSON che continene due liste di oggetti: fornitori(di tipo Fornitore) e servizi( di
+    tipo Servizio Offerto)
+    """
     try:
         data = request.get_json()
         data_evento = session['data_evento']
@@ -157,6 +194,13 @@ def filtro_prezzo():
 
 @ge.route('/aggiorna_right_column', methods=['POST'])
 def aggiorna_right_column():
+    """
+    Serve a elaborare una richiesta Ajax e in base all'email passata come parametro restituisce il singolo fornitore che
+    corrisponde all'email e una lista con i suoi relativi servizi e le relative recensioni
+
+    :return: Risposta in formato JSON che continene un oggetto e due liste di oggetti: oggetto fornitore_scelto(di tipo
+    Fornitore), lista_servizi( lista di oggetti di tipo Servizio Offerto) e recensioni (lista di oggetti di tipo Recensione)
+    """
     data = request.get_json()
     try:
 
@@ -189,6 +233,13 @@ def aggiorna_right_column():
 
 @ge.route('/salva_nel_carrello', methods=['POST'])
 def salva_nel_carrello():
+    """
+    Serve a rispondere ad una richiesta Ajax e aggiungere ai cookie del carrello l'id del servizio che l'organizzatore
+    vuole aggiungere al suo evento in modo che possa poi essere visualizzato e pagato in seguito. Se i cookie del
+    carrello non sono ancora stati creati, li crea e fa in modo che durino un mese.
+
+    :return: ritorna l'esito dell'operazione in formato JSON
+    """
     data = request.get_json()
     try:
         if 'id_servizio' in data:
@@ -222,6 +273,14 @@ def salva_nel_carrello():
 
 @ge.route('/visualizza_riepilogo', methods=['GET', 'POST'])
 def visualizza_riepilogo():
+    """
+    Serve a visualizzare la pagina di riepilogo delle scelte effettuate dall'organizzatore durante la creazione
+    dell'evento. Prende dai cookie i servizi precedentemente selezionati dall'organizzatore per ottenere la lista di
+    servizi e relativi fornitori scelti.
+
+    :return: Pagina riepilogoscelte.html con due liste: fornitori (lista di oggetti di tipo Fornitore) e servizi(lista
+    di oggetti di tipo Servizio Offferto)
+    """
     cookie_carrello = request.cookies.get('carrello')
     if cookie_carrello:
 
@@ -236,6 +295,11 @@ def visualizza_riepilogo():
 
 @ge.route('/elimina_servizio', methods=['POST'])
 def elimina_servizio():
+    """
+    Serve ad eliminare un servizio selezionato dai cookie.
+
+    :return: redirect alla servlet visualizza riepilogo
+    """
     id_servizio = request.form.get('id_servizio')
 
     carrello_cookie = request.cookies.get('carrello')
@@ -247,7 +311,6 @@ def elimina_servizio():
     else:
         messaggio = "Servizio non trovato nel carrello"
 
-    lista_servizi, lista_fornitori = GestioneEventoService.ottieni_servizi_e_fornitori_cookie(carrello)
     carrello_serializzato = json.dumps(carrello)
     response = make_response(redirect('/visualizza_riepilogo'))
     response.set_cookie('carrello', carrello_serializzato, httponly=True, path='/', max_age=60 * 60 * 24 * 31)
@@ -257,17 +320,31 @@ def elimina_servizio():
 
 @ge.route("/annulla_creazione_evento", methods=['POST'])
 def annulla_creazione_evento():
+    """
+    Serve ad annullare la creazione di un evento, eliminando dalla sessione i dati inseriti durante la creazione ed
+    eliminando i cookie del carrello.
+
+    :return: redirect alla pagina organizzatore
+    """
     session.pop('data_evento', None)
     session.pop('tipo_evento', None)
     session.pop('n_invitati', None)
 
-    response = make_response(redirect(url_for('views.organizzatore_page')))
+    response = make_response(redirect(url_for('aut.home_organizzatore')))
     response.set_cookie('carrello', '', expires=0, httponly=True)
     return response
 
 
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
 def salva_evento_come_bozza():
+    """
+    Serve a salvare un evento come bozza nel database nel caso l'utente voglia proseguire in un secondo momento alla
+    creazione effettiva dell'evento e quindi pagarlo. Rimuove dalla sessione i dati inseriti durante la creazione ed
+    elimina i cookie del carrello.
+
+    :return: redirect all'home organizzatore nel caso il salvataggio nel db vada a buon fine, altrimenti ritorna il
+    redirect a visualizza riepilogo
+    """
     evento = salva_evento(is_pagato=False)
 
     if evento is not None:
@@ -285,6 +362,13 @@ def salva_evento_come_bozza():
 
 @ge.route('/salva_evento_pagato', methods=['POST'])
 def salva_evento_pagato():
+    """
+    Serve a salvare un evento nel database segnandolo come pagato, in modo che la prenotazione dei fornitori avvenga.
+    Rimuove dalla sessione i dati inseriti durante la creazione ed elimina i cookie del carrello.
+
+    :return: redirect all'home organizzatore nel caso il salvataggio nel db vada a buon fine, altrimenti ritorna il
+    redirect a visualizza riepilogo
+    """
     evento = salva_evento(is_pagato=True)
     if evento is not None:
         session.pop('data_evento', None)
@@ -300,6 +384,12 @@ def salva_evento_pagato():
 
 
 def salva_evento(is_pagato):
+    """
+    Serve a salvare un evento nel database.
+
+    :param is_pagato: (bool) indica se l'evento è stato pagato o meno
+    :return: oggetto evento che rappresenta l'evento appena salvato nel database
+    """
     cookie_carrello = request.cookies.get('carrello')
     data_evento = session['data_evento']
     tipo_evento = session['tipo_evento']
@@ -331,6 +421,11 @@ def salva_evento(is_pagato):
 
 @ge.route('/elimina_evento_privato', methods=['POST'])
 def elimina_evento_route():
+    """
+    Serve ad eliminare un evento privato.
+
+    :return: redirect all'area organizzatore
+    """
     id_evento = request.form.get('id_evento')
     successo, mail = GestioneEventoService.elimina_evento(id_evento)
 
@@ -340,12 +435,22 @@ def elimina_evento_route():
 
 @ge.route('/Crea_evento_pubblico_page')
 def creazione_evento_pubblico():
+    """
+    Serve a creare la pagina per creare un evento pubblico di un fornitore.
+
+    :return: pagina creaeventopubblico.html
+    """
     servizi = GestioneEventoService.get_tutti_servizi_byFornitoreLocation(session["id"])
     return crea_evento_pubblico_page(servizi=servizi)
 
 
 @ge.route('/crea_evento_pubblico', methods=['POST'])
 def crea_event_publico():
+    """
+    Serve a creare un evento pubblico.
+
+    :return: messaggio di successo
+    """
     # file = request.files.get('photo')
     # foto_byte_array = Image.Image.convert_image_to_byte_array(file.read())
     fornitore = FornitoriService.get_dati_fornitore(session["id"])
