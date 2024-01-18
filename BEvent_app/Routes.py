@@ -89,8 +89,8 @@ def riepilogo_scelte_page(fornitori=None, servizi=None):
 
 
 @views.route('/EventoPublico_page')
-def crea_evento_pubblico_page(servizi=None):
-    return render_template('EventoPubblico.html', servizi=servizi)
+def crea_evento_pubblico_page(servizi=None,eventi_pubblici=None):
+    return render_template('EventoPubblico.html', servizi=servizi, eventi_pubblici=eventi_pubblici)
 
 
 @views.route('/Visualizza_evento_dettagli_page')

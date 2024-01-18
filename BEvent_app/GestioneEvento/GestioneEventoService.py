@@ -545,7 +545,7 @@ def crea_evento_pubblico(Data, n_persone, Descrizione, locandina, Ruolo, Tipo, i
             'Luogo': Via,
             'Regione': Regione,
             'Ora': Ora,
-            'BigliettiDisponibili' :n_persone
+            'BigliettiDisponibili': n_persone
         }
     }
     documento_evento = {**documento_evento_generico, **documento_evento_Pubblico}

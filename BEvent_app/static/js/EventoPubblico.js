@@ -1,39 +1,41 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('uploadForm');
 
-    var uploadButton = document.getElementById('upload-button');
-    uploadButton.addEventListener('click', function() {
-        var fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.onchange = e => {
-           var file = e.target.files[0];
-           var reader = new FileReader();
-           reader.readAsDataURL(file);
-           reader.onload = readerEvent => {
-              var content = readerEvent.target.result;
-              console.log('Image uploaded:', content);
+    form.onsubmit = function(event) {
+        event.preventDefault();
 
-           };
-        }
-        fileInput.click();
-    });
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
 
-    let ticketsAvailable = document.getElementById('tickets-available');
-    ticketsAvailable.addEventListener('change', function() {
-        console.log('Tickets available:', ticketsAvailable.value);
+        xhr.open('POST', '/aggiungi_foto_evento', true);
 
-    });
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                if(data.success) {
+                    var imageCell = document.getElementById('imageCell');
+                    data.images.forEach(image => {
+                        var img = document.createElement('img');
+                        img.src = image.path;
+                        img.alt = 'Foto del Servizio';
+                        img.height = 100;
+                        imageCell.appendChild(img);
+                    });
+                } else {
+                    console.error('Caricamento non riuscito');
+                }
+            } else {
+                console.error('Errore nella richiesta:', xhr.status);
+            }
+        };
 
+        xhr.onerror = function() {
+            console.error('Errore di rete');
+        };
 
-    var supplierInput = document.getElementById('supplier');
-    supplierInput.addEventListener('change', function() {
-        console.log('Supplier:', supplierInput.value);
-
-    });
-
-
-    var eventTypeSelect = document.getElementById('event-type');
-    eventTypeSelect.addEventListener('change', function() {
-        console.log('Event type:', eventTypeSelect.value);
-
-    });
+        xhr.send(formData);
+    };
 });
+

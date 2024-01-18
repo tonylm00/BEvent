@@ -11,8 +11,8 @@ from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page,visualizza_evento_dettagli_organizzatore_page, \
     organizzatore_page, crea_evento_pubblico_page
-from BEvent_app.Utils import Image
-from PIL import Image
+from ..Utils import Image
+
 
 from flask import current_app as app
 
@@ -451,13 +451,16 @@ def crea_event_publico():
 
     :return: messaggio di successo
     """
-    # file = request.files.get('photo')
-    # foto_byte_array = Image.Image.convert_image_to_byte_array(file.read())
+    file = request.files.get('fotinabella')
+    content = file.read()
+    print(file)
+    foto_byte_array = Image.convert_image_to_byte_array(content)
+    print(file)
     fornitore = FornitoriService.get_dati_fornitore(session["id"])
     Data = request.form.get('data')
     n_persone = request.form.get('n_persone')
     Descrizione = request.form.get('descrizione')
-    Locandina = "foto_byte_array"
+    Locandina = foto_byte_array
     Ruolo = '1'
     Tipo = request.form.get('tipo')
     isPagato = True
