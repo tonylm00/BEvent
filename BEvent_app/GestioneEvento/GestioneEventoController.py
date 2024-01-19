@@ -349,13 +349,14 @@ def salva_evento_come_bozza():
     result = salva_evento(is_pagato=False)
 
     if result:
+        print("prova 1")
         session.pop('data_evento', None)
         session.pop('tipo_evento', None)
         session.pop('n_invitati', None)
-        response = make_response(redirect(url_for('views.organizzatore_page')))
+        response = make_response(redirect(url_for('aut.home_organizzatore')))
         response.set_cookie('carrello', '', expires=0, httponly=True)
         flash("Evento salvato con successo!", "success")
-        return redirect(url_for('aut.home_organizzatore'))
+        return response
     else:
         flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
         return redirect('/visualizza_riepilogo')
@@ -373,13 +374,14 @@ def salva_evento_pagato():
     result = salva_evento(is_pagato=True)
 
     if result:
+        print("prova 1")
         session.pop('data_evento', None)
         session.pop('tipo_evento', None)
         session.pop('n_invitati', None)
-        response = make_response(redirect(url_for('views.organizzatore_page')))
+        response = make_response(redirect(url_for('aut.home_organizzatore')))
         response.set_cookie('carrello', '', expires=0, httponly=True)
         flash("Evento salvato con successo!", "success")
-        return redirect(url_for('aut.home_organizzatore'))
+        return response
     else:
         flash("Qualcosa è andato storto nella creazione dell'evento, riprova!", "error")
         return redirect('/visualizza_riepilogo')
@@ -488,7 +490,8 @@ def acquista_biglietto_controller():
     """
     id_evento = request.form.get('id')
     id_organizzatore = session["id"]
-    GestioneEventoService.acquista_biglietto(id_evento, id_organizzatore)
+    numero_biglietti = request.form.get('numero_biglietti')
+    GestioneEventoService.acquista_biglietto(id_evento, id_organizzatore, numero_biglietti)
     return redirect(url_for('aut.area_organizzatore'))
 
 

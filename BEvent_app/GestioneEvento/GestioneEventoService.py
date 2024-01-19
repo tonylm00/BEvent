@@ -595,7 +595,7 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
     return lista_servizi
 
 
-def acquista_biglietto(id_evento, id_organizzatore):
+def acquista_biglietto(id_evento, id_organizzatore, numero_biglietti):
     """
     Funzione per acquistare un biglietto e salvarlo nel database. Per salvarlo recupera delle informazioni utili dalla
     collezione evento. Inoltre modifica la variabile biglietti disponibili nel documento dell'evento a cui
@@ -618,10 +618,11 @@ def acquista_biglietto(id_evento, id_organizzatore):
         "CompratoDa": id_organizzatore,
         "DataEvento": evento.data,
         "Dove": evento.luogo,
-        "Ora": evento.ora
+        "Ora": evento.ora,
+        "Quantità": numero_biglietti
     }
     biglietto = int(evento.biglietti_disponibili)
-    nuovo_num_biglietti = biglietto - 1
+    nuovo_num_biglietti = biglietto - numero_biglietti
     nuovo_num_biglietti = str(nuovo_num_biglietti)
 
     biglietti.insert_one(biglietto_data)

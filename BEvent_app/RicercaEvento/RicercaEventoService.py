@@ -25,7 +25,6 @@ def get_eventi():
 
     lista_eventi = []
 
-    print(eventi_data)
     for data in eventi_data:
         evento = Evento_Pubblico(data, data)
         lista_eventi.append(evento)
@@ -75,11 +74,13 @@ def ricerca_eventi_per_parola(ricerca):
    """
     eventi_non_filtrati = get_eventi()
 
-    eventi_filtrati_nome = [evento for evento in eventi_non_filtrati if ricerca.lower() in evento.nome]
+    eventi_filtrati_nome = [evento for evento in eventi_non_filtrati if ricerca.lower() in evento.nome.lower()]
 
-    eventi_filtrati_descrizione = [evento for evento in eventi_non_filtrati if ricerca.lower() in evento.descrizione]
+    eventi_filtrati_descrizione = [evento for evento in eventi_non_filtrati if ricerca.lower() in
+                                   evento.descrizione.lower()]
 
-    eventi_filtrati = None
+    eventi_filtrati = []
+
     if eventi_filtrati_nome and eventi_filtrati_descrizione:
         eventi_unici = {}
         for evento in eventi_filtrati_nome + eventi_filtrati_descrizione:

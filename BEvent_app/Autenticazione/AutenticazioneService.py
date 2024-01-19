@@ -1,7 +1,7 @@
 from datetime import datetime
 import re
 from bson import ObjectId
-from flask import flash
+from flask import flash, get_flashed_messages
 
 from ..InterfacciaPersistenza.Biglietto import Biglietto
 from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
@@ -13,6 +13,8 @@ from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
 from ..db import get_db
 from werkzeug.security import generate_password_hash
 
+db = get_db()
+
 
 def verify_user(email, password):
     """verifica l'email e la password forniti dall'utente nel sistema
@@ -22,7 +24,7 @@ def verify_user(email, password):
     Return:
         restituisce un'istanza dell'utente se la verifica ha successo, altrimenti None
         """
-    db = get_db()
+
     user_data = db.Utente.find_one({'email': email})
 
     if user_data:
@@ -50,7 +52,7 @@ spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
         "+", "-", "^", "_", "-", "?", ",", ":", ";", ".", "§", "°", "[", "]"]
 
 
-def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
+def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva):
     """
     controlla la validità dei campi utente e segna eventuali errori utilizzando flash
     :param nome: (str) Nome dell'utente
@@ -59,28 +61,39 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
     :param nome_utente: (str) Nome utente dell'utente
     :param email: (str) indirizzo email dell'utente
     :param data_di_nascita: (str) data di nascita dell'utente con il formato anno-mese-giorno
+
     :return:True se tuttii i campi sono validi, altrimenti restituisce None
     """
     if not isinstance(nome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
-        flash("Nome non valido", category="error")
 
-    elif not isinstance(cognome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
-        flash("Cognome non valido", category="error")
+        return False, "Nome non valido"
+
+    elif not isinstance(cognome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', cognome):
+
+        return False, "Cognome non valido"
 
     elif not isinstance(nome_utente, str) or not 0 < len(nome_utente) <= 30:
-        flash("Nome Utente non valido", category="error")
+
+        return False, "Nome Utente non valido"
 
     elif not isinstance(telefono, str) or not len(telefono) == 10 or not telefono.isdigit():
-        flash("Numero telefono non valido", category="error")
+
+        return False, "Numero telefono non valido"
+    elif not isinstance(piva, str) or not len(piva) == 11 or not piva.isdigit():
+
+        return False, "Partita iva non valida"
+
 
     elif not is_valid_email(email):
-        flash("E-mail non valido", category="error")
+
+        return False, "E-mail non valido"
 
     elif not is_valid_data_di_nascita(data_di_nascita):
-        flash("Data di nascita non valida", category="error")
+
+        return False, "Data di nascita non valida"
 
     else:
-        return True
+        return True, "Controllo riuscito"
 
 
 def is_valid_email(email):
@@ -99,6 +112,7 @@ def is_valid_data_di_nascita(data):
     :param data: (str) data di nascita nel normato anno-mese-giorno
     :return: restituisce True se la data di nascita è valida e precede la data odierna, altrimenti restituisce False
     """
+
     try:
         datetime_data = datetime.strptime(data, '%Y-%m-%d')
         data_odierna = datetime.now()
@@ -124,18 +138,18 @@ def controlla_password(password):
     :return: restituisce true se la password è valida, altrimenti c'è un messaggio di errore e restituisce False
     """
     if not isinstance(password, str) or len(password) < 8:
+        return False, "Lunghezza non valida"
 
-        flash("Lunghezza non valida", "error")
     else:
         # Utilizza l'espressione regolare per convalidare il formato della password
         regex_pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$'
 
         if not re.match(regex_pattern, password):
-            flash("Formato non valido", "error")
+            return False, "Formato non valido"
+
         else:
             # La password è valida
-            return True
-    return False
+            return True, "Formato valido"
 
 
 def conferma_password(password, cpassword):
@@ -224,14 +238,18 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
     :param regione: (str) regione del fornitore
     :return: restituisce un'istanza del Fornitore se la registrazione ha successo, altrimenti restituisce None
     """
-    db = get_db()
-    if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
-        if not is_valid_email(email):
-            flash("Email esistente", "error")
-        elif not controlla_password(password):
-            flash("Password non valida", "error")
+    result, result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva)
+    if not result:
+        flash(result_message, "error")
+        return False
+    else:
+        result2, result_message2 = controlla_password(password)
+        if not result2:
+            flash(result_message2, "error")
+            return False
         elif not conferma_password(password, cpassword):
             flash("Le password non corrispondono", "error")
+            return False
         else:
 
             user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
@@ -256,8 +274,7 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
             db.Utente.insert_one(documento_fornitore)
             flash("Registrazione avvenuta con successo!", "success")
 
-            return fornitore
-    return None
+            return True
 
 
 def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo, regione):
@@ -275,7 +292,7 @@ def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telef
     :param regione: (str) regione dell'amministratore
     :return: Restituisce un'istanza Admin se la registrazione ha successo, altrimenti restituisce None
     """
-    db = get_db()
+
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
         if not is_valid_email(email):
             flash("Email esistente", "error")
@@ -313,7 +330,6 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
     :param regione:(str) regione dell'organizzatore
     :return:Restituisce un'istanza di Organizzatore se la registrazione ha successo, altrimenti restituisce None
     """
-    db = get_db()
 
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
 
@@ -354,7 +370,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     :param id_organizzatore: (str) l'id dell'organizzatore di cui si vogliono ottenere i dati
     :return: Una tupla contentente un'itanza di Organizzatore, una lista di Evento_Privato e una lista di Biglietto
     """
-    db = get_db()
+
     organizzatore_data = db['Utente'].find_one({'_id': ObjectId(id_organizzatore)})
     organizzatore = Organizzatore(organizzatore_data, organizzatore_data)
 
@@ -379,14 +395,13 @@ def get_dati_area_organizzatore(id_organizzatore):
     return organizzatore, eventi_privati, biglietti_comprati
 
 
-
 def get_dati_home_organizzatore(id_organizzatore):
     """
     Ottiene i dati per la home page di un organizatore
     :param id_organizzatore: (str) id dell'organizzatore di cui si vogliono ottenere i dati
     :return: Una tupla contenente un'istanza di Evento_privato e una lista di Evento_Pubblico
     """
-    db = get_db()
+
     data_odierna = datetime.now().strftime("%d-%m-%Y")
 
     query = {
@@ -426,3 +441,9 @@ def get_dati_home_organizzatore(id_organizzatore):
             eventi_pubblici.append(evento_pubblico)
 
     return evento_privato, eventi_pubblici
+
+
+def get_utente_by_email(email):
+    user_data = db.Utente.find_one({'email':email})
+    user = Fornitore(user_data, user_data)
+    return user

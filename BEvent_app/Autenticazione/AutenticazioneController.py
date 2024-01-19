@@ -121,10 +121,11 @@ def registrazione_organizzatore():
             if location == "Si":
                 islocation = True
 
-            user = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono,
+            result = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono,
                                                        data_di_nascita, citta, ruolo, descrizione, islocation,
                                                        eventi_max_giorn, via, piva, regione)
-            if user:
+            if result:
+                user=AutenticazioneService.get_utente_by_email(email)
                 login_user(user)
                 session['is_location'] = user.isLocation
                 registrazione = 1

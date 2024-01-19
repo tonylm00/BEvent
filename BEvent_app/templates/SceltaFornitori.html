@@ -217,8 +217,9 @@
                         {% for servizio in servizi %}
                         {% if servizio.fornitore_associato == fornitori[0].id %}
                         {% if recensione.valutato == servizio._id %}
-                        <div class="review-title">Autore: {{ recensione.nome_utente_valutante }}</div>
-                        <div class="review-subtitle">Recensione lasciata per un servizio di tipo: {{ recensione.servizio }}</div>
+                        <div class="review-title">{{ recensione.titolo }}</div>
+                        <div class="review-subtitle">Autore: {{ recensione.nome_utente_valutante }}<br>
+                            Recensione lasciata per un servizio di tipo: {{ recensione.servizio }}</div>
                         <div class="review-rating">{{ '★' * recensione.voto|int }}{{ '☆' * (5 - recensione.voto|int) }}</div>
                         <p class="review-body">{{ recensione.descrizione }}</p>
                         {% endif %} {% endif %} {% endfor %} {% endfor %} {% else %}
