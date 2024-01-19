@@ -3,7 +3,7 @@ import base64
 from ..Utils import Image
 
 
-class Servizio_Offerto:
+class ServizioOfferto:
     def __init__(self, service_data):
         self._id = str(service_data['_id'])
         self.descrizione = service_data['Descrizione']

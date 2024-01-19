@@ -1,17 +1,12 @@
-import os
-
 import pytest
 from bson import ObjectId
 from flask import session
 from flask_login import login_user, current_user
-
-from datetime import datetime
 from BEvent_app import create_app
-from BEvent_app.InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
+from BEvent_app.InterfacciaPersistenza.ServizioOfferto import ServizioOfferto
 from BEvent_app.Routes import views
 from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
 from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
-from BEvent_app.InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
 from db import get_db
 
 db = get_db()
@@ -117,17 +112,17 @@ def mock_lista_fornitori():
     return lista_fornitori
 
 
-
 @pytest.fixture
 def mock_lista_servizi():
     servizi_id = [ObjectId("65a955adc4e2c6f986e1e543"), ObjectId("65a95714c4e2c6f986e1e555")]
     servizi_data = db['Servizio Offerto'].find({'_id': {"$in": servizi_id}})
     lista_servizi = []
     for data in servizi_data:
-        servizio = Servizio_Offerto(data)
+        servizio = ServizioOfferto(data)
         lista_servizi.append(servizio)
 
     return lista_servizi
+
 
 @pytest.fixture
 def mock_id_servizio():

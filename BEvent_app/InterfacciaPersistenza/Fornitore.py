@@ -1,8 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
-
 from ..Utils.Observer import Observer
-from . import Evento
 from .Utente import Utente
 from ..Utils import Image
 

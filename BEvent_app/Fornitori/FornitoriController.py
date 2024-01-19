@@ -1,8 +1,8 @@
 from flask import Blueprint, request, session
 from flask_login import login_required
 from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byfornitore, aggiorna_foto_fornitore, \
-    aggiungi_servizio, modifica_servizio, elimina_servizio, get_eventi_ByFornitorePrivato, getEventi_FornitorePubblico, \
-    cancella_evento, get_dettagli_evento, get_dati_organizzatore, get_dati_servizi, invio_feedBack
+    aggiungi_servizio, modifica_servizio, elimina_servizio, get_eventi_by_fornitore_privato, get_eventi_fornitore_pubblico, \
+    cancella_evento, get_dettagli_evento, get_dati_organizzatore, get_dati_servizi, invio_feed_back
 from flask import redirect
 from ..Utils import Image
 from ..Routes import fornitore_page, visualizza_evento_dettagli_page
@@ -21,8 +21,8 @@ def visualizza_controller():
     id_fornitore = session["id"]
     dati = get_dati_fornitore(id_fornitore)
     servizi = get_tutti_servizi_byfornitore(id_fornitore)
-    eventiPrivati = get_eventi_ByFornitorePrivato(id_fornitore)
-    eventiPubblici = getEventi_FornitorePubblico(id_fornitore)
+    eventiPrivati = get_eventi_by_fornitore_privato(id_fornitore)
+    eventiPubblici = get_eventi_fornitore_pubblico(id_fornitore)
 
     return fornitore_page(servizi=servizi, dati=dati, eventiPrivati=eventiPrivati, eventiPubblici=eventiPubblici)
 
@@ -168,5 +168,5 @@ def invio_feedback_controller():
     """
     id = request.form.get("valutato")
     valutazione = request.form.get("valutazione")
-    invio_feedBack(id, session["id"], valutazione)
+    invio_feed_back(id, session["id"], valutazione)
     return redirect("/fornitori")

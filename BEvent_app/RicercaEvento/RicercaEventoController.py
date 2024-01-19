@@ -1,5 +1,4 @@
 from flask import Blueprint, flash, request, jsonify
-
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
     ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id
 from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
