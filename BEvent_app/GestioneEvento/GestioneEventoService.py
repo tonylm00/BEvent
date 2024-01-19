@@ -619,7 +619,8 @@ def acquista_biglietto(id_evento, id_organizzatore, numero_biglietti):
         "DataEvento": evento.data,
         "Dove": evento.luogo,
         "Ora": evento.ora,
-        "Quantità": numero_biglietti
+        "Quantità": numero_biglietti,
+        'NomeEvento': evento.nome
     }
     biglietto = int(evento.biglietti_disponibili)
     nuovo_num_biglietti = biglietto - numero_biglietti
