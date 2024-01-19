@@ -14,6 +14,8 @@ from ..db import get_db
 from werkzeug.security import generate_password_hash
 
 db = get_db()
+
+
 def verify_user(email, password):
     """verifica l'email e la password forniti dall'utente nel sistema
     Parameters:
@@ -50,7 +52,7 @@ spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
         "+", "-", "^", "_", "-", "?", ",", ":", ";", ".", "§", "°", "[", "]"]
 
 
-def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita,piva):
+def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva):
     """
     controlla la validità dei campi utente e segna eventuali errori utilizzando flash
     :param nome: (str) Nome dell'utente
@@ -64,34 +66,34 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
     """
     if not isinstance(nome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', nome):
 
-        return False,"Nome non valido"
+        return False, "Nome non valido"
 
     elif not isinstance(cognome, str) or not re.match(r'^[a-zA-ZÀ-ù ‘-]{2,30}$', cognome):
 
-        return False,"Cognome non valido"
+        return False, "Cognome non valido"
 
     elif not isinstance(nome_utente, str) or not 0 < len(nome_utente) <= 30:
 
-        return False,"Nome Utente non valido"
+        return False, "Nome Utente non valido"
 
     elif not isinstance(telefono, str) or not len(telefono) == 10 or not telefono.isdigit():
 
-        return False,"Numero telefono non valido"
+        return False, "Numero telefono non valido"
     elif not isinstance(piva, str) or not len(piva) == 11 or not piva.isdigit():
 
-        return False,"Partita iva non valida"
+        return False, "Partita iva non valida"
 
 
     elif not is_valid_email(email):
 
-        return False,"E-mail non valido"
+        return False, "E-mail non valido"
 
     elif not is_valid_data_di_nascita(data_di_nascita):
 
-        return False,"Data di nascita non valida"
+        return False, "Data di nascita non valida"
 
     else:
-        return True,"Controllo riuscito"
+        return True, "Controllo riuscito"
 
 
 def is_valid_email(email):
@@ -136,19 +138,18 @@ def controlla_password(password):
     :return: restituisce true se la password è valida, altrimenti c'è un messaggio di errore e restituisce False
     """
     if not isinstance(password, str) or len(password) < 8:
-        return False,"Lunghezza non valida"
+        return False, "Lunghezza non valida"
 
     else:
         # Utilizza l'espressione regolare per convalidare il formato della password
         regex_pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$'
 
         if not re.match(regex_pattern, password):
-            return False,"Formato non valido"
+            return False, "Formato non valido"
 
         else:
             # La password è valida
-            return True,"Formato valido"
-
+            return True, "Formato valido"
 
 
 def conferma_password(password, cpassword):
@@ -237,12 +238,12 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
     :param regione: (str) regione del fornitore
     :return: restituisce un'istanza del Fornitore se la registrazione ha successo, altrimenti restituisce None
     """
-    result,result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita,piva)
+    result, result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva)
     if not result:
-        flash(result_message,"error")
+        flash(result_message, "error")
         return False
     else:
-        result2,result_message2=controlla_password(password)
+        result2, result_message2 = controlla_password(password)
         if not result2:
             flash(result_message2, "error")
             return False
@@ -274,7 +275,6 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
             flash("Registrazione avvenuta con successo!", "success")
 
             return True
-
 
 
 def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo, regione):
@@ -330,7 +330,6 @@ def registra_org(nome, cognome, nome_utente, email, password, cpassword, telefon
     :param regione:(str) regione dell'organizzatore
     :return:Restituisce un'istanza di Organizzatore se la registrazione ha successo, altrimenti restituisce None
     """
-
 
     if controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
 
@@ -396,7 +395,6 @@ def get_dati_area_organizzatore(id_organizzatore):
     return organizzatore, eventi_privati, biglietti_comprati
 
 
-
 def get_dati_home_organizzatore(id_organizzatore):
     """
     Ottiene i dati per la home page di un organizatore
@@ -443,3 +441,9 @@ def get_dati_home_organizzatore(id_organizzatore):
             eventi_pubblici.append(evento_pubblico)
 
     return evento_privato, eventi_pubblici
+
+
+def get_utente_by_email(email):
+    user_data = db.Utente.find_one({'email':email})
+    user = Fornitore(user_data, user_data)
+    return user
