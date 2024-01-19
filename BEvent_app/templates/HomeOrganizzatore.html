@@ -152,11 +152,17 @@
                     </div>
                     <div class="face3 face5">
                         <div class="content2">
-
-                            <p><input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> {{ evento.prezzo }}</span> &euro;<br>
-                            Luogo: {{ evento.luogo }}, {{ evento.regione }} <br> Ora: {{ evento.ora }} <br> Biglietti Disponibli: {{ evento.biglietti_disponibili }}/{{ evento.n_persone }}</p>
-                               <p id="prezzoTotale"> </p>
-                                <button style="border: none; background: transparent" id="" onclick="salvaServizio('caso')"> <a href="#">Prenota</a></button>
+                            <p>
+                                <input type="number" name="quantita" class="input-scelta" value="1" min="1" max="{{ evento.biglietti_disponibili }}" oninput="validaQuantita(this)">
+                                <span>Prezzo Biglietto:</span><span id="prezzo">{{ evento.prezzo }}</span> &euro;<br>
+                                Luogo: {{ evento.luogo }}, {{ evento.regione }} <br>
+                                Ora: {{ evento.ora }} <br>
+                                Biglietti Disponibili: {{ evento.biglietti_disponibili }}/{{ evento.n_persone }}
+                            </p>
+                            <p id="prezzoTotale"> </p>
+                            <form style="display: flex; justify-content: center;" action="/acquista_biglietto" method="post">
+                                <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ evento.id }}"> <a>Prenota</a></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -179,5 +185,6 @@
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../static/js/RicercaEvento.js"></script>
 </body>
 </html>

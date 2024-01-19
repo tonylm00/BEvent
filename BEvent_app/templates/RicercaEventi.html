@@ -172,7 +172,7 @@
             Biglietti Disponibili: {{ eventi[0].biglietti_disponibili }}/{{ eventi[0].n_persone }}
         </p>
         <p id="prezzoTotale"> </p>
-        <form action="/acquista_biglietto" method="post">
+        <form style="display: flex; justify-content: center" action="/acquista_biglietto" method="post">
             <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ eventi[0].id }}"> <a>Prenota</a></button>
         </form>
     </div>
