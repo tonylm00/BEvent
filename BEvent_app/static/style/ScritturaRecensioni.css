@@ -1,3 +1,20 @@
+
+.textGradient{
+	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+.projTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 32px;
+  border-bottom: 3px solid #FE8415;
+  letter-spacing: 3px;
+  margin-top: 100px;
+}
+
 .review-container {
     max-width: 600px;
     margin: auto;
