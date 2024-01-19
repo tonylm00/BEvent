@@ -5,11 +5,13 @@ from bson import ObjectId
 from flask import session
 from flask_login import login_user, current_user
 
+from datetime import datetime
 from BEvent_app import create_app
 from BEvent_app.InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
 from BEvent_app.Routes import views
 from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
 from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
+from BEvent_app.InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
 from db import get_db
 
 db = get_db()
@@ -113,6 +115,7 @@ def mock_lista_fornitori():
         lista_fornitori.append(fornitore)
 
     return lista_fornitori
+
 
 
 @pytest.fixture

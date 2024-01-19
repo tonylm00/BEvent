@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from flask import get_flashed_messages, flash
 from bson import ObjectId, Int64
 
 from ..db import get_db
@@ -24,6 +24,7 @@ def get_eventi():
     }))
 
     lista_eventi = []
+
 
     for data in eventi_data:
         evento = Evento_Pubblico(data, data)
@@ -76,23 +77,26 @@ def ricerca_eventi_per_parola(ricerca):
 
     eventi_filtrati_nome = [evento for evento in eventi_non_filtrati if ricerca.lower() in evento.nome.lower()]
 
-    eventi_filtrati_descrizione = [evento for evento in eventi_non_filtrati if ricerca.lower() in
-                                   evento.descrizione.lower()]
+    eventi_filtrati_descrizione = [evento for evento in eventi_non_filtrati if ricerca.lower() in evento.descrizione.lower()]
 
-    eventi_filtrati = []
-
+    eventi_filtrati = None
     if eventi_filtrati_nome and eventi_filtrati_descrizione:
         eventi_unici = {}
         for evento in eventi_filtrati_nome + eventi_filtrati_descrizione:
             eventi_unici[evento.id] = evento
 
         eventi_filtrati = list(eventi_unici.values())
+        flash("evento trovato", category="success")
 
     elif eventi_filtrati_nome:
         eventi_filtrati = eventi_filtrati_nome
+        flash("evento trovato", category="success")
 
     elif eventi_filtrati_descrizione:
         eventi_filtrati = eventi_filtrati_descrizione
+        flash("evento trovato", category="success")
+    else: flash("nessun evento trovato", category="warning")
+
 
     return eventi_filtrati
 
@@ -108,6 +112,13 @@ def ricerca_eventi_per_categoria(categoria):
 
     :return: una lista filtrata di oggetti: eventi_filtrati (lista di oggetti di tipo Evento Pubblico)
    """
+    if categoria not in ['Conferenze e Seminari', 'Concerti e Spettacoli', 'Mostre ed Esposizioni', 'Corsi e Workshop', 'Eventi Benefici', 'Eventi Sociali']:
+        flash("La categoria non esiste", category="error")
+        return []
+    elif categoria in ['Conferenze e Seminari', 'Concerti e Spettacoli', 'Mostre ed Esposizioni', 'Corsi e Workshop',
+                       'Eventi Benefici', 'Eventi Sociali']:
+        flash("La categoria esiste", category="success")
+
     eventi_non_filtrati = get_eventi()
 
     eventi_filtrati = [evento for evento in eventi_non_filtrati if categoria.lower() == evento.tipo]
@@ -126,6 +137,13 @@ def ricerca_eventi_per_regione(regione):
 
     :return: una lista filtrata di oggetti: eventi_filtrati (lista di oggetti di tipo Evento Pubblico)
     """
+    if regione not in ['Abruzzo', 'Basilicata', 'Calabria', 'Campania', 'Emilia Romagna' , 'Friuli Venezia Giulia', 'Lazio', 'Liguria', 'Lombardia', 'Marche', 'Molise', 'Piemonte', 'Puglia', 'Sardegna', 'Sicilia', 'Toscana', 'Trentino Alto Adige', 'Umbria', 'Valle d Aosta', 'Veneto']:
+        flash("La regione non esiste", category="error")
+        return []
+    elif regione in ['Abruzzo', 'Basilicata', 'Calabria', 'Campania', 'Emilia Romagna' , 'Friuli Venezia Giulia', 'Lazio', 'Liguria', 'Lombardia', 'Marche', 'Molise', 'Piemonte', 'Puglia', 'Sardegna', 'Sicilia', 'Toscana', 'Trentino Alto Adige', 'Umbria', 'Valle d Aosta', 'Veneto']:
+        flash("La regione esiste", category="success")
+
+
     eventi_non_filtrati = get_eventi()
 
     eventi_filtrati = [evento for evento in eventi_non_filtrati if regione.lower() == evento.regione]
@@ -146,6 +164,12 @@ def ricerca_eventi_per_prezzo(prezzo_min, prezzo_max):
 
     :return: una lista filtrata di oggetti: eventi_filtrati (lista di oggetti di tipo Evento Pubblico)
    """
+    if int(prezzo_min) <= 0 or int(prezzo_max) <= 0:
+        flash("il prezzo minore o massimo è negativo", category="error")
+        return []
+    elif int(prezzo_min) > 0 and int(prezzo_max) > 0:
+        flash("il prezzo minore o massimo non è negativo", category="success")
+
     eventi_non_filtrati = get_eventi()
 
     eventi_filtrati = [evento for evento in eventi_non_filtrati if prezzo_min <= evento.prezzo <= prezzo_max]

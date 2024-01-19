@@ -10,4 +10,6 @@ class Evento_Pubblico(Evento):
         self.regione = evento_info['Regione']
         self.luogo = evento_info['Luogo']
         self.ora = evento_info['Ora']
+
         self.biglietti_disponibili = evento_info['BigliettiDisponibili']
+
