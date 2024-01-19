@@ -62,7 +62,7 @@ def inserisci_recensione(id_valutato, id_valutante, voto, titolo, descrizione):
         utente_data = utenti.find_one({"_id": ObjectId(id_valutante)})
         servizio_data = servizi.find_one({"_id": ObjectId(id_valutato)})
         recensioni_data = {
-            "id_valutato": id_valutato,
+            "id_valutato": str(id_valutato),
             "id_valutante": id_valutante,
             "Voto": voto,
             "Titolo": titolo,
