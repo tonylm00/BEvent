@@ -68,7 +68,7 @@ def inserisci_recensione(id_valutato, id_valutante, voto, titolo, descrizione):
             "Titolo": titolo,
             "Descrizione": descrizione,
             "Tipo_servizio_valutato": servizio_data["Tipo"],
-            "Nome_utente_valutante": utente_data["nome"],
+            "Nome_utente_valutante": utente_data["nome_utente"],
         }
 
         recensioni.insert_one(recensioni_data)
