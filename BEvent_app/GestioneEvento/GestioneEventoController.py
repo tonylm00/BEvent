@@ -490,7 +490,7 @@ def acquista_biglietto_controller():
     """
     id_evento = request.form.get('id')
     id_organizzatore = session["id"]
-    numero_biglietti = request.form.get('numero_biglietti')
+    numero_biglietti = request.form.get('quantita')
     GestioneEventoService.acquista_biglietto(id_evento, id_organizzatore, numero_biglietti)
     return redirect(url_for('aut.area_organizzatore'))
 

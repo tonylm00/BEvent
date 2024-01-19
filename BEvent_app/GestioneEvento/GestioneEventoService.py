@@ -603,9 +603,9 @@ def acquista_biglietto(id_evento, id_organizzatore, numero_biglietti):
 
     :param id_evento: (str) stringa che rappresenta l'id dell'evento
     :param id_organizzatore: (str) stringa che reppresenta l'id dell'organizzatore
+    : param numero_biglietti: (str) stringa che indica il numero di biglietti che si vogliono comprare
 
     :return: nulla
-
     """
     from ..InterfacciaPersistenza import EventoPubblico
     eventi = db['Evento']

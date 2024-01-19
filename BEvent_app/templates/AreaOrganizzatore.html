@@ -37,14 +37,15 @@
                             <div class="content">
                                 <p> Panoramica Evento: <br>
                                     {{ evento.descrizione }}
+                                    <br>Data: {{ evento.data }}
                                     <br>Festeggiato: {{ evento.festeggiato }}<br>
                                     <br>Importo totale: {{ evento.prezzo }}&euro;
                                     {%  if evento.isPagato == false %}
                                         <button style="border: none; background: transparent"><a>Paga Evento</a></button>
+                                    {% else %}
+                                        <form action="/Visuallizza_Dettagli_evento_Organizzatore" method="post"><button style="border: none; background: transparent" name="id" value="{{ evento.id }}"><a>Dettagli Evento</a></button></form>
 
-                                        <form action="/Visuallizza_Dettagli_evento_Organizzatore" method="post" ><button style="border: none; background: transparent" name="id" value="{{ evento.id }}"><a>Dettagli Evento</a></button></form>
-
-                                    <form action="/elimina_evento_privato" method="post" ><button style="border: none; background: transparent" name="id_evento" value="{{ evento.id }}"><a>Cancella Evento</a></button></form>
+                                        <form action="/elimina_evento_privato" method="post" ><button style="border: none; background: transparent" name="id_evento" value="{{ evento.id }}"><a>Cancella Evento</a></button></form>
                                     {% endif %}
                             </div>
                         </div>
@@ -150,6 +151,7 @@
 
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="../static/js/SceltaFornitore2.js"></script>
