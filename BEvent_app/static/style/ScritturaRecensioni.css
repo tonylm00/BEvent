@@ -1,12 +1,30 @@
+
+.textGradient{
+	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+.projTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 32px;
+  border-bottom: 3px solid #FE8415;
+  letter-spacing: 3px;
+  margin-top: 100px;
+}
+
 .review-container {
     max-width: 600px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-top: 20px;
 }
 
-h2 {
+.review-container h2 {
     text-align: center;
 }
 
@@ -90,9 +108,10 @@ h2 {
 
 }
 
-input[type="text"],
-textarea {
-    width: 100%;
+.review-container input[type="text"],
+.review-container textarea {
+    width: 90%;
+    margin-left: 3.5%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
