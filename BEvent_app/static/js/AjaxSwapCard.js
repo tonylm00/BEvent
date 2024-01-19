@@ -73,8 +73,9 @@ function aggiornaDOM(data) {
                     if (servizioCorrispondente) {
                         nuovoContenuto += `
                             <div class="review">
-                                <div class="review-title">Autore: ${recensione.nome_utente_valutante}</div>
-                                <div class="review-subtitle">Recensione lasciata per un servizio di tipo: ${recensione.servizio}</div>
+                                <div class="review-title">${recensione.titolo}</div>
+                                <div class="review-subtitle">Autore: ${recensione.nome_utente_valutante} <br>
+                                Recensione lasciata per un servizio di tipo: ${recensione.servizio}</div>
                                 <div class="review-rating"> ${'★'.repeat(parseInt(recensione.voto) || 0)}${'☆'.repeat(Math.max(0, 5 - parseInt(recensione.voto) || 0))}</div>
                                 <p class="review-body">${recensione.descrizione}</p>
                             </div>

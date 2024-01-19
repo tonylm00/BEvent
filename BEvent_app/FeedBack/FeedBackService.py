@@ -5,7 +5,9 @@ from ..InterfacciaPersistenza.Recensione import Recensione
 from bson import ObjectId
 import re
 
-db =get_db()
+db = get_db()
+
+
 def get_recensioni_associate_a_servizi(servizi):
     """
     Ottiene le recensioni associate a una lista di servizi
@@ -35,6 +37,7 @@ def recensione_serializer(recensione):
     """
     return {
         "id": recensione.id,
+        "titolo": recensione.titolo,
         "nome_utente_valutante": recensione.nome_utente_valutante,
         "voto": recensione.voto,
         "descrizione": recensione.descrizione,
