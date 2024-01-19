@@ -19,6 +19,10 @@ class Utente(UserMixin):
         self.regione = user_data['regione']
         self.isAdmin = False
 
+    def get_id(self):
+        return str(self.id)
+
     def check_password(self, password):
         # Verifica la password utilizzando check_password_hash di werkzeug
         return check_password_hash(self.password_hash, password)
+

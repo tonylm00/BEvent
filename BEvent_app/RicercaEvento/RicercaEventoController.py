@@ -7,7 +7,7 @@ from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
 re = Blueprint('re', __name__)
 
 
-@re.route('/visualizza_eventi', methods=['POST'])
+@re.route('/visualizza_eventi', methods=['GET', 'POST'])
 def visualizza_eventi():
     """
     Serve a visualizzare la pagina di ricerca degli eventi pubblici. Prende gli eventi pubblici e li restituisce come

@@ -1,9 +1,12 @@
 from flask import request, Blueprint, session, redirect
-from .FeedBackService import  inserisci_recensione
+from flask_login import login_required
+
+from .FeedBackService import inserisci_recensione
 fb = Blueprint('fb', __name__)
 
 
 @fb.route('/invio_recensione', methods=['POST'])
+@login_required
 def invio_recensione():
 
     print("invio_recensione")

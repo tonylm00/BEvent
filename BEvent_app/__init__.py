@@ -1,7 +1,9 @@
 from bson import ObjectId
 from flask import Flask
 from flask_login import LoginManager
-from BEvent_app.Routes import home, login_page
+from BEvent_app.Routes import home
+from .InterfacciaPersistenza.Fornitore import Fornitore
+from .InterfacciaPersistenza.Organizzatore import Organizzatore
 from .InterfacciaPersistenza.Utente import Utente
 from .Routes import views
 from .db import get_db
@@ -20,6 +22,7 @@ def create_app():
     app.config['SECRET_KEY'] = "BEVENT"
     datab = get_db()
     login_manager = LoginManager(app)
+    login_manager.login_view = 'views.home'
 
     app.register_blueprint(Fornitori, url_prefix="/")
     app.register_blueprint(fb, url_prefix="/")
@@ -28,17 +31,20 @@ def create_app():
     app.register_blueprint(ge, url_prefix='/')
     app.register_blueprint(re, url_prefix='/')
 
+    def get_user_by_id(user_id):
+        user_data = datab.Utente.find_one({'_id': ObjectId(user_id)})
+
+        if user_data:
+            if user_data['Ruolo'] == '2':
+                return Organizzatore(user_data, user_data)
+            elif user_data['Ruolo'] == '3':
+                return Fornitore(user_data, user_data)
+
+        return None
+
     @login_manager.user_loader
     def load_user(user_id):
-        # Converti user_id in ObjectId prima della query
-        user_data = datab.utenti.find_one({'_id': ObjectId(user_id)})
-
-        # Gestisci il caso in cui user_data è None
-        if user_data:
-            # Crea un'istanza della classe Utente con i dati recuperati
-            return Utente(user_data)
-        else:
-            return None
+        return get_user_by_id(user_id)
 
     @app.route('/')
     def index():

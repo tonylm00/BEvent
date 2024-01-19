@@ -1,8 +1,5 @@
 from bson import ObjectId
 from flask import flash
-from pymongo import MongoClient
-
-
 from ..db import get_db
 from ..InterfacciaPersistenza import ServizioOfferto
 from ..InterfacciaPersistenza import Organizzatore
@@ -15,8 +12,9 @@ def is_valid_number(value):
     except ValueError:
         return False
 
+
 def validate_servizio_data(descrizione, tipo, prezzo, quantita):
-    '''
+    """
     serve un validare i dati di servizio
 
     :param descrizione: str
@@ -27,26 +25,25 @@ def validate_servizio_data(descrizione, tipo, prezzo, quantita):
     :return: messaggi di errore nel caso in cui uno dei campi non è valido ( con annessa descrizione del problema ),
     True se invece i campi sono validi
 
-    '''
-    # Verifica se la descrizione supera i 500 caratteri
+    """
     if len(descrizione) > 500:
         flash("La descrizione non deve superare i 500 caratteri", "error")
         return False
 
-
-    # Verifica se il tipo supera i 25 caratteri
-    if tipo not in ['Location','Fiorai e Decorazione','Catering','Pasticceria','Musica e Servizio Audio','Intrattenimento','Animazione per bambini','Fotografo','Servizi di Trasporto','Gadget','Altro']:
+    if tipo not in ['Location', 'Fiorai e Decorazione', 'Catering', 'Pasticceria', 'Musica e Servizio Audio',
+                    'Intrattenimento', 'Animazione per bambini', 'Fotografo', 'Servizi di Trasporto', 'Gadget',
+                    'Altro']:
         flash("Il tipo deve essere uno di quelli selezionati", "error")
         return False
 
-    # Verifica se il prezzo è un numero positivo
     if not is_valid_number(prezzo) or float(prezzo) < 0:
         flash("Il prezzo deve essere un numero non negativo", "error")
         return False
-    flash("Aggiunta avvenuto con successo","succes")
+    flash("Aggiunta avvenuto con successo", "succes")
     return True
 
-def get_tutti_servizi_byFornitore(id_fornitore):
+
+def get_tutti_servizi_byfornitore(id_fornitore):
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     servizi_data = list(servizi_collection.find(
@@ -92,7 +89,6 @@ def elimina_servizio(servizio_id):
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
 
-    # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
     evento_associato = eventi_collection.find_one({
         "servizi_associati": servizio_id,
         "isPagato": True
@@ -115,70 +111,58 @@ def modifica_servizio(nuovi_dati, servizio_id):
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
 
-    # Verifica se il servizio è presente in almeno un evento associato a un determinato fornitore
     evento_associato = eventi_collection.find_one({
         "servizi_associati": servizio_id,
         "isPagato": True
     })
 
     if evento_associato:
-        # Gestisci la logica se il servizio è presente in un evento
-        print("Il servizio è associato a un evento. Esegue la procedura di copia.")
 
-        # Procedi con la procedura di copia del servizio
         servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
 
         if servizio_corrente:
-            # Crea una copia del servizio corrente con le modifiche
+
             servizio_modificato = servizio_corrente.copy()
             campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
             servizio_modificato.update(campi_da_modificare)
 
-            # Rimuovi temporaneamente il campo _id prima dell'inserimento
             servizio_modificato.pop('_id', None)
 
-            # Inserisci il servizio modificato come nuovo documento
             result = servizi_collection.insert_one(servizio_modificato)
 
-            # Ottieni l'ID del nuovo servizio appena inserito
             nuovo_servizio_id = result.inserted_id
 
-            # Aggiorna il servizio corrente con l'ID del nuovo servizio
             servizi_collection.update_one(
                 {"_id": ObjectId(servizio_id)},
                 {"$set": {"isCurrentVersion": nuovo_servizio_id}}
             )
 
-            # Restituisci l'ID del servizio appena inserito
             return nuovo_servizio_id
 
     else:
-        # Il servizio non è associato a nessun evento, quindi modificalo direttamente
+
         servizio_corrente = servizi_collection.find_one({"_id": ObjectId(servizio_id)})
 
         if servizio_corrente:
-            # Modifica direttamente il servizio
             campi_da_modificare = {k: v for k, v in nuovi_dati.items() if v is not None}
             servizi_collection.update_one(
                 {"_id": ObjectId(servizio_id)},
                 {"$set": campi_da_modificare}
             )
 
-            # Restituisci l'ID del servizio modificato
             return servizio_id
 
-    return None  # Ritorna None se il servizio corrente non esiste
+    return None
 
 
 def aggiungi_servizio(nuovi_dati):
-    result = validate_servizio_data(nuovi_dati['Descrizione'],nuovi_dati['Tipo'], nuovi_dati['Prezzo'],2)
-    if result==True:
+    result = validate_servizio_data(nuovi_dati['Descrizione'], nuovi_dati['Tipo'], nuovi_dati['Prezzo'], 2)
+    if result == True:
         db = get_db()
         db['Servizio Offerto'].insert_one(nuovi_dati)
         return True
-    else: return False
-
-
+    else:
+        return False
 
 
 def get_eventi_ByFornitorePrivato(id):
@@ -280,5 +264,3 @@ def get_fornitori(id_fornitori):
         lista_fornitori.append(Fornitore(user_data, user_data))
 
     return lista_fornitori
-
-
