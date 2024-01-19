@@ -56,7 +56,6 @@ h1{
     line-height: normal;
     text-transform: uppercase;
 
-
 }
 
 .bottone-invisibile{
@@ -456,16 +455,17 @@ h1{
 }
 
 /* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-
+/*
 @media (max-height:900px ) {
     .img{
     box-shadow: #333333;
     margin-top: 50px;
-    height: 150px;
-    width: 225px;
+    height: 220px;
+    width: 320px;
 }
 }
 
+*/
 
 
 
@@ -498,7 +498,7 @@ h1{
     }
 }
 
-@media (max-width: 895px) {
+@media (max-width: 1030px) {
 
   h1{
     font-size: 28px;
