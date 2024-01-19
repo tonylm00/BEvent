@@ -80,7 +80,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
             let descriizonevento =evento.descrizione;
 
             let cardHTML = `
-            <div class="container watch fade-in">
+            <div class="container">
                 <div class="card">
                     <div class="face face1">
                         <div class="content">
@@ -98,6 +98,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
             </div>`;
 
             containerFornitori.innerHTML += cardHTML;
+
         });
     }
 }

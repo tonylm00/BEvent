@@ -35,7 +35,6 @@ def filtro_barra_ricerca():
         data = request.get_json()
         if 'ricerca' in data:
             ricerca = data['ricerca']
-
             eventi_filtrati = ricerca_eventi_per_parola(ricerca)
 
             if eventi_filtrati:
