@@ -1,13 +1,15 @@
-from flask import Blueprint, flash, request, jsonify
+from flask import Blueprint, flash, request, jsonify, session
+from flask_login import current_user
 
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
-    ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id
+    ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id, \
+    serializza_eventi_column
 from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
 
 re = Blueprint('re', __name__)
 
 
-@re.route('/visualizza_eventi', methods=['POST'])
+@re.route('/visualizza_eventi', methods=['GET', 'POST'])
 def visualizza_eventi():
     """
     Serve a visualizzare la pagina di ricerca degli eventi pubblici. Prende gli eventi pubblici e li restituisce come
@@ -158,6 +160,11 @@ def aggiorna_right_column_eventi():
 
     :return: Risposta in formato JSON che continene un oggetto: evento (oggetto di tipo Evento Pubblico)
     """
+    if current_user.is_authenticated:
+        nome_utente = session['nome_utente']
+    else:
+        nome_utente = None
+
     data = request.get_json()
     try:
 
@@ -168,7 +175,7 @@ def aggiorna_right_column_eventi():
 
             if evento_scelto:
 
-                evento_serializzato = serializza_eventi(evento_scelto)
+                evento_serializzato = serializza_eventi_column(evento_scelto, nome_utente)
 
                 return jsonify({
                     "evento_scelto": evento_serializzato

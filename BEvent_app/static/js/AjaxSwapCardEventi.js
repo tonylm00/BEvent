@@ -28,12 +28,13 @@ function aggiornaDOM(data) {
     if (data.evento_scelto) {
 
         let nuovoContenuto = `
+            <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">${ data.evento_scelto.nome }</p>
+            <div class="overflow-container">
             <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
                 <img class="img" src="data:image/jpeg;base64,${data.evento_scelto.locandina}" alt="Immagine">
             </div>
-            <h1 class="watch fade-in" style="text-align: center">${data.evento_scelto.nome}</h1>
             <p class="watch fade-in" style="text-align: center">${data.evento_scelto.descrizione}</p>
-            <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;">Biglietto</p>
+            <p class="projTitle watch fade-in" style="font-size: 18px; margin-top: 10px;color: black; border-bottom: 3px solid black;"> Biglietto </p>
             <div class="grid-container-servizi">
                 <div class="grid-servizi">
         `;
@@ -44,39 +45,64 @@ function aggiornaDOM(data) {
                     <div class="card2">
                         <div class="face3 face4">
                             <div class="content2">
-                                <img src="data:image/jpeg;base64,${data.evento_scelto.locandina}">
+                                <img src="../static/images/BigliettoEvento.jpeg">
                                 <h3>Biglietto</h3>
                             </div>
                         </div>
                         <div class="face3 face5">
-                            <div class="content2">
-                                <p>${ data.evento_scelto.descrizione },<input type="number" id="quantita" class="input-scelta" value="1"><span>Prezzo Biglietto:</span><span id="prezzo"> ${ data.evento_scelto.prezzo }</span> &euro;<br>
-                            Luogo: ${ data.evento_scelto.luogo }, ${ data.evento_scelto.regione } <br> Ora: ${ data.evento_scelto.ora }<br> Biglietti Disponibli: ${ data.evento_scelto.biglietti_disponibili }/${ data.evento_scelto.n_persone }</p>
-                               <p id="prezzoTotale"> </p>
-                                <form action="/acquista_biglietto" method="post">
-                                <button style="border: none; background: transparent" id="caso" onclick="salvaServizio('caso')" name="id" value="${data.evento_scelto.id}"> <a>Prenota</a></button>
+                            <div class="content2">`
+
+                            if (data.nome_utente== null) {
+                                 nuovoContenuto += `
+                            
+                                <p>
+                        
+                                    <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
+                        
+                                    <span>Prezzo Biglietto:</span><span id="prezzo">${ data.evento_scelto.prezzo }</span> &euro;<br>
+                                    Luogo: ${ data.evento_scelto.luogo }, ${ data.evento_scelto.regione } <br>
+                                    Ora: ${ data.evento_scelto.ora } <br>
+                                    Biglietti Disponibili: <span id="quantita_disponibile">${ data.evento_scelto.biglietti_disponibili }</span>/${ data.evento_scelto.n_persone }
+                                    <br>
+                                    <span id="prezzoTotale"> </span><br>
+                                    <button type="submit" style="border: none; background: transparent" id="modal-button-ricerca-eventi" > <a>Prenota</a></button>
+                        
+                                </p>`;
+                            }else {
+                                   nuovoContenuto += `
+                                <form style="justify-content: center" action="/acquista_biglietto" method="post">
+                                <p>
+                        
+                                    <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
+                        
+                                    <span>Prezzo Biglietto:</span><span id="prezzo">${ data.evento_scelto.prezzo }</span> &euro;<br>
+                                    Luogo: ${ data.evento_scelto.luogo }, ${ data.evento_scelto.regione } <br>
+                                    Ora: ${ data.evento_scelto.ora } <br>
+                                    Biglietti Disponibili: <span id="quantita_disponibile">${ data.evento_scelto.biglietti_disponibili }</span>/${ data.evento_scelto.n_persone }
+                                    <br>
+                                    <span id="prezzoTotale"> </span><br>
+                                    <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ eventi[0].id }}"> <a>Prenota</a></button>
+                                </p>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
+                                            
+                            `; }
 
-        nuovoContenuto += `</div></div>`;
+        nuovoContenuto += `</div>
+                                        </div>
+                                    </div>
+                                </div></div></div></div>`;
 
-
-        document.querySelector('.overflow-container').innerHTML = nuovoContenuto;
-
-        /*document.querySelectorAll('.overflow-container .watch').forEach(elemento => {
+        let nuovoContenutoTitolo= `<p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">${ data.evento_scelto.nome }</p>`;
+        document.querySelector('.right-column').innerHTML = nuovoContenuto;
+        document.querySelectorAll('.right-column .watch').forEach(elemento => {
             aggiungiElementoAllObserver(elemento);
-        });*/
+        });
     } else {
         console.error('Errore nella risposta:', data.errore);
     }
 }
 
-/*
 function aggiungiElementoAllObserver(element) {
     observer.observe(element);
 }
-*/
+

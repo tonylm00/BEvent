@@ -1,12 +1,11 @@
 from flask import request, Blueprint, session, redirect, flash
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from BEvent_app.Autenticazione import AutenticazioneService
 from BEvent_app.Autenticazione.AutenticazioneService import get_dati_area_organizzatore, get_dati_home_organizzatore
-from BEvent_app.Routes import (home, registrazione_page, admin_page, error_page, organizzatore_page,
+from BEvent_app.Routes import (home, registrazione_page, organizzatore_page,
                                area_organizzatore_page)
 
 aut = Blueprint('aut', __name__)
-
 
 
 @aut.route('/login', methods=['POST'])
@@ -34,14 +33,14 @@ def login():
             session['regione'] = user.regione
 
             if user.ruolo == "1":
-                return admin_page()
+                return home()
             elif user.ruolo == "2":
                 return redirect('/home_organizzatore')
             elif user.ruolo == "3":
                 session['is_location'] = user.isLocation
                 return redirect('/fornitori')
             else:
-                return error_page()
+                return home()
         else:
             return home()
     else:
@@ -121,11 +120,12 @@ def registrazione_organizzatore():
             if location == "Si":
                 islocation = True
 
-            result = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefono,
-                                                       data_di_nascita, citta, ruolo, descrizione, islocation,
-                                                       eventi_max_giorn, via, piva, regione)
+            result = AutenticazioneService.registra_forn(nome, cognome, nome_utente, email, password, cpassword,
+                                                         telefono,
+                                                         data_di_nascita, citta, ruolo, descrizione, islocation,
+                                                         eventi_max_giorn, via, piva, regione)
             if result:
-                user=AutenticazioneService.get_utente_by_email(email)
+                user = AutenticazioneService.get_utente_by_email(email)
                 login_user(user)
                 session['is_location'] = user.isLocation
                 registrazione = 1
@@ -150,6 +150,7 @@ def registrazione_organizzatore():
 
 
 @aut.route('/area_organizzatore', methods=['GET', 'POST'])
+@login_required
 def area_organizzatore():
     """
     Restituisce la pagina dell'area dell'organizzatore con i dati relativi, agli eventi privati e ai biglietti comprati
@@ -168,6 +169,7 @@ def area_organizzatore():
 
 
 @aut.route('/home_organizzatore', methods=['GET', 'POST'])
+@login_required
 def home_organizzatore():
     """
     Restituisce la pagina home dell'organizzatore con i dati relativi all'evento privato e agli eventi pubblici futuri

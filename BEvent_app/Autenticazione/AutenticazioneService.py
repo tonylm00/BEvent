@@ -1,15 +1,14 @@
 from datetime import datetime
 import re
 from bson import ObjectId
-from flask import flash, get_flashed_messages
-
+from flask import flash
 from ..InterfacciaPersistenza.Biglietto import Biglietto
-from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
+from ..InterfacciaPersistenza.EventoPubblico import EventoPubblico
 from ..InterfacciaPersistenza.Utente import Utente
 from ..InterfacciaPersistenza.Organizzatore import Organizzatore
 from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..InterfacciaPersistenza.Admin import Admin
-from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
+from ..InterfacciaPersistenza.EventoPrivato import EventoPrivato
 from ..db import get_db
 from werkzeug.security import generate_password_hash
 
@@ -52,7 +51,7 @@ spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
         "+", "-", "^", "_", "-", "?", ",", ":", ";", ".", "§", "°", "[", "]"]
 
 
-def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva):
+def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
     """
     controlla la validità dei campi utente e segna eventuali errori utilizzando flash
     :param nome: (str) Nome dell'utente
@@ -79,9 +78,6 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
     elif not isinstance(telefono, str) or not len(telefono) == 10 or not telefono.isdigit():
 
         return False, "Numero telefono non valido"
-    elif not isinstance(piva, str) or not len(piva) == 11 or not piva.isdigit():
-
-        return False, "Partita iva non valida"
 
 
     elif not is_valid_email(email):
@@ -94,6 +90,14 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
 
     else:
         return True, "Controllo riuscito"
+
+
+def is_valid_piva(piva):
+    if not isinstance(piva, str) or not len(piva) == 11 or not piva.isdigit():
+
+        return False, "Partita iva non valida"
+    else:
+        return True, "Partita iva valida"
 
 
 def is_valid_email(email):
@@ -238,43 +242,49 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
     :param regione: (str) regione del fornitore
     :return: restituisce un'istanza del Fornitore se la registrazione ha successo, altrimenti restituisce None
     """
-    result, result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva)
+    result, result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita)
     if not result:
         flash(result_message, "error")
         return False
     else:
-        result2, result_message2 = controlla_password(password)
-        if not result2:
-            flash(result_message2, "error")
-            return False
-        elif not conferma_password(password, cpassword):
-            flash("Le password non corrispondono", "error")
+        result3, result_message3 = is_valid_piva(piva)
+        if not result3:
+            flash(result_message3, "error")
             return False
         else:
 
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
-                                        regione)
+            result2, result_message2 = controlla_password(password)
+            if not result2:
+                flash(result_message2, "error")
+                return False
+            elif not conferma_password(password, cpassword):
+                flash("Le password non corrispondono", "error")
+                return False
+            else:
 
-            fornitore_data = {
-                'Fornitore': {
-                    'Descrizione': descrizione,
-                    'EventiMassimiGiornaliero': eventi_max_giorn,
-                    'OrarioDiLavoro': "",
-                    'Foto': [],
-                    'Citta': citta,
-                    'Via': via,
-                    'Partita_Iva': piva,
-                    'isLocation': islocation
+                user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                                            regione)
+
+                fornitore_data = {
+                    'Fornitore': {
+                        'Descrizione': descrizione,
+                        'EventiMassimiGiornaliero': eventi_max_giorn,
+                        'OrarioDiLavoro': "",
+                        'Foto': [],
+                        'Citta': citta,
+                        'Via': via,
+                        'Partita_Iva': piva,
+                        'isLocation': islocation
+                    }
                 }
-            }
 
-            documento_fornitore = {**user_data, **fornitore_data}
-            fornitore = Fornitore(user_data, fornitore_data)
+                documento_fornitore = {**user_data, **fornitore_data}
+                fornitore = Fornitore(user_data, fornitore_data)
 
-            db.Utente.insert_one(documento_fornitore)
-            flash("Registrazione avvenuta con successo!", "success")
+                db.Utente.insert_one(documento_fornitore)
+                flash("Registrazione avvenuta con successo!", "success")
 
-            return True
+                return True
 
 
 def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo, regione):
@@ -368,7 +378,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     """
     Ottiene i dati relativi all'area organizzatore
     :param id_organizzatore: (str) l'id dell'organizzatore di cui si vogliono ottenere i dati
-    :return: Una tupla contentente un'itanza di Organizzatore, una lista di Evento_Privato e una lista di Biglietto
+    :return: Una tupla contentente un'itanza di Organizzatore, una lista di EventoPrivato e una lista di Biglietto
     """
 
     organizzatore_data = db['Utente'].find_one({'_id': ObjectId(id_organizzatore)})
@@ -380,7 +390,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     }))
     eventi_privati = []
     for data in eventi_privati_data:
-        evento_privato = Evento_Privato(data, data)
+        evento_privato = EventoPrivato(data, data)
         eventi_privati.append(evento_privato)
 
     biglietti_comprati_data = list(db['Biglietto'].find({
@@ -399,7 +409,7 @@ def get_dati_home_organizzatore(id_organizzatore):
     """
     Ottiene i dati per la home page di un organizatore
     :param id_organizzatore: (str) id dell'organizzatore di cui si vogliono ottenere i dati
-    :return: Una tupla contenente un'istanza di Evento_privato e una lista di Evento_Pubblico
+    :return: Una tupla contenente un'istanza di Evento_privato e una lista di EventoPubblico
     """
 
     data_odierna = datetime.now().strftime("%d-%m-%Y")
@@ -411,7 +421,7 @@ def get_dati_home_organizzatore(id_organizzatore):
     }
     try:
         evento_data = db['Evento'].find(query).sort("Data", 1).limit(1).next()
-        evento_privato = Evento_Privato(evento_data, evento_data)
+        evento_privato = EventoPrivato(evento_data, evento_data)
     except StopIteration:
         evento_data = None
         evento_privato = None
@@ -426,7 +436,7 @@ def get_dati_home_organizzatore(id_organizzatore):
     if evento_pubblico_data:
         eventi_pubblici = []
         for data in evento_pubblico_data:
-            evento_pubblico = Evento_Pubblico(data, data)
+            evento_pubblico = EventoPubblico(data, data)
             eventi_pubblici.append(evento_pubblico)
     else:
         query = {
@@ -437,13 +447,13 @@ def get_dati_home_organizzatore(id_organizzatore):
         evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(2)
         eventi_pubblici = []
         for data in evento_pubblico_data:
-            evento_pubblico = Evento_Pubblico(data, data)
+            evento_pubblico = EventoPubblico(data, data)
             eventi_pubblici.append(evento_pubblico)
 
     return evento_privato, eventi_pubblici
 
 
 def get_utente_by_email(email):
-    user_data = db.Utente.find_one({'email':email})
+    user_data = db.Utente.find_one({'email': email})
     user = Fornitore(user_data, user_data)
     return user

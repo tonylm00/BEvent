@@ -1,15 +1,37 @@
 import smtplib
 from email.mime.text import MIMEText
-
 from ..Utils.Observer import Observer
-from . import Evento
 from .Utente import Utente
 from ..Utils import Image
 
 
 class Fornitore(Utente, Observer):
+    """
+        Classe che rappresenta un fornitore, derivata dalle classi base Utente e Observer.
+
+        Args:
+            user_data (dict): Dati comuni a tutti gli utenti.
+            fornitore_data (dict): Dati specifici dei fornitori.
+
+        Attributes:
+            descrizione (str): Descrizione del fornitore.
+            eventi_max_giornalieri (int): Numero massimo di eventi che il fornitore può gestire al giorno.
+            orario_lavoro (str): Orario di lavoro del fornitore.
+            foto (list): Elenco di immagini associate al fornitore.
+            citta (str): Città del fornitore.
+            via (str): Via del fornitore.
+            p_Iva (str): Partita IVA del fornitore.
+            isLocation (bool): Indica se il fornitore è una location.
+        """
 
     def __init__(self, user_data, fornitore_data):
+        """
+               Inizializza un nuovo oggetto Fornitore.
+
+               Args:
+                   user_data (dict): Dati comuni a tutti gli utenti.
+                   fornitore_data (dict): Dati specifici dei fornitori.
+               """
         Utente.__init__(self, user_data)
         Observer.__init__(self)
         fornitore_info = fornitore_data['Fornitore']
@@ -32,6 +54,12 @@ class Fornitore(Utente, Observer):
         self.isLocation = fornitore_info['isLocation']
 
     def update(self, observable):
+        """
+               Metodo di callback chiamato quando l'evento osservato è stato annullato.
+
+               Args:
+                   observable (Observable): L'oggetto osservato che ha emesso l'evento di annullamento.
+               """
 
         oggetto = "Annullamento dell'evento"
         messaggio_corpo = "L'evento in data " + observable.data + ("è stato annullato! Controlla la tua area fornitore "

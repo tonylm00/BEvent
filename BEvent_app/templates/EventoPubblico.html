@@ -18,34 +18,26 @@
 
 
 
-
-            <input type="file" id="fileInput2" name="fotinabella"   ><br>
-
-
-
-
-
-
         <div class="container">
 
-
+        <input class="selezione_file" type="file" id="fileInput" name="fotoevento"   ><br>
 
           <div class="field-container">
 
-            <input type="text" name="nome" placeholder="Nome Evento*" required>
-                <input type="number" name="prezzo" placeholder="Prezzo*" required>
+            <input class="selezione" type="text" name="nome" placeholder="Nome Evento*" required>
+                <input class="selezione" type="number" name="prezzo" placeholder="Prezzo*" required>
           </div>
 
             <div class="field-container">
 
-            <input type="date" name="data" placeholder="Data Evento" pattern="\d{2}-\d{2}-\d{4}">
-                <input type="number" name="n_persone" placeholder="Posti Disponibili*" required>
+            <input class="selezione" type="date" name="data" placeholder="Data Evento" pattern="\d{2}-\d{2}-\d{4}">
+                <input class="selezione" type="number" name="n_persone" placeholder="Posti Disponibili*" required>
           </div>
 
           <div class="field-container">
 
-           <input type="time" name="ora" placeholder="Ora dell'evento*" required>
-            <select id="event-type" name="tipo">
+           <input class="selezione"  type="time" name="ora" placeholder="Ora dell'evento*" required>
+            <select class="selezione" id="event-type" name="tipo">
             <option value="">Seleziona tipo di evento</option>
             <option value="Disco Party">DiscoParty</option>
             <option value="Opera Teatrale">Teatro</option>
@@ -53,7 +45,8 @@
             <option value="Altro">Altro</option>
 
              </select>
-              <select id="event-type" name="servizi">
+              <select class="selezione" id="event-type" name="servizi" >
+              <option value="">Servizio Associato</option>
              {% for servizio in servizi %}
             <option value="{{ servizio._id }}">{{ servizio.descrizione }}</option>
              {% endfor%}

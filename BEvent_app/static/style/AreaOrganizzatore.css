@@ -38,7 +38,7 @@
 .grid-container{
 
     overflow: auto;
-	/*height: calc(100% - 270px);*/
+	height: calc(100% - 250px);
 	justify-items: center;
 	align-items: center;
 	margin-left:7.5%;

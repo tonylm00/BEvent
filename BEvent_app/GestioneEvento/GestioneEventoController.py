@@ -1,17 +1,13 @@
 import json
 import os
 from datetime import datetime
-from importlib.metadata import files
-
 from flask import request, Blueprint, session, flash, jsonify, make_response, redirect, url_for
-
+from flask_login import login_required
 from BEvent_app.FeedBack import FeedBackService
 from BEvent_app.Fornitori import FornitoriService
-from BEvent_app import Utils
 from BEvent_app.GestioneEvento import GestioneEventoService
 from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page, riepilogo_scelte_page, \
-    visualizza_evento_dettagli_organizzatore_page, \
-    organizzatore_page, crea_evento_pubblico_page
+    visualizza_evento_dettagli_organizzatore_page, crea_evento_pubblico_page
 from ..Utils import Image
 
 
@@ -21,6 +17,7 @@ ge = Blueprint('ge', __name__)
 
 
 @ge.route('/visualizza_fornitori', methods=['POST'])
+@login_required
 def visualizza_fornitori():
     """
     Serve ad accedere alla pagina sceltafornitori.html passando in risposta i fornitori disponibili, i servizi e le
@@ -52,6 +49,7 @@ def visualizza_fornitori():
 
 
 @ge.route('/filtro_categoria', methods=['POST'])
+@login_required
 def filtro_categoria():
     """
     Serve  a elaborare una richiesta in Ajax e in base alla categoria passata come parametro restituisce la lista dei
@@ -87,6 +85,7 @@ def filtro_categoria():
 
 
 @ge.route('/filtro_regione', methods=['POST'])
+@login_required
 def filtro_regione():
     """
     Serve  a elaborare una richiesta in Ajax e in base alla regione passata come parametro restituisce la lista dei
@@ -122,6 +121,7 @@ def filtro_regione():
 
 
 @ge.route('/filtro_barra_ricerca', methods=['GET', 'POST'])
+@login_required
 def filtro_barra_ricerca():
     """
     Serve  a elaborare una richiesta in Ajax e in base ad una parola passata come parametro restituisce la lista dei
@@ -157,6 +157,7 @@ def filtro_barra_ricerca():
 
 
 @ge.route('/filtro_prezzo', methods=['POST'])
+@login_required
 def filtro_prezzo():
     """
     Serve  a elaborare una richiesta in Ajax e in base a un prezzo minimo e un prezzo massimo passati come parametri
@@ -194,6 +195,7 @@ def filtro_prezzo():
 
 
 @ge.route('/aggiorna_right_column', methods=['POST'])
+@login_required
 def aggiorna_right_column():
     """
     Serve a elaborare una richiesta Ajax e in base all'email passata come parametro restituisce il singolo fornitore che
@@ -233,6 +235,7 @@ def aggiorna_right_column():
 
 
 @ge.route('/salva_nel_carrello', methods=['POST'])
+@login_required
 def salva_nel_carrello():
     """
     Serve a rispondere ad una richiesta Ajax e aggiungere ai cookie del carrello l'id del servizio che l'organizzatore
@@ -273,6 +276,7 @@ def salva_nel_carrello():
 
 
 @ge.route('/visualizza_riepilogo', methods=['GET', 'POST'])
+@login_required
 def visualizza_riepilogo():
     """
     Serve a visualizzare la pagina di riepilogo delle scelte effettuate dall'organizzatore durante la creazione
@@ -295,6 +299,7 @@ def visualizza_riepilogo():
 
 
 @ge.route('/elimina_servizio', methods=['POST'])
+@login_required
 def elimina_servizio():
     """
     Serve ad eliminare un servizio selezionato dai cookie.
@@ -308,9 +313,6 @@ def elimina_servizio():
 
     if id_servizio in carrello:
         carrello.remove(id_servizio)
-        messaggio = "Servizio rimosso dal carrello"
-    else:
-        messaggio = "Servizio non trovato nel carrello"
 
     carrello_serializzato = json.dumps(carrello)
     response = make_response(redirect('/visualizza_riepilogo'))
@@ -320,6 +322,7 @@ def elimina_servizio():
 
 
 @ge.route("/annulla_creazione_evento", methods=['POST'])
+@login_required
 def annulla_creazione_evento():
     """
     Serve ad annullare la creazione di un evento, eliminando dalla sessione i dati inseriti durante la creazione ed
@@ -337,6 +340,7 @@ def annulla_creazione_evento():
 
 
 @ge.route('/salva_evento_come_bozza', methods=['POST'])
+@login_required
 def salva_evento_come_bozza():
     """
     Serve a salvare un evento come bozza nel database nel caso l'utente voglia proseguire in un secondo momento alla
@@ -363,6 +367,7 @@ def salva_evento_come_bozza():
 
 
 @ge.route('/salva_evento_pagato', methods=['POST'])
+@login_required
 def salva_evento_pagato():
     """
     Serve a salvare un evento nel database segnandolo come pagato, in modo che la prenotazione dei fornitori avvenga.
@@ -424,6 +429,7 @@ def salva_evento(is_pagato):
 
 
 @ge.route('/elimina_evento_privato', methods=['POST'])
+@login_required
 def elimina_evento_route():
     """
     Serve ad eliminare un evento privato.
@@ -438,17 +444,19 @@ def elimina_evento_route():
 
 
 @ge.route('/Crea_evento_pubblico_page')
+@login_required
 def creazione_evento_pubblico():
     """
     Serve a creare la pagina per creare un evento pubblico di un fornitore.
 
     :return: pagina creaeventopubblico.html
     """
-    servizi = GestioneEventoService.get_tutti_servizi_byFornitoreLocation(session["id"])
+    servizi = GestioneEventoService.get_tutti_servizi_by_fornitore_location(session["id"])
     return crea_evento_pubblico_page(servizi=servizi)
 
 
 @ge.route('/crea_evento_pubblico', methods=['POST'])
+@login_required
 def crea_event_publico():
     """
     Serve a creare un evento pubblico.
@@ -457,31 +465,30 @@ def crea_event_publico():
     """
     file = request.files.get('fotinabella')
     content = file.read()
-    print(file)
     foto_byte_array = Image.convert_image_to_byte_array(content)
-    print(file)
     fornitore = FornitoriService.get_dati_fornitore(session["id"])
-    Data = request.form.get('data')
+    data = request.form.get('data')
     n_persone = request.form.get('n_persone')
-    Descrizione = request.form.get('descrizione')
-    Locandina = foto_byte_array
-    Ruolo = '1'
-    Tipo = request.form.get('tipo')
-    isPagato = True
+    descrizione = request.form.get('descrizione')
+    locandina = foto_byte_array
+    ruolo = '1'
+    tipo = request.form.get('tipo')
+    is_pagato = True
     fornitori_associati = [session['id']]
     servizi_associati = [request.form.get('servizi')]
-    Prezzo = request.form.get('prezzo')
-    Ora = request.form.get('ora')
-    Nome = request.form.get('nome')
+    prezzo = request.form.get('prezzo')
+    ora = request.form.get('ora')
+    nome = request.form.get('nome')
     via = fornitore.via
-    Regione = fornitore.regione
-    GestioneEventoService.crea_evento_pubblico(Data, n_persone, Descrizione, Locandina, Ruolo, Tipo, isPagato,
-                                               fornitori_associati, servizi_associati, Prezzo, Ora, Nome, via, Regione,
+    regione = fornitore.regione
+    GestioneEventoService.crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, is_pagato,
+                                               fornitori_associati, servizi_associati, prezzo, ora, nome, via, regione,
                                                session["id"])
-    return "fatto"
+    return redirect(url_for('Fornitori.visualizza_controller'))
 
 
 @ge.route('/acquista_biglietto', methods=['POST'])
+@login_required
 def acquista_biglietto_controller():
     """
     Serve ad effettuare l'acquisto di un biglietto
@@ -490,12 +497,13 @@ def acquista_biglietto_controller():
     """
     id_evento = request.form.get('id')
     id_organizzatore = session["id"]
-    numero_biglietti = request.form.get('numero_biglietti')
+    numero_biglietti = request.form.get('quantita')
     GestioneEventoService.acquista_biglietto(id_evento, id_organizzatore, numero_biglietti)
     return redirect(url_for('aut.area_organizzatore'))
 
 
 @ge.route('/Visuallizza_Dettagli_evento_Organizzatore', methods=['GET', 'POST'])
+@login_required
 def visualizza_evento_dettagli_controller():
     """
     Serve a visualizzare i dettagli di un evento creato da un organizzatore

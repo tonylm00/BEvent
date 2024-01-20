@@ -1,17 +1,13 @@
 from datetime import datetime
-
-import mail
 from bson import ObjectId
 from flask import flash
-
 import re
 from ..InterfacciaPersistenza import ServizioOfferto
-from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
+from ..InterfacciaPersistenza.EventoPrivato import EventoPrivato
 from ..db import get_db
 from ..InterfacciaPersistenza.Fornitore import Fornitore
-from ..InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
+from ..InterfacciaPersistenza.ServizioOfferto import ServizioOfferto
 
-USING_TEST_DB = False
 db = get_db()
 
 
@@ -124,7 +120,7 @@ def get_servizi(data_richiesta):
     lista_servizi = []
 
     for data in servizi_data:
-        servizio = Servizio_Offerto(data)
+        servizio = ServizioOfferto(data)
         evento_associato = eventi_collection.find_one({
             'servizi_associati': {'$in': [str(servizio._id)]},
             'Data': data_richiesta,
@@ -370,7 +366,7 @@ def get_servizio_by_id(id_servizio):
 
     id_servizio_obj = ObjectId(id_servizio)
     servizio_data = db["Servizio Offerto"].find_one({"_id": id_servizio_obj})
-    servizio = Servizio_Offerto(servizio_data)
+    servizio = ServizioOfferto(servizio_data)
     return servizio
 
 
@@ -512,7 +508,7 @@ def elimina_evento(id_evento):
     """
     evento = db.Evento.find_one({"_id": ObjectId(id_evento)})
 
-    evento_privato = Evento_Privato(evento, evento)
+    evento_privato = EventoPrivato(evento, evento)
     if evento_privato is None:
         return False, "Evento non trovato"
 
@@ -525,43 +521,43 @@ def elimina_evento(id_evento):
     return True, "Evento eliminato e fornitori notificati"
 
 
-def crea_evento_pubblico(Data, n_persone, Descrizione, locandina, Ruolo, Tipo, isPagato, fornitori_associati,
-                         servizi_associati, prezzo, Ora, Nome, Via, Regione, id_fornitore):
+def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, is_pagato, fornitori_associati,
+                         servizi_associati, prezzo, ora, nome, via, regione, id_fornitore):
     """
     Funzione per salvare l'evento pubblico nel database che crea il documento da inserire mettendo come valore dei campi
     i dati passati come parametri.
 
-    :param Data: (str) stringa che rappresenta la data nella quale si terrà l'evento
+    :param data: (str) stringa che rappresenta la data nella quale si terrà l'evento
     :param n_persone: (str) stringa che rappresenta il numero di posti disponibili
-    :param Descrizione: (str) stringa che rappresenta una descrizione dell'evento
+    :param descrizione: (str) stringa che rappresenta una descrizione dell'evento
     :param locandina: (byte_array) byte array che rappresenta una foto dell'evento
-    :param Ruolo: (str) stringa che rappresenta il ruolo dell'evento se pubblico o privato
-    :param Tipo: (str) stringa che rappresenta il tipo di evento pubblico
-    :param isPagato: (bool) booleano che indica se l'evento è stato pagato per la sponsorizzazione o meno
+    :param ruolo: (str) stringa che rappresenta il ruolo dell'evento se pubblico o privato
+    :param tipo: (str) stringa che rappresenta il tipo di evento pubblico
+    :param is_pagato: (bool) booleano che indica se l'evento è stato pagato per la sponsorizzazione o meno
     :param fornitori_associati: (list) lista di oggetti fornitore
     :param servizi_associati: (list) lista di oggetti servizio offerto
     :param prezzo: (str) stringa che rappresenta il prezzo di un biglietto per partecipare all'evento
-    :param Ora: (str) stringa che rappresenta l'ora in cui si terrà l'evento
-    :param Nome: (str) stringa che rappresenta il nome dell'evento
-    :param Via: (str) stringa che rappresenta il luogo dove si terrà l'evento
-    :param Regione: (str) stringa che rappresenta la regione dove si terrà l'evento
+    :param ora: (str) stringa che rappresenta l'ora in cui si terrà l'evento
+    :param nome: (str) stringa che rappresenta il nome dell'evento
+    :param via: (str) stringa che rappresenta il luogo dove si terrà l'evento
+    :param regione: (str) stringa che rappresenta la regione dove si terrà l'evento
     :param id_fornitore: (str) stringa che rappresenta l'id del fornitore che sta creando l'evento
 
     :return: nulla
     """
 
-    documento_evento_generico = crea_documento_evento_generico(Data, Descrizione, Tipo, n_persone,
-                                                               locandina, Ruolo, fornitori_associati, servizi_associati,
-                                                               isPagato)
+    documento_evento_generico = crea_documento_evento_generico(data, descrizione, tipo, n_persone,
+                                                               locandina, ruolo, fornitori_associati, servizi_associati,
+                                                               is_pagato)
     location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
 
     documento_evento_Pubblico = {
         'EventoPubblico': {
             'Prezzo': prezzo,
-            'Nome': Nome,
-            'Luogo': Via,
-            'Regione': Regione,
-            'Ora': Ora,
+            'Nome': nome,
+            'Luogo': via,
+            'Regione': regione,
+            'Ora': ora,
             'BigliettiDisponibili': n_persone
         }
     }
@@ -569,7 +565,7 @@ def crea_evento_pubblico(Data, n_persone, Descrizione, locandina, Ruolo, Tipo, i
     db.Evento.insert_one(documento_evento)
 
 
-def get_tutti_servizi_byFornitoreLocation(id_fornitore):
+def get_tutti_servizi_by_fornitore_location(id_fornitore):
     """
     Funzione che prende i servizi di tipo location associati ad un fornitore
 
@@ -589,7 +585,7 @@ def get_tutti_servizi_byFornitoreLocation(id_fornitore):
     lista_servizi = []
 
     for data in servizi_data:
-        servizio = ServizioOfferto.Servizio_Offerto(data)
+        servizio = ServizioOfferto.ServizioOfferto(data)
         lista_servizi.append(servizio)
 
     return lista_servizi
@@ -603,15 +599,14 @@ def acquista_biglietto(id_evento, id_organizzatore, numero_biglietti):
 
     :param id_evento: (str) stringa che rappresenta l'id dell'evento
     :param id_organizzatore: (str) stringa che reppresenta l'id dell'organizzatore
-
+    :param numero_biglietti: (str) stringa che indica il numero di biglietti che si vogliono acquistare
     :return: nulla
-
     """
     from ..InterfacciaPersistenza import EventoPubblico
     eventi = db['Evento']
     biglietti = db["Biglietto"]
     evento_data = eventi.find_one({"_id": ObjectId(id_evento)})
-    evento = EventoPubblico.Evento_Pubblico(evento_data, evento_data)
+    evento = EventoPubblico.EventoPubblico(evento_data, evento_data)
 
     biglietto_data = {
         "Evento_associato": id_evento,
@@ -619,10 +614,12 @@ def acquista_biglietto(id_evento, id_organizzatore, numero_biglietti):
         "DataEvento": evento.data,
         "Dove": evento.luogo,
         "Ora": evento.ora,
-        "Quantità": numero_biglietti
+        "Quantità": numero_biglietti,
+        'NomeEvento': evento.nome
     }
     biglietto = int(evento.biglietti_disponibili)
-    nuovo_num_biglietti = biglietto - numero_biglietti
+    numero = int(numero_biglietti)
+    nuovo_num_biglietti = biglietto - numero
     nuovo_num_biglietti = str(nuovo_num_biglietti)
 
     biglietti.insert_one(biglietto_data)
@@ -633,18 +630,18 @@ def acquista_biglietto(id_evento, id_organizzatore, numero_biglietti):
     )
 
 
-def get_dati_servizi_organizzatore(id):
+def get_dati_servizi_organizzatore(id_evento):
     """
     Funzione che prende dal database i servizi coinvolti nell'evento dell'organizzatore
 
-    :param id: (str) stringa che rappresenta l'id dell'evento
+    :param id_evento: (str) stringa che rappresenta l'id dell'evento
 
     :return: servizi_lista (lista di oggetti di tipo Servizio Offerto)
     """
     from ..InterfacciaPersistenza import EventoPrivato
     eventi = db['Evento']
-    evento_data = eventi.find_one({"_id": ObjectId(id)})
-    evento = EventoPrivato.Evento_Privato(evento_data, evento_data)
+    evento_data = eventi.find_one({"_id": ObjectId(id_evento)})
+    evento = EventoPrivato.EventoPrivato(evento_data, evento_data)
     servizi_lista = []
     for servizi in evento.servizi_associati:
         servizio_data = db['Servizio Offerto'].find_one({"_id": ObjectId(servizi)})
