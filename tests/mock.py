@@ -8,6 +8,11 @@ from BEvent_app.Routes import views
 from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
 from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
 from db import get_db
+from unittest.mock import MagicMock
+from BEvent_app.GestioneEvento import GestioneEventoService
+
+# Mocking GestioneEventoService functions
+GestioneEventoService = MagicMock()
 
 db = get_db()
 
@@ -129,3 +134,20 @@ def mock_id_servizio():
     servizio_data = db['Servizio Offerto'].find_one({'_id': ObjectId('65a95714c4e2c6f986e1e555')})
     servizio_id = servizio_data['_id']
     return servizio_id
+
+
+def get_dettagli_evento(event_id):
+
+    return {'id': 1, 'name': 'Evento'}
+
+def get_dati_organizzatore(event_id):
+
+    return {'organizer_id': 123, 'organizer_name': 'Organizzatore'}
+
+def get_dati_servizi_organizzatore(event_id):
+
+    return [{'service_id': 456, 'service_name': 'Servizio'}]
+
+GestioneEventoService.get_dettagli_evento.side_effect = get_dettagli_evento
+GestioneEventoService.get_dati_organizzatore.side_effect = get_dati_organizzatore
+GestioneEventoService.get_dati_servizi_organizzatore.side_effect = get_dati_servizi_organizzatore
