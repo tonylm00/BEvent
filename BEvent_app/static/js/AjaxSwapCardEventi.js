@@ -84,14 +84,13 @@ function aggiornaDOM(data) {
                                     <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ eventi[0].id }}"> <a>Prenota</a></button>
                                 </p>
                                 </form>
-                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            
                             `; }
 
-        nuovoContenuto += `</div></div></div>`;
+        nuovoContenuto += `</div>
+                                        </div>
+                                    </div>
+                                </div></div></div></div>`;
 
         let nuovoContenutoTitolo= `<p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">${ data.evento_scelto.nome }</p>`;
         document.querySelector('.right-column').innerHTML = nuovoContenuto;
