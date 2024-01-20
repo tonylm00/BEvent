@@ -52,7 +52,7 @@ function aggiornaDOM(data) {
                         <div class="face3 face5">
                             <div class="content2">`
 
-                            if (data.nome_utente!= null) {
+                            if (data.nome_utente== null) {
                                  nuovoContenuto += `
                             
                                 <p>
