@@ -51,7 +51,7 @@ spec = ["$", "#", "@", "!", "*", "£", "%", "&", "/", "(", ")", "=", "|",
         "+", "-", "^", "_", "-", "?", ",", ":", ";", ".", "§", "°", "[", "]"]
 
 
-def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva):
+def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita):
     """
     controlla la validità dei campi utente e segna eventuali errori utilizzando flash
     :param nome: (str) Nome dell'utente
@@ -78,9 +78,6 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
     elif not isinstance(telefono, str) or not len(telefono) == 10 or not telefono.isdigit():
 
         return False, "Numero telefono non valido"
-    elif not isinstance(piva, str) or not len(piva) == 11 or not piva.isdigit():
-
-        return False, "Partita iva non valida"
 
 
     elif not is_valid_email(email):
@@ -93,6 +90,14 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
 
     else:
         return True, "Controllo riuscito"
+
+
+def is_valid_piva(piva):
+    if not isinstance(piva, str) or not len(piva) == 11 or not piva.isdigit():
+
+        return False, "Partita iva non valida"
+    else:
+        return True, "Partita iva valida"
 
 
 def is_valid_email(email):
@@ -237,43 +242,49 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
     :param regione: (str) regione del fornitore
     :return: restituisce un'istanza del Fornitore se la registrazione ha successo, altrimenti restituisce None
     """
-    result, result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita, piva)
+    result, result_message = controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita)
     if not result:
         flash(result_message, "error")
         return False
     else:
-        result2, result_message2 = controlla_password(password)
-        if not result2:
-            flash(result_message2, "error")
-            return False
-        elif not conferma_password(password, cpassword):
-            flash("Le password non corrispondono", "error")
+        result3, result_message3 = is_valid_piva(piva)
+        if not result3:
+            flash(result_message3, "error")
             return False
         else:
 
-            user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
-                                        regione)
+            result2, result_message2 = controlla_password(password)
+            if not result2:
+                flash(result_message2, "error")
+                return False
+            elif not conferma_password(password, cpassword):
+                flash("Le password non corrispondono", "error")
+                return False
+            else:
 
-            fornitore_data = {
-                'Fornitore': {
-                    'Descrizione': descrizione,
-                    'EventiMassimiGiornaliero': eventi_max_giorn,
-                    'OrarioDiLavoro': "",
-                    'Foto': [],
-                    'Citta': citta,
-                    'Via': via,
-                    'Partita_Iva': piva,
-                    'isLocation': islocation
+                user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                                            regione)
+
+                fornitore_data = {
+                    'Fornitore': {
+                        'Descrizione': descrizione,
+                        'EventiMassimiGiornaliero': eventi_max_giorn,
+                        'OrarioDiLavoro': "",
+                        'Foto': [],
+                        'Citta': citta,
+                        'Via': via,
+                        'Partita_Iva': piva,
+                        'isLocation': islocation
+                    }
                 }
-            }
 
-            documento_fornitore = {**user_data, **fornitore_data}
-            fornitore = Fornitore(user_data, fornitore_data)
+                documento_fornitore = {**user_data, **fornitore_data}
+                fornitore = Fornitore(user_data, fornitore_data)
 
-            db.Utente.insert_one(documento_fornitore)
-            flash("Registrazione avvenuta con successo!", "success")
+                db.Utente.insert_one(documento_fornitore)
+                flash("Registrazione avvenuta con successo!", "success")
 
-            return True
+                return True
 
 
 def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telefono, data_di_nascita, ruolo, regione):
@@ -443,6 +454,6 @@ def get_dati_home_organizzatore(id_organizzatore):
 
 
 def get_utente_by_email(email):
-    user_data = db.Utente.find_one({'email':email})
+    user_data = db.Utente.find_one({'email': email})
     user = Fornitore(user_data, user_data)
     return user
