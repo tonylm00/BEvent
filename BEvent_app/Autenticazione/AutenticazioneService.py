@@ -1,15 +1,14 @@
 from datetime import datetime
 import re
 from bson import ObjectId
-from flask import flash, get_flashed_messages
-
+from flask import flash
 from ..InterfacciaPersistenza.Biglietto import Biglietto
-from ..InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
+from ..InterfacciaPersistenza.EventoPubblico import EventoPubblico
 from ..InterfacciaPersistenza.Utente import Utente
 from ..InterfacciaPersistenza.Organizzatore import Organizzatore
 from ..InterfacciaPersistenza.Fornitore import Fornitore
 from ..InterfacciaPersistenza.Admin import Admin
-from ..InterfacciaPersistenza.EventoPrivato import Evento_Privato
+from ..InterfacciaPersistenza.EventoPrivato import EventoPrivato
 from ..db import get_db
 from werkzeug.security import generate_password_hash
 
@@ -368,7 +367,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     """
     Ottiene i dati relativi all'area organizzatore
     :param id_organizzatore: (str) l'id dell'organizzatore di cui si vogliono ottenere i dati
-    :return: Una tupla contentente un'itanza di Organizzatore, una lista di Evento_Privato e una lista di Biglietto
+    :return: Una tupla contentente un'itanza di Organizzatore, una lista di EventoPrivato e una lista di Biglietto
     """
 
     organizzatore_data = db['Utente'].find_one({'_id': ObjectId(id_organizzatore)})
@@ -380,7 +379,7 @@ def get_dati_area_organizzatore(id_organizzatore):
     }))
     eventi_privati = []
     for data in eventi_privati_data:
-        evento_privato = Evento_Privato(data, data)
+        evento_privato = EventoPrivato(data, data)
         eventi_privati.append(evento_privato)
 
     biglietti_comprati_data = list(db['Biglietto'].find({
@@ -399,7 +398,7 @@ def get_dati_home_organizzatore(id_organizzatore):
     """
     Ottiene i dati per la home page di un organizatore
     :param id_organizzatore: (str) id dell'organizzatore di cui si vogliono ottenere i dati
-    :return: Una tupla contenente un'istanza di Evento_privato e una lista di Evento_Pubblico
+    :return: Una tupla contenente un'istanza di Evento_privato e una lista di EventoPubblico
     """
 
     data_odierna = datetime.now().strftime("%d-%m-%Y")
@@ -411,7 +410,7 @@ def get_dati_home_organizzatore(id_organizzatore):
     }
     try:
         evento_data = db['Evento'].find(query).sort("Data", 1).limit(1).next()
-        evento_privato = Evento_Privato(evento_data, evento_data)
+        evento_privato = EventoPrivato(evento_data, evento_data)
     except StopIteration:
         evento_data = None
         evento_privato = None
@@ -426,7 +425,7 @@ def get_dati_home_organizzatore(id_organizzatore):
     if evento_pubblico_data:
         eventi_pubblici = []
         for data in evento_pubblico_data:
-            evento_pubblico = Evento_Pubblico(data, data)
+            evento_pubblico = EventoPubblico(data, data)
             eventi_pubblici.append(evento_pubblico)
     else:
         query = {
@@ -437,7 +436,7 @@ def get_dati_home_organizzatore(id_organizzatore):
         evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(2)
         eventi_pubblici = []
         for data in evento_pubblico_data:
-            evento_pubblico = Evento_Pubblico(data, data)
+            evento_pubblico = EventoPubblico(data, data)
             eventi_pubblici.append(evento_pubblico)
 
     return evento_privato, eventi_pubblici

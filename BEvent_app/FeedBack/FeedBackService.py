@@ -1,5 +1,4 @@
 from flask import flash
-
 from .. import get_db
 from ..InterfacciaPersistenza.Recensione import Recensione
 from bson import ObjectId

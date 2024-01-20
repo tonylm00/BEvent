@@ -1,5 +1,4 @@
 from flask import Blueprint, flash, request, jsonify
-
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
     ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id
 from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
@@ -7,7 +6,7 @@ from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
 re = Blueprint('re', __name__)
 
 
-@re.route('/visualizza_eventi', methods=['POST'])
+@re.route('/visualizza_eventi', methods=['GET', 'POST'])
 def visualizza_eventi():
     """
     Serve a visualizzare la pagina di ricerca degli eventi pubblici. Prende gli eventi pubblici e li restituisce come

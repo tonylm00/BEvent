@@ -1,18 +1,18 @@
-import os
-
 import pytest
 from bson import ObjectId
 from flask import session
 from flask_login import login_user, current_user
-
-from datetime import datetime
 from BEvent_app import create_app
-from BEvent_app.InterfacciaPersistenza.ServizioOfferto import Servizio_Offerto
+from BEvent_app.InterfacciaPersistenza.ServizioOfferto import ServizioOfferto
 from BEvent_app.Routes import views
 from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
 from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
-from BEvent_app.InterfacciaPersistenza.EventoPubblico import Evento_Pubblico
 from db import get_db
+from unittest.mock import MagicMock
+from BEvent_app.GestioneEvento import GestioneEventoService
+
+# Mocking GestioneEventoService functions
+GestioneEventoService = MagicMock()
 
 db = get_db()
 
@@ -117,20 +117,37 @@ def mock_lista_fornitori():
     return lista_fornitori
 
 
-
 @pytest.fixture
 def mock_lista_servizi():
     servizi_id = [ObjectId("65a955adc4e2c6f986e1e543"), ObjectId("65a95714c4e2c6f986e1e555")]
     servizi_data = db['Servizio Offerto'].find({'_id': {"$in": servizi_id}})
     lista_servizi = []
     for data in servizi_data:
-        servizio = Servizio_Offerto(data)
+        servizio = ServizioOfferto(data)
         lista_servizi.append(servizio)
 
     return lista_servizi
+
 
 @pytest.fixture
 def mock_id_servizio():
     servizio_data = db['Servizio Offerto'].find_one({'_id': ObjectId('65a95714c4e2c6f986e1e555')})
     servizio_id = servizio_data['_id']
     return servizio_id
+
+
+def get_dettagli_evento(event_id):
+
+    return {'id': 1, 'name': 'Evento'}
+
+def get_dati_organizzatore(event_id):
+
+    return {'organizer_id': 123, 'organizer_name': 'Organizzatore'}
+
+def get_dati_servizi_organizzatore(event_id):
+
+    return [{'service_id': 456, 'service_name': 'Servizio'}]
+
+GestioneEventoService.get_dettagli_evento.side_effect = get_dettagli_evento
+GestioneEventoService.get_dati_organizzatore.side_effect = get_dati_organizzatore
+GestioneEventoService.get_dati_servizi_organizzatore.side_effect = get_dati_servizi_organizzatore
