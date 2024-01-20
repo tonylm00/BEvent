@@ -136,18 +136,37 @@ def mock_id_servizio():
     return servizio_id
 
 
-def get_dettagli_evento(event_id):
+"""
+            
+class MockOrganizzatore:
+    def __init__(self, citta):
+        self.citta = citta
 
-    return {'id': 1, 'name': 'Evento'}
+class MockEvento:
+    def __init__(self, id, data, n_persone, descrizione, locandina, ruolo, tipo, isPagato, fornitori_associati, servizi_associati):
+        self.id = id
+        self.data = data
+        self.n_persone = n_persone
+        self.descrizione = descrizione
+        self.locandina = locandina  # Assumiamo che locandina sia una stringa che rappresenta il percorso dell'immagine
+        self.ruolo = ruolo
+        self.tipo = tipo
+        self.isPagato = isPagato
+        self.fornitori_associati = fornitori_associati
+        self.servizi_associati = servizi_associati
 
-def get_dati_organizzatore(event_id):
+class MockServizioOfferto:
+    def __init__(self, _id, descrizione, tipo, prezzo, quantita, foto_servizio, isCurrentVersion, isDeleted, fornitore_associato):
+        self._id = _id
+        self.descrizione = descrizione
+        self.tipo = tipo
+        self.prezzo = prezzo
+        self.quantita = quantita
+        self.foto_servizio = foto_servizio  # Assumiamo che sia una lista di stringhe che rappresentano il percorso delle immagini
+        self.isCurrentVersion = isCurrentVersion
+        self.isDeleted = isDeleted
+        self.fornitore_associato = fornitore_associato
 
-    return {'organizer_id': 123, 'organizer_name': 'Organizzatore'}
-
-def get_dati_servizi_organizzatore(event_id):
-
-    return [{'service_id': 456, 'service_name': 'Servizio'}]
-
-GestioneEventoService.get_dettagli_evento.side_effect = get_dettagli_evento
-GestioneEventoService.get_dati_organizzatore.side_effect = get_dati_organizzatore
-GestioneEventoService.get_dati_servizi_organizzatore.side_effect = get_dati_servizi_organizzatore
+            
+            
+        """
