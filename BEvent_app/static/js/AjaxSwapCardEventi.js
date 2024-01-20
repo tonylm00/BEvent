@@ -28,6 +28,8 @@ function aggiornaDOM(data) {
     if (data.evento_scelto) {
 
         let nuovoContenuto = `
+            <p class="projTitle textGradient" style="font-size: 26px; margin-top: 10px;">${ data.evento_scelto.nome }</p>
+            <div class="overflow-container">
             <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
                 <img class="img" src="data:image/jpeg;base64,${data.evento_scelto.locandina}" alt="Immagine">
             </div>
@@ -62,21 +64,19 @@ function aggiornaDOM(data) {
                 </div>
             `
 
-        nuovoContenuto += `</div></div>`;
+        nuovoContenuto += `</div></div></div>`;
 
-
-        document.querySelector('.overflow-container').innerHTML = nuovoContenuto;
-
-        /*document.querySelectorAll('.overflow-container .watch').forEach(elemento => {
+        let nuovoContenutoTitolo= `<p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">${ data.evento_scelto.nome }</p>`;
+        document.querySelector('.right-column').innerHTML = nuovoContenuto;
+        document.querySelectorAll('.overflow-container .watch').forEach(elemento => {
             aggiungiElementoAllObserver(elemento);
-        });*/
+        });
     } else {
         console.error('Errore nella risposta:', data.errore);
     }
 }
 
-/*
 function aggiungiElementoAllObserver(element) {
     observer.observe(element);
 }
-*/
+
