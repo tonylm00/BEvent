@@ -4,7 +4,30 @@ from ..Utils import Image
 
 
 class ServizioOfferto:
+    """
+       Classe che rappresenta un servizio offerto.
+
+       Args:
+           service_data (dict): Dati del servizio offerto.
+
+       Attributes:
+           _id (str): Identificatore univoco del servizio.
+           descrizione (str): Descrizione del servizio.
+           tipo (str): Tipo del servizio.
+           prezzo (float): Prezzo del servizio.
+           quantita (int): Quantità disponibile del servizio.
+           foto_servizio (list): Elenco di immagini associate al servizio.
+           isCurrentVersion (bool): Indica se il servizio è la versione corrente.
+           isDeleted (bool): Indica se il servizio è stato eliminato.
+           fornitore_associato (str): ID del fornitore associato al servizio.
+       """
     def __init__(self, service_data):
+        """
+                Inizializza un nuovo oggetto ServizioOfferto.
+
+                Args:
+                    service_data (dict): Dati del servizio offerto.
+                """
         self._id = str(service_data['_id'])
         self.descrizione = service_data['Descrizione']
         self.tipo = service_data['Tipo']

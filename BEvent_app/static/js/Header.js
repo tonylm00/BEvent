@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById('myModal');
     const button = document.getElementById("modal-button");
     const button2 = document.getElementById("modal-button-home");
+    const button3 = document.getElementById("modal-button-ricerca-eventi")
     const close = document.querySelector(".close");
 
     const openModal = function() {
@@ -20,6 +21,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     if (button2) {
         button2.addEventListener('click', openModal, false);
+    }
+    if (button3) {
+        button3.addEventListener('click', openModal, false);
     }
     if (close) {
         close.addEventListener('click', closeModal, false);
