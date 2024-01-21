@@ -444,7 +444,7 @@
 
 .overflow-container{
     overflow: auto;
-    height: calc(100% - 240px);
+    height: calc(100% - 270px);
 }
 
 .bookmarkBtn {

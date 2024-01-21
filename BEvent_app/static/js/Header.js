@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (button3) {
         button3.addEventListener('click', function() {
             openModal();
-            document.getElementById("accesso").value = "accesso-statico";
+            //document.getElementById("accesso").value = "accesso-statico";
         }, false);
     }
     if (close) {

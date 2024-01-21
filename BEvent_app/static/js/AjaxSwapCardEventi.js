@@ -96,11 +96,31 @@ function aggiornaDOM(data) {
         document.querySelector('.right-column').innerHTML = nuovoContenuto;
         document.querySelectorAll('.right-column .watch').forEach(elemento => {
             aggiungiElementoAllObserver(elemento);
+            riAssegnaEventListeners();
         });
     } else {
         console.error('Errore nella risposta:', data.errore);
     }
 }
+
+const modal = document.getElementById('myModal');
+
+const openModal = function() {
+        modal.style.display = "block";
+        document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    };
+
+
+function riAssegnaEventListeners() {
+    const buttonRicercaEventi = document.getElementById("modal-button-ricerca-eventi");
+    if (buttonRicercaEventi) {
+        buttonRicercaEventi.addEventListener('click', function() {
+            openModal();
+        }, false);
+    }
+}
+
+
 
 function aggiungiElementoAllObserver(element) {
     observer.observe(element);
