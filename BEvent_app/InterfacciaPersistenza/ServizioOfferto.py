@@ -15,7 +15,6 @@ class ServizioOfferto:
            descrizione (str): Descrizione del servizio.
            tipo (str): Tipo del servizio.
            prezzo (float): Prezzo del servizio.
-           quantita (int): Quantità disponibile del servizio.
            foto_servizio (list): Elenco di immagini associate al servizio.
            isCurrentVersion (bool): Indica se il servizio è la versione corrente.
            isDeleted (bool): Indica se il servizio è stato eliminato.
@@ -32,7 +31,6 @@ class ServizioOfferto:
         self.descrizione = service_data['Descrizione']
         self.tipo = service_data['Tipo']
         self.prezzo = service_data['Prezzo']
-        self.quantita = service_data['Quantità']
         self.foto_servizio = []
         self.isCurrentVersion = service_data['isCurrentVersion'],
         self.isDeleted = service_data['isDeleted'],

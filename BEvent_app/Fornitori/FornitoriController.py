@@ -15,7 +15,6 @@ Fornitori = Blueprint('Fornitori', __name__)
 def visualizza_controller():
     """
     serve a visualizzare tutti i dati relativi agli eventi( sia pubblici che privati ),servizi offerti, generalità  del fornitore
-
     :return: Pagina del fornitore AreaFornitore.Html
     """
     id_fornitore = session["id"]
@@ -94,8 +93,8 @@ def modifica_servizio_controller():
 @login_required
 def aggiungi_servizio_controller():
     """
-
-    :return:
+     Serve ad aggiungerere un servizio nell'aria del fornitore
+    :return: reindirizza all'area fornitore nel caso in cui tutti i campi rispettino le condizioni altrimenti restituisce un errore
     """
     files = request.files.getlist('photos')
     fornitore_associato = session['id']
@@ -113,12 +112,10 @@ def aggiungi_servizio_controller():
     descrizione = request.form.get("descrizione")
     tipo = request.form.get("tipo")
     prezzo = request.form.get("prezzo")
-    quantita = request.form.get("quantità")
     nuovi_dati = {
         "Descrizione": descrizione,
         "Tipo": tipo,
         "Prezzo": prezzo,
-        "Quantità": quantita,
         "FotoServizio": byte_arrays_bytes,
         "fornitore_associato": fornitore_associato,
         "isDeleted": False,
@@ -162,8 +159,8 @@ def visualizza_evento_dettagli_controller():
 @login_required
 def invio_feedback_controller():
     """
-    funzione che si
-    :return:
+    Permette l'inserimento di un feedback al servizio offerto di un altro fornitore
+    :return: reindirizza alla a pagina del fornitore
 
     """
     id = request.form.get("valutato")
