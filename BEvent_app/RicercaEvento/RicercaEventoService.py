@@ -16,12 +16,28 @@ def get_eventi():
     db = get_db()
     eventi_collection = db['Evento']
     data_odierna = datetime.now().strftime("%d-%m-%Y")
+    print(data_odierna)
     eventi_data = list(eventi_collection.find({
-        "Data": {"$gt": data_odierna},
+        "$expr": {
+            "$gt": [
+                {
+                    "$dateFromString": {
+                        "dateString": "$Data",
+                        "format": "%d-%m-%Y"
+                    }
+                },
+                {
+                    "$dateFromString": {
+                        "dateString": data_odierna,
+                        "format": "%d-%m-%Y"
+                    }
+                }
+            ]
+        },
         "Ruolo": "1",
         "EventoPubblico.BigliettiDisponibili": {"$ne": "0"}
     }))
-
+    print(eventi_data)
     lista_eventi = []
 
     for data in eventi_data:

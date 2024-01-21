@@ -4,7 +4,7 @@ from flask_login import current_user
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
     ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id, \
     serializza_eventi_column
-from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page
+from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page, home
 
 re = Blueprint('re', __name__)
 
@@ -22,7 +22,7 @@ def visualizza_eventi():
         return ricerca_eventi_page(eventi=eventi)
     else:
         flash("Errore di sissstema")
-        return organizzatore_page()
+        return home()
 
 
 @re.route('/filtro_barra_ricerca_eventi', methods=['POST'])

@@ -467,7 +467,8 @@ def crea_event_publico():
     content = file.read()
     foto_byte_array = Image.convert_image_to_byte_array(content)
     fornitore = FornitoriService.get_dati_fornitore(session["id"])
-    data = request.form.get('data')
+    data_non_formattata = request.form.get('data')
+    data = datetime.strptime(data_non_formattata, "%Y-%m-%d").strftime("%d-%m-%Y")
     n_persone = request.form.get('n_persone')
     descrizione = request.form.get('descrizione')
     locandina = foto_byte_array
