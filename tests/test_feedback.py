@@ -13,7 +13,7 @@ def test_inserisci_recensione_1_4_1(mock_app, mock_id_servizio):
                                           "un'atmosfera accogliente. I piatti deliziosi e creativi soddisfano ogni "
                                           "palato. Un vero gioiello culinario da non perdere")
             message = get_flashed_messages(category_filter="error")
-            assert result is False and message[0] == "La descrizione della recensione è troppo lunga!"
+            assert result is False and message[0] == "La descrizione della recensione è troppo lunga! "
 
 
 def test_inserisci_recensione_1_4_2(mock_app, mock_id_servizio):
