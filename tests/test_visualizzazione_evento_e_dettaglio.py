@@ -1,29 +1,14 @@
-import unittest
-from BEvent_app.GestioneEvento.GestioneEventoController import visualizza_evento_dettagli_controller
-from mocks import GestioneEventoService
 
-class TestGestioneEventoController(unittest.TestCase):
+from flask import get_flashed_messages
 
-    def test_visualizza_evento_dettagli_controller(self):
+from BEvent_app.Fornitori.FornitoriService import get_dettagli_evento, get_dati_organizzatore,get_dati_servizi
+from mock import mock_app
 
-        request_form = {'id': '1'}
-        expected_evento = {'id': 1, 'name': 'Evento'}
-        expected_organizzatore = {'organizer_id': 123, 'organizer_name': 'Organizzatore'}
-        expected_servizi = [{'service_id': 456, 'service_name': 'Servizio'}]
+def test_get_dettagli_evento(mock_app):
+    with mock_app.app_context(), mock_app.test_client() as test_client:
+        test_client.get('/mock_login_fornitore')
 
+        result=get_dettagli_evento("luci")
 
-        with patch('BEvent_app.GestioneEvento.GestioneEventoController.request', request_form), \
-             patch('BEvent_app.GestioneEvento.GestioneEventoController.GestioneEventoService', GestioneEventoService):
-            response = visualizza_evento_dettagli_controller()
-
-
-        GestioneEventoService.get_dettagli_evento.assert_called_once_with('1')
-        GestioneEventoService.get_dati_organizzatore.assert_called_once_with('1')
-        GestioneEventoService.get_dati_servizi_organizzatore.assert_called_once_with('1')
-
-        self.assertEqual(response.evento, expected_evento)
-        self.assertEqual(response.organizzatore, expected_organizzatore)
-        self.assertEqual(response.servizi, expected_servizi)
-
-if __name__ == '__main__':
-    unittest.main()
+        message = get_flashed_messages(category_filter="warning")
+        assert result is None and message[0] == "ok"

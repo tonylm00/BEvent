@@ -203,6 +203,7 @@ def get_dettagli_evento(id):
     eventi = db['Evento']
     evento_data = eventi.find_one({"_id": ObjectId(id)})
     evento = EventoPrivato.EventoPrivato(evento_data, evento_data)
+    flash("nessun dettaglio", category="success")
     return evento
 
 
