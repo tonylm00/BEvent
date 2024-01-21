@@ -144,12 +144,12 @@
             <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">Eventi in Evidenza </p>
 
         <div class="overflow-container">
+            <p class="projTitle watch fade-in" style="font-size: 18px; margin-top: 10px; color: black; border-bottom: 3px solid black;"> {{ eventi[0].tipo }} </p>
                 <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
-                <img class="img" src="../static/images/Cerca.jpg" alt="Immagine">
+                <img class="img" src="data:image/jpeg;base64,{{ eventi[0].locandina }}" alt="Immagine">
                 </div>
-                <h1 class="watch fade-in" style="text-align: center">{{ eventi[0].tipo}}</h1>
                 <p class="watch fade-in" style="text-align: center">{{ eventi[0].descrizione }}</p>
-                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Biglietto </p>
+                <p class="projTitle watch fade-in" style="font-size: 18px; margin-top: 10px;color: black; border-bottom: 3px solid black;"> Biglietto </p>
 
 
                 <div class="grid-container-servizi">
@@ -164,6 +164,21 @@
                     </div>
                     <div class="face3 face5">
     <div class="content2">
+        {% if not session.get('nome_utente') %}
+        <p>
+
+            <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
+
+            <span>Prezzo Biglietto:</span><span id="prezzo">{{ eventi[0].prezzo }}</span> &euro;<br>
+            Luogo: {{ eventi[0].luogo }}, {{ eventi[0].regione }} <br>
+            Ora: {{ eventi[0].ora }} <br>
+            Biglietti Disponibili: <span id="quantita_disponibile">{{ eventi[0].biglietti_disponibili }}</span>/{{ eventi[0].n_persone }}
+            <br>
+            <span id="prezzoTotale"> </span><br>
+            <button type="submit" style="border: none; background: transparent" id="modal-button-ricerca-eventi" > <a>Prenota</a></button>
+
+        </p>
+        {% else %}
         <form style="justify-content: center" action="/acquista_biglietto" method="post">
         <p>
 
@@ -175,10 +190,11 @@
             Biglietti Disponibili: <span id="quantita_disponibile">{{ eventi[0].biglietti_disponibili }}</span>/{{ eventi[0].n_persone }}
             <br>
             <span id="prezzoTotale"> </span><br>
-
             <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ eventi[0].id }}"> <a>Prenota</a></button>
         </p>
         </form>
+        {% endif %}
+
     </div>
 </div>
 
@@ -199,6 +215,7 @@
     <script src="../static/js/AjaxRicercaEventi.js"></script>
     <script src="../static/js/AjaxSwapCardEventi.js"></script>
     <script src="../static/js/RicercaEvento.js"></script>
+    <script src="../static/js/Header.js"></script>
 
 	</body>
 </html>

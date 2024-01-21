@@ -73,6 +73,7 @@ def test_aggiungi_servizio_1_6_4(mock_app):
                 "isDeleted": False,
                 "isCurrentVersion": None
             }
+
             result = aggiungi_servizio(servizio_data)
             message = get_flashed_messages(category_filter="succes")
             assert result is True and message[0] == "Aggiunta avvenuto con successo"

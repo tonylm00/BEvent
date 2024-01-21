@@ -59,6 +59,28 @@ def serializza_eventi(evento):
     return evento
 
 
+def serializza_eventi_column(evento, nome_utente):
+    evento = {
+        'id': evento.id,
+        'data': evento.data,
+        'descrizione': evento.descrizione,
+        'n_persone': evento.n_persone,
+        'locandina': evento.locandina,
+        'tipo': evento.tipo,
+        'fornitori_associati': evento.fornitori_associati,
+        'servizi_associati': evento.servizi_associati,
+        'isPagato': evento.isPagato,
+        'prezzo': evento.prezzo,
+        'nome': evento.nome,
+        'regione': evento.regione,
+        'luogo': evento.luogo,
+        'ora': evento.ora,
+        'biglietti_disponibili': evento.biglietti_disponibili,
+        'nome_utente': nome_utente
+    }
+    return evento
+
+
 def ricerca_eventi_per_parola(ricerca):
     """
     Funzione per ottenere dal database la lista eventi pubblici la cui descrizione o nome contiene la parola inserita
