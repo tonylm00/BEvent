@@ -8,7 +8,7 @@ def test_get_dettagli_evento(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_fornitore')
 
-        result=get_dettagli_evento("luci")
+        result = get_dettagli_evento("6585c70d8e551a0d24352c2f")
 
         message = get_flashed_messages(category_filter="warning")
         assert result is None and message[0] == "ok"
