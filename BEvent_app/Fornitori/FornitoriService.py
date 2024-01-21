@@ -201,9 +201,14 @@ def get_dettagli_evento(id):
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
-    evento_data = eventi.find_one({"_id": ObjectId(id)})
-    evento = EventoPrivato.EventoPrivato(evento_data, evento_data)
-    flash("nessun dettaglio", category="success")
+    evento_data = eventi.find_one({"_id": ObjectId(id),
+                                   "Ruolo": "2"})
+    if evento_data:
+        evento = EventoPrivato.EventoPrivato(evento_data, evento_data)
+        flash("nessun dettaglio", category="success")
+    else:
+        evento = None
+        flash("ok", "warning")
     return evento
 
 
