@@ -44,7 +44,7 @@ function aggiornaDOM(data) {
                         <div class="face3 face4">
                             <div class="content2">
                                 <img src="data:image/jpeg;base64,${servizio.foto_servizio[0]}">
-                                <h3>${servizio.tipo}</h3>
+                                <h3 style="font-size: 18px;">${servizio.tipo}</h3>
                             </div>
                         </div>
                         <div class="face3 face5">
