@@ -91,7 +91,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
                     <div class="face face2">
                         <div class="content">
                             <p> <b> ${tipoevento} <br></b> ${descriizonevento}<br> ${regione} </p>
-                                <button style="border: none; background: transparent" id='${evento.id}' onclick="aggiornaColonnaDx('${evento.id}')">Visualizza</button>
+                                <button style="border: none; background: transparent" id='${evento.id}' onclick="aggiornaColonnaDxEvento('${evento.id}')"><a>Visualizza</a></button>
                         </div>
                     </div>
                 </div>
