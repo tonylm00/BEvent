@@ -3,7 +3,7 @@ from flask_login import current_user
 
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
     ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id, \
-    serializza_eventi_column
+    serializza_eventi_column, get_eventi_sponsorizzati
 from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page, home
 
 re = Blueprint('re', __name__)
@@ -17,9 +17,10 @@ def visualizza_eventi():
 
     :return: ricercaeventi.html, con la lista di oggetti di tipo evento pubblico passata come parametro
     """
+    eventi_sponsorizzati = get_eventi_sponsorizzati()
     eventi = get_eventi()
     if eventi:
-        return ricerca_eventi_page(eventi=eventi)
+        return ricerca_eventi_page(eventi=eventi, eventi_sponsorizzati=eventi_sponsorizzati)
     else:
         flash("Errore di sissstema")
         return home()

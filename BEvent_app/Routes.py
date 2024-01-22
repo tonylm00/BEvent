@@ -59,8 +59,8 @@ def sceltafornitori_page(fornitori=None, servizi=None, recensioni=None):
 
 
 @views.route('/RicercaEventi_page')
-def ricerca_eventi_page(eventi=None):
-    return render_template('RicercaEventi.html', eventi=eventi)
+def ricerca_eventi_page(eventi=None, eventi_sponsorizzati=None):
+    return render_template('RicercaEventi.html', eventi=eventi, eventi_sponsorizzati=eventi_sponsorizzati)
 
 
 @views.route('/RiepilogoScelte_page')
