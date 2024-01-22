@@ -184,8 +184,11 @@ def ricerca_eventi_per_categoria(categoria):
    """
     if categoria not in ['Conferenze e Seminari', 'Concerti e Spettacoli', 'Mostre ed Esposizioni', 'Corsi e Workshop',
                          'Eventi Benefici', 'Eventi Sociali']:
-        flash("La categoria non esiste", category="error")
-        return []
+        if categoria == "Annulla":
+            return get_eventi()
+        else:
+            flash("La categoria non esiste", category="error")
+            return []
     elif categoria in ['Conferenze e Seminari', 'Concerti e Spettacoli', 'Mostre ed Esposizioni', 'Corsi e Workshop',
                        'Eventi Benefici', 'Eventi Sociali']:
         flash("La categoria esiste", category="success")
@@ -210,8 +213,11 @@ def ricerca_eventi_per_regione(regione):
     if regione not in ['Abruzzo', 'Basilicata', 'Calabria', 'Campania', 'Emilia Romagna', 'Friuli Venezia Giulia',
                        'Lazio', 'Liguria', 'Lombardia', 'Marche', 'Molise', 'Piemonte', 'Puglia', 'Sardegna', 'Sicilia',
                        'Toscana', 'Trentino Alto Adige', 'Umbria', 'Valle d Aosta', 'Veneto']:
-        flash("La regione non esiste", category="error")
-        return []
+        if regione == 'Annulla':
+            return get_eventi()
+        else:
+            flash("La regione non esiste", category="error")
+            return []
     elif regione in ['Abruzzo', 'Basilicata', 'Calabria', 'Campania', 'Emilia Romagna', 'Friuli Venezia Giulia',
                      'Lazio', 'Liguria', 'Lombardia', 'Marche', 'Molise', 'Piemonte', 'Puglia', 'Sardegna', 'Sicilia',
                      'Toscana', 'Trentino Alto Adige', 'Umbria', 'Valle d Aosta', 'Veneto']:
@@ -237,6 +243,19 @@ def ricerca_eventi_per_prezzo(prezzo_min, prezzo_max):
 
     :return: una lista filtrata di oggetti: eventi_filtrati (lista di oggetti di tipo Evento Pubblico)
    """
+    if prezzo_min == "" and prezzo_max == "":
+        return get_eventi()
+    elif prezzo_min =="" and int(prezzo_max) >= 0:
+        prezzo_min = 0
+        eventi_non_filtrati = get_eventi()
+        eventi_filtrati = [evento for evento in eventi_non_filtrati if float(prezzo_min) <= float(evento.prezzo) <=
+                           float(prezzo_max)]
+        return eventi_filtrati
+    elif int(prezzo_min)>=0 and prezzo_max == "":
+
+        eventi_non_filtrati = get_eventi()
+        eventi_filtrati = [evento for evento in eventi_non_filtrati if float(prezzo_min) <= float(evento.prezzo)]
+        return eventi_filtrati
     if int(prezzo_min) <= 0 or int(prezzo_max) <= 0:
         flash("il prezzo minore o massimo è negativo", category="error")
         return []
