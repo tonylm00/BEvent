@@ -46,6 +46,7 @@ input[type="date"],
 input[type="email"],
 input[type="password"],
 input[type="text"],
+input[type="number"],
 select{
     border: 1px solid darkorange;
     border-radius: 20px;
