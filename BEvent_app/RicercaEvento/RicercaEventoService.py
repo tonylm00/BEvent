@@ -190,11 +190,10 @@ def ricerca_eventi_per_categoria(categoria):
                        'Eventi Benefici', 'Eventi Sociali']:
         flash("La categoria esiste", category="success")
 
-    eventi_non_filtrati = get_eventi()
+        eventi_non_filtrati = get_eventi()
 
-    eventi_filtrati = [evento for evento in eventi_non_filtrati if categoria.lower() == evento.tipo]
-
-    return eventi_filtrati
+        eventi_filtrati = [evento for evento in eventi_non_filtrati if categoria.lower() == evento.tipo.lower()]
+        return eventi_filtrati
 
 
 def ricerca_eventi_per_regione(regione):
@@ -220,7 +219,7 @@ def ricerca_eventi_per_regione(regione):
 
     eventi_non_filtrati = get_eventi()
 
-    eventi_filtrati = [evento for evento in eventi_non_filtrati if regione.lower() == evento.regione]
+    eventi_filtrati = [evento for evento in eventi_non_filtrati if regione.lower() == evento.regione.lower()]
 
     return eventi_filtrati
 
@@ -244,11 +243,11 @@ def ricerca_eventi_per_prezzo(prezzo_min, prezzo_max):
     elif int(prezzo_min) > 0 and int(prezzo_max) > 0:
         flash("il prezzo minore o massimo non è negativo", category="success")
 
-    eventi_non_filtrati = get_eventi()
+        eventi_non_filtrati = get_eventi()
+        eventi_filtrati = [evento for evento in eventi_non_filtrati if float(prezzo_min) <= float(evento.prezzo) <=
+                           float(prezzo_max)]
 
-    eventi_filtrati = [evento for evento in eventi_non_filtrati if prezzo_min <= evento.prezzo <= prezzo_max]
-
-    return eventi_filtrati
+        return eventi_filtrati
 
 
 def get_evento_by_id(id_evento):

@@ -211,7 +211,7 @@ def filtro_prezzo_liste(prezzo_min, prezzo_max, data):
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
-    servizi_filtrati = [servizio for servizio in servizi_non_filtrati if prezzo_min <= servizio.prezzo <= prezzo_max]
+    servizi_filtrati = [servizio for servizio in servizi_non_filtrati if float(prezzo_min) <= float(servizio.prezzo) <= float(prezzo_max)]
     id_fornitori = set(servizio.fornitore_associato for servizio in servizi_filtrati)
     fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if fornitore.id in id_fornitori]
 
@@ -566,6 +566,7 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     }
     documento_evento = {**documento_evento_generico, **documento_evento_pubblico}
     db.Evento.insert_one(documento_evento)
+    return True
 
 
 def valid_evento(data, n_persone, tipo, prezzo, ora):
@@ -584,8 +585,8 @@ def valid_evento(data, n_persone, tipo, prezzo, ora):
         flash('il tipo deve essere uno di quelli selezionati', "error")
         return False
 
-    if not isinstance(prezzo, str):
-        flash('il prezzo deve essere maggiore di 0', "error")
+    if not isinstance(prezzo, str) or not re.match(r'^(?!0$)[0-9]+$', prezzo):
+        flash('il prezzo selezionato non è valido', "error")
         return False
 
     pattern = re.compile(r'^[0-2][0-9]:[0-5][0-9]$')
