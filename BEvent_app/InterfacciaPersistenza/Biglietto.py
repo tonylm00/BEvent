@@ -29,4 +29,3 @@ class Biglietto:
         self.dove = biglietto_data['Dove']
         self.ora = biglietto_data['Ora']
         self.quantita = biglietto_data['Quantità']
-

@@ -13,14 +13,13 @@ def is_valid_number(value):
         return False
 
 
-def validate_servizio_data(descrizione, tipo, prezzo, quantita):
+def validate_servizio_data(descrizione, tipo, prezzo):
     """
     serve un validare i dati di servizio
 
     :param descrizione: str
     :param tipo: str
     :param prezzo: float
-    :param quantita: int
 
     :return:false in caso un campo non risetti le condizioni,
     True se invece i campi sono validi
@@ -132,10 +131,13 @@ def elimina_servizio(servizio_id):
 
 def modifica_servizio(nuovi_dati, servizio_id):
     """
-    serve a modificare un servizio offerto, se quest'ultimo è stato già prenotato in un evento crea un nuovo servizio offerto
-    con i campi modificati mentre il servizio con quell'id già esistente cambierà il campo "isCurrentVersion" con l'id del servizio appena creato.
+    serve a modificare un servizio offerto, se quest'ultimo è stato già prenotato in un evento crea un nuovo servizio
+    offerto
+    con i campi modificati mentre il servizio con quell'id già esistente cambierà il campo "isCurrentVersion" con l'id
+    del servizio appena creato.
     se quest'ultimo non è
     :param nuovi_dati: (dict) dizionario con tutti  i dati relativi al servizio
+    :param servizio_id: (string) stringa che reappresenta l'id del servizio
 
     :return: restituisce l'id del servizio modificato
     """
@@ -193,7 +195,7 @@ def aggiungi_servizio(nuovi_dati):
     :param nuovi_dati: (dict) dizionario con tutti  i dati relativi al servizio
     :return: True se il servizio è stato inserito, false se quest'ultimo non è stato inserito
     """
-    result = validate_servizio_data(nuovi_dati['Descrizione'], nuovi_dati['Tipo'], nuovi_dati['Prezzo'], 2)
+    result = validate_servizio_data(nuovi_dati['Descrizione'], nuovi_dati['Tipo'], nuovi_dati['Prezzo'])
     if result:
         db = get_db()
         db['Servizio Offerto'].insert_one(nuovi_dati)
@@ -209,7 +211,6 @@ def get_eventi_by_fornitore_privato(id):
     :return: la lista degli eventi
     """
     from ..InterfacciaPersistenza import EventoPrivato
-    print(id)
     db = get_db()
     eventi = db['Evento']
     eventi_fornitore_privati = eventi.find({"fornitori_associati": id, "Ruolo": "2"})
@@ -229,7 +230,6 @@ def get_eventi_fornitore_pubblico(id):
     :return: la lista degli eventi
     """
     from ..InterfacciaPersistenza import EventoPubblico
-    print(id)
     db = get_db()
     eventi = db['Evento']
     eventi_fornitore_pubblico = eventi.find({"fornitori_associati": id, "Ruolo": "1"})
@@ -291,11 +291,9 @@ def get_dati_organizzatore(id):
 
 def get_dati_servizi(id, id_fornitore):
     """
-    serve a vedere tutti i dettagli dei servizi offerti impiegati in un determinato evento escludendo i servizi di un fornitore( ovvero quello
-    che ha richiesto questa funzione)
-    :param id: (str) id dell'evento
-    :param id_fornitore: (str) id del fornitore da escludere dalla ricerca
-    :return: organizzatore ricercato
+    serve a vedere tutti i dettagli dei servizi offerti impiegati in un determinato evento escludendo i servizi di un
+    fornitore( ovvero quello che ha richiesto questa funzione) :param id: (str) id dell'evento :param id_fornitore: (
+    str) id del fornitore da escludere dalla ricerca :return: organizzatore ricercato
     """
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()

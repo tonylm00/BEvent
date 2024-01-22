@@ -1,8 +1,9 @@
 from flask import Blueprint, request, session
 from flask_login import login_required
 from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byfornitore, aggiorna_foto_fornitore, \
-    aggiungi_servizio, modifica_servizio, elimina_servizio, get_eventi_by_fornitore_privato, get_eventi_fornitore_pubblico, \
-    cancella_evento, get_dettagli_evento, get_dati_organizzatore, get_dati_servizi, invio_feed_back,sponsorizza
+    aggiungi_servizio, modifica_servizio, elimina_servizio, get_eventi_by_fornitore_privato, \
+    get_eventi_fornitore_pubblico, \
+    cancella_evento, get_dettagli_evento, get_dati_organizzatore, get_dati_servizi, invio_feed_back, sponsorizza
 from flask import redirect
 from ..Utils import Image
 from ..Routes import fornitore_page, visualizza_evento_dettagli_page
@@ -14,16 +15,16 @@ Fornitori = Blueprint('Fornitori', __name__)
 @login_required
 def visualizza_controller():
     """
-    serve a visualizzare tutti i dati relativi agli eventi( sia pubblici che privati ),servizi offerti, generalità  del fornitore
-    :return: Pagina del fornitore AreaFornitore.Html
+    serve a visualizzare tutti i dati relativi agli eventi( sia pubblici che privati ),servizi offerti, generalità
+    del fornitore :return: Pagina del fornitore AreaFornitore.Html
     """
     id_fornitore = session["id"]
     dati = get_dati_fornitore(id_fornitore)
     servizi = get_tutti_servizi_byfornitore(id_fornitore)
-    eventiPrivati = get_eventi_by_fornitore_privato(id_fornitore)
-    eventiPubblici = get_eventi_fornitore_pubblico(id_fornitore)
+    eventi_privati = get_eventi_by_fornitore_privato(id_fornitore)
+    eventi_pubblici = get_eventi_fornitore_pubblico(id_fornitore)
 
-    return fornitore_page(servizi=servizi, dati=dati, eventiPrivati=eventiPrivati, eventiPubblici=eventiPubblici)
+    return fornitore_page(servizi=servizi, dati=dati, eventi_privati=eventi_privati, eventi_pubblici=eventi_pubblici)
 
 
 @Fornitori.route('/aggiungi_foto_fornitore', methods=['POST'])
@@ -39,8 +40,7 @@ def aggiungi_foto_fornitore_controller():
     byte_arrays = []
 
     for file in files:
-        filename = file.filename
-        content_type = file.content_type
+
         content = file.read()
 
         byte_array = Image.convert_image_to_byte_array(content)
@@ -84,7 +84,6 @@ def modifica_servizio_controller():
         "FotoServizio": request.form.get("foto_servizio"),
         "fornitore_associato": session["id"]
     }
-    print(request.form.get("servizio_id"))
     modifica_servizio(nuovi_dati, request.form.get("servizio_id"))
     return redirect('/fornitori')
 
@@ -93,16 +92,15 @@ def modifica_servizio_controller():
 @login_required
 def aggiungi_servizio_controller():
     """
-     Serve ad aggiungerere un servizio nell'aria del fornitore
-    :return: reindirizza all'area fornitore nel caso in cui tutti i campi rispettino le condizioni altrimenti restituisce un errore
+    Serve ad aggiungerere un servizio nell'aria del fornitore :return: reindirizza all'area fornitore nel caso in cui
+    tutti i campi rispettino le condizioni altrimenti restituisce un errore
     """
     files = request.files.getlist('photos')
     fornitore_associato = session['id']
     byte_arrays = []
 
     for file in files:
-        filename = file.filename
-        content_type = file.content_type
+
         content = file.read()
 
         byte_array = Image.convert_image_to_byte_array(content)
@@ -122,7 +120,7 @@ def aggiungi_servizio_controller():
         "isCurrentVersion": None
     }
     result = aggiungi_servizio(nuovi_dati)
-    if result == True:
+    if result:
         return redirect('/fornitori')
     else:
         return "errore"
@@ -167,6 +165,7 @@ def invio_feedback_controller():
     valutazione = request.form.get("valutazione")
     invio_feed_back(id, session["id"], valutazione)
     return redirect("/fornitori")
+
 
 @Fornitori.route('/sponsorizza_evento', methods=['POST'])
 @login_required

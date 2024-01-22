@@ -79,7 +79,6 @@ def controlla_campi(nome, cognome, telefono, nome_utente, email, data_di_nascita
 
         return False, "Numero telefono non valido"
 
-
     elif not is_valid_email(email):
 
         return False, "E-mail non valido"
@@ -184,7 +183,7 @@ def crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono
     """
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
     data_formattata = datetime.strptime(data_di_nascita, "%Y-%m-%d").strftime("%d-%m-%Y")
-    user_data = None
+
     if ruolo == "1":
         user_data = {
             '_id': ObjectId(),
@@ -280,7 +279,6 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
                 }
 
                 documento_fornitore = {**user_data, **fornitore_data}
-                fornitore = Fornitore(user_data, fornitore_data)
 
                 db.Utente.insert_one(documento_fornitore)
                 flash("Registrazione avvenuta con successo!", "success")
@@ -316,7 +314,7 @@ def registra_admin(nome, cognome, nome_utente, email, password, cpassword, telef
                                         regione)
 
             documento_admin = {**user_data}
-            admin = Admin(user_data)
+
             db.Utente.insert_one(documento_admin)
 
             flash("Registrazione avvenuta con successo!", "success")
@@ -439,7 +437,7 @@ def get_dati_home_organizzatore(id_organizzatore):
         evento_data = db['Evento'].find(query).sort("Data", 1).limit(1).next()
         evento_privato = EventoPrivato(evento_data, evento_data)
     except StopIteration:
-        evento_data = None
+
         evento_privato = None
 
     query = {

@@ -1,4 +1,3 @@
-import base64
 
 from ..Utils import Image
 

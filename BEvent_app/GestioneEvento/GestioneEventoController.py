@@ -10,7 +10,6 @@ from BEvent_app.Routes import scelta_evento_da_creare_page, sceltafornitori_page
     visualizza_evento_dettagli_organizzatore_page, crea_evento_pubblico_page
 from ..Utils import Image
 
-
 from flask import current_app as app
 
 ge = Blueprint('ge', __name__)
@@ -63,8 +62,15 @@ def filtro_categoria():
         data_evento = session['data_evento']
 
         if 'categoria' in data:
-            categoria = data['categoria']
-            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_categoria_liste(categoria, data_evento)
+            if data['categoria'] == 'Annulla':
+                fornitori_filtrati = GestioneEventoService.get_fornitori_disponibli(data_evento)
+                servizi_non_filtrati = GestioneEventoService.get_servizi(data_evento)
+                servizi_filtrati = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati,
+                                                                                        fornitori_filtrati)
+            else:
+                categoria = data['categoria']
+                servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_categoria_liste(categoria,
+                                                                                                    data_evento)
 
             if servizi_filtrati and fornitori_filtrati:
                 fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
@@ -99,8 +105,14 @@ def filtro_regione():
         data_evento = session['data_evento']
 
         if 'regione' in data:
-            regione = data['regione']
-            servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_regione_liste(regione, data_evento)
+            if data['regione'] == 'Annulla':
+                fornitori_filtrati = GestioneEventoService.get_fornitori_disponibli(data_evento)
+                servizi_non_filtrati = GestioneEventoService.get_servizi(data_evento)
+                servizi_filtrati = GestioneEventoService.filtrare_servizi_per_fornitore(servizi_non_filtrati,
+                                                                                        fornitori_filtrati)
+            else:
+                regione = data['regione']
+                servizi_filtrati, fornitori_filtrati = GestioneEventoService.filtro_regione_liste(regione, data_evento)
 
             if servizi_filtrati and fornitori_filtrati:
                 fornitori_serializzati = [GestioneEventoService.fornitore_serializer(f) for f in fornitori_filtrati]
@@ -201,8 +213,9 @@ def aggiorna_right_column():
     Serve a elaborare una richiesta Ajax e in base all'email passata come parametro restituisce il singolo fornitore che
     corrisponde all'email e una lista con i suoi relativi servizi e le relative recensioni
 
-    :return: Risposta in formato JSON che continene un oggetto e due liste di oggetti: oggetto fornitore_scelto(di tipo
-    Fornitore), lista_servizi( lista di oggetti di tipo Servizio Offerto) e recensioni (lista di oggetti di tipo Recensione)
+    :return: Risposta in formato JSON che continene un oggetto e due liste di oggetti: oggetto fornitore_scelto(di
+    tipo Fornitore), lista_servizi( lista di oggetti di tipo Servizio Offerto) e recensioni (lista di oggetti di tipo
+    Recensione)
     """
     data = request.get_json()
     try:
@@ -483,8 +496,7 @@ def crea_event_publico():
     via = fornitore.via
     regione = fornitore.regione
     GestioneEventoService.crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, is_pagato,
-                                               fornitori_associati, servizi_associati, prezzo, ora, nome, via, regione,
-                                               session["id"])
+                                               fornitori_associati, servizi_associati, prezzo, ora, nome, via, regione)
     return redirect(url_for('Fornitori.visualizza_controller'))
 
 

@@ -1,5 +1,6 @@
 from .Utente import Utente
 
+
 class Admin(Utente):
     """
        Classe che rappresenta un utente con privilegi di amministratore, derivata dalla classe base Utente.
@@ -10,6 +11,7 @@ class Admin(Utente):
        Attributi:
            isAdmin (bool): Indica se l'utente ha privilegi di amministratore.
        """
+
     def __init__(self, user_data):
         """
                Inizializza un nuovo oggetto Admin.

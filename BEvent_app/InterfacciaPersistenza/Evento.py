@@ -39,6 +39,7 @@ class Evento(Observable):
                 self.locandina = Image.convert_byte_array_to_image(evento_data['Locandina'])
             except Exception as e:
                 messaggio = "Errore nella conversione del bytearray in immagine:" + str(e)
+                print(messaggio)
                 self.locandina = None
         else:
             self.locandina = None

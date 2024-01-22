@@ -66,7 +66,7 @@ def test_ricerca_evento_1_5_4(mock_app):
         result = ricerca_eventi_per_categoria("Conferenze e Seminari")
 
         message = get_flashed_messages(category_filter="success")
-        assert result != None and message[0] == "La categoria esiste"
+        assert result is not None and message[0] == "La categoria esiste"
 
 
 def test_ricerca_evento_1_5_5(mock_app):
@@ -76,7 +76,7 @@ def test_ricerca_evento_1_5_5(mock_app):
         result = ricerca_eventi_per_regione("Campania")
 
         message = get_flashed_messages(category_filter="success")
-        assert result != None and message[0] == "La regione esiste"
+        assert result is not None and message[0] == "La regione esiste"
 
 
 def test_ricerca_evento_1_5_6(mock_app, ):
@@ -86,4 +86,4 @@ def test_ricerca_evento_1_5_6(mock_app, ):
         result = ricerca_eventi_per_prezzo("30", "20")
 
         message = get_flashed_messages(category_filter="success")
-        assert result != None and message[0] == "il prezzo minore o massimo non è negativo"
+        assert result is not None and message[0] == "il prezzo minore o massimo non è negativo"

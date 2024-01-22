@@ -31,6 +31,3 @@ class Recensione:
         self.nome_utente_valutante = recensione_data['Nome_utente_valutante']
         self.servizio = recensione_data['Tipo_servizio_valutato']
         self.titolo = recensione_data['Titolo']
-
-
-

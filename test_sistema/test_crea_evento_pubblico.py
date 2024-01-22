@@ -6,48 +6,44 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
+
 @pytest.fixture
 def browser():
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
 
+
 def test_creazione_evento_pubblico_sistema(browser):
-
     browser.get("http://127.0.0.1:5000/home_organizzatore")
-
 
     login(browser, "d.maria@gmail.com", "password")
 
-
     browser.find_element(By.LINK_TEXT, "Crea Evento Pubblico").click()
 
-
-    inserisci_dati_evento(browser, "2024-02-01", "50", "Compleanno di Antonio", "byte_array_immagine", "ruolo", "Compleanno", False,
-                          ["fornitore1", "fornitore2"], ["servizio1", "servizio2"], "100.0", "20:00", "Nome dell'evento",
+    inserisci_dati_evento(browser, "2024-02-01", "50", "Compleanno di Antonio", "byte_array_immagine", "ruolo",
+                          "Compleanno", False,
+                          ["fornitore1", "fornitore2"], ["servizio1", "servizio2"], "100.0", "20:00",
+                          "Nome dell'evento",
                           "Via dell'evento", "Lazio", "id_del_fornitore")
-
 
     browser.find_element(By.CSS_SELECTOR, ".button").click()
 
-
     assert "L'evento pubblico è stato creato con successo!" in browser.page_source
 
-def login(browser, email, password):
 
+def login(browser, email, password):
     browser.find_element(By.NAME, "email").send_keys(email)
     browser.find_element(By.NAME, "password").send_keys(password)
 
-
     browser.find_element(By.CSS_SELECTOR, ".left .movimentoH1").click()
-
 
     WebDriverWait(browser, 10).until(EC.url_changes("http://127.0.0.1:5000/home_organizzatore"))
     assert "Benvenuto" in browser.page_source
 
-def inserisci_dati_evento(browser, data, n_persone, descrizione, locandina, ruolo, tipo, is_pagato, fornitori_associati,
-                           servizi_associati, prezzo, ora, nome, via, regione, id_fornitore):
 
+def inserisci_dati_evento(browser, data, n_persone, descrizione, locandina, ruolo, tipo, is_pagato, fornitori_associati,
+                          servizi_associati, prezzo, ora, nome, via, regione, id_fornitore):
     browser.find_element(By.ID, "data-evento").send_keys(data)
     browser.find_element(By.ID, "n_invitati").send_keys(n_persone)
     browser.find_element(By.NAME, "descrizione").send_keys(descrizione)

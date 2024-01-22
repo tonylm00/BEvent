@@ -1,15 +1,16 @@
+from unittest.mock import MagicMock
+
 import pytest
 from bson import ObjectId
 from flask import session
 from flask_login import login_user, current_user
+
 from BEvent_app import create_app
+from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
+from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
 from BEvent_app.InterfacciaPersistenza.ServizioOfferto import ServizioOfferto
 from BEvent_app.Routes import views
-from BEvent_app.InterfacciaPersistenza.Organizzatore import Organizzatore
-from BEvent_app.InterfacciaPersistenza.Fornitore import Fornitore
 from db import get_db
-from unittest.mock import MagicMock
-from BEvent_app.GestioneEvento import GestioneEventoService
 
 # Mocking GestioneEventoService functions
 GestioneEventoService = MagicMock()
@@ -27,7 +28,8 @@ def mock_login_organizzatore():
         "email": "adl@gmail.com",
         "telefono": "0123456789",
         "nome_utente": "hanstarz",
-        "password": "pbkdf2:sha256:600000$KUILXMDssMxmvug8$6530c694d0a82d56b896c721bd56ca929a0343d18fb127f830a0c86de2a5fd60",
+        "password": "pbkdf2:sha256"
+                    ":600000$KUILXMDssMxmvug8$6530c694d0a82d56b896c721bd56ca929a0343d18fb127f830a0c86de2a5fd60",
         "Admin": {
             "isAdmin": False
         },
@@ -64,7 +66,8 @@ def mock_login_fornitore():
         "email": "trossi@gmail.com",
         "telefono": "0123456789",
         "nome_utente": "Trattoria Da Teresa",
-        "password": "pbkdf2:sha256:600000$L7CnBoPe9odp356G$2926549e372d6263a32077be925398b59ca8ac107582cda51bfdb0564f3b4959",
+        "password": "pbkdf2:sha256"
+                    ":600000$L7CnBoPe9odp356G$2926549e372d6263a32077be925398b59ca8ac107582cda51bfdb0564f3b4959",
         "Admin": {
             "isAdmin": False
         },
@@ -136,17 +139,17 @@ def mock_id_servizio():
     return servizio_id
 
 
-def get_dettagli_evento(event_id):
-
+def get_dettagli_evento():
     return {'id': 1, 'name': 'Evento'}
 
-def get_dati_organizzatore(event_id):
 
+def get_dati_organizzatore():
     return {'organizer_id': 123, 'organizer_name': 'Organizzatore'}
 
-def get_dati_servizi_organizzatore(event_id):
 
+def get_dati_servizi_organizzatore():
     return [{'service_id': 456, 'service_name': 'Servizio'}]
+
 
 GestioneEventoService.get_dettagli_evento.side_effect = get_dettagli_evento
 GestioneEventoService.get_dati_organizzatore.side_effect = get_dati_organizzatore

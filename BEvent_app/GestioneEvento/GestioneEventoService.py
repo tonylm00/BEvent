@@ -13,7 +13,8 @@ db = get_db()
 
 def is_valid_data(data):
     """
-    Funzione per verificare che la data inserita sia valida. Viene quindi controllato che la data sia > alla data odierna.
+    Funzione per verificare che la data inserita sia valida. Viene quindi controllato che la data sia > alla data
+    odierna.
 
     :param data: (str) data inserita dall'utente nella pagina SceltaEventoDaCreare.html
 
@@ -22,7 +23,6 @@ def is_valid_data(data):
     date_format_regex = re.compile(r'^\d{2}-\d{2}-\d{4}$')
 
     if not date_format_regex.match(data):
-
         return False, "Formato data non corretto. Utilizzare il formato dd-mm-yyyy."
 
     try:
@@ -138,12 +138,11 @@ def get_servizi(data_richiesta):
 
 def filtro_categoria_liste(categoria, data):
     """
-    Funzione per ottenere dal database la lista di fornitori e servizi che appartengono alla categoria inserita dall'utente.
-    -Vengono prese le liste di fornitori e servizi disponibli nella data indicata dall'organizzatore.
+    Funzione per ottenere dal database la lista di fornitori e servizi che appartengono alla categoria inserita
+    dall'utente. -Vengono prese le liste di fornitori e servizi disponibli nella data indicata dall'organizzatore.
     -La lista dei servizi viene filtrata per prendere i servizi che hanno il parametro "tipo" che corrisponde alla
-    categoria indicata dall'organizzatore.
-    -In base ai servizi filtrati viene filtrata la lista dei fornitori per ottenere i fornitori ai quali appartengono i
-    servizi selezionati.
+    categoria indicata dall'organizzatore. -In base ai servizi filtrati viene filtrata la lista dei fornitori per
+    ottenere i fornitori ai quali appartengono i servizi selezionati.
 
     :param categoria: (str) stringa che indica la categoria di servizio che si vuole filtrare
     :param data: (str) stringa che indica la data nella quale si vuole fare l'evento
@@ -169,15 +168,15 @@ def filtro_regione_liste(regione, data):
     Funzione per ottenere dal database la lista di fornitori e servizi che si trovano nella regione inserita dall'
     organizzatore.
     -Vengono prese le liste di fornitori e servizi disponibli nella data indicata dall'organizzatore.
-    -La lista dei fornitori viene filtrata per prendere i fornitori che hanno il parametro "regione" che corrisponde alla
-    regione indicata dall'organizzatore.
+    -La lista dei fornitori viene filtrata per prendere i fornitori che hanno il parametro "regione" che corrisponde
+    alla regione indicata dall'organizzatore.
     -In base alla lista di fornitori selezionati vengono presi i servizi associati.
 
     :param regione: (str) stringa che indica la regione a cui devono appartenere i fornitori
     :param data: (str) stringa che indica la data nella quale si vuole fare l'evento
 
-    :return: due liste filtrate di oggetti: servizi_filtrati (lista di oggetti di tipo Servizio Offerto) e fornitori_filtrati
-    (lista di oggetti di tipo Fornitore)
+    :return: due liste filtrate di oggetti: servizi_filtrati (lista di oggetti di tipo Servizio Offerto) e
+    fornitori_filtrati (lista di oggetti di tipo Fornitore)
 
     """
     servizi = get_servizi(data)
@@ -207,11 +206,23 @@ def filtro_prezzo_liste(prezzo_min, prezzo_max, data):
     fornitori_filtrati (lista di oggetti di tipo Fornitore)
 
    """
+
     servizi = get_servizi(data)
     fornitori_non_filtrati = get_fornitori_disponibli(data)
     servizi_non_filtrati = filtrare_servizi_per_fornitore(servizi, fornitori_non_filtrati)
 
-    servizi_filtrati = [servizio for servizio in servizi_non_filtrati if float(prezzo_min) <= float(servizio.prezzo) <= float(prezzo_max)]
+    if prezzo_min == "" and prezzo_max == "":
+        return servizi_non_filtrati, fornitori_non_filtrati
+    elif prezzo_min == "" and float(prezzo_max) >= 0:
+        servizi_filtrati = [servizio for servizio in servizi_non_filtrati if float(servizio.prezzo) <=
+                            float(prezzo_max)]
+    elif float(prezzo_min) >= 0 and prezzo_max == "":
+        servizi_filtrati = [servizio for servizio in servizi_non_filtrati if
+                            float(prezzo_min) <= float(servizio.prezzo)]
+    else:
+        servizi_filtrati = [servizio for servizio in servizi_non_filtrati if
+                            float(prezzo_min) <= float(servizio.prezzo) <= float(prezzo_max)]
+
     id_fornitori = set(servizio.fornitore_associato for servizio in servizi_filtrati)
     fornitori_filtrati = [fornitore for fornitore in fornitori_non_filtrati if fornitore.id in id_fornitori]
 
@@ -224,7 +235,8 @@ def filtrare_servizi_per_fornitore(servizi_non_filtrati, fornitori_filtrati):
     usata una lista di id dei fornitori passati come argomento.
 
     :param servizi_non_filtrati: lista di oggetti di tipo servizio offerto non filtrati in base al fornitore
-    :param fornitori_filtrati: lista di oggetti di tipo fornitore che serve a filtrare la lista di servizi corrispondenti
+    :param fornitori_filtrati: lista di oggetti di tipo fornitore che serve a filtrare la lista di servizi
+    corrispondenti
 
     :return: una lista servizi_filtrati (lista di oggetti di tipo Servizio Offerto)
 
@@ -522,7 +534,7 @@ def elimina_evento(id_evento):
 
 
 def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, is_pagato, fornitori_associati,
-                         servizi_associati, prezzo, ora, nome, via, regione, id_fornitore):
+                         servizi_associati, prezzo, ora, nome, via, regione):
     """
     Funzione per salvare l'evento pubblico nel database che crea il documento da inserire mettendo come valore dei campi
     i dati passati come parametri.
@@ -541,7 +553,6 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     :param nome: (str) stringa che rappresenta il nome dell'evento
     :param via: (str) stringa che rappresenta il luogo dove si terrà l'evento
     :param regione: (str) stringa che rappresenta la regione dove si terrà l'evento
-    :param id_fornitore: (str) stringa che rappresenta l'id del fornitore che sta creando l'evento
 
     :return: nulla
     """
@@ -552,7 +563,6 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     documento_evento_generico = crea_documento_evento_generico(data, descrizione, tipo, n_persone,
                                                                locandina, ruolo, fornitori_associati, servizi_associati,
                                                                is_pagato)
-    #location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
 
     documento_evento_pubblico = {
         'EventoPubblico': {
@@ -570,7 +580,6 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
 
 
 def valid_evento(data, n_persone, tipo, prezzo, ora):
-
     result, result_message = is_valid_data(data)
     if not result:
         flash(result_message, "error")
@@ -596,7 +605,6 @@ def valid_evento(data, n_persone, tipo, prezzo, ora):
 
     flash('tutti i campi sono stati compilati correttamente', "succes")
     return True
-
 
 
 def get_tutti_servizi_by_fornitore_location(id_fornitore):

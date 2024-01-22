@@ -4,7 +4,7 @@ from flask_login import current_user
 from BEvent_app.RicercaEvento.RicercaEventoService import get_eventi, ricerca_eventi_per_parola, serializza_eventi, \
     ricerca_eventi_per_categoria, ricerca_eventi_per_regione, ricerca_eventi_per_prezzo, get_evento_by_id, \
     serializza_eventi_column, get_eventi_sponsorizzati
-from BEvent_app.Routes import ricerca_eventi_page, organizzatore_page, home
+from BEvent_app.Routes import ricerca_eventi_page, home
 
 re = Blueprint('re', __name__)
 

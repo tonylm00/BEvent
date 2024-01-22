@@ -1,5 +1,4 @@
-from flask import render_template, Blueprint, session
-from flask_login import current_user
+from flask import render_template, Blueprint
 
 # from flask_login import login_required, current_user
 from flask_login import login_required, current_user
@@ -9,9 +8,9 @@ views = Blueprint('views', __name__)
 
 @views.route('/fornitore_page')
 @login_required
-def fornitore_page(servizi=None, dati=None, eventiPubblici=None, eventiPrivati=None):
-    return render_template('AreaFornitore.html', servizi=servizi, dati=dati, eventiPrivati=eventiPrivati,
-                           eventiPubblici=eventiPubblici)
+def fornitore_page(servizi=None, dati=None, eventi_pubblici=None, eventi_privati=None):
+    return render_template('AreaFornitore.html', servizi=servizi, dati=dati, eventiPrivati=eventi_privati,
+                           eventiPubblici=eventi_pubblici)
 
 
 @views.route('/organizzatore_page')

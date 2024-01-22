@@ -35,4 +35,3 @@ class EventoPubblico(Evento):
         self.ora = evento_info['Ora']
 
         self.biglietti_disponibili = evento_info['BigliettiDisponibili']
-
