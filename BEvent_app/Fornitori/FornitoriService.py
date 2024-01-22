@@ -332,8 +332,16 @@ def invio_feed_back(id_valutato, id_valutante, valutazione):
 
 def get_fornitori(id_fornitori):
     """
-    
-    """
+       Recupera una lista di oggetti Fornitore basata sulla lista fornita di ID fornitori.
+
+       :param id_fornitori: Lista di str
+           Una lista di ID fornitori come stringhe.
+
+       :return: Lista di Fornitore
+           Una lista di oggetti Fornitore.
+
+       """
+
     from ..InterfacciaPersistenza.Fornitore import Fornitore
     db = get_db()
     lista_id = [ObjectId(id_str) for id_str in id_fornitori]
@@ -347,6 +355,13 @@ def get_fornitori(id_fornitori):
 
 
 def sponsorizza(id_evento):
+    """
+       Imposta lo stato di pagamento di un evento da sponsorizzare come pagato.
+
+       :param id_evento: str
+           L'ID univoco dell'evento da sponsorizzare.
+
+       """
     db = get_db()
     eventi = db['Evento']
     eventi.update_one(
