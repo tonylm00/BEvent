@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+        <title>Fornitori</title>
+        <link rel="stylesheet" href="../static/style/SceltaFornitore.css">
+        <link rel="stylesheet" href="../static/style/VisualizzazioneRecensione.css">
+
+</head>
+
+
+
+<body style="height: 100%; overflow: hidden">
+<header>
+{% include 'Header.html' %}
+</header>
+
+<p class="projTitle textGradient">Scegli i Tuoi Fornitori</p>
+<div class="container-principale">
+
+    <div class="left-column">
+    <div class="search-container watch fade-in">
+	<form action="" class="search-bar">
+		<input name="cerca" type="text" placeholder="cerca...">
+	<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="hover" colors="primary:#000,secondary:#ff7800" style="width:45px;height:45px"></lord-icon>
+
+	</form>
+
+	<button id="modal-button2">
+	<ion-icon name="filter-circle-outline" style="width:45px;height:45px; color:#ff7800;"></ion-icon>
+	</button>
+
+</div>
+
+ <div id="myModal2" class="modal2">
+	<div class="modal-container2 slideDown" id="modal-container2">
+        <div class="form-container2 sign-in">
+            <form>
+                <h1 style="color: #FE8415;">Filtra per Fornitori!</h1>
+                <select id="tipo" name="tipo" onchange="inviaRichiestaCategoria(this.value)">
+                        <option value="" disabled selected>Scegli il Fornitore Che Cerchi</option>
+                        <option value="Annulla" >Azzera Filtro</option>
+                        <option value="Location">Location</option>
+                        <option value="Fiorai e Decorazioni">Fiorai e Decorazioni</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Pasticceria">Pasticceria</option>
+                        <option value="Musica">Musica e Servizi Audio</option>
+                        <option value="Intrattenimento">Intrattenimento</option>
+                        <option value="Animazione per bambini">Animazione per bambini</option>
+                        <option value="Fotografo">Fotografo</option>
+                        <option value="Servizi di Trasporto">Servizi di Trasporto</option>
+                        <option value="Gadget">Gadget</option>
+                        <option value="Altro">Altro</option>
+                    </select>
+                <select name="regione" onchange="inviaRichiestaRegione(this.value)">
+                        <option value="" disabled selected>Scegli La Tua Regione</option>
+                        <option value="Annulla" >Azzera Filtro</option>
+                        <option value="Abruzzo">Abruzzo</option>
+                        <option value="Basilicata">Basilicata</option>
+                        <option value="Calabria">Calabria</option>
+                        <option value="Campania">Campania</option>
+                        <option value="Emilia Romagna">Emilia Romagna</option>
+                        <option value="Friuli Venezia Giulia">Friuli Venezia Giulia</option>
+                        <option value="Lazio">Lazio</option>
+                        <option value="Liguria">Liguria</option>
+                        <option value="Lombardia">Lombardia</option>
+                        <option value="Marche">Marche</option>
+                        <option value="Molise">Molise</option>
+                        <option value="Piemonte">Piemonte</option>
+                        <option value="Puglia">Puglia</option>
+                        <option value="Sardegna">Sardegna</option>
+                        <option value="Sicilia">Sicilia</option>
+                        <option value="Toscana">Toscana</option>
+                        <option value="Trentino Alto Adige">Trentino Alto Adige</option>
+                        <option value="Umbria">Umbria</option>
+                        <option value="Valle d'Aosta">Valle d'Aosta</option>
+                        <option value="Veneto">Veneto</option>
+                    </select>
+            </form>
+        </div>
+        <div class="toggle-container2">
+            <div class="toggle2">
+                <div class="toggle-panel2 toggle-right2">
+                    <h1>Filtra il Prezzo!</h1>
+                        <input type="number" name="prezzo_min" id="prezzo_min" placeholder="Prezzo Min">
+                        <input type="number" name="prezzo_max" id="prezzo_max" placeholder="Prezzo Max">
+                        <button onclick="inviaRichiestaPrezzo()">Applica</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="grid-container">
+
+	<div class="grid">
+
+        {% for fornitore in fornitori %}
+            {% if fornitore.regione == session.get('regione') %}
+
+        <div class="container watch fade-in">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="data:image/jpeg;base64,{{ fornitore.foto[0] }}">
+                    <h3 style="font-size: 18px;">{{ fornitore.nome_utente }} </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> <b>
+                        {% set  types_seen = [] %}
+                            {% for servizio in servizi %}
+                                {% if servizio.fornitore_associato == fornitore.id and servizio.tipo not in types_seen %}
+                                    {% set _ = types_seen.append(servizio.tipo) %}
+                                    {{ servizio.tipo }}
+                                {% endif %}
+                            {% endfor %}
+                            <br></b> <br> {{ fornitore.citta }}, {{ fornitore.regione }}</p>
+                        <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for fornitore in fornitori %}
+            {% if fornitore.regione != session.get('regione') %}
+        <div class="container watch fade-in ">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="data:image/jpeg;base64,{{ fornitore.foto[0] }}">
+                    <h3 style="font-size: 18px;">{{ fornitore.nome_utente }} </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;" class="content">
+                    <p> <b>
+                        {% set  types_seen = [] %}
+                            {% for servizio in servizi %}
+                                {% if servizio.fornitore_associato == fornitore.id and servizio.tipo not in types_seen %}
+                                    {% set _ = types_seen.append(servizio.tipo) %}
+                                    {{ servizio.tipo }}
+
+                                {% endif %}
+                            {% endfor %}
+                    </b><br><br> {{ fornitore.citta }}, {{ fornitore.regione }} </p>
+                    <button style="border: none; background: transparent" id="{{ fornitore.email }}" onclick="aggiornaColonnaDx('{{ fornitore.email }}')"> <a href="#">Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+    </div>
+
+        <div class="right-column">
+        <div class="riepilogo-container watch fade-in">
+            <form style="width: 100%" target="_blank" method="post" action="/visualizza_riepilogo">
+                <button class="bookmarkBtn">
+                  <span class="IconContainer">
+                    <svg viewBox="0 0 384 512" height="0.9em" class="icon">
+                      <path
+                        d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <p class="text">Riepilogo Scelte</p>
+                </button>
+            </form>
+        </div>
+        <div class="overflow-container">
+                <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
+                <img class="img" src="data:image/jpeg;base64,{{ fornitori[0].foto[0] }}" alt="Immagine">
+                </div>
+                <h1 class="watch fade-in" style="text-align: center">{{ fornitori[0].nome_utente}}</h1>
+                <p class="watch fade-in" style="text-align: center">{{ fornitori[0].descrizione }}</p>
+                <p class="projTitle textGradient watch fade-in" style="font-size: 22px; margin-top: 10px;"> Servizi offerti da {{ fornitori[0].nome}}: </p>
+
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                {% for servizio in servizi %}
+                    {% if servizio.fornitore_associato == fornitori[0].id %}
+                <div class="container2 watch fade-in ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
+                            <h3 style="font-size: 18px;">{{ servizio.tipo }} </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+                        <div class="content2">
+                            <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
+                                <button style="border: none; background: transparent" id="{{ servizio._id }}" onclick="salvaServizio('{{ servizio._id }}')"> <a>Prenota</a></button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                </div>
+
+
+                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Altre Immagini di {{ fornitori[0].nome}}: </p>
+                    <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                    {% for foto in fornitori[0].foto %}
+                <div class="container2 watch fade-in " style="margin-top: 20px;">
+                <div class="card2">
+                    <div class="face3 face4" style="transform: translateY(0px); background:#FFFFFF">
+                        <div class="content2" >
+                            <img style="width: 230px; height: 100%" src="data:image/jpeg;base64,{{ foto }}">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    {% endfor %}
+                </div>
+                </div>
+
+
+
+                    <div class="reviews-container">
+                        {% if recensioni %}
+                        <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Recensioni degli Utenti: </p>
+                        {% for recensione in recensioni %}
+                        {% for servizio in servizi %}
+                        {% if servizio.fornitore_associato == fornitori[0].id %}
+                        {% if recensione.valutato == servizio._id %}
+                        <div class="review-title">{{ recensione.titolo }}</div>
+                        <div class="review-subtitle">Autore: {{ recensione.nome_utente_valutante }}<br>
+                            Recensione lasciata per un servizio di tipo: {{ recensione.servizio }}</div>
+                        <div class="review-rating">{{ '★' * recensione.voto|int }}{{ '☆' * (5 - recensione.voto|int) }}</div>
+                        <p class="review-body">{{ recensione.descrizione }}</p>
+                        {% endif %} {% endif %} {% endfor %} {% endfor %} {% else %}
+                        <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Al momento non ci sono recensioni per questo fornitore </p>
+                        {% endif %}
+                    </div>
+        </div>
+
+
+        </div>
+    </div>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../static/js/SceltaFornitore.js"></script>
+    <script src="../static/js/SceltaFornitore2.js"></script>
+    <script src="../static/js/AjaxRicercaFornitori.js"></script>
+    <script src="../static/js/AjaxSwapCard.js"></script>
+    <script src="../static/js/SalvaServizio.js"></script>
+
+	</body>
+</html>

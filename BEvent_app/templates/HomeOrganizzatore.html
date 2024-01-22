@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Organizzatore</title>
+<link rel="stylesheet" href="../static/style/HomeOrganizzatore.css">
+</head>
+
+
+<body style="height: 100%; overflow: hidden">
+
+<header>
+{% include 'Header.html' %}
+</header>
+<br>
+<!--{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}-->
+<div class="upper-division">
+    <div class="left">
+
+      <form action="/scelta_evento_da_creare_page" >
+          <button class="bottone-invisibile" >
+            <h1 class="movimentoH1">Crea il tuo evento</h1>
+          </button>
+          </form>
+         <!-- {% if session.logged %}
+                <form action="/logout">
+                    <button type="submit">Logout</button>
+                </form>
+            {% endif %}-->
+
+    </div>
+
+    <div class="split right">
+      <div class="centered">
+          <form action="/visualizza_eventi" method="post">
+          <button class="bottone-invisibile">
+            <h1 class="movimentoH1">Trova l'evento per te</h1>
+          </button>
+          </form>
+      </div>
+    </div>
+</div>
+
+
+<div class="container-principale">
+
+        <div class="left-column">
+
+            <p class="projTitle textGradient watch fade-in" style="margin-top: 10px;">Tutto sul tuo evento</p>
+            <div class="grid-container">
+                <div class="grid">
+
+
+                        <div class="card">
+                            <span style="font-size: 30px; font-weight: bold">{{ evento_privato.festeggiato}}</span>
+                            <p>{{ evento_privato.tipo}}</p>
+                            <p>{{ evento_privato.data}}</p>
+
+                        </div>
+
+                        <!-- Card per i servizi -->
+
+
+                        <div class="card">
+                            <div class="superiore-card">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/bgebyztw.json"
+                                trigger="morph"
+                                state="morph-group"
+                                colors="primary:#121331,secondary:#e88c30"
+                                style="width:50px;height:50px">
+                            </lord-icon>
+                            </div>
+                            <div class="inferiore-card">
+                            <span>Invitati </span>
+                            <br>
+                            <p>{{ evento_privato.n_persone}}</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="superiore-card">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/wyqtxzeh.json"
+                                trigger="hover"
+                                colors="primary:#121331,secondary:#e88c30"
+                                style="width:50px;height:50px">
+                            </lord-icon>
+                            </div>
+                            <div class="inferiore-card">
+                            <span>Budget</span>
+                            <br>
+                            <p>{{ evento_privato.prezzo}}</p>
+                            </div>
+                        </div>
+                <div class="card button-card">
+                    <form style="padding-top: 50%;" action="/area_organizzatore" method="post">
+                <button class="orange-button">Scheda Completa</button>
+                        </form>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+
+    <div class="right-column">
+            <p class="projTitle textGradient watch fade-in" style="margin-top: 10px;">Eventi in Evidenza </p>
+
+        <div class="overflow-container">
+
+            {% for evento in eventi_pubblici  %}
+                <p class="projTitle  watch fade-in" style="width:80%; margin-left:10%; color: black; border-bottom: 3px solid black; font-size: 26px; margin-top: 10px;"> {{ evento.tipo }} </p>
+                <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
+                <img class="img" src="data:image/jpeg;base64,{{ evento.locandina }}" alt="Immagine">
+                </div>
+                <p class="watch fade-in" style="text-align: center">{{ evento.descrizione }}</p>
+
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                <div class="container2 ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="../static/images/BigliettoEvento.jpeg">
+                            <h3>Biglietto </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+                        <div class="content2">
+                            <form style="justify-content: center;" action="/acquista_biglietto" method="post">
+                            <p>
+
+                                <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
+                                <span>Prezzo Biglietto:</span><span id="prezzo">{{ evento.prezzo }}</span> &euro;<br>
+                                Luogo: {{ evento.luogo }}, {{ evento.regione }} <br>
+                                Data: {{ evento.data }} Ora: {{ evento.ora }} <br>
+                                Biglietti Disponibili:<span id="quantita_disponibile">{{ evento.biglietti_disponibili }}</span>/{{ evento.n_persone }}
+                                <br>
+                                <span id="prezzoTotale"></span><br>
+                                <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ evento.id }}"> <a>Prenota</a></button>
+                            </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+
+
+</div>
+
+
+
+
+
+
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../static/js/RicercaEvento.js"></script>
+</body>
+</html>

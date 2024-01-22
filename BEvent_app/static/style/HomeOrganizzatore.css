@@ -1,0 +1,513 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+
+
+.flash.success {
+    color: green;
+}
+
+.flash.error {
+    color: red;
+}
+
+.upper-division{
+    padding-top: 3%;
+}
+
+  .left {
+
+    text-align: center;
+    height: 35%;
+    width: 50%;
+    float: left;
+    background-color: white;
+    background-image: url('../images/Matrimonio.jpg');
+    background-size: cover;
+  }
+  .left:hover{
+       transform: scale(1.05);
+  }
+
+  .right {
+
+      text-align: center;
+      height: 35%;
+    width: 50%;
+    float: left;
+    background-color: white;
+    background-image: url('../images/Cerca.jpg');
+    background-size: cover;
+  }
+.right:hover{
+       transform: scale(1.05);
+  }
+  .centered img {
+    width: 150px;
+    border-radius: 50%;
+  }
+
+h1{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Grandiflora One', cursive;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+
+}
+
+.bottone-invisibile{
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bottone-invisibile:focus {
+    outline: none;
+}
+
+.lower-division{
+
+ margin-top: 10%;
+  width: 100%;
+  height: 70%;
+
+  z-index: 1;
+}
+
+
+/* -------------------------------------------------------------------------------------------------- */
+.textGradient{
+	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+.projTitle {
+    font-family: 'Grandiflora One', cursive;
+    font-weight: 700;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 3px solid #FE8415;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.overflow-container{
+    overflow: auto;
+    height: calc(100% - 350px);
+}
+
+.container-principale {
+    display: flex;
+    max-height: 100vh;
+    width: 100%;
+}
+
+.left-column {
+    flex: 40%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+
+}
+.right-column {
+
+    flex: 40%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    height: 100vh;
+}
+
+.img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 300px;
+    width: 450px;
+}
+
+/* Gestione della Sezione Tutto sul Tuo Evento */
+.grid-container{
+
+    overflow: auto;
+	height: calc(100% - 300px);
+	justify-items: center;
+	align-items: center;
+	margin-left:7.5%;
+  	width:85%;
+  	margin-bottom: 5%;
+
+
+}
+
+.grid{
+
+    display: grid;
+    justify-items: center;
+     grid-gap:0px;
+    row-gap:0px;
+    grid-template-columns: repeat(2,1fr);
+
+}
+
+.card-container {
+  display: flex;
+   /* Questo spazierà le card uniformemente */
+  flex-wrap: wrap; /* Permette alle card di andare a capo se necessario */
+}
+
+/* Stile base per le card */
+.card {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Aggiunge ombreggiatura per profondità */
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px; /* Bordi arrotondati per le card */
+  background: #FFF; /* Sfondo bianco per le card */
+  text-align: center; /* Centra il testo all'interno della card */
+  width: 150px; /* O un'altra misura che si adatta al tuo design */
+  height: 100px;
+}
+
+
+.card span{
+    font-size: 20px;
+    font-weight: bold;
+}
+.card p{
+    margin-top: 0px;
+}
+
+.button-card{
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0); /* Aggiunge ombreggiatura per profondità */
+  border-radius: 10px; /* Bordi arrotondati per le card */
+  background: #FFF; /* Sfondo bianco per le card */
+  text-align: center; /* Centra il testo all'interno della card */
+  width: 150px; /* O un'altra misura che si adatta al tuo design */
+  height: 10%;
+     display: flex;
+  align-items: center; /* Centra il bottone verticalmente all'interno della card */
+  justify-content: center
+;
+}
+
+.orange-button {
+  font-family: Arial, sans-serif; /* Sostituisci con il font che preferisci */
+  font-size: 16px; /* Adatta a seconda delle tue esigenze */
+  color: #FFA500; /* Codice colore arancione */
+  font-weight: bold;
+  background-color: #fff; /* Sfondo bianco */
+  border: 2px solid #FFA500; /* Bordo arancione */
+  border-radius: 20px; /* Angoli arrotondati */
+  padding: 10px 20px; /* Spaziatura interna */
+  cursor: pointer; /* Cambia il cursore quando è sopra il bottone */
+  outline: none; /* Rimuove l'outline al focus */
+  box-shadow: 0 2px 5px rgba(255, 165, 0, 0.4); /* Ombra leggera per effetto 3D */
+  transition: all 0.3s ease; /* Transizione fluida per effetti hover */
+  text-align: center; /* Centra il testo nel bottone */
+   /* Permette di applicare padding e margin */
+}
+
+.orange-button .arrow {
+  margin-left: 5px; /* Spaziatura tra testo e freccia */
+  display: inline-block; /* Permette di applicare margin */
+}
+
+/* Effetto al passaggio del mouse */
+.orange-button:hover {
+  background-color: #FFA500; /* Cambia colore di sfondo al hover */
+  color: #fff; /* Cambia colore del testo al hover */
+  box-shadow: 0 2px 10px rgba(255, 165, 0, 0.6); /* Ombra più profonda al hover */
+}
+
+.event-card-container {
+    display: flex;
+    overflow-x: auto; /* Permette lo scorrimento orizzontale delle card */
+    padding: 0;
+
+    overflow-y: hidden;
+
+}
+
+.event-card {
+
+    margin-top: -22px;
+    border: none;
+    background: none;
+    margin-right: 20px; /* Distanza tra le card */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    transition: transform 0.3s ease; /* Effetto zoom al passaggio del mouse */
+}
+
+.event-card img {
+
+    width: 250px; /* o la dimensione desiderata */
+    height: auto; /* mantiene il rapporto dell'immagine */
+    border-radius: 10px; /* Angoli arrotondati per le immagini delle card */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Ombra per profondità */
+}
+
+.event-card:hover {
+    transform: scale(1.05); /* Effetto zoom al passaggio del mouse */
+}
+
+.movimentoH1 {
+	animation-name: movimentoH1;
+	-webkit-animation-name: movimentoH1;
+	animation-duration: 2s;
+	-webkit-animation-duration: 2s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+
+@keyframes movimentoH1 {
+	0% {
+		transform: translateY(0%);
+	}
+	50%{
+		transform: translateY(-10%);
+	}
+	65%{
+		transform: translateY(0%);
+ 	}
+	80%{
+		transform: translateY(-20%);
+	}
+	95%{
+		transform: translateY(+10%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+.grind-container{
+    display: flex;
+    justify-content: start;
+    padding: 10px;
+    gap: 40px;
+    margin-left: 20px;
+}
+.grind-item{
+  height: 90px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Ombra per dare profondità */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  transition: transform 0.2s;
+}
+
+.grind-item h3{
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+.button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: transparent;
+    width: 100%;  /* Assicurati che copra l'intera area della card */
+    height: 40px;
+}
+
+/*------------------------------- Gestione delle Card degli eventi nella parte di destra -------------------------------*/
+
+
+.grid-container-servizi{
+
+
+	justify-items: center;
+	align-items: center;
+	margin-left:7.5%;
+  	width:85%;
+    margin-top: 20%
+
+
+}
+
+
+
+.grid-servizi{
+
+    display: grid;
+    justify-items: center;
+     grid-gap:0;
+    row-gap:0;
+    grid-template-columns: repeat(1,1fr);
+
+}
+
+
+.container2{
+    width: 60%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.container2 .card2{
+    position: relative;
+    cursor: pointer;
+}
+
+.container2 .card2 .face3{
+    width: 100%;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.container2 .card2 .face3.face4{
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    transform: translateY(100px);
+    align-items: end;
+}
+
+
+.container2 .card2:hover .face3.face4{
+    background: #ff7800;
+    transform: translateY(0);
+}
+
+.container2 .card2 .face3.face4 .content2 img{
+    width: 100%;
+    height: 75%;
+}
+
+.container2 .card2 .face3.face4 .content2 h3{
+    margin-top: 10px;
+
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.container2 .card2 .face3.face5{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 25px rgb(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.container2 .card2:hover .face3.face5{
+    transform: translateY(0);
+}
+
+.container2 .card2 .face3.face5 .content2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.container2 .card2 .face3.face5 .content2 p{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+.container2 .card2 .face3.face5 .content2 a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container2 .card2 .face3.face5 .content2 a:hover{
+    background: #333;
+    color: #fff;
+}
+
+.input-scelta{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    text-align: center;
+}
+.input-scelta::-webkit-inner-spin-button,
+.input-scelta::-webkit-outer-spin-button,
+.input-scelta {
+    -webkit-appearance: none;
+}
+
+/* MEDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+/*
+@media (max-height:900px ) {
+    .img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 220px;
+    width: 320px;
+}
+}
+
+*/
+
+
+
+@media(max-width: 2800px){
+
+    .container .card .face{
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+}
+    .container .card .face.face1 .content img{
+        width: 200px;
+        height: 75%;
+}
+}
+
+@media(max-width: 1410px){
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+
+    }
+    .grid-servizi {
+            grid-template-columns: repeat(1, 1fr);
+
+    }
+}
+@media (max-width: 1100px) {
+    .grid{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+@media (max-width: 1030px) {
+
+  h1{
+    font-size: 28px;
+  }
+}

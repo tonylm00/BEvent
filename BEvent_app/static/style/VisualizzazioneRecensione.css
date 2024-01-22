@@ -1,0 +1,42 @@
+
+.reviews-container {
+  width: 80%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.review {
+  border-bottom: 1px solid #eaeaea;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.review:last-child {
+  border-bottom: none;
+}
+
+.review-title {
+  font-size: 1.2em;
+  color: #333;
+}
+
+
+.review-subtitle {
+  font-size: 1em;
+  color: grey;
+}
+
+.review-rating {
+  color: #ffc107;
+  font-size: 1.5em;
+}
+
+.review-body {
+  font-size: 1em;
+  color: #666;
+}
+
+

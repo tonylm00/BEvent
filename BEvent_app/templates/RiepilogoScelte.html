@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Riepilogo Scelte</title>
+
+        <link rel="stylesheet" href="../static/style/RiepilogoScelte.css">
+</head>
+<body  style="height: 100%; overflow: hidden">
+<header>
+{% include 'Header.html' %}
+</header>
+
+ {% if servizi != None %}
+<p class="projTitle textGradient watch fade-in">Il Tuo Riepilogo!</p>
+
+<div class="container-principale watch fade-in">
+    <div class="left-column watch fade-in">
+    <div class="grid-container watch fade-in">
+        <div class="grid watch fade-in">
+            {% set sum = namespace(somma=0)%}
+            {% for servizio in servizi %}
+                {% set prezzo = servizio.prezzo | float %}
+                {% set sum.somma= sum.somma + prezzo %}
+                    <div class="container2 watch fade-in ">
+                    <div class="card2">
+                        <div class="face3 face4">
+                            <div class="content2">
+                                <img src="data:image/jpeg;base64,{{ servizio.foto_servizio[0] }}">
+                                <h3>{{ servizio.tipo }} </h3>
+
+                            </div>
+                        </div>
+                        <div class="face3 face5">
+                            <div class="content2">
+                                <p><b>{% for fornitore in fornitori %} {% if fornitore.id == servizio.fornitore_associato %}
+                            {{ fornitore.nome_utente }} {% endif %} {% endfor %}</b> <br></p>
+                                <p>{{ servizio.descrizione }}, {{ servizio.prezzo }}&euro;</p>
+                                    <form action="/elimina_servizio" method="post">
+                                    <button style="border: none; background: transparent;  " id="{{ servizio._id }}" name="id_servizio" value="{{ servizio._id }}"> <span>Elimina Servizio</span></button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+            {% endfor %}
+
+
+            </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <p class="projTitle textGradient watch fade-in" style="margin-bottom: 0">Informazioni</p>
+    <div style="display:flex; justify-items: flex-end; justify-content: flex-end; width: 100%;">
+        <div>
+        <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
+        <span class="label">Subtotale:</span>
+        <span class="label">Iva:</span>
+        <span class="label">BEvent:</span>
+        <span class="label">Totale:</span>
+        </ul>
+        </div>
+        <div style="margin-right: 15%">
+        <ul style="display: flex; justify-content: flex-end; justify-items: flex-end; flex-direction: column">
+        <span class="value">{{ sum.somma }} &euro;</span>
+        <span class="value">22%</span>
+         </span><span class="value">9%</span>
+
+            {% set sum.somma= ((sum.somma * 22.00) / 100.00) + sum.somma %}
+            {% set sum.somma= ((sum.somma * 9.00) / 100.00) + sum.somma %}
+
+        <span class="value">{{ '%.2f' | format(sum.somma) }} &euro;</span>
+        </ul>
+        </div>
+    </div>
+        <form id="formDati" action="" method="post">
+<div class="container-form">
+
+    <input style="margin-right: 10px" type="text" placeholder="Descrizione Evento" class="textarea" name="descrizione" value="">
+    <input type="text" placeholder="Nome Del Festeggiat*" class="textarea" name="nome_festeggiato" value="">
+
+</div>
+
+<div class="container-bottoni " >
+
+    <button class="button" type="submit" onclick="impostaAzione('Elimina')">Elimina Evento</button>
+    <button class="button2"  onclick="impostaAzione('Salva_bozza')" name="prezzo" value="{{ sum.somma }}">Salva bozza</button>
+    <button class="btn" onclick="impostaAzione('Prenota_evento')" name="prezzo" value="{{ sum.somma }}">
+        <span class="icon">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+        </span>
+        <span class="text">Prenota</span>
+    </button>
+
+</div>
+            </form>
+    </div>
+</div>
+
+
+
+
+{% else %}
+<p class="projTitle textGradient">Aggiungi Servizi al tuo Evento ❤️!</p>
+{% endif %}
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="../static/js/SceltaFornitore2.js"></script>
+<script src="../static/js/RiepilogoScelte.js"></script>
+</body>
+</html>

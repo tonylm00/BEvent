@@ -1,0 +1,167 @@
+
+.textGradient{
+	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+.projTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 32px;
+  border-bottom: 3px solid #FE8415;
+  letter-spacing: 3px;
+  margin-top: 100px;
+}
+
+.review-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.review-container h2 {
+    text-align: center;
+}
+
+.star-rating {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+    display: block;
+    margin-bottom: 5px;
+    margin: 0 auto;
+}
+
+
+.star-rating:not(:checked) > input {
+    display: none;
+}
+
+.star-rating:not(:checked) > label {
+    float: right;
+    padding: 0 5px;
+    font-size: 30px;
+    color: #ccc;
+    transition: all .2s;
+}
+
+.star-rating:not(:checked) > label:hover,
+.star-rating:not(:checked) > label:hover ~ label {
+    color: #ffd700;
+}
+
+.star-rating > input:checked ~ label {
+    color: #ffd700;
+}
+.star-rating label {
+    float: right;
+    padding: 0 5px;
+    font-size: 30px;
+    color: #da2121;
+    cursor: pointer;
+}
+
+
+.rating-details {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.rating-details label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.star-rating {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+
+
+.button_recensione {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px 15px;
+    align-content: center;
+    font-size: 16px;
+    color: white;
+    background-color: #ef7041;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ff9800;
+}
+
+
+.review-container p {
+    text-align: center;
+
+}
+
+.review-container input[type="text"],
+.review-container textarea {
+    width: 90%;
+    margin-left: 3.5%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.upload-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#drop-area {
+    height: 200px;
+    width: 100%;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fileElem {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.drop-label {
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    pointer-events:auto;
+}
+
+#gallery {
+    margin-top: 20px;
+}
+
+#gallery img {
+    width: 100px;
+    margin: 10px;
+    vertical-align: middle;
+}

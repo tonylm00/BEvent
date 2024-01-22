@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea Recensione</title>
+<link rel="stylesheet"  type="text/css" href="../static/style/ScritturaRecensioni.css">
+
+
+</head>
+<body>
+
+<div class="review-container">
+    <h2>Crea recensione</h2>
+    <p>Valuta la tua esperienza e raccontaci come è stata... </p>
+    <form action="">
+    <div class="rating-details">
+        <label>Valutazione complessiva:</label>
+        <div id="scenografia-rating" class="star-rating">
+            <input type="radio" id="scenografia-5" name="scenografia-rating" value="5"><label for="scenografia-5">&#9733;</label>
+            <input type="radio" id="scenografia-4" name="scenografia-rating" value="4"><label for="scenografia-4">&#9733;</label>
+            <input type="radio" id="scenografia-3" name="scenografia-rating" value="3"><label for="scenografia-3">&#9733;</label>
+            <input type="radio" id="scenografia-2" name="scenografia-rating" value="2"><label for="scenografia-2">&#9733;</label>
+            <input type="radio" id="scenografia-1" name="scenografia-rating" value="1"><label for="scenografia-1">&#9733;</label>
+
+        </div>
+    </div>
+
+    <input type="text" id="review-title" placeholder="Dai un titolo alla tua esperienza...">
+    <textarea id="review-body" placeholder="Descrivi come è stato il tuo evento..."></textarea>
+    <button class="button_recensione" id="submit-review">Invia</button>
+    </form>
+
+</div>
+
+
+<script src="../static/js/ScritturaRecensioni.js"></script>
+</body>
+</html>

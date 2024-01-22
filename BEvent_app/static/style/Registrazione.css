@@ -1,0 +1,114 @@
+
+ body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FEEBC8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 50%;
+    max-width: 500px;
+  }
+
+  .title {
+    color: darkorange;
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  .field-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+
+textarea{
+    border: 1px solid darkorange;
+    border-radius: 20px;
+    padding: 10px;
+
+    background-color: #FFF7ED;
+    color: black;
+    width: 100%;
+}
+input[type="date"],
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"],
+select{
+    border: 1px solid darkorange;
+    border-radius: 20px;
+    padding: 10px;
+    width: calc(50% - 10px);
+    background-color: #FFF7ED;
+    color: black;
+  }
+  .button {
+    background-color: darkorange;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .secondary-text {
+    color: darkorange;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .decorative-circle {
+    background-color: #FFEDD5;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .circle-large {
+    width: 200px;
+    height: 200px;
+    top: -120px;
+    left: -100px;
+  }
+  .circle-small {
+    width: 100px;
+    height: 100px;
+    bottom: -25px;
+    right: -50px;
+  }
+
+  /* Add responsiveness */
+  @media (max-width: 600px) {
+    .container {
+      width: 80%;
+      padding: 20px;
+    }
+    .title {
+      font-size: 36px;
+    }
+    .button {
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+    input[type="text"] {
+      padding: 5px;
+      width: calc(50% - 10px);
+    }
+  }

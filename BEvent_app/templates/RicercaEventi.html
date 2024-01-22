@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+        <title>Ricerca Evento</title>
+        <link rel="stylesheet" href="../static/style/RicercaEventi.css">
+
+</head>
+
+
+
+<body  style="height: 100%; overflow: hidden">
+<header>
+{% include 'Header.html' %}
+</header>
+
+<p class="projTitle textGradient">Trova L'Evento Adatto a Te</p>
+<div class="container-principale">
+
+    <div class="left-column">
+    <div class="search-container watch fade-in">
+	<form action="" class="search-bar">
+		<input name="cerca" type="text" placeholder="cerca...">
+	<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="hover" colors="primary:#000,secondary:#ff7800" style="width:45px;height:45px"></lord-icon>
+
+	</form>
+
+	<button id="modal-button2">
+	<ion-icon name="filter-circle-outline" style="width:45px;height:45px; color:#ff7800;"></ion-icon>
+	</button>
+
+</div>
+
+ <div id="myModal2" class="modal2">
+	<div class="modal-container2 slideDown" id="modal-container2">
+        <div class="form-container2 sign-in">
+            <form action="">
+                <h1 style="color: #FE8415;">Filtra per Eventi!</h1>
+                <select id="tipo" name="tipo" onchange="inviaRichiestaCategoria(this.value)">
+                        <option value="Annulla" selected>Scegli l'Evento Che Cerchi</option>
+                        <option value="Eventi Sociali">Eventi Sociali</option>
+                        <option value="Eventi Benefici">Eventi Benefici</option>
+                        <option value="Corsi e Workshop">Corsi e Workshop</option>
+                        <option value="Mostre ed Esposizioni">Mostre ed Esposizioni</option>
+                        <option value="Concerti e Spettacoli">Concerti e Spettacoli</option>
+                        <option value="Conferenze e Seminari">Conferenze e Seminari</option>
+                    </select>
+                <select name="regione" onchange="inviaRichiestaRegione(this.value)">
+                        <option value="Annulla" selected>Scegli La Tua Regione</option>
+                        <option value="Abruzzo">Abruzzo</option>
+                        <option value="Basilicata">Basilicata</option>
+                        <option value="Calabria">Calabria</option>
+                        <option value="Campania">Campania</option>
+                        <option value="Emilia Romagna">Emilia Romagna</option>
+                        <option value="Friuli Venezia Giulia">Friuli Venezia Giulia</option>
+                        <option value="Lazio">Lazio</option>
+                        <option value="Liguria">Liguria</option>
+                        <option value="Lombardia">Lombardia</option>
+                        <option value="Marche">Marche</option>
+                        <option value="Molise">Molise</option>
+                        <option value="Piemonte">Piemonte</option>
+                        <option value="Puglia">Puglia</option>
+                        <option value="Sardegna">Sardegna</option>
+                        <option value="Sicilia">Sicilia</option>
+                        <option value="Toscana">Toscana</option>
+                        <option value="Trentino Alto Adige">Trentino Alto Adige</option>
+                        <option value="Umbria">Umbria</option>
+                        <option value="Valle d'Aosta">Valle d'Aosta</option>
+                        <option value="Veneto">Veneto</option>
+                    </select>
+            </form>
+        </div>
+        <div class="toggle-container2">
+            <div class="toggle2">
+                <div class="toggle-panel2 toggle-right2">
+                    <h1>Filtra il Prezzo!</h1>
+                        <input type="number" id="prezzo_min" name="prezzo_min" placeholder="Prezzo Min" value="">
+                        <input type="number" id="prezzo_max" name="prezzo_max" placeholder="Prezzo Max" value="">
+                        <button onclick="inviaRichiestaPrezzo()">Applica</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="grid-container">
+
+	<div class="grid">
+
+        {% for evento in eventi %}
+            {% if evento.isPagato == true %}
+        <div class="container watch fade-in">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="data:image/jpeg;base64,{{ evento.locandina }}">
+                    <h3 style="font-size: 18px;">{{ evento.nome }} </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> <b> {{ evento.tipo }} <br></b> {{ evento.descrizione }}<br> </p>
+                        <button style="border: none; background: transparent" id="{{ evento.id }}" onclick="aggiornaColonnaDxEvento('{{ evento.id }}')"><a>Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+
+    {% for evento in eventi %}
+            {% if evento.isPagato == false %}
+        <div class="container watch fade-in">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="data:image/jpeg;base64,{{ evento.locandina }}">
+                    <h3 style="font-size: 18px;">{{ evento.nome }} </h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> <b> {{ evento.tipo }} <br></b> {{ evento.descrizione }}<br> </p>
+                        <button style="border: none; background: transparent" id="{{ evento.id }}" onclick="aggiornaColonnaDxEvento('{{ evento.id }}')"><a>Visualizza</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+    </div>
+
+        <div class="right-column">
+
+            <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;">Eventi in Evidenza </p>
+
+        <div class="overflow-container">
+        {% for evento_sponsorizzato in eventi_sponsorizzati %}
+            <p class="projTitle watch fade-in" style="font-size: 18px; margin-top: 10px; color: black; border-bottom: 3px solid black;"> {{ evento_sponsorizzato.tipo }} </p>
+                <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
+                <img class="img" src="data:image/jpeg;base64,{{ evento_sponsorizzato.locandina }}" alt="Immagine">
+                </div>
+                <p class="watch fade-in" style="text-align: center">{{ evento_sponsorizzato.descrizione }}</p>
+                <p class="projTitle watch fade-in" style="font-size: 18px; margin-top: 10px;color: black; border-bottom: 3px solid black;"> Biglietto </p>
+
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                <div class="container2 ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="../static/images/BigliettoEvento.jpeg">
+                            <h3>Biglietto </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+    <div class="content2">
+        {% if not session.get('nome_utente') %}
+        <p>
+
+            <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
+
+            <span>Prezzo Biglietto:</span><span id="prezzo">{{ evento_sponsorizzato.prezzo }}</span> &euro;<br>
+            Luogo: {{ evento_sponsorizzato.luogo }}, {{ evento_sponsorizzato.regione }} <br>
+            Data: {{ evento_sponsorizzato.data }} Ora: {{ evento_sponsorizzato.ora }} <br>
+            Biglietti Disponibili: <span id="quantita_disponibile">{{ evento_sponsorizzato.biglietti_disponibili }}</span>/{{ evento_sponsorizzato.n_persone }}
+            <br>
+            <span id="prezzoTotale"> </span><br>
+            <button type="submit" style="border: none; background: transparent" id="modal-button-ricerca-eventi" > <a>Prenota</a></button>
+
+        </p>
+        {% else %}
+        <form style="justify-content: center" action="/acquista_biglietto" method="post">
+        <p>
+
+            <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
+
+            <span>Prezzo Biglietto:</span><span id="prezzo">{{ evento_sponsorizzato.prezzo }}</span> &euro;<br>
+            Luogo: {{ evento_sponsorizzato.luogo }}, {{ evento_sponsorizzato.regione }} <br>
+            Ora: {{ evento_sponsorizzato.ora }} <br>
+            Biglietti Disponibili: <span id="quantita_disponibile">{{ evento_sponsorizzato.biglietti_disponibili }}</span>/{{ evento_sponsorizzato.n_persone }}
+            <br>
+            <span id="prezzoTotale"> </span><br>
+            <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ evento_sponsorizzato.id }}"> <a>Prenota</a></button>
+        </p>
+        </form>
+        {% endif %}
+
+    </div>
+</div>
+
+
+                </div>
+
+                </div>
+                </div>
+        </div>
+
+        {% endfor %}
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../static/js/SceltaFornitore.js"></script>
+    <script src="../static/js/SceltaFornitore2.js"></script>
+    <script src="../static/js/AjaxRicercaEventi.js"></script>
+    <script src="../static/js/AjaxSwapCardEventi.js"></script>
+    <script src="../static/js/RicercaEvento.js"></script>
+    <script src="../static/js/Header.js"></script>
+
+	</body>
+</html>

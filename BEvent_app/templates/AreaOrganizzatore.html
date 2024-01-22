@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+        <title>Area Organizzatore</title>
+        <link rel="stylesheet" href="../static/style/AreaOrganizzatore.css">
+
+</head>
+
+
+
+<body  style="height: 100%; overflow: hidden">
+<header>
+{% include 'Header.html' %}
+</header>
+
+<p class="projTitle textGradient watch fade-in">La Tua Area Personale</p>
+<div class="container-principale">
+
+    <div class="left-column">
+
+        <h2 style="text-align: center">I Tuoi Eventi</h2>
+        <div class="grid-container">
+
+	        <div class="grid">
+
+                {% if eventi_privati %}
+                    {% for evento in eventi_privati %}
+                <div class="container watch fade-in">
+                    <div class="card">
+                        <div class="face face1">
+                            <div class="content">
+                                <img src="data:image/jpeg;base64,{{ evento.locandina }}">
+                                <h3>{{ evento.tipo }} </h3>
+                            </div>
+                        </div>
+                        <div class="face face2">
+                            <div class="content">
+                                <p> Panoramica Evento: <br>
+                                    {{ evento.descrizione }}
+                                    <br>Data: {{ evento.data }}
+                                    <br>Festeggiato: {{ evento.festeggiato }}<br>
+                                    <br>Importo totale: {{ evento.prezzo }}&euro;
+                                    {%  if evento.isPagato == false %}
+                                        <button style="border: none; background: transparent"><a>Paga Evento</a></button>
+                                    {% else %}
+                                        <form action="/Visuallizza_Dettagli_evento_Organizzatore" method="post"><button style="border: none; background: transparent" name="id" value="{{ evento.id }}"><a>Dettagli Evento</a></button></form>
+
+                                        <form action="/elimina_evento_privato" method="post" ><button style="border: none; background: transparent" name="id_evento" value="{{ evento.id }}"><a>Cancella Evento</a></button></form>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+        <div class="right-column">
+
+            <h2 style="text-align: center; padding-right: 10%;">I Tuoi Dati</h2>
+            <form>
+                <div class="divisione_dati">
+                    <label class="label" for="nome">Nome</label>
+                    <input class="input" type="text" id="" name="nome" value="{{ organizzatore.nome }}">
+
+                    <label class="label" for="cognome">Cognome</label>
+                    <input class="input" type="text" id="" name="cognome" value="{{ organizzatore.cognome }}">
+                </div>
+                <div class="divisione_dati">
+                    <label class="label" for="email">Email</label>
+                    <input class="input" type="text" id="email" name="email" value="{{ organizzatore.email }}">
+
+                    <label class="label" for="nome_utente">Nome Utente</label>
+                    <input class="input" type="text" id="nome_utente" name="nome_utente" value="{{ organizzatore.nome_utente}}">
+                </div>
+                <div class="divisione_dati">
+                    <label class="label" for="telefono">Telefono</label>
+                    <input class="input" type="text" id="telefono" name="telefono" value="{{ organizzatore.telefono }}">
+
+                    <label class="label" for="data_nascita">Data di Nascita</label>
+                    <input class="input" type="text" id="data_nascita" name="data_nascita" value="{{ organizzatore.data_nascita }}">
+                </div>
+                <div class="divisione_dati">
+                    <label class="label" for="citta">Citta</label>
+                    <input class="input" type="citta" id="citta" name="citta" value="{{ organizzatore.citta }}">
+
+                    <label class="label" for="regione">Regione</label>
+                    <select class="select" name="regione">
+                        <option value="{{ organizzatore.regione }}" disabled selected>{{ organizzatore.regione }}</option>
+                            <option value="Abruzzo">Abruzzo</option>
+                            <option value="Basilicata">Basilicata</option>
+                            <option value="Calabria">Calabria</option>
+                            <option value="Campania">Campania</option>
+                            <option value="Emilia Romagna">Emilia Romagna</option>
+                            <option value="Friuli Venezia Giulia">Friuli Venezia Giulia</option>
+                            <option value="Lazio">Lazio</option>
+                            <option value="Liguria">Liguria</option>
+                            <option value="Lombardia">Lombardia</option>
+                            <option value="Marche">Marche</option>
+                            <option value="Molise">Molise</option>
+                            <option value="Piemonte">Piemonte</option>
+                            <option value="Puglia">Puglia</option>
+                            <option value="Sardegna">Sardegna</option>
+                            <option value="Sicilia">Sicilia</option>
+                            <option value="Toscana">Toscana</option>
+                            <option value="Trentino Alto Adige">Trentino Alto Adige</option>
+                            <option value="Umbria">Umbria</option>
+                            <option value="Valle d'Aosta">Valle d'Aosta</option>
+                            <option value="Veneto">Veneto</option>
+                    </select>
+                 </div>
+            </form>
+
+
+            <p class="projTitle textGradient watch fade-in" style="font-size: 26px; margin-top: 10px;"> Biglietti Comprati: </p>
+            <div class="overflow-container">
+
+            {% for biglietto in biglietti_comprati  %}
+
+                <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                <div class="container2 ">
+                <div class="card2">
+                    <div class="face3 face4">
+                        <div class="content2">
+                            <img src="../static/images/BigliettoEvento.jpeg">
+                            <h3>{{ biglietto.nome_evento}} </h3>
+                        </div>
+                    </div>
+                    <div class="face3 face5">
+                        <div class="content2">
+
+                            <p>Data Evento: {{ biglietto.data_evento }}<br>
+                            Luogo: {{ biglietto.dove }} <br> Ora: {{ biglietto.ora }} <br> Quantita: {{ biglietto.quantita }}</p>
+                               <p id="prezzoTotale"> </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../static/js/SceltaFornitore2.js"></script>
+    <script>
+        // Ottieni la data corrente
+        let dataCorrente = new Date();
+
+        // Formatta la data nel formato dd-mm-yyyy
+        let giorno = ('0' + dataCorrente.getDate()).slice(-2);
+        let mese = ('0' + (dataCorrente.getMonth() + 1)).slice(-2);
+        let anno = dataCorrente.getFullYear();
+        let dataFormattata = giorno + '-' + mese + '-' + anno;
+    </script>
+        </body>
+</html>

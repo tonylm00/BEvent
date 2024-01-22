@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Page</title>
+
+<link rel="stylesheet"  type="text/css" href="../static/style/EventoPubblico.css">
+
+</head>
+<body>
+<header>
+{% include 'Header.html' %}
+</header>
+<p class="projTitle textGradient "> Pubblica il tuo Evento</p>
+<form action="/crea_evento_pubblico" method="post" enctype="multipart/form-data">
+<div class="container-principale">
+
+
+
+        <div class="container">
+
+        <input class="selezione_file" type="file" id="fileInput" name="foto"   ><br>
+
+          <div class="field-container">
+
+            <input class="selezione" type="text" name="nome" placeholder="Nome Evento*" required>
+                <input class="selezione" type="number" name="prezzo" placeholder="Prezzo*" required>
+          </div>
+
+            <div class="field-container">
+
+            <input class="selezione" type="date" name="data" placeholder="Data Evento" pattern="\d{2}-\d{2}-\d{4}">
+                <input class="selezione" type="number" name="n_persone" placeholder="Posti Disponibili*" required>
+                <textarea class="selezione" id="descrizione" name="descrizione" maxlength="500" placeholder="Descrizione*"></textarea>
+          </div>
+
+          <div class="field-container">
+
+           <input class="selezione"  type="time" name="ora" placeholder="Ora dell'evento*" required>
+            <select class="selezione" id="event-type" name="tipo">
+            <option value="">Seleziona tipo di evento</option>
+            <option value="Conferenze e Seminari">Conferenze e Seminari</option>
+            <option value="Concerti e Spettacoli">Concerti e Spettacoli</option>
+            <option value="Mostre ed Esposizioni">Mostre ed Esposizioni</option>
+            <option value="Corsi e Workshop">Corsi e Workshop</option>
+            <option value="Eventi Benefici">Eventi Benefici</option>
+            <option value="Eventi Sociali">Eventi Sociali</option>
+
+             </select>
+              <select class="selezione" id="event-type" name="servizi" >
+              <option value="">Servizio Associato</option>
+             {% for servizio in servizi %}
+            <option value="{{ servizio._id }}">{{ servizio.descrizione }}</option>
+             {% endfor%}
+        </select>
+          </div>
+
+
+
+            <button type="submit" class="button_finale"  >Pubblica Evento</button>
+
+
+          <div class="decorative-circle circle-large"></div>
+          <div class="decorative-circle circle-small"></div>
+
+
+    </div>
+
+</div>
+</form>
+<script src="../static/js/EventoPubblico.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="test creazione evento pubblico">
+      <change afterPath="$PROJECT_DIR$/test_sistema/test_crea_evento_pubblico.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BEvent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BEvent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Python Unit Test" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dariasimonetti&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c76dac88-ac2b-4c40-a5d9-5977caf89a82" />
+        <option name="url" value="https://github.com/tonylm00/BEvent.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2a8ozgGSOtIMCcj8UwYe9uApDTB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flask server.BEvent.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_crea_evento_pubblico.test_crea_evento_pubblico_1_3_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_crea_evento_pubblico.test_creazione_evento_privato_sistema.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_crea_evento_pubblico.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_creazionediuneventoprivato.py.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Python tests.pytest in test_crea_evento_pubblico.py">
+    <configuration name="BEvent" type="Python.FlaskServer">
+      <module name="BEvent" />
+      <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
+      <option name="targetType" value="PATH" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_crea_evento_pubblico.test_crea_evento_pubblico_1_3_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_crea_evento_pubblico.test_crea_evento_pubblico_1_3_1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_crea_evento_pubblico.test_creazione_evento_privato_sistema" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_sistema" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_crea_evento_pubblico.test_creazione_evento_privato_sistema&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_crea_evento_pubblico.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_sistema" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_sistema/test_crea_evento_pubblico.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_creazionediuneventoprivato.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_sistema" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_sistema/test_creazionediuneventoprivato.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest in test_crea_evento_pubblico.py" />
+        <item itemvalue="Python tests.pytest in test_creazionediuneventoprivato.py" />
+        <item itemvalue="Python tests.pytest for test_crea_evento_pubblico.test_creazione_evento_privato_sistema" />
+        <item itemvalue="Python tests.Python tests for test_crea_evento_pubblico.test_crea_evento_pubblico_1_3_1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="" />
+      <created>1703709830675</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703709830675</updated>
+      <workItem from="1703709831728" duration="2408000" />
+      <workItem from="1703759590567" duration="10396000" />
+      <workItem from="1703778212655" duration="13757000" />
+      <workItem from="1703846025765" duration="6746000" />
+      <workItem from="1704279606634" duration="15780000" />
+      <workItem from="1704363282119" duration="3281000" />
+      <workItem from="1704399460847" duration="13725000" />
+      <workItem from="1704413669491" duration="5325000" />
+      <workItem from="1704460353329" duration="20377000" />
+      <workItem from="1704488016035" duration="12716000" />
+      <workItem from="1704537931975" duration="14396000" />
+      <workItem from="1704559869241" duration="14647000" />
+      <workItem from="1704589769819" duration="211000" />
+      <workItem from="1704625494441" duration="10967000" />
+      <workItem from="1704668964438" duration="3282000" />
+      <workItem from="1704709764220" duration="15739000" />
+      <workItem from="1704709764220" duration="15739000" />
+      <workItem from="1704812861441" duration="3043000" />
+      <workItem from="1704816591175" duration="2185000" />
+      <workItem from="1704829825450" duration="1270000" />
+      <workItem from="1704995371900" duration="394000" />
+      <workItem from="1705908994442" duration="2651000" />
+      <workItem from="1705920125844" duration="764000" />
+      <workItem from="1705923679671" duration="5820000" />
+    </task>
+    <task id="LOCAL-00001" summary="correzione autenticazione">
+      <option name="closed" value="true" />
+      <created>1703759811355</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703759811355</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ho finito Autenticazione Service e Autenticazione Contorller. Ho scritto le Interfacce di Persistenza: Admin, Organizzatore, fornitore e Utente. Ho aggiornato il file init per aggiustare la connessione. A tal fine ho creato il file db.py">
+      <option name="closed" value="true" />
+      <created>1703797057971</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703797057971</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ho finito Autenticazione Service e Autenticazione Contorller. Ho scritto le Interfacce di Persistenza: Admin, Organizzatore, fornitore e Utente. Ho aggiornato il file init per aggiustare la connessione. A tal fine ho creato il file db.py">
+      <option name="closed" value="true" />
+      <created>1703797469845</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1703797469845</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Riristino progetto">
+      <option name="closed" value="true" />
+      <created>1703848213668</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703848213668</updated>
+    </task>
+    <task id="LOCAL-00005" summary="modifica package autenticazione">
+      <option name="closed" value="true" />
+      <created>1703852081414</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703852081414</updated>
+    </task>
+    <task id="LOCAL-00006" summary="modifica &#10;EventoPubblico.css e EventoPubblico.html">
+      <option name="closed" value="true" />
+      <created>1704280714854</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704280714854</updated>
+    </task>
+    <task id="LOCAL-00007" summary="modifica templates e gestionevento">
+      <option name="closed" value="true" />
+      <created>1704283115063</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704283115063</updated>
+    </task>
+    <task id="LOCAL-00008" summary="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori">
+      <option name="closed" value="true" />
+      <created>1704298190746</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1704298190746</updated>
+    </task>
+    <task id="LOCAL-00009" summary="leggere modifcihe a pagina scelta evento e alla funzione visualizza fornitori per formattare la data">
+      <option name="closed" value="true" />
+      <created>1704400741837</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1704400741837</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Ho cambiato il database, la registrazione di tutti i tipi di utente e collegato le funzioni alle pagine html di scelta fornitori">
+      <option name="closed" value="true" />
+      <created>1704409468649</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1704409468649</updated>
+    </task>
+    <task id="LOCAL-00011" summary="commit Header.html">
+      <option name="closed" value="true" />
+      <created>1704410346269</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1704410346269</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati">
+      <option name="closed" value="true" />
+      <created>1704418377545</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704418377545</updated>
+    </task>
+    <task id="LOCAL-00013" summary="modifica area fornitore">
+      <option name="closed" value="true" />
+      <created>1704461545057</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704461545057</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modifica Fornitori Controller">
+      <option name="closed" value="true" />
+      <created>1704464464430</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704464464430</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Modifica sessioine">
+      <option name="closed" value="true" />
+      <created>1704466298720</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704466298720</updated>
+    </task>
+    <task id="LOCAL-00016" summary="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore">
+      <option name="closed" value="true" />
+      <created>1704479201318</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1704479201318</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commit inutile">
+      <option name="closed" value="true" />
+      <created>1704480241098</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1704480241098</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi">
+      <option name="closed" value="true" />
+      <created>1704500668789</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704500668789</updated>
+    </task>
+    <task id="LOCAL-00019" summary="ho creato la funzione ajax per lo swap delle card">
+      <option name="closed" value="true" />
+      <created>1704546540757</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1704546540757</updated>
+    </task>
+    <task id="LOCAL-00020" summary="leggera modifcia alle funzioni ajax">
+      <option name="closed" value="true" />
+      <created>1704547816200</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1704547816200</updated>
+    </task>
+    <task id="LOCAL-00021" summary="leggera modifcia alle funzioni ajax">
+      <option name="closed" value="true" />
+      <created>1704548274870</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1704548274870</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix della funzione registrazione">
+      <option name="closed" value="true" />
+      <created>1704553460880</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1704553460880</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies">
+      <option name="closed" value="true" />
+      <created>1704568119741</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704568119741</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies">
+      <option name="closed" value="true" />
+      <created>1704568299488</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1704568299488</updated>
+    </task>
+    <task id="LOCAL-00025" summary="collegamento forntend e backend">
+      <option name="closed" value="true" />
+      <created>1704575168541</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1704575168541</updated>
+    </task>
+    <task id="LOCAL-00026" summary="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento">
+      <option name="closed" value="true" />
+      <created>1704576873302</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1704576873302</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix della funzione per la pagina di visualizzazione ripeilogo, creazione delle interfacce di persistenza di evento, evento pubblico ed evento privato">
+      <option name="closed" value="true" />
+      <created>1704633220963</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1704633220963</updated>
+    </task>
+    <task id="LOCAL-00028" summary="commento del slavataggio di evento come bozza">
+      <option name="closed" value="true" />
+      <created>1704637568347</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1704637568347</updated>
+    </task>
+    <task id="LOCAL-00029" summary="funzione leimina servizio non funzionante">
+      <option name="closed" value="true" />
+      <created>1704670787192</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1704670787192</updated>
+    </task>
+    <task id="LOCAL-00030" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671530090</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671530090</updated>
+    </task>
+    <task id="LOCAL-00031" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671778595</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671778595</updated>
+    </task>
+    <task id="LOCAL-00032" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671825308</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671825308</updated>
+    </task>
+    <task id="LOCAL-00033" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704671921265</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1704671921265</updated>
+    </task>
+    <task id="LOCAL-00034" summary="funzione elimina servizio funzionante">
+      <option name="closed" value="true" />
+      <created>1704718219677</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1704718219677</updated>
+    </task>
+    <task id="LOCAL-00035" summary="implementazione di elimina evento lato back and">
+      <option name="closed" value="true" />
+      <created>1704738256439</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1704738256439</updated>
+    </task>
+    <task id="LOCAL-00036" summary="versione quasi finale di area fornitore">
+      <option name="closed" value="true" />
+      <created>1704884820514</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1704884820514</updated>
+    </task>
+    <task id="LOCAL-00037" summary="area fornitore pronta per essere modificata lato back, modificato evento pubblico">
+      <option name="closed" value="true" />
+      <created>1704909355977</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1704909355977</updated>
+    </task>
+    <task id="LOCAL-00038" summary="test visualizzazione evento">
+      <option name="closed" value="true" />
+      <created>1705848869952</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1705848869952</updated>
+    </task>
+    <task id="LOCAL-00039" summary="test creazione evento pubblico">
+      <option name="closed" value="true" />
+      <created>1705850768514</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1705850768514</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="leggere modifcihe a pagina scelta evento e alla funzione visualizza fornitori per formattare la data" />
+    <MESSAGE value="Ho cambiato il database, la registrazione di tutti i tipi di utente e collegato le funzioni alle pagine html di scelta fornitori" />
+    <MESSAGE value="commit Header.html" />
+    <MESSAGE value="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati" />
+    <MESSAGE value="modifica area fornitore" />
+    <MESSAGE value="Modifica Fornitori Controller" />
+    <MESSAGE value="Modifica sessioine" />
+    <MESSAGE value="LE IMMAGINI FUNZIONANO BENISSIMO :)))&#10;ho modificato l'area fornitore" />
+    <MESSAGE value="commit inutile" />
+    <MESSAGE value="ho creato la funzione ajax per la barra di ricerca risolvendo innumerevoli problemi" />
+    <MESSAGE value="ho creato la funzione ajax per lo swap delle card" />
+    <MESSAGE value="leggera modifcia alle funzioni ajax" />
+    <MESSAGE value="fix della funzione registrazione" />
+    <MESSAGE value="fix delle funzioni di ricerca e filtraggio, scrittura funzionni di salvataggio dei servizi dei cookies" />
+    <MESSAGE value="collegamento forntend e backend" />
+    <MESSAGE value="creazione funzione per la visualizzazione del riepilogo delle scelte fatte nella creazione dell'evento" />
+    <MESSAGE value="fix della funzione per la pagina di visualizzazione ripeilogo, creazione delle interfacce di persistenza di evento, evento pubblico ed evento privato" />
+    <MESSAGE value="commento del slavataggio di evento come bozza" />
+    <MESSAGE value="funzione leimina servizio non funzionante" />
+    <MESSAGE value="funzione elimina servizio funzionante" />
+    <MESSAGE value="implementazione di elimina evento lato back and" />
+    <MESSAGE value="versione quasi finale di area fornitore" />
+    <MESSAGE value="area fornitore pronta per essere modificata lato back, modificato evento pubblico" />
+    <MESSAGE value="test visualizzazione evento" />
+    <MESSAGE value="test creazione evento pubblico" />
+    <option name="LAST_COMMIT_MESSAGE" value="test creazione evento pubblico" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BEvent$pytest_in_test_crea_evento_pubblico_py.coverage" NAME="pytest in test_crea_evento_pubblico.py Coverage Results" MODIFIED="1705939844927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_sistema" />
+    <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1705924742044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
+    <SUITE FILE_PATH="coverage/BEvent$.coverage" NAME=" Coverage Results" MODIFIED="1705850308270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoService.coverage" NAME="GestioneEventoService Coverage Results" MODIFIED="1704737557888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
+    <SUITE FILE_PATH="coverage/BEvent$pytest_for_test_crea_evento_pubblico_test_creazione_evento_privato_sistema.coverage" NAME="pytest for test_crea_evento_pubblico.test_creazione_evento_privato_sistema Coverage Results" MODIFIED="1705927507355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_sistema" />
+    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoController.coverage" NAME="GestioneEventoController Coverage Results" MODIFIED="1704734563125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
+    <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
+    <SUITE FILE_PATH="coverage/BEvent$pytest_in_test_creazionediuneventoprivato_py.coverage" NAME="pytest in test_creazionediuneventoprivato.py Coverage Results" MODIFIED="1705938411405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_sistema" />
+    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

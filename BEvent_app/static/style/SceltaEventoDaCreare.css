@@ -1,0 +1,67 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Times New Roman';
+    font-size: 24px;
+}
+
+.container {
+    background-image: url('../images/Cerimonia_di_Laurea.jpg'); /* sostituisci con il percorso corretto dell'immagine */
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form-scelta {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 5px;
+    width: 500px;
+
+}
+
+.input-scelta{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.button {
+    background-color: darkorange;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"] {
+    -webkit-appearance: none;
+    margin-bottom: 10px;
+}
+
+
+input[type="number"] {
+    margin-right: 0.5em;
+}
+

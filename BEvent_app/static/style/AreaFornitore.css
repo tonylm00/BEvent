@@ -1,0 +1,628 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+.fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
+.fade-in.in-page{opacity: 1;transform: translateY(0vh);}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Divide il contenitore in tre colonne uguali */
+    grid-template-rows: auto auto 1fr; /* Due righe per le sezioni in alto, una per la tabella in basso */
+    gap: 10px; /* Spazio tra le griglie */
+    margin: 10px;
+    margin-top: 7%;
+
+}
+
+.sezione-foto {
+  grid-column: 1 / 2; /* Prima colonna */
+    grid-row: 1 / 2; /* Prima riga */
+}
+.sezione-info {
+  grid-column: 2 / 3; /* Seconda colonna */
+    grid-row: 1 / 2; /* Prima riga */
+}
+.sezione-eventi{
+    grid-column: 3;
+    grid-row: 1/2;
+}
+
+
+/* Stili per la sezione delle foto */
+.sezione-foto {
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.foto-contenitore {
+    display: -webkit-box;
+
+    justify-content: center;
+    gap: 10px;
+    overflow-x: auto;
+    width: 500px;
+}
+
+.foto-box {
+    width: 575px;
+    height: 375px;
+    background-color: #c4c4c4;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.foto-box_2 {
+    width: 150px;
+    height: 100px;
+    background-color: #c4c4c4;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Stili per il modulo delle informazioni personali */
+#moduloContatto {
+    max-width: 85%;
+    margin: 20px auto;
+    margin-bottom: 40px;
+}
+
+.griglia {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.colonna {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.campo input[type="text"],
+.campo input[type="tel"],
+.campo input[type="date"],
+.campo textarea {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid orange;
+    outline: none;
+}
+
+.campo.grande {
+    grid-column: 1 / -1;
+}
+
+.campo.grande textarea {
+    height: 100px;
+    border: 2px solid orange;
+     border-radius: 5px;
+}
+
+.campo input[type="submit"] {
+    padding: 10px 20px;
+    background-color: orange;
+    border: none;
+    color: white;
+    cursor: pointer;
+    grid-column: 1 / -1;
+}
+
+.campo input[type="submit"]:hover {
+    background-color: darkorange;
+}
+
+/* Stili per la sezione degli orari di lavoro */
+.sezione-eventi{
+    margin-right: -22%;
+    margin-top: -7%;
+    width: 40%;
+
+
+}
+
+.bottoni_table{
+    background-color: transparent;
+    border-color: transparent;
+}
+/* Griglia della Visualizzazione Fornitori */
+.grid-container{
+
+    overflow: auto;
+	/*height: calc(100% - 270px);*/
+	justify-items: center;
+	align-items: center;
+	margin-left:7.5%;
+  	width:85%;
+  	margin-bottom: 5%;
+
+}
+
+
+
+.grid{
+
+    display: grid;
+    justify-items: center;
+    grid-gap:0;
+    row-gap:0;
+    grid-template-columns: repeat(2,1fr);
+    padding-bottom: 50px;
+
+}
+
+/* Gestione delle Card nella Pagina */
+
+.container{
+    width: 80%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.container .card{
+    position: relative;
+    cursor: pointer;
+}
+
+.container .card .face{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.container .card .face.face1{
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    transform: translateY(100px);
+    align-items: stretch;
+}
+
+
+.container .card:hover .face.face1{
+    background: #ff7800;
+    transform: translateY(0);
+}
+
+.container .card .face.face1 .content img{
+    width: 300px;
+    height: 75%;
+}
+
+.container .card .face.face1 .content h3{
+    margin-top: 10px;
+
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.container .card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 25px rgb(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.container .card:hover .face.face2{
+    transform: translateY(0);
+}
+
+.container .card .face.face2 .content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+.container .card .face.face2 .content a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container .card .face.face2 .content a:hover{
+    background: #333;
+    color: #fff;
+}
+/* EVENTI IN PROGRAMMA*/
+.textGradient{
+	background: -webkit-linear-gradient(180deg, #f68b44, #ff7800);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+.projTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 32px;
+  border-bottom: 3px solid #FE8415;
+  letter-spacing: 3px;
+  margin-top: 100px;
+}
+/* Fade in della barra della pagina  */
+.fade-in{opacity: 0;transform: translateY(10vh); transition: all 1s cubic-bezier(.215, .61, .355, 1);}
+.fade-in.in-page{opacity: 1;transform: translateY(0vh);}
+
+.label{
+    color: #ff7800;
+    font-size: 20px;
+    margin-right: 2%;
+}
+.input{
+    align-items: center;
+    border: 1px solid #ff7800;
+    border-radius: 20px;
+    padding: 10px;
+    width: 20%;
+    background-color: white;
+    color: black;
+    margin-right: 10%;
+}
+.select{
+    border: 1px solid #ff7800;
+    border-radius: 20px;
+    padding: 10px;
+    width: 20%;
+    background-color: white;
+    color: black;
+    font-family: "Times New Roman", cursive;
+    font-size: 16px;
+
+}
+
+
+.sezione-tabella {
+     grid-column: 1 / -1; /* Estende su tutte le colonne */
+    grid-row: 3 / 4; /* Terza riga */
+}
+
+.sezione-tabella table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sezione-tabella th, .sezione-tabella td {
+    padding: 5px;
+    text-align: left;
+}
+
+.sezione-tabella th {
+    background-color: #ff9800;
+    border-bottom: 2px solid rgba(213, 129, 5, 0.71);
+    color:white;
+
+}
+
+.sezione-tabella th:first-child, .sezione-tabella td:first-child {
+    width: 20%; /* Più larga per la prima colonna */
+    text-align: center;
+
+}
+
+.sezione-tabella th:not(:first-child), .sezione-tabella td:not(:first-child) {
+    width: 8%; /* Più stretta per le altre colonne */
+    text-align: center;
+
+}
+
+.sezione-tabella img {
+    width: auto;
+    height: 70px;
+    object-fit: contain;
+    margin:  auto;
+    margin-left: 10px;
+}
+
+.sezione-tabella tr td:nth-child(6) input[type="text"] {
+    display: none;
+}
+
+
+.elenco_tabella{
+     font-size: 16px;
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #ff8800;
+    border-radius: 4px;
+}
+
+.sezione-tabella input[type="text"] {
+    font-size: 16px;
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #ff8800;
+    border-radius: 4px;
+}
+
+ .button_table{
+     background-color: transparent ;
+     border-color: transparent;
+ }
+
+
+
+/* modaleeeeee--------------------------*/
+.container-modale{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+
+
+.modal-containerAF{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+    max-height: 500px; /* Altezza massima */
+    overflow: auto; /* Rendi scorrevole se il contenuto è troppo grande */
+    /* Altre proprietà esistenti */
+}
+
+
+.modalAF label {
+    display: block; /* Renderizza le etichette come blocchi per permettere il centrare */
+    text-align: center; /* Centra il testo */
+    color: black; /* Colore del testo nero */
+    margin-top: 5px; /* Margine superiore */
+    margin-bottom: 5px;
+
+}
+
+.right-column{
+    margin-right:15%;
+    margin-left:5%
+}
+.left-column{
+    margin-left:15%;
+     margin-right:5%;
+}
+.modalAF form{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+
+#fileInput {
+   border: 2px solid orange; /* Bordo arancione */
+    color:black;
+    border-radius: 5px; /* Bordi arrotondati */
+    padding: 8px; /* Spazio interno per un aspetto migliore */
+   display: block; /* Rende i campi del form come blocchi */
+    margin: 10px auto; /* Margini automatici per centrare orizzontalmente */
+    text-align: center; /* Centra il testo nei campi */
+    margin-top: 5px; /* Riduci il margine superiore */
+    margin-bottom: 5px; /* Riduci il margine inferiore */
+    max-width: 200px;
+    text-overflow: ellipsis;
+}
+
+.modalAF input[type="text"],
+.modalAF input[type="tel"],
+.modalAF input[type="date"],
+.modalAF input[type="number"],
+.modalAF select,
+.modalAF textarea {
+    border: 2px solid orange; /* Bordo arancione */
+    border-radius: 5px; /* Bordi arrotondati */
+    padding: 8px; /* Spazio interno per un aspetto migliore */
+   display: block; /* Rende i campi del form come blocchi */
+    margin: 10px auto; /* Margini automatici per centrare orizzontalmente */
+    text-align: center; /* Centra il testo nei campi */
+    margin-top: 5px; /* Riduci il margine superiore */
+    margin-bottom: 5px; /* Riduci il margine inferiore */
+    max-width: 190px;
+    text-overflow: ellipsis;
+}
+.modalAF input[type="submit"] {
+    padding: 15px 30px; /* Aumenta il padding per ingrandire il bottone */
+    font-size: 18px; /* Aumenta la dimensione del font */
+    border-radius: 5px; /* Bordi arrotondati */
+    border: 2px solid orange; /* Bordo arancione */
+    background-color: orange; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    cursor: pointer; /* Cursor tipo puntatore */
+    display: block; /* Rende il bottone come blocco */
+    width: 100% ;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    /* Altre proprietà come margin, ecc. */
+}
+
+
+
+  /*****/
+/*   MODAL   */
+/*****/
+
+
+/* The Modal (background) */
+
+.modalAF {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	transition: all 0.5s ease 0.06s;
+
+	color: #fff;
+}
+.modalButtonAF{
+     background-color: orange; /* Colore di sfondo arancione */
+    color: white; /* Colore del testo bianco */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Bordi arrotondati */
+    padding: 10px 20px; /* Spaziatura interna */
+    text-align: center; /* Allineamento del testo al centro */
+    text-decoration: none; /* Nessuna decorazione del testo */
+    display: inline-block; /* Display inline-block */
+    font-size: 20px; /* Dimensione del font */
+    margin: 4px 2px; /* Margini esterni */
+    cursor: pointer; /* Cursor tipo puntatore */
+    margin-left: 8%;
+    margin-top: 8%;
+    margin-bottom: 4%;
+
+}
+
+
+.modalButtonAF {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+.contenitore-bottoni {
+    display: flex;
+    justify-content: flex-start; /* Allinea i bottoni a sinistra */
+    align-items: center; /* Centra verticalmente i bottoni */
+    grid-column: 1 / 2; /* Assicurati che occupi la giusta colonna nel layout della griglia */
+    grid-row: 2 / 3; /* Assicurati che occupi la giusta riga nel layout della griglia */
+    margin-left: 36px;
+}
+
+
+
+/* Animazione della modale */
+
+.slideDown {
+	animation-name: slideDown;
+	-webkit-animation-name: slideDown;
+	animation-duration: 0.6s;
+	-webkit-animation-duration: 0.6s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translate(-50%,-100%);
+	}
+	50%{
+		transform: translate(-50%, -46%);
+	}
+	65%{
+		transform: translate(-50%, -48%);
+ 	}
+	80%{
+		transform: translate(-50%, -52%);
+	}
+	95%{
+		transform: translate(-50%, -49%);
+	}
+	100% {
+		transform: translate(-50%, -50%);
+	}
+}
+
+
+/* Stili responsive */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Una colonna */
+        grid-template-rows: auto auto auto auto auto; /* Cinque righe */
+    }
+
+    /* Aggiorna la posizione di ogni sezione per lo schermo piccolo */
+    .sezione-foto, .sezione-info, .sezione-orari, .modalButtonAF, .sezione-tabella {
+        grid-column: 1 / 2;
+    }
+
+    /* Aggiorna la riga per ogni sezione */
+    .sezione-foto {
+        grid-row: 1 / 2;
+    }
+
+    .sezione-info {
+        grid-row: 2 / 3;
+    }
+
+    .sezione-orari {
+        grid-row: 3 / 4;
+    }
+
+    .modalButtonAF {
+        grid-row: 4 / 5;
+    }
+
+    .sezione-tabella {
+        grid-row: 5 / 6;
+    }
+}

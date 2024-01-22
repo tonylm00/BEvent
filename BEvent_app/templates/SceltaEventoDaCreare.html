@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evento Da Creare</title>
+    <link rel="stylesheet"  type="text/css" href="../static/style/SceltaEventoDaCreare.css">
+</head>
+<body>
+<header>
+{% include 'Header.html' %}
+</header>
+    <div class="container" id="container">
+
+
+        <form class="form-scelta" action="/visualizza_fornitori" method="post">
+            <div>
+                <label>Che tipo di evento vorresti creare?</label>
+                    <select class="input-scelta" id="tipo_evento" name="tipo_evento">
+                        <option value="Cerimonia_di_Laurea">Cerimonia di Laurea</option>
+                        <option value="Compleanno">Compleanno</option>
+                        <option value="Convention">Convention</option>
+                        <option value="Evento_Religioso">Evento Religioso</option>
+                        <option value="Matrimonio">Matrimonio</option>
+                        <option value="Meeting_Aziendale">Meeting Aziendale</option>
+                        <option value="Altro">Altro</option>
+                    </select>
+            </div>
+
+                <label>In che giorno?</label>
+                     <input class="input-scelta" type="date" id="data-evento" name="data_evento">
+            <br>
+                <label for="numero_invitati"> Numero di Invitati:</label>
+                    <input class="input-scelta" type="number" id="n_invitati" name="n_invitati">
+            <br>
+                <button type="submit" class="button">Conferma</button>
+        </form>
+    </div>
+
+<script src="../static/js/SceltaEventoDaCreare.js"></script>
+</body>
+</html>
