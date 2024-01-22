@@ -32,7 +32,7 @@ function aggiornaDOM(data) {
             </div>
             <h1 class="watch fade-in" style="text-align: center">${data.fornitore_scelto.nome_utente}</h1>
             <p class="watch fade-in" style="text-align: center">${data.fornitore_scelto.descrizione}</p>
-            <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;">Servizi offerti da ${data.fornitore_scelto.nome_utente}:</p>
+            <p class="projTitle textGradient watch fade-in" style="font-size: 22px; margin-top: 10px;">Servizi offerti da ${data.fornitore_scelto.nome_utente}:</p>
             <div class="grid-container-servizi">
                 <div class="grid-servizi">
         `;
