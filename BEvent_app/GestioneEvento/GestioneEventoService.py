@@ -564,7 +564,7 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
             'BigliettiDisponibili': n_persone
         }
     }
-    documento_evento = {**documento_evento_generico, **documento_evento_Pubblico}
+    documento_evento = {**documento_evento_generico, **documento_evento_pubblico}
     db.Evento.insert_one(documento_evento)
 
 
