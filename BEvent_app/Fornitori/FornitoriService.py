@@ -347,7 +347,7 @@ def get_fornitori(id_fornitori):
 
 def sponsorizza(id):
     db =get_db()
-    Eventi = db['Eventi']
+    Eventi = db['Evento']
     Eventi.update_one(
         {"_id": ObjectId(id)},
         {"$set": {"isPagato": True}}

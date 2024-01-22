@@ -474,7 +474,7 @@ def crea_event_publico():
     locandina = foto_byte_array
     ruolo = '1'
     tipo = request.form.get('tipo')
-    is_pagato = True
+    is_pagato = False
     fornitori_associati = [session['id']]
     servizi_associati = [request.form.get('servizi')]
     prezzo = request.form.get('prezzo')
