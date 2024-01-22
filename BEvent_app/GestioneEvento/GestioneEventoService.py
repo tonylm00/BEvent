@@ -552,9 +552,9 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     documento_evento_generico = crea_documento_evento_generico(data, descrizione, tipo, n_persone,
                                                                locandina, ruolo, fornitori_associati, servizi_associati,
                                                                is_pagato)
+    #location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
 
-
-    documento_evento_Pubblico = {
+    documento_evento_pubblico = {
         'EventoPubblico': {
             'Prezzo': prezzo,
             'Nome': nome,
@@ -579,10 +579,9 @@ def valid_evento(data, n_persone, tipo, prezzo, ora):
         flash('il numero di persone deve essere maggiore di 0', "error")
         return False
 
-
-    if tipo not in ['Conferenze e Seminari','Concerti e Spettacoli','Mostre ed Esposizioni','Corsi e Workshop','Eventi Benefici','Eventi Sociali']:
-
-        flash('il tipo deve essere uno di quelli selezionati',"error")
+    if tipo not in ['Conferenze e Seminari', 'Concerti e Spettacoli', 'Mostre ed Esposizioni', 'Corsi e Workshop',
+                    'Eventi Benefici', 'Eventi Sociali']:
+        flash('il tipo deve essere uno di quelli selezionati', "error")
         return False
 
     if not isinstance(prezzo, str):
@@ -594,7 +593,7 @@ def valid_evento(data, n_persone, tipo, prezzo, ora):
         flash('l ora non  rispetta il formato', "error")
         return False
 
-    flash('tutti i campi sono stati compilati correttamente',"succes")
+    flash('tutti i campi sono stati compilati correttamente', "succes")
     return True
 
 

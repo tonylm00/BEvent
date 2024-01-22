@@ -30,7 +30,7 @@ def validate_servizio_data(descrizione, tipo, prezzo, quantita):
         flash("La descrizione non deve superare i 500 caratteri", "error")
         return False
 
-    if tipo not in ['Location', 'Fiorai e Decorazione', 'Catering', 'Pasticceria', 'Musica e Servizio Audio',
+    if tipo not in ['Location', 'Fiorai e Decorazioni', 'Catering', 'Pasticceria', 'Musica e Servizio Audio',
                     'Intrattenimento', 'Animazione per bambini', 'Fotografo', 'Servizi di Trasporto', 'Gadget',
                     'Altro']:
         flash("Il tipo deve essere uno di quelli selezionati", "error")
