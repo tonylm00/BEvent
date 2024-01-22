@@ -61,6 +61,23 @@ function aggiornaDOM(data) {
         });
 
         nuovoContenuto += `</div></div>
+                            <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Altre Immagini di ${ data.fornitore_scelto.nome_utente}: </p>
+                    <div class="grid-container-servizi">
+                <div class="grid-servizi">`;
+
+        data.fornitore_scelto.foto.forEach(foto =>{
+            nuovoContenuto += `<div class="container2 watch fade-in ">
+                <div class="card2">
+                    <div class="face3 face4" style="transform: translateY(0px); background:#FFFFFF">
+                        <div class="content2" >
+                            <img style="width: 230px; height: 100%" src="data:image/jpeg;base64,${ foto }">
+                        </div>
+                    </div>
+                </div>
+                </div>`;
+        });
+
+        nuovoContenuto += `</div></div>
                             <div class="reviews-container">`;
 
         if (data.recensioni && data.recensioni.length > 0) {
