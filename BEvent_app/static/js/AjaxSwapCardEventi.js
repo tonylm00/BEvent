@@ -51,8 +51,9 @@ function aggiornaDOM(data) {
                         </div>
                         <div class="face3 face5">
                             <div class="content2">`
+                            console.log("Valore di data.nome_utente:", data.nome_utente);
+                            if (!data.evento_scelto.nome_utente) {
 
-                            if (data.nome_utente== null) {
                                  nuovoContenuto += `
                             
                                 <p>
@@ -61,7 +62,7 @@ function aggiornaDOM(data) {
                         
                                     <span>Prezzo Biglietto:</span><span id="prezzo">${ data.evento_scelto.prezzo }</span> &euro;<br>
                                     Luogo: ${ data.evento_scelto.luogo }, ${ data.evento_scelto.regione } <br>
-                                    Ora: ${ data.evento_scelto.ora } <br>
+                                    Data: ${data.evento_scelto.data } Ora: ${ data.evento_scelto.ora } <br>
                                     Biglietti Disponibili: <span id="quantita_disponibile">${ data.evento_scelto.biglietti_disponibili }</span>/${ data.evento_scelto.n_persone }
                                     <br>
                                     <span id="prezzoTotale"> </span><br>
@@ -77,11 +78,11 @@ function aggiornaDOM(data) {
                         
                                     <span>Prezzo Biglietto:</span><span id="prezzo">${ data.evento_scelto.prezzo }</span> &euro;<br>
                                     Luogo: ${ data.evento_scelto.luogo }, ${ data.evento_scelto.regione } <br>
-                                    Ora: ${ data.evento_scelto.ora } <br>
+                                    Data: ${data.evento_scelto.data } Ora: ${ data.evento_scelto.ora } <br>
                                     Biglietti Disponibili: <span id="quantita_disponibile">${ data.evento_scelto.biglietti_disponibili }</span>/${ data.evento_scelto.n_persone }
                                     <br>
                                     <span id="prezzoTotale"> </span><br>
-                                    <button type="submit" style="border: none; background: transparent" id="" name="id" value="{{ eventi[0].id }}"> <a>Prenota</a></button>
+                                    <button type="submit" style="border: none; background: transparent" id="" name="id" value="${ data.evento_scelto.id }"> <a>Prenota</a></button>
                                 </p>
                                 </form>
                                             
