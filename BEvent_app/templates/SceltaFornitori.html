@@ -210,6 +210,27 @@
                 {% endfor %}
                 </div>
                 </div>
+
+
+                <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Altre Immagini di {{ fornitori[0].nome}}: </p>
+                    <div class="grid-container-servizi">
+                <div class="grid-servizi">
+                    {% for foto in fornitori[0].foto %}
+                <div class="container2 watch fade-in ">
+                <div class="card2">
+                    <div class="face3 face4" style="transform: translateY(0px); background:#FFFFFF">
+                        <div class="content2" >
+                            <img style="width: 230px; height: 100%" src="data:image/jpeg;base64,{{ foto }}">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    {% endfor %}
+                </div>
+                </div>
+
+
+
                     <div class="reviews-container">
                         {% if recensioni %}
                         <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Recensioni degli Utenti: </p>
