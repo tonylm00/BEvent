@@ -22,7 +22,6 @@ def is_valid_data(data):
     date_format_regex = re.compile(r'^\d{2}-\d{2}-\d{4}$')
 
     if not date_format_regex.match(data):
-
         return False, "Formato data non corretto. Utilizzare il formato dd-mm-yyyy."
 
     try:
@@ -552,9 +551,9 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     documento_evento_generico = crea_documento_evento_generico(data, descrizione, tipo, n_persone,
                                                                locandina, ruolo, fornitori_associati, servizi_associati,
                                                                is_pagato)
-    #location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
+    # location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
 
-    documento_evento_Pubblico = {
+    documento_evento_pubblico = {
         'EventoPubblico': {
             'Prezzo': prezzo,
             'Nome': nome,
@@ -564,28 +563,26 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
             'BigliettiDisponibili': n_persone
         }
     }
-    documento_evento = {**documento_evento_generico, **documento_evento_Pubblico}
+    documento_evento = {**documento_evento_generico, **documento_evento_pubblico}
     db.Evento.insert_one(documento_evento)
 
 
 def valid_evento(data, n_persone, tipo, prezzo, ora):
-
     result, result_message = is_valid_data(data)
     if not result:
         flash(result_message, "error")
         return False
 
-    if not isinstance(n_persone, int):
+    if not isinstance(n_persone, str):
         flash('il numero di persone deve essere maggiore di 0', "error")
         return False
 
-
-    if tipo not in ['Conferenze e Seminari','Concerti e Spettacoli','Mostre ed Esposizioni','Corsi e Workshop','Eventi Benefici','Eventi Sociali']:
-
-        flash('il tipo deve essere uno di quelli selezionati',"error")
+    if tipo not in ['Conferenze e Seminari', 'Concerti e Spettacoli', 'Mostre ed Esposizioni', 'Corsi e Workshop',
+                    'Eventi Benefici', 'Eventi Sociali']:
+        flash('il tipo deve essere uno di quelli selezionati', "error")
         return False
 
-    if not isinstance(prezzo, float):
+    if not isinstance(prezzo, str):
         flash('il prezzo deve essere maggiore di 0', "error")
         return False
 
@@ -594,9 +591,8 @@ def valid_evento(data, n_persone, tipo, prezzo, ora):
         flash('l ora non  rispetta il formato', "error")
         return False
 
-    flash('tutti i campi sono stati compilati correttamente',"succes")
+    flash('tutti i campi sono stati compilati correttamente', "succes")
     return True
-
 
 
 def get_tutti_servizi_by_fornitore_location(id_fornitore):
