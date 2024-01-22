@@ -32,7 +32,7 @@ function aggiornaDOM(data) {
             </div>
             <h1 class="watch fade-in" style="text-align: center">${data.fornitore_scelto.nome_utente}</h1>
             <p class="watch fade-in" style="text-align: center">${data.fornitore_scelto.descrizione}</p>
-            <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;">Servizi offerti da ${data.fornitore_scelto.nome_utente}:</p>
+            <p class="projTitle textGradient watch fade-in" style="font-size: 22px; margin-top: 10px;">Servizi offerti da ${data.fornitore_scelto.nome_utente}:</p>
             <div class="grid-container-servizi">
                 <div class="grid-servizi">
         `;
@@ -44,7 +44,7 @@ function aggiornaDOM(data) {
                         <div class="face3 face4">
                             <div class="content2">
                                 <img src="data:image/jpeg;base64,${servizio.foto_servizio[0]}">
-                                <h3>${servizio.tipo}</h3>
+                                <h3 style="font-size: 18px;">${servizio.tipo}</h3>
                             </div>
                         </div>
                         <div class="face3 face5">
@@ -58,6 +58,23 @@ function aggiornaDOM(data) {
                     </div>
                 </div>
             `;
+        });
+
+        nuovoContenuto += `</div></div>
+                            <p class="projTitle textGradient watch fade-in" style="font-size: 18px; margin-top: 10px;"> Altre Immagini di ${ data.fornitore_scelto.nome_utente}: </p>
+                    <div class="grid-container-servizi">
+                <div class="grid-servizi">`;
+
+        data.fornitore_scelto.foto.forEach(foto =>{
+            nuovoContenuto += `<div class="container2 watch fade-in " style="margin-top: 20px;">
+                <div class="card2">
+                    <div class="face3 face4" style="transform: translateY(0px); background:#FFFFFF">
+                        <div class="content2" >
+                            <img style="width: 230px; height: 100%" src="data:image/jpeg;base64,${ foto }">
+                        </div>
+                    </div>
+                </div>
+                </div>`;
         });
 
         nuovoContenuto += `</div></div>

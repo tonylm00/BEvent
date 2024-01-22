@@ -60,7 +60,7 @@ def test_crea_evento_pubblico_1_3_2(mock_app):
         test_client.get('/mock_login_fornitore')
         with test_client.session_transaction() as sess:
             user_id = sess['id']
-            result = crea_evento_pubblico("10-10-2024", "5", "descrizione", "", 1, "Evento Sociale", False,
+            result = crea_evento_pubblico("10-10-2024", "5", "descrizione", "", "1", "Evento Sociale", False,
                                           [user_id], [], "500", "13:00", "nomeEvento", "via via", "Lazio", user_id)
 
             message = get_flashed_messages(category_filter="success")

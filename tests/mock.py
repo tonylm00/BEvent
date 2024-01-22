@@ -131,7 +131,7 @@ def mock_lista_servizi():
 
 @pytest.fixture
 def mock_id_servizio():
-    servizio_data = db['Servizio Offerto'].find_one({'_id': ObjectId('65a95714c4e2c6f986e1e555')})
+    servizio_data = db['Servizio Offerto'].find_one({'_id': ObjectId('65abf12b28b8c19ea42ad49b')})
     servizio_id = servizio_data['_id']
     return servizio_id
 
