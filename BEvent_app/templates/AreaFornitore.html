@@ -276,9 +276,13 @@ function scambiaImmagine(imgCliccata) {
                 <td><input type="text" name="prezzo" value="{{ eventoPubblico.biglietti_disponibili }}" required></td>
                 <td><input type="text" name="prezzo" value="{{ eventoPubblico.ora }}"required></td>
                 <td><button class="bottoni_table" type="submit" name="id" value="{{ eventoPubblico.id }}">
-                <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" style="width:50px;height:50px"></lord-icon> </button></td>  </form>
-                <td><form method="POST" action="/sponsorizza_evento"> <button type="submit" value="{{ eventoPubblico.id }}" name="id"> Sponsorizza </button> </form></td>
-            </form>
+                 <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" style="width:50px;height:50px"></lord-icon> </button></td>  </form>
+                  {% if not eventoPubblico.isPagato %}
+                        <td><form method="POST" action="/sponsorizza_evento"> <button type="submit" value="{{ eventoPubblico.id }}" name="id"> Sponsorizza </button> </form></td>
+                          </form>
+                  {% endif %}
+
+
 
 
 
