@@ -609,17 +609,16 @@ def get_tutti_servizi_by_fornitore_location(id_fornitore):
 
     """
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({
+    servizi_data = servizi_collection.find({
         'fornitore_associato': id_fornitore,
         'isCurrentVersion': {'$in': [None, '']},
         'isDeleted': False,
         'Tipo': 'Location'
-    }))
-
+    })
     lista_servizi = []
 
     for data in servizi_data:
-        servizio = ServizioOfferto.ServizioOfferto(data)
+        servizio = ServizioOfferto(data)
         lista_servizi.append(servizio)
 
     return lista_servizi

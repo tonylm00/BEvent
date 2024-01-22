@@ -2,7 +2,7 @@ from flask import Blueprint, request, session
 from flask_login import login_required
 from .FornitoriService import get_dati_fornitore, get_tutti_servizi_byfornitore, aggiorna_foto_fornitore, \
     aggiungi_servizio, modifica_servizio, elimina_servizio, get_eventi_by_fornitore_privato, get_eventi_fornitore_pubblico, \
-    cancella_evento, get_dettagli_evento, get_dati_organizzatore, get_dati_servizi, invio_feed_back
+    cancella_evento, get_dettagli_evento, get_dati_organizzatore, get_dati_servizi, invio_feed_back,sponsorizza
 from flask import redirect
 from ..Utils import Image
 from ..Routes import fornitore_page, visualizza_evento_dettagli_page
@@ -166,4 +166,16 @@ def invio_feedback_controller():
     id = request.form.get("valutato")
     valutazione = request.form.get("valutazione")
     invio_feed_back(id, session["id"], valutazione)
+    return redirect("/fornitori")
+
+@Fornitori.route('/sponsorizza_evento', methods=['POST'])
+@login_required
+def sponsorizza_evento():
+    """
+    permette di sponsorizzare un evento
+    :return: reindirizza alla a pagina del fornitore
+
+    """
+    id = request.form.get("id")
+    sponsorizza(id)
     return redirect("/fornitori")
