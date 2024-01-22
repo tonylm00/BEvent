@@ -66,7 +66,7 @@ function aggiornaDOM(data) {
                 <div class="grid-servizi">`;
 
         data.fornitore_scelto.foto.forEach(foto =>{
-            nuovoContenuto += `<div class="container2 watch fade-in ">
+            nuovoContenuto += `<div class="container2 watch fade-in " style="margin-top: 20px;">
                 <div class="card2">
                     <div class="face3 face4" style="transform: translateY(0px); background:#FFFFFF">
                         <div class="content2" >

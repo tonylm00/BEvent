@@ -181,7 +181,7 @@
                 <div class="watch fade-in" style="display: flex; justify-items:center; justify-content: center;">
                 <img class="img" src="data:image/jpeg;base64,{{ fornitori[0].foto[0] }}" alt="Immagine">
                 </div>
-                <h1 class="watch fade-in" style="text-align: center">{{ fornitori[0].nome}}</h1>
+                <h1 class="watch fade-in" style="text-align: center">{{ fornitori[0].nome_utente}}</h1>
                 <p class="watch fade-in" style="text-align: center">{{ fornitori[0].descrizione }}</p>
                 <p class="projTitle textGradient watch fade-in" style="font-size: 22px; margin-top: 10px;"> Servizi offerti da {{ fornitori[0].nome}}: </p>
 
@@ -216,7 +216,7 @@
                     <div class="grid-container-servizi">
                 <div class="grid-servizi">
                     {% for foto in fornitori[0].foto %}
-                <div class="container2 watch fade-in ">
+                <div class="container2 watch fade-in " style="margin-top: 20px;">
                 <div class="card2">
                     <div class="face3 face4" style="transform: translateY(0px); background:#FFFFFF">
                         <div class="content2" >
