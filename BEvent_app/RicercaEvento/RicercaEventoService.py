@@ -16,7 +16,6 @@ def get_eventi():
     db = get_db()
     eventi_collection = db['Evento']
     data_odierna = datetime.now().strftime("%d-%m-%Y")
-    print(data_odierna)
     eventi_data = list(eventi_collection.find({
         "$expr": {
             "$gt": [
@@ -37,7 +36,6 @@ def get_eventi():
         "Ruolo": "1",
         "EventoPubblico.BigliettiDisponibili": {"$ne": "0"}
     }))
-    print(eventi_data)
     lista_eventi = []
 
     for data in eventi_data:
@@ -45,6 +43,40 @@ def get_eventi():
         lista_eventi.append(evento)
 
     return lista_eventi
+
+
+def get_eventi_sponsorizzati():
+    db = get_db()
+    eventi_collection = db['Evento']
+    data_odierna = datetime.now().strftime("%d-%m-%Y")
+    eventi_data = list(eventi_collection.find({
+        "$expr": {
+            "$gt": [
+                {
+                    "$dateFromString": {
+                        "dateString": "$Data",
+                        "format": "%d-%m-%Y"
+                    }
+                },
+                {
+                    "$dateFromString": {
+                        "dateString": data_odierna,
+                        "format": "%d-%m-%Y"
+                    }
+                }
+            ]
+        },
+        "Ruolo": "1",
+        "isPagato": True,
+        "EventoPubblico.BigliettiDisponibili": {"$ne": "0"}
+    }))
+    lista_eventi_sponsorizzati = []
+
+    for data in eventi_data:
+        evento = EventoPubblico(data, data)
+        lista_eventi_sponsorizzati.append(evento)
+
+    return lista_eventi_sponsorizzati
 
 
 def serializza_eventi(evento):
