@@ -46,6 +46,13 @@ def get_eventi():
 
 
 def get_eventi_sponsorizzati():
+    """
+       Ottiene una lista di eventi sponsorizzati che soddisfano determinati criteri.
+
+       :return: List[EventoPubblico]
+           Una lista di oggetti EventoPubblico rappresentanti gli eventi sponsorizzati.
+
+       """
     db = get_db()
     eventi_collection = db['Evento']
     data_odierna = datetime.now().strftime("%d-%m-%Y")
@@ -108,6 +115,19 @@ def serializza_eventi(evento):
 
 
 def serializza_eventi_column(evento, nome_utente):
+    """
+        Serializza un oggetto evento in un formato adatto per l'inserimento in una colonna.
+
+        :param evento: Oggetto evento
+            L'oggetto evento da serializzare.
+
+        :param nome_utente: str
+            Il nome utente associato all'evento.
+
+        :return: dict
+            Un dizionario contenente i dettagli serializzati dell'evento.
+
+        """
     evento = {
         'id': evento.id,
         'data': evento.data,
