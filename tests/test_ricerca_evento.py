@@ -5,7 +5,7 @@ from mock import mock_app
 """
 test sulla lunghezza nella barra di ricerca
 """
-def test_ricerca_evento_1_5_1(mock_app):
+def test_ricerca_evento_1_5_nome(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -15,7 +15,7 @@ def test_ricerca_evento_1_5_1(mock_app):
         assert result is None and message[0] == "nessun evento trovato"
 
 
-def test_ricerca_evento_1_5_2(mock_app):
+def test_ricerca_evento_1_5_1(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -24,7 +24,7 @@ def test_ricerca_evento_1_5_2(mock_app):
         message = get_flashed_messages(category_filter="error")
         assert len(result)==0  and message[0] == "La categoria non esiste"
 
-def test_ricerca_evento_1_5_3(mock_app):
+def test_ricerca_evento_1_5_2(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -33,7 +33,7 @@ def test_ricerca_evento_1_5_3(mock_app):
         message = get_flashed_messages(category_filter="error")
         assert len(result)==0  and message[0] == "La regione non esiste"
 
-def test_ricerca_evento_1_5_4(mock_app):
+def test_ricerca_evento_1_5_3(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -55,7 +55,7 @@ def test_ricerca_evento_1_5_4(mock_app):
 
 
 
-def test_ricerca_evento_1_5_5(mock_app):
+def test_ricerca_evento_1_5_nome_riuscito(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -65,7 +65,7 @@ def test_ricerca_evento_1_5_5(mock_app):
         assert len(result) != 0  and message[0] == "evento trovato"
 
 
-def test_ricerca_evento_1_5_6(mock_app):
+def test_ricerca_evento_1_5_4(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -77,7 +77,7 @@ def test_ricerca_evento_1_5_6(mock_app):
 
 
 
-def test_ricerca_evento_1_5_7(mock_app):
+def test_ricerca_evento_1_5_5(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
@@ -90,7 +90,7 @@ def test_ricerca_evento_1_5_7(mock_app):
 
 
 
-def test_ricerca_evento_1_5_8(mock_app, ):
+def test_ricerca_evento_1_5_6(mock_app, ):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_organizzatore')
 
