@@ -345,10 +345,11 @@ def get_fornitori(id_fornitori):
 
     return lista_fornitori
 
-def sponsorizza(id):
-    db =get_db()
-    Eventi = db['Eventi']
-    Eventi.update_one(
-        {"_id": ObjectId(id)},
+
+def sponsorizza(id_evento):
+    db = get_db()
+    eventi = db['Evento']
+    eventi.update_one(
+        {"_id": ObjectId(id_evento)},
         {"$set": {"isPagato": True}}
     )
