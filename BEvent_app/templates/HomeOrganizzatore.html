@@ -59,27 +59,14 @@
 
 
                         <div class="card">
-                            <span style="font-size: 30px; font-weight: bold">Antonio & Daria</span>
-                            <p>21 settembre 2024</p>
+                            <span style="font-size: 30px; font-weight: bold">{{ evento_privato.festeggiato}}</span>
+                            <p>{{ evento_privato.tipo}}</p>
+                            <p>{{ evento_privato.data}}</p>
 
                         </div>
 
                         <!-- Card per i servizi -->
-                        <div class="card">
-                            <div class="superiore-card">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/lenjvibx.json"
-                                trigger="hover"
-                                colors="primary:#121331,secondary:#e88c30"
-                                style="width:50px;height:50px">
-                            </lord-icon>
-                            </div>
-                            <div class="inferiore-card">
-                            <span>I tuoi servizi</span>
-                            <br>
-                            <p>10</p>
-                            </div>
-                        </div>
+
 
                         <div class="card">
                             <div class="superiore-card">
@@ -92,9 +79,9 @@
                             </lord-icon>
                             </div>
                             <div class="inferiore-card">
-                            <span>Invitati confermati</span>
+                            <span>Invitati </span>
                             <br>
-                            <p>5 di 500</p>
+                            <p>{{ evento_privato.n_persone}}</p>
                             </div>
                         </div>
 
@@ -110,11 +97,11 @@
                             <div class="inferiore-card">
                             <span>Budget</span>
                             <br>
-                            <p>10.000$</p>
+                            <p>{{ evento_privato.prezzo}}</p>
                             </div>
                         </div>
                 <div class="card button-card">
-                    <form action="RiepilogoScelte.html">
+                    <form style="padding-top: 50%;" action="/area_organizzatore" method="post">
                 <button class="orange-button">Scheda Completa</button>
                         </form>
                 </div>
