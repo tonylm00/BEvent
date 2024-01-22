@@ -22,7 +22,7 @@ def validate_servizio_data(descrizione, tipo, prezzo, quantita):
     :param prezzo: float
     :param quantita: int
 
-    :return: messaggi di errore nel caso in cui uno dei campi non è valido ( con annessa descrizione del problema ),
+    :return:false in caso un campo non risetti le condizioni,
     True se invece i campi sono validi
 
     """
@@ -44,6 +44,13 @@ def validate_servizio_data(descrizione, tipo, prezzo, quantita):
 
 
 def get_tutti_servizi_byfornitore(id_fornitore):
+    """
+    serve a prendere tutti i servizi di uno specifico fornitore grazie al suo  id
+
+    :param id_fornitore: (str) id del fornitore
+
+    :return: lista dei servizi del fornitore con un dato id
+    """
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     servizi_data = list(servizi_collection.find(
@@ -59,6 +66,13 @@ def get_tutti_servizi_byfornitore(id_fornitore):
 
 
 def get_dati_fornitore(id_fornitore):
+    """
+    serve a ricavare tutti i dati di uno specifico fornitore grazie al suo id
+
+    :param id_fornitore: (str) id del fornitore
+
+    :return: lista dei dati del fornitore
+    """
     from ..InterfacciaPersistenza.Fornitore import Fornitore
     db = get_db()
     user_data = db['Utente'].find_one({"_id": ObjectId(id_fornitore)})
@@ -67,6 +81,12 @@ def get_dati_fornitore(id_fornitore):
 
 
 def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
+    """
+    serve ad aggiornare le foto di un dato fornitore
+    :param id_fornitore: (str) id del fornitore
+    :param byte_arrays_bytes: (byte_array) Array di byte che rappresentano le foto di un fornitore
+    :return: messaggio di successo in caso di riuscito inseromento al contrario messaggio di errore
+    """
     db = get_db()
     collection = db['Utente']
     try:
@@ -84,6 +104,14 @@ def aggiorna_foto_fornitore(id_fornitore, byte_arrays_bytes):
 
 
 def elimina_servizio(servizio_id):
+    """
+    serve ad eliminare un servizio dato il suo id, se il servizio non è stato prenotato e successivamente pagato elimina
+    del tutto il servizio dal database, altrimenti imposta a true il campo "isDeleated"
+
+    :param servizio_id: (str) id del servizio offerto
+
+    :return:
+    """
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
@@ -103,6 +131,14 @@ def elimina_servizio(servizio_id):
 
 
 def modifica_servizio(nuovi_dati, servizio_id):
+    """
+    serve a modificare un servizio offerto, se quest'ultimo è stato già prenotato in un evento crea un nuovo servizio offerto
+    con i campi modificati mentre il servizio con quell'id già esistente cambierà il campo "isCurrentVersion" con l'id del servizio appena creato.
+    se quest'ultimo non è
+    :param nuovi_dati: (dict) dizionario con tutti  i dati relativi al servizio
+
+    :return: restituisce l'id del servizio modificato
+    """
     db = get_db()
     servizi_collection = db['Servizio Offerto']
     eventi_collection = db['Evento']
@@ -152,6 +188,11 @@ def modifica_servizio(nuovi_dati, servizio_id):
 
 
 def aggiungi_servizio(nuovi_dati):
+    """
+    Aggiunge al database un servizio se quest'ultimo è valido
+    :param nuovi_dati: (dict) dizionario con tutti  i dati relativi al servizio
+    :return: True se il servizio è stato inserito, false se quest'ultimo non è stato inserito
+    """
     result = validate_servizio_data(nuovi_dati['Descrizione'], nuovi_dati['Tipo'], nuovi_dati['Prezzo'], 2)
     if result:
         db = get_db()
@@ -162,6 +203,11 @@ def aggiungi_servizio(nuovi_dati):
 
 
 def get_eventi_by_fornitore_privato(id):
+    """
+    serve ad ottenere la tutti gli eventi privati nei quali un fornitore ha un suo servizio prenotato
+    :param id: (str) id del fornitore
+    :return: la lista degli eventi
+    """
     from ..InterfacciaPersistenza import EventoPrivato
     print(id)
     db = get_db()
@@ -177,6 +223,11 @@ def get_eventi_by_fornitore_privato(id):
 
 
 def get_eventi_fornitore_pubblico(id):
+    """
+     serve ad ottenere la tutti gli eventi pubblici nei quali un fornitore ha un suo servizio prenotato
+    :param id: (str) id del fornitore
+    :return: la lista degli eventi
+    """
     from ..InterfacciaPersistenza import EventoPubblico
     print(id)
     db = get_db()
@@ -192,21 +243,41 @@ def get_eventi_fornitore_pubblico(id):
 
 
 def cancella_evento(id):
+    """
+    Cancella un evento Pubblico in base all'id dell'evento
+    :param id: (str) id dell'evento
+    """
     db = get_db()
     eventi = db['Evento']
     eventi.delete_one({"_id": ObjectId(id)})
 
 
 def get_dettagli_evento(id):
+    """
+    serve a vedere tutti i dettagli relativi ad un evento privato
+    :param id: (str) id dell'evento
+    :return: evento cercato
+    """
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
-    evento_data = eventi.find_one({"_id": ObjectId(id)})
-    evento = EventoPrivato.EventoPrivato(evento_data, evento_data)
+    evento_data = eventi.find_one({"_id": ObjectId(id),
+                                   "Ruolo": "2"})
+    if evento_data:
+        evento = EventoPrivato.EventoPrivato(evento_data, evento_data)
+        flash("nessun dettaglio", category="success")
+    else:
+        evento = None
+        flash("ok", "warning")
     return evento
 
 
 def get_dati_organizzatore(id):
+    """
+     serve a vedere tutti i dettagli relativi ad un organizzatore tramite l'id di un evento
+    :param id: (str) id dell'evento
+    :return: organizzatore ricercato
+    """
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
@@ -219,6 +290,13 @@ def get_dati_organizzatore(id):
 
 
 def get_dati_servizi(id, id_fornitore):
+    """
+    serve a vedere tutti i dettagli dei servizi offerti impiegati in un determinato evento escludendo i servizi di un fornitore( ovvero quello
+    che ha richiesto questa funzione)
+    :param id: (str) id dell'evento
+    :param id_fornitore: (str) id del fornitore da escludere dalla ricerca
+    :return: organizzatore ricercato
+    """
     from ..InterfacciaPersistenza import EventoPrivato
     db = get_db()
     eventi = db['Evento']
@@ -236,6 +314,13 @@ def get_dati_servizi(id, id_fornitore):
 
 
 def invio_feed_back(id_valutato, id_valutante, valutazione):
+    """
+    Funzione che permette di lasciare un feedback
+    :param id_valutato: (str) id del servizio valutato
+    :param id_valutante: (str) id del fornitore che sta lasciando il feedback
+    :param valutazione:(str) valutazione del servizio
+
+    """
     db = get_db()
     dati = {
         "id_valutato": id_valutato,
@@ -246,6 +331,9 @@ def invio_feed_back(id_valutato, id_valutante, valutazione):
 
 
 def get_fornitori(id_fornitori):
+    """
+    
+    """
     from ..InterfacciaPersistenza.Fornitore import Fornitore
     db = get_db()
     lista_id = [ObjectId(id_str) for id_str in id_fornitori]
@@ -256,3 +344,11 @@ def get_fornitori(id_fornitori):
         lista_fornitori.append(Fornitore(user_data, user_data))
 
     return lista_fornitori
+
+def sponsorizza(id):
+    db =get_db()
+    Eventi = db['Eventi']
+    Eventi.update_one(
+        {"_id": ObjectId(id)},
+        {"$set": {"isPagato": True}}
+    )

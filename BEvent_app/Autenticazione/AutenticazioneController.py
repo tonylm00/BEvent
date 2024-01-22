@@ -20,6 +20,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        # bottone = request.form.get('accesso')
 
         user = AutenticazioneService.verify_user(email, password)
 
@@ -35,7 +36,10 @@ def login():
             if user.ruolo == "1":
                 return home()
             elif user.ruolo == "2":
+                # if bottone == "accesso":
                 return redirect('/home_organizzatore')
+            # else:
+            # return redirect(request.url)
             elif user.ruolo == "3":
                 session['is_location'] = user.isLocation
                 return redirect('/fornitori')

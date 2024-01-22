@@ -23,7 +23,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         button2.addEventListener('click', openModal, false);
     }
     if (button3) {
-        button3.addEventListener('click', openModal, false);
+        button3.addEventListener('click', function() {
+            openModal();
+            //document.getElementById("accesso").value = "accesso-statico";
+        }, false);
     }
     if (close) {
         close.addEventListener('click', closeModal, false);

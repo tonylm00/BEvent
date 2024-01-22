@@ -262,7 +262,8 @@ def registra_forn(nome, cognome, nome_utente, email, password, cpassword, telefo
                 return False
             else:
 
-                user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono, data_di_nascita,
+                user_data = crea_doc_utente(password, ruolo, nome, cognome, nome_utente, email, telefono,
+                                            data_di_nascita,
                                             regione)
 
                 fornitore_data = {
@@ -417,7 +418,22 @@ def get_dati_home_organizzatore(id_organizzatore):
     query = {
         "Ruolo": "2",
         "EventoPrivato.Organizzatore": id_organizzatore,
-        "Data": {"$gte": data_odierna},
+        "$expr": {
+            "$gte": [
+                {
+                    "$dateFromString": {
+                        "dateString": "$Data",
+                        "format": "%d-%m-%Y"
+                    }
+                },
+                {
+                    "$dateFromString": {
+                        "dateString": data_odierna,
+                        "format": "%d-%m-%Y"
+                    }
+                }
+            ]
+        },
     }
     try:
         evento_data = db['Evento'].find(query).sort("Data", 1).limit(1).next()
@@ -428,7 +444,22 @@ def get_dati_home_organizzatore(id_organizzatore):
 
     query = {
         "Ruolo": "1",
-        "Data": {"$gte": data_odierna},
+        "$expr": {
+            "$gte": [
+                {
+                    "$dateFromString": {
+                        "dateString": "$Data",
+                        "format": "%d-%m-%Y"
+                    }
+                },
+                {
+                    "$dateFromString": {
+                        "dateString": data_odierna,
+                        "format": "%d-%m-%Y"
+                    }
+                }
+            ]
+        },
         "isPagato": True
     }
 
@@ -441,7 +472,22 @@ def get_dati_home_organizzatore(id_organizzatore):
     else:
         query = {
             "Ruolo": "1",
-            "Data": {"$gte": data_odierna},
+            "$expr": {
+                "$gte": [
+                    {
+                        "$dateFromString": {
+                            "dateString": "$Data",
+                            "format": "%d-%m-%Y"
+                        }
+                    },
+                    {
+                        "$dateFromString": {
+                            "dateString": data_odierna,
+                            "format": "%d-%m-%Y"
+                        }
+                    }
+                ]
+            },
             "isPagato": False
         }
         evento_pubblico_data = db['Evento'].find(query).sort("Data", 1).limit(2)

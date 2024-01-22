@@ -546,10 +546,13 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     :return: nulla
     """
 
+    if not valid_evento(data, n_persone, tipo, prezzo, ora):
+        return False
+
     documento_evento_generico = crea_documento_evento_generico(data, descrizione, tipo, n_persone,
                                                                locandina, ruolo, fornitori_associati, servizi_associati,
                                                                is_pagato)
-    location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
+    #location = db.Utente.find_one({"_id": ObjectId(id_fornitore)})
 
     documento_evento_Pubblico = {
         'EventoPubblico': {
@@ -565,6 +568,37 @@ def crea_evento_pubblico(data, n_persone, descrizione, locandina, ruolo, tipo, i
     db.Evento.insert_one(documento_evento)
 
 
+def valid_evento(data, n_persone, tipo, prezzo, ora):
+
+    result, result_message = is_valid_data(data)
+    if not result:
+        flash(result_message, "error")
+        return False
+
+    if not isinstance(n_persone, int):
+        flash('il numero di persone deve essere maggiore di 0', "error")
+        return False
+
+
+    if tipo not in ['Conferenze e Seminari','Concerti e Spettacoli','Mostre ed Esposizioni','Corsi e Workshop','Eventi Benefici','Eventi Sociali']:
+
+        flash('il tipo deve essere uno di quelli selezionati',"error")
+        return False
+
+    if not isinstance(prezzo, float):
+        flash('il prezzo deve essere maggiore di 0', "error")
+        return False
+
+    pattern = re.compile(r'^[0-2][0-9]:[0-5][0-9]$')
+    if not bool(re.match(pattern, ora)):
+        flash('l ora non  rispetta il formato', "error")
+        return False
+
+    flash('tutti i campi sono stati compilati correttamente',"succes")
+    return True
+
+
+
 def get_tutti_servizi_by_fornitore_location(id_fornitore):
     """
     Funzione che prende i servizi di tipo location associati ad un fornitore
@@ -575,17 +609,16 @@ def get_tutti_servizi_by_fornitore_location(id_fornitore):
 
     """
     servizi_collection = db['Servizio Offerto']
-    servizi_data = list(servizi_collection.find({
+    servizi_data = servizi_collection.find({
         'fornitore_associato': id_fornitore,
         'isCurrentVersion': {'$in': [None, '']},
         'isDeleted': False,
         'Tipo': 'Location'
-    }))
-
+    })
     lista_servizi = []
 
     for data in servizi_data:
-        servizio = ServizioOfferto.ServizioOfferto(data)
+        servizio = ServizioOfferto(data)
         lista_servizi.append(servizio)
 
     return lista_servizi
