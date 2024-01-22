@@ -171,11 +171,6 @@ function scambiaImmagine(imgCliccata) {
             <label for="price">Prezzo:</label>
                 <input type="number" id="price" name="prezzo"><br><br>
                 </div><div class="right-column">
-
-            <label for="quantity">Quantità:</label>
-                <input type="number" id="quantity" name="quantità"><br><br>
-
-
             <label for="photo">Foto:</label>
             <input type="file" id="fileInput" name="photos" multiple="multiple"><br>
             <ul id="selectedFileList"></ul>
@@ -200,7 +195,6 @@ function scambiaImmagine(imgCliccata) {
                 <th>Descrizione</th>
                 <th>Tipo</th>
                 <th>Prezzo</th>
-                <th>Quantità</th>
                 <th>Foto</th>
                 <th>Modifica</th>
                 <th>Elimina</th>
@@ -228,7 +222,7 @@ function scambiaImmagine(imgCliccata) {
                         <option value="Altro">Altro</option>
                     </select></td>
                 <td><input type="text" name="prezzo" value="{{ servizio.prezzo }}" required></td>
-                <td><input type="text" name="quantità" value="{{ servizio.quantita }}"required></td>
+
 
                 <td>{% for immagine in servizio.foto_servizio %}
                         <img src="data:image/jpeg;base64,{{ immagine }}" alt="Foto del Servizio">
@@ -267,6 +261,7 @@ function scambiaImmagine(imgCliccata) {
                 <th>Biglietti Disponibili</th>
                 <th>Ora</th>
                 <th>elimina</th>
+                <th>sponsorizza</th>
 
             </tr>
         </thead>
@@ -281,9 +276,9 @@ function scambiaImmagine(imgCliccata) {
                 <td><input type="text" name="prezzo" value="{{ eventoPubblico.biglietti_disponibili }}" required></td>
                 <td><input type="text" name="prezzo" value="{{ eventoPubblico.ora }}"required></td>
                 <td><button class="bottoni_table" type="submit" name="id" value="{{ eventoPubblico.id }}">
-                    <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" style="width:50px;height:50px"></lord-icon> </button></td>
-
-            </form>>
+                <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" style="width:50px;height:50px"></lord-icon> </button></td>  </form>
+                <td><form method="POST" action="/sponsorizza_evento"> <button type="submit" value="{{ eventoPubblico.id }}" name="id"> Sponsorizza </button> </form></td>
+            </form>
 
 
 

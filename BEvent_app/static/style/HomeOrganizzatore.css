@@ -122,6 +122,13 @@ h1{
     height: 100vh;
 }
 
+.img{
+    box-shadow: #333333;
+    margin-top: 50px;
+    height: 300px;
+    width: 450px;
+}
+
 /* Gestione della Sezione Tutto sul Tuo Evento */
 .grid-container{
 
@@ -323,7 +330,7 @@ h1{
 	align-items: center;
 	margin-left:7.5%;
   	width:85%;
-    margin-top: 17%;
+    margin-top: 20%
 
 
 }

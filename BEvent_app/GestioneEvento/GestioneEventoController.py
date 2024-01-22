@@ -463,7 +463,7 @@ def crea_event_publico():
 
     :return: messaggio di successo
     """
-    file = request.files.get('fotinabella')
+    file = request.files.get('foto')
     content = file.read()
     foto_byte_array = Image.convert_image_to_byte_array(content)
     fornitore = FornitoriService.get_dati_fornitore(session["id"])

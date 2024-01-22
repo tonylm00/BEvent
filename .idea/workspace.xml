@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="area fornitore pronta per essere modificata lato back, modificato evento pubblico">
+    <list default="true" id="0b15405e-c4d4-4be8-aeab-4b0cb651dea8" name="Changes" comment="Buttone area fornitori">
+      <change beforePath="$PROJECT_DIR$/.idea/BEvent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BEvent.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/AreaFornitore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/static/style/EventoPubblico.css" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/static/style/EventoPubblico.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriService.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Fornitori/FornitoriService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/GestioneEvento/GestioneEventoController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/ServizioOfferto.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/InterfacciaPersistenza/ServizioOfferto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BEvent_app/Utils/Image.py" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/Utils/Image.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaFornitore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BEvent_app/templates/AreaOrganizzatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/AreaOrganizzatore.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BEvent_app/templates/EventoPubblico.html" beforeDir="false" afterPath="$PROJECT_DIR$/BEvent_app/templates/EventoPubblico.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -63,6 +67,15 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Flask server.BEvent.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.Login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.Registrazione.html.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_feedback.test_inserisci_recensione_1_4_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_feedback.test_inserisci_recensione_1_4_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_fornitori.test_aggiungi_servizio_1_6_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_fornitori.test_aggiungi_servizio_1_6_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_fornitori.test_aggiungi_servizio_1_6_3.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_registrazione_fornitore.test_registra_forn_1_1_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_ricerca_evento.test_ricerca_evento_1_5_1.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -75,7 +88,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flask server.BEvent">
     <configuration name="BEvent" type="Python.FlaskServer">
       <module name="BEvent" />
       <option name="target" value="$PROJECT_DIR$/BEvent_app/__init__.py" />
@@ -92,6 +105,95 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for test_feedback.test_inserisci_recensione_1_4_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_feedback.test_inserisci_recensione_1_4_1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_feedback.test_inserisci_recensione_1_4_2" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_feedback.test_inserisci_recensione_1_4_2&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_fornitori.test_aggiungi_servizio_1_6_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_fornitori.test_aggiungi_servizio_1_6_1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_registrazione_fornitore.test_registra_forn_1_1_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_registrazione_fornitore.test_registra_forn_1_1_1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_ricerca_evento.test_ricerca_evento_1_5_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BEvent" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_ricerca_evento.test_ricerca_evento_1_5_1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_feedback.test_inserisci_recensione_1_4_2" />
+        <item itemvalue="Python tests.Python tests for test_ricerca_evento.test_ricerca_evento_1_5_1" />
+        <item itemvalue="Python tests.Python tests for test_registrazione_fornitore.test_registra_forn_1_1_1" />
+        <item itemvalue="Python tests.Python tests for test_fornitori.test_aggiungi_servizio_1_6_1" />
+        <item itemvalue="Python tests.Python tests for test_feedback.test_inserisci_recensione_1_4_1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -128,7 +230,12 @@
       <workItem from="1704812861441" duration="3043000" />
       <workItem from="1704816591175" duration="2185000" />
       <workItem from="1704829825450" duration="1270000" />
-      <workItem from="1704995371900" duration="394000" />
+      <workItem from="1705306870727" duration="5270000" />
+      <workItem from="1705671213151" duration="5329000" />
+      <workItem from="1705676570066" duration="4225000" />
+      <workItem from="1705764042786" duration="7328000" />
+      <workItem from="1705771410529" duration="3872000" />
+      <workItem from="1705845558461" duration="320000" />
     </task>
     <task id="LOCAL-00001" summary="correzione autenticazione">
       <option name="closed" value="true" />
@@ -410,23 +517,63 @@
       <option name="project" value="LOCAL" />
       <updated>1704738256439</updated>
     </task>
-    <task id="LOCAL-00036" summary="versione quasi finale di area fornitore">
+    <task id="LOCAL-00036" summary="Aggiunta di validazione dei form ai vari campi">
       <option name="closed" value="true" />
-      <created>1704884820514</created>
+      <created>1705311229017</created>
       <option name="number" value="00036" />
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1704884820514</updated>
+      <updated>1705311229017</updated>
     </task>
-    <task id="LOCAL-00037" summary="area fornitore pronta per essere modificata lato back, modificato evento pubblico">
+    <task id="LOCAL-00037" summary="Aggiunta di validazione dei form ai vari campi">
       <option name="closed" value="true" />
-      <created>1704909355977</created>
+      <created>1705311271084</created>
       <option name="number" value="00037" />
       <option name="presentableId" value="LOCAL-00037" />
       <option name="project" value="LOCAL" />
-      <updated>1704909355977</updated>
+      <updated>1705311271084</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="sistemato alcuni dettagli">
+      <option name="closed" value="true" />
+      <created>1705585287917</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1705585287917</updated>
+    </task>
+    <task id="LOCAL-00039" summary="sistemato alcuni dettagli">
+      <option name="closed" value="true" />
+      <created>1705585293378</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1705585293378</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Invio recensione fatto e finito">
+      <option name="closed" value="true" />
+      <created>1705591553210</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1705591553210</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Testing Area Fornitore">
+      <option name="closed" value="true" />
+      <created>1705764093365</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1705764093365</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Buttone area fornitori">
+      <option name="closed" value="true" />
+      <created>1705765357498</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1705765357498</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,10 +591,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modifica templates e gestionevento" />
-    <MESSAGE value="scrittura dei filtri per la pèagina di scelta fortnitore nella creazione dell'evento e della visualizzazione dei fornitori" />
-    <MESSAGE value="leggere modifcihe a pagina scelta evento e alla funzione visualizza fornitori per formattare la data" />
-    <MESSAGE value="Ho cambiato il database, la registrazione di tutti i tipi di utente e collegato le funzioni alle pagine html di scelta fornitori" />
     <MESSAGE value="commit Header.html" />
     <MESSAGE value="Ho fatto in modo che le immagini vengano memorizzate nel byte di array in mongodbe ho fatto varie modifiche ai file committati" />
     <MESSAGE value="modifica area fornitore" />
@@ -467,17 +610,22 @@
     <MESSAGE value="funzione leimina servizio non funzionante" />
     <MESSAGE value="funzione elimina servizio funzionante" />
     <MESSAGE value="implementazione di elimina evento lato back and" />
-    <MESSAGE value="versione quasi finale di area fornitore" />
-    <MESSAGE value="area fornitore pronta per essere modificata lato back, modificato evento pubblico" />
-    <option name="LAST_COMMIT_MESSAGE" value="area fornitore pronta per essere modificata lato back, modificato evento pubblico" />
+    <MESSAGE value="Aggiunta di validazione dei form ai vari campi" />
+    <MESSAGE value="Aggiunta di validazione dei form" />
+    <MESSAGE value="sistemato alcuni dettagli" />
+    <MESSAGE value="Invio recensione fatto e finito" />
+    <MESSAGE value="Testing Area Fornitore" />
+    <MESSAGE value="Buttone area fornitori" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buttone area fornitori" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoController.coverage" NAME="GestioneEventoController Coverage Results" MODIFIED="1704734563125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
-    <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
-    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1704995451160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$GestioneEventoService.coverage" NAME="GestioneEventoService Coverage Results" MODIFIED="1704737557888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
-    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$GestioneEventoController.coverage" NAME="GestioneEventoController Coverage Results" MODIFIED="1704734563125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/GestioneEvento" />
     <SUITE FILE_PATH="coverage/BEvent$AutenticazioneController.coverage" NAME="AutenticazioneController Coverage Results" MODIFIED="1703710624367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Autenticazione" />
+    <SUITE FILE_PATH="coverage/BEvent$.coverage" NAME=" Coverage Results" MODIFIED="1705842696321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/BEvent$Routes.coverage" NAME="Routes Coverage Results" MODIFIED="1703709944928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app" />
+    <SUITE FILE_PATH="coverage/BEvent$app.coverage" NAME="app Coverage Results" MODIFIED="1703711660799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BEvent$BEvent.coverage" NAME="BEvent Coverage Results" MODIFIED="1705845827197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/BEvent$FornitoriController.coverage" NAME="FornitoriController Coverage Results" MODIFIED="1704479380656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BEvent_app/Fornitori" />
   </component>
 </project>
