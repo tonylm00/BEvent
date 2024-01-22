@@ -68,7 +68,6 @@ def filtro_categorie_eventi():
         data = request.get_json()
         if 'categoria' in data:
             categoria = data['categoria']
-            print(categoria)
             eventi_filtrati = ricerca_eventi_per_categoria(categoria)
 
             if eventi_filtrati:

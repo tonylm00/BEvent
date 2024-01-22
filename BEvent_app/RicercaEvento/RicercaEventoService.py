@@ -108,7 +108,6 @@ def serializza_eventi(evento):
 
 
 def serializza_eventi_column(evento, nome_utente):
-    print(nome_utente, type(nome_utente))
     evento = {
         'id': evento.id,
         'data': evento.data,
