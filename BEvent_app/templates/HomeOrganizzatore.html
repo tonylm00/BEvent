@@ -144,7 +144,7 @@
                                 <input type="number" name="quantita" class="input-scelta" value="1" oninput="validaQuantita(this)">
                                 <span>Prezzo Biglietto:</span><span id="prezzo">{{ evento.prezzo }}</span> &euro;<br>
                                 Luogo: {{ evento.luogo }}, {{ evento.regione }} <br>
-                                Ora: {{ evento.ora }} <br>
+                                Data: {{ evento.data }} Ora: {{ evento.ora }} <br>
                                 Biglietti Disponibili:<span id="quantita_disponibile">{{ evento.biglietti_disponibili }}</span>/{{ evento.n_persone }}
                                 <br>
                                 <span id="prezzoTotale"></span><br>

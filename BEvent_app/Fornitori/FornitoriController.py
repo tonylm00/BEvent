@@ -176,6 +176,6 @@ def sponsorizza_evento():
     :return: reindirizza alla a pagina del fornitore
 
     """
-    id = request.form.get("id")
-    sponsorizza(id)
+    id_evento = request.form.get("id_evento")
+    sponsorizza(id_evento)
     return redirect("/fornitori")

@@ -100,7 +100,7 @@ function aggiornaDOMConRisultati(datiFiltrati) {
                     <div class="face face1">
                         <div class="content">
                             <img src="data:image/jpeg;base64,${fotoFornitore}">
-                            <h3>${nomeFornitore}</h3>
+                            <h3 style="font-size: 18px;">${nomeFornitore}</h3>
                         </div>
                     </div>
                     <div class="face face2">

@@ -96,7 +96,7 @@
             <div class="face face1">
                 <div class="content">
                     <img src="data:image/jpeg;base64,{{ evento.locandina }}">
-                    <h3>{{ evento.nome }} </h3>
+                    <h3 style="font-size: 18px;">{{ evento.nome }} </h3>
                 </div>
             </div>
             <div class="face face2">
@@ -172,7 +172,7 @@
 
             <span>Prezzo Biglietto:</span><span id="prezzo">{{ evento_sponsorizzato.prezzo }}</span> &euro;<br>
             Luogo: {{ evento_sponsorizzato.luogo }}, {{ evento_sponsorizzato.regione }} <br>
-            Ora: {{ evento_sponsorizzato.ora }} <br>
+            Data: {{ evento_sponsorizzato.data }} Ora: {{ evento_sponsorizzato.ora }} <br>
             Biglietti Disponibili: <span id="quantita_disponibile">{{ evento_sponsorizzato.biglietti_disponibili }}</span>/{{ evento_sponsorizzato.n_persone }}
             <br>
             <span id="prezzoTotale"> </span><br>
