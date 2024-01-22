@@ -51,7 +51,7 @@ function aggiornaDOM(data) {
                         </div>
                         <div class="face3 face5">
                             <div class="content2">`
-                            console.log("Valore di data.nome_utente:", data.nome_utente);
+
                             if (!data.evento_scelto.nome_utente) {
 
                                  nuovoContenuto += `
