@@ -4,29 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizza Recensioni</title>
-<link rel="stylesheet"  type="text/css" href="../static/style/VisualizzazioneRecensione.css">
+<link rel="stylesheet"  type="text/css" href="../static/style/EventoDettagli.css">
 </head>
 <body>
 
 
-<div class="reviews-container">
-   descrizione evento : {{ evento.descrizione }}<br>
-   nome organizzatore : {{ organizzatore.nome }}<br>
-   cognome organizzatore: {{ organizzatore.cognome }}<br>
-   email :  {{ organizzatore.email }}<br>
-   telefono: {{ organizzatore.telefono }}<br>
-   data:     {{ evento.data }}<br>
+<header>
+{% include 'Header.html' %}
+</header>
+
+<p class="projTitle textGradient watch fade-in"> Recensisci i servizi per il tuo evento </p>
+
     {% for servizio in servizi %}
-        {{  servizio.Descrizione}} <br>
+
+        <div class="review-container">
+        <h2>{{ servizio.Tipo}}</h2>
+
+        <p>Valuta la tua esperienza e raccontaci com'è stata... </p>
+        <p>{{  servizio.Descrizione}}</p> <br>
         <form action="/invio_Feedback" method="post">
-            <input type="number" name="valutazione" placeholder="voto">
-        <button type="submit" name="valutato" value="{{ servizio._id }}">Invio</button>
+
+            <div class="rating-details">
+            <label>Valuta il servizio offerto:</label>
+           <div id="rating-{{ servizio._id }}" class="star-rating">
+                    <input type="radio" id="star-5-{{ servizio._id }}" name="valutazione" value="5"><label for="star-5-{{ servizio._id }}">&#9733;</label>
+                    <input type="radio" id="star-4-{{ servizio._id }}" name="valutazione" value="4"><label for="star-4-{{ servizio._id }}">&#9733;</label>
+                    <input type="radio" id="star-3-{{ servizio._id }}" name="valutazione" value="3"><label for="star-3-{{ servizio._id }}">&#9733;</label>
+                    <input type="radio" id="star-2-{{ servizio._id }}" name="valutazione" value="2"><label for="star-2-{{ servizio._id }}">&#9733;</label>
+                    <input type="radio" id="star-1-{{ servizio._id }}" name="valutazione" value="1"><label for="star-1-{{ servizio._id }}">&#9733;</label>
+                </div>
+            </div>
+            <button class="button_recensione" id="submit-review" name="valutato" value="{{ servizio._id }}">Invia</button>
+
         </form>
+        </div>
+
     {% endfor %}
 
 
-</div>
 
-
+<script src="../static/js/ScritturaRecensioni.js"></script>
 </body>
 </html>
