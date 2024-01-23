@@ -264,13 +264,13 @@ def ricerca_eventi_per_prezzo(prezzo_min, prezzo_max):
    """
     if prezzo_min == "" and prezzo_max == "":
         return get_eventi()
-    elif prezzo_min =="" and int(prezzo_max) >= 0:
+    elif prezzo_min == "" and int(prezzo_max) >= 0:
         prezzo_min = 0
         eventi_non_filtrati = get_eventi()
         eventi_filtrati = [evento for evento in eventi_non_filtrati if float(prezzo_min) <= float(evento.prezzo) <=
                            float(prezzo_max)]
         return eventi_filtrati
-    elif int(prezzo_min)>=0 and prezzo_max == "":
+    elif int(prezzo_min) >= 0 and prezzo_max == "":
 
         eventi_non_filtrati = get_eventi()
         eventi_filtrati = [evento for evento in eventi_non_filtrati if float(prezzo_min) <= float(evento.prezzo)]
