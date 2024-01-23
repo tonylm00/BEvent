@@ -3,6 +3,7 @@ from flask import get_flashed_messages
 from BEvent_app.GestioneEvento.GestioneEventoService import crea_evento_pubblico
 from mock import mock_app
 
+
 def test_crea_evento_pubblico_1_3_1(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_fornitore')
@@ -58,7 +59,7 @@ def test_crea_evento_pubblico_1_3_5(mock_app):
             assert result is False and message[0] == "l ora non  rispetta il formato"
 
 
-def test_crea_evento_pubblico_1_3_2(mock_app):
+def test_crea_evento_pubblico_1_3_6(mock_app):
     with mock_app.app_context(), mock_app.test_client() as test_client:
         test_client.get('/mock_login_fornitore')
         with test_client.session_transaction() as sess:
